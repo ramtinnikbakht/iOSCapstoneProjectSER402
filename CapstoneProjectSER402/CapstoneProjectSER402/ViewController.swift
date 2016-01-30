@@ -10,9 +10,36 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var usernameTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
+    
+    
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        /*var blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Light)
+        var blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = view.bounds
+        blurEffectView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight] // for supporting device rotation
+        view.addSubview(blurEffectView)
+        */
+        var usernameImageView = UIImageView()
+        var usernameImage = UIImage(named: "user.png")
+        usernameImageView.image = usernameImage
+        usernameImageView.frame = CGRectMake(100, 0, 20, 19);
+        usernameTextField.leftView = usernameImageView
+        usernameTextField.leftViewMode = UITextFieldViewMode.Always
+        var passwordImageView = UIImageView()
+        var passwordImage = UIImage(named: "lock.png")
+        passwordImageView.image = passwordImage
+        passwordImageView.frame = CGRectMake(100, 0, 20, 19);
+        passwordTextField.leftView = passwordImageView
+        passwordTextField.leftViewMode = UITextFieldViewMode.Always
+        
+        
     }
 
     override func didReceiveMemoryWarning() {
