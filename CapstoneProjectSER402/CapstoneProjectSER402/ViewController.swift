@@ -2,8 +2,9 @@
 //  ViewController.swift
 //  CapstoneProjectSER402
 //
-//  Created by Ramtin Nikbakht on 1/28/16.
-//  Copyright © 2016 Ramtin Nikbakht. All rights reserved.
+//  Created by the AllState Group for The SER402 Capstone project on 1/28/16.
+//  License will go here.
+//  Copyright © 2016  AllState Group. All rights reserved.
 //
 
 import UIKit
