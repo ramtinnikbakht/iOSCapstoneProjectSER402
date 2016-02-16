@@ -92,6 +92,10 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
+                            <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xyl-5E-Vt8">
+                                <rect key="frame" x="0.0" y="72" width="375" height="44"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -105,10 +109,10 @@
             </objects>
             <point key="canvasLocation" x="888.5" y="358.5"/>
         </scene>
-        <!--Dashboard View Controller-->
+        <!--Reveal View Controller-->
         <scene sceneID="rPu-I1-Vp6">
             <objects>
-                <viewController id="Irn-L4-tPO" customClass="DashboardViewController" customModule="CapstoneProjectSER402" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Irn-L4-tPO" customClass="SWRevealViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="8SO-OI-aqs"/>
                         <viewControllerLayoutGuide type="bottom" id="NnJ-sM-XMP"/>
@@ -116,21 +120,99 @@
                     <view key="view" contentMode="scaleToFill" id="Dmt-ci-vJh">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VNX-k2-r2c">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
-                                <items>
-                                    <navigationItem title="Dashboard" id="Ahk-Xh-dlN"/>
-                                </items>
-                            </navigationBar>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <segue destination="ARa-u8-GIN" kind="custom" identifier="sw_rear" customClass="SWRevealViewControllerSegueSetController" id="tFC-OL-NWX"/>
+                        <segue destination="9pW-KM-kcq" kind="custom" identifier="sw_front" customClass="SWRevealViewControllerSegueSetController" id="Vh2-54-09b"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wRO-Ii-1IQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1336.5" y="358.5"/>
+            <point key="canvasLocation" x="1344.5" y="358.5"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="OZ7-ZB-eqy">
+            <objects>
+                <navigationController id="9pW-KM-kcq" sceneMemberID="viewController">
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="s2G-yz-hOD">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Ohx-Xd-Ugb" kind="relationship" relationship="rootViewController" id="kGC-8I-HrH"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uoG-pK-s7K" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1813.5" y="630.5"/>
+        </scene>
+        <!--Dashboard-->
+        <scene sceneID="rma-3S-cCV">
+            <objects>
+                <viewController id="Ohx-Xd-Ugb" customClass="DashboardViewController" customModule="CapstoneProjectSER402" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Am8-2b-l9U"/>
+                        <viewControllerLayoutGuide type="bottom" id="f4P-31-9RA"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="gca-9I-gmm">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Dashboard" id="gFl-F4-2ll">
+                        <barButtonItem key="leftBarButtonItem" image="menuoptions.png" id="PW9-lz-XrY">
+                            <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="Open" destination="PW9-lz-XrY" id="c2r-ig-6Tt"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SRu-Qe-HQ7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2270.5" y="358.5"/>
+        </scene>
+        <!--Back TableVC-->
+        <scene sceneID="Jif-js-3Hb">
+            <objects>
+                <tableViewController id="ARa-u8-GIN" customClass="BackTableVC" customModule="CapstoneProjectSER402" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="ryW-Xj-h2o">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="UHb-GG-hDi">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UHb-GG-hDi" id="DFf-ic-HkB">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="Ohx-Xd-Ugb" kind="custom" customClass="SWRevealViewControllerSeguePushController" id="21P-EJ-LUY"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="ARa-u8-GIN" id="SD1-0c-Hju"/>
+                            <outlet property="delegate" destination="ARa-u8-GIN" id="xO8-7z-lIT"/>
+                        </connections>
+                    </tableView>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7qU-xO-BHr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1813.5" y="-119.5"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="menuoptions.png" width="32" height="32"/>
+    </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="21P-EJ-LUY"/>
+    </inferredMetricsTieBreakers>
 </document>

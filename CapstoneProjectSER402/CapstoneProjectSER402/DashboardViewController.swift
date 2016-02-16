@@ -10,10 +10,16 @@ import UIKit
 
 class DashboardViewController: UIViewController {
 
+    @IBOutlet var Open: UIBarButtonItem!
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        Open.target = self.revealViewController()
+        Open.action = Selector("revealToggle:")
+        
+        self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
     }
 
     override func didReceiveMemoryWarning() {

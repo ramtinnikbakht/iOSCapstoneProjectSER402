@@ -29,14 +29,16 @@ class LoginViewController: UIViewController {
         blurEffectView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight] // for supporting device rotation
         view.addSubview(blurEffectView)
         */
-        var usernameImageView = UIImageView()
-        var usernameImage = UIImage(named: "user.png")
+        
+        
+        let usernameImageView = UIImageView()
+        let usernameImage = UIImage(named: "user.png")
         usernameImageView.image = usernameImage
         usernameImageView.frame = CGRectMake(100, 0, 20, 19);
         usernameTextField.leftView = usernameImageView
         usernameTextField.leftViewMode = UITextFieldViewMode.Always
-        var passwordImageView = UIImageView()
-        var passwordImage = UIImage(named: "lock.png")
+        let passwordImageView = UIImageView()
+        let passwordImage = UIImage(named: "lock.png")
         passwordImageView.image = passwordImage
         passwordImageView.frame = CGRectMake(100, 0, 20, 19);
         passwordTextField.leftView = passwordImageView
