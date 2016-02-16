@@ -5,10 +5,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="CapstoneProjectSER402" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="LoginViewController" customModule="CapstoneProjectSER402" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -28,6 +28,9 @@
                                 <state key="normal" title="Submit">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="submitButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Fv0-3b-A7Q"/>
+                                </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3YT-AT-x30">
                                 <rect key="frame" x="46" y="363" width="283" height="30"/>
@@ -53,11 +56,81 @@
                     <connections>
                         <outlet property="passwordTextField" destination="3YT-AT-x30" id="gFa-d4-tTg"/>
                         <outlet property="usernameTextField" destination="aEu-xc-Gec" id="IZm-6w-Uje"/>
+                        <segue destination="raj-XV-jel" kind="show" identifier="segueToAppSelection" id="Bmj-Hn-sbi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="439.5" y="358.5"/>
+        </scene>
+        <!--App Selection View Controller-->
+        <scene sceneID="ZAj-Wj-fb3">
+            <objects>
+                <viewController id="raj-XV-jel" customClass="AppSelectionViewController" customModule="CapstoneProjectSER402" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="x8w-Be-cjv"/>
+                        <viewControllerLayoutGuide type="bottom" id="WSf-M0-F7U"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="G4t-hH-U4S">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WsC-DD-TW8">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <items>
+                                    <navigationItem title="App Selection" id="RBW-kD-eft">
+                                        <barButtonItem key="leftBarButtonItem" title="Logout" id="URf-Q6-if7">
+                                            <connections>
+                                                <action selector="logoutButtonPressed:" destination="raj-XV-jel" id="G0X-Db-WER"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" title="Next" id="Q4C-Qc-sDz">
+                                            <connections>
+                                                <action selector="nextButtonPressed:" destination="raj-XV-jel" id="I1G-eo-ZCd"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <segue destination="Irn-L4-tPO" kind="show" identifier="segueToDashboard" id="CYn-G8-Qjw"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="segueToLogin" id="lVi-Uy-Fig"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Nz8-45-LQX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="888.5" y="358.5"/>
+        </scene>
+        <!--Dashboard View Controller-->
+        <scene sceneID="rPu-I1-Vp6">
+            <objects>
+                <viewController id="Irn-L4-tPO" customClass="DashboardViewController" customModule="CapstoneProjectSER402" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="8SO-OI-aqs"/>
+                        <viewControllerLayoutGuide type="bottom" id="NnJ-sM-XMP"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Dmt-ci-vJh">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VNX-k2-r2c">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <items>
+                                    <navigationItem title="Dashboard" id="Ahk-Xh-dlN"/>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wRO-Ii-1IQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1336.5" y="358.5"/>
         </scene>
     </scenes>
 </document>
