@@ -160,6 +160,18 @@
                     <view key="view" contentMode="scaleToFill" id="gca-9I-gmm">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tabBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vTh-YA-8bD">
+                                <rect key="frame" x="0.0" y="618" width="375" height="49"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <items>
+                                    <tabBarItem title="Home" image="home-page.png" id="4II-Xh-NW1"/>
+                                    <tabBarItem title="Watching" image="binoculars-front-view.png" id="fZt-Hz-JNh"/>
+                                    <tabBarItem title="Analysis" image="infographic-bars.png" id="lYQ-IQ-r50"/>
+                                    <tabBarItem systemItem="more" id="Fn0-47-2mf"/>
+                                </items>
+                            </tabBar>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Dashboard" id="gFl-F4-2ll">
@@ -210,6 +222,9 @@
         </scene>
     </scenes>
     <resources>
+        <image name="binoculars-front-view.png" width="32" height="32"/>
+        <image name="home-page.png" width="32" height="32"/>
+        <image name="infographic-bars.png" width="32" height="32"/>
         <image name="menuoptions.png" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
