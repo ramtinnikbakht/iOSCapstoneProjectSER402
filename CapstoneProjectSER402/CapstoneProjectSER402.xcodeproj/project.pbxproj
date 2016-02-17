@@ -24,6 +24,9 @@
 		C19F0DC11C73E14F009BD594 /* binoculars-front-view.png in Resources */ = {isa = PBXBuildFile; fileRef = C19F0DC01C73E14F009BD594 /* binoculars-front-view.png */; };
 		C19F0DC31C73E226009BD594 /* infographic-bars.png in Resources */ = {isa = PBXBuildFile; fileRef = C19F0DC21C73E226009BD594 /* infographic-bars.png */; };
 		C19F0DC51C73E2C3009BD594 /* home-page.png in Resources */ = {isa = PBXBuildFile; fileRef = C19F0DC41C73E2C3009BD594 /* home-page.png */; };
+		C19F0DC91C7455C6009BD594 /* man-user.png in Resources */ = {isa = PBXBuildFile; fileRef = C19F0DC81C7455C6009BD594 /* man-user.png */; };
+		C19F0DCB1C745C7E009BD594 /* TicketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C19F0DCA1C745C7E009BD594 /* TicketViewController.swift */; };
+		C19F0DCD1C745DB6009BD594 /* ChangeTicket.swift in Sources */ = {isa = PBXBuildFile; fileRef = C19F0DCC1C745DB6009BD594 /* ChangeTicket.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +72,9 @@
 		C19F0DC01C73E14F009BD594 /* binoculars-front-view.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "binoculars-front-view.png"; sourceTree = "<group>"; };
 		C19F0DC21C73E226009BD594 /* infographic-bars.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "infographic-bars.png"; sourceTree = "<group>"; };
 		C19F0DC41C73E2C3009BD594 /* home-page.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home-page.png"; sourceTree = "<group>"; };
+		C19F0DC81C7455C6009BD594 /* man-user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "man-user.png"; sourceTree = "<group>"; };
+		C19F0DCA1C745C7E009BD594 /* TicketViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TicketViewController.swift; sourceTree = "<group>"; };
+		C19F0DCC1C745DB6009BD594 /* ChangeTicket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeTicket.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +134,7 @@
 				48CFA2D51C73C9550081A8E1 /* SWRevealViewController.h */,
 				48CFA2D61C73C9550081A8E1 /* SWRevealViewController.m */,
 				48D741A91C5AAE86008D082E /* Assets.xcassets */,
+				C19F0DC81C7455C6009BD594 /* man-user.png */,
 				C19F0DC41C73E2C3009BD594 /* home-page.png */,
 				C19F0DC01C73E14F009BD594 /* binoculars-front-view.png */,
 				C19F0DC21C73E226009BD594 /* infographic-bars.png */,
@@ -137,6 +144,8 @@
 				48D741AB1C5AAE86008D082E /* LaunchScreen.storyboard */,
 				48D741AE1C5AAE86008D082E /* Info.plist */,
 				48CFA2D41C73C9540081A8E1 /* CapstoneProjectSER402-Bridging-Header.h */,
+				C19F0DCA1C745C7E009BD594 /* TicketViewController.swift */,
+				C19F0DCC1C745DB6009BD594 /* ChangeTicket.swift */,
 			);
 			path = CapstoneProjectSER402;
 			sourceTree = "<group>";
@@ -269,6 +278,7 @@
 				48D741AD1C5AAE86008D082E /* LaunchScreen.storyboard in Resources */,
 				C19F0DC51C73E2C3009BD594 /* home-page.png in Resources */,
 				48CFA2D31C73C02E0081A8E1 /* menuoptions.png in Resources */,
+				C19F0DC91C7455C6009BD594 /* man-user.png in Resources */,
 				48D741D31C5AB57C008D082E /* lock.png in Resources */,
 				48D741AA1C5AAE86008D082E /* Assets.xcassets in Resources */,
 				48D741D11C5AB574008D082E /* user.png in Resources */,
@@ -303,8 +313,10 @@
 				48D741A51C5AAE86008D082E /* LoginViewController.swift in Sources */,
 				48CFA2D91C73CD9C0081A8E1 /* BackTableVC.swift in Sources */,
 				48CFA2D71C73C9550081A8E1 /* SWRevealViewController.m in Sources */,
+				C19F0DCB1C745C7E009BD594 /* TicketViewController.swift in Sources */,
 				48D741A31C5AAE86008D082E /* AppDelegate.swift in Sources */,
 				48CFA2CB1C72938E0081A8E1 /* DashboardViewController.swift in Sources */,
+				C19F0DCD1C745DB6009BD594 /* ChangeTicket.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
