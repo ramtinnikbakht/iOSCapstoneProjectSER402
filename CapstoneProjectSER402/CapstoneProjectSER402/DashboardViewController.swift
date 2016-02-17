@@ -11,6 +11,8 @@ import UIKit
 class DashboardViewController: UIViewController {
 
     @IBOutlet var Open: UIBarButtonItem!
+    @IBOutlet weak var tableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -25,6 +27,14 @@ class DashboardViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("Cell1", forIndexPath: indexPath)
+        
+        cell.textLabel?.text = "Section \(indexPath.section) Row \(indexPath.row)"
+        
+        return cell
     }
     
 
