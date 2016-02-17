@@ -28,6 +28,7 @@
 		C19F0DCB1C745C7E009BD594 /* TicketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C19F0DCA1C745C7E009BD594 /* TicketViewController.swift */; };
 		C19F0DCD1C745DB6009BD594 /* ChangeTicket.swift in Sources */ = {isa = PBXBuildFile; fileRef = C19F0DCC1C745DB6009BD594 /* ChangeTicket.swift */; };
 		C19F0DD11C750EA6009BD594 /* AllstateHeader_Royal.png in Resources */ = {isa = PBXBuildFile; fileRef = C19F0DD01C750EA6009BD594 /* AllstateHeader_Royal.png */; };
+		C19F0DD31C752506009BD594 /* AllstateHeader_Dual.png in Resources */ = {isa = PBXBuildFile; fileRef = C19F0DD21C752506009BD594 /* AllstateHeader_Dual.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +78,7 @@
 		C19F0DCA1C745C7E009BD594 /* TicketViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TicketViewController.swift; sourceTree = "<group>"; };
 		C19F0DCC1C745DB6009BD594 /* ChangeTicket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeTicket.swift; sourceTree = "<group>"; };
 		C19F0DD01C750EA6009BD594 /* AllstateHeader_Royal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AllstateHeader_Royal.png; sourceTree = "<group>"; };
+		C19F0DD21C752506009BD594 /* AllstateHeader_Dual.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AllstateHeader_Dual.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +138,7 @@
 				48CFA2D51C73C9550081A8E1 /* SWRevealViewController.h */,
 				48CFA2D61C73C9550081A8E1 /* SWRevealViewController.m */,
 				48D741A91C5AAE86008D082E /* Assets.xcassets */,
+				C19F0DD21C752506009BD594 /* AllstateHeader_Dual.png */,
 				C19F0DD01C750EA6009BD594 /* AllstateHeader_Royal.png */,
 				C19F0DC81C7455C6009BD594 /* man-user.png */,
 				C19F0DC41C73E2C3009BD594 /* home-page.png */,
@@ -280,6 +283,7 @@
 			files = (
 				48D741AD1C5AAE86008D082E /* LaunchScreen.storyboard in Resources */,
 				C19F0DC51C73E2C3009BD594 /* home-page.png in Resources */,
+				C19F0DD31C752506009BD594 /* AllstateHeader_Dual.png in Resources */,
 				48CFA2D31C73C02E0081A8E1 /* menuoptions.png in Resources */,
 				C19F0DC91C7455C6009BD594 /* man-user.png in Resources */,
 				48D741D31C5AB57C008D082E /* lock.png in Resources */,

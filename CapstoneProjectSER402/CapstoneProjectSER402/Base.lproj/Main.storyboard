@@ -17,7 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="AllstateHeader_Royal.png" translatesAutoresizingMaskIntoConstraints="NO" id="5dJ-AZ-EzQ">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="AllstateHeader_Dual.png" translatesAutoresizingMaskIntoConstraints="NO" id="5dJ-AZ-EzQ">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aEu-xc-Gec">
@@ -244,7 +244,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="AllstateHeader_Royal.png" width="1563" height="2779"/>
+        <image name="AllstateHeader_Dual.png" width="1563" height="2779"/>
         <image name="binoculars-front-view.png" width="32" height="32"/>
         <image name="home-page.png" width="32" height="32"/>
         <image name="infographic-bars.png" width="32" height="32"/>
