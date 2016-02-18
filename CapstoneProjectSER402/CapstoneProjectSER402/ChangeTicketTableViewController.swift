@@ -21,7 +21,7 @@ class ChangeTicketTableViewController: UITableViewController {
     }
     
     func loadSampleTickets() {
-        let eyeIcon = UIImage(named: "eye-close-up.png")
+        let eyeIcon = UIImage(named: "eye.png")
         let ticket1 = ChangeTicket(id: "CHG-001", priority: 8, icon: eyeIcon)
         let ticket2 = ChangeTicket(id: "CHG-002", priority: 4, icon: eyeIcon)
         let ticket3 = ChangeTicket(id: "CHG-003", priority: 1, icon: eyeIcon)
@@ -52,7 +52,12 @@ class ChangeTicketTableViewController: UITableViewController {
 
         cell.ticketLabel.text = "Ticket Number: "
         cell.ticketNumber.text = ticket.id
-        cell.viewIcon.image = ticket.icon
+        cell.priorityLabel.text = "Priority: "
+        cell.priorityValue.text = String(ticket.priority)
+        if ticket.priority > 7 {
+            cell.priorityValue.textColor = UIColor.redColor()
+        }
+        cell.viewImage.image = ticket.icon
         return cell
     }
     

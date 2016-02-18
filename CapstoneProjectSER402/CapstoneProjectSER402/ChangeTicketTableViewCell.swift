@@ -13,7 +13,9 @@ class ChangeTicketTableViewCell: UITableViewCell {
     // MARK: Properties
     @IBOutlet weak var ticketNumber: UILabel!
     @IBOutlet weak var ticketLabel: UILabel!
-    @IBOutlet weak var viewIcon: UIImageView!
+    @IBOutlet weak var viewImage: UIImageView!
+    @IBOutlet weak var priorityValue: UILabel!
+    @IBOutlet weak var priorityLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

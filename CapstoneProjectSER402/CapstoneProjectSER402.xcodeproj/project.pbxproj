@@ -27,7 +27,7 @@
 		C19F0DD31C752506009BD594 /* AllstateHeader_Dual.png in Resources */ = {isa = PBXBuildFile; fileRef = C19F0DD21C752506009BD594 /* AllstateHeader_Dual.png */; };
 		C19F0DD51C759DB1009BD594 /* ChangeTicketTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C19F0DD41C759DB1009BD594 /* ChangeTicketTableViewCell.swift */; };
 		C19F0DD71C75A28A009BD594 /* ChangeTicketTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C19F0DD61C75A28A009BD594 /* ChangeTicketTableViewController.swift */; };
-		C19F0DD91C75A732009BD594 /* eye-close-up.png in Resources */ = {isa = PBXBuildFile; fileRef = C19F0DD81C75A732009BD594 /* eye-close-up.png */; };
+		C19F0DDB1C75BAAA009BD594 /* eye.png in Resources */ = {isa = PBXBuildFile; fileRef = C19F0DDA1C75BAAA009BD594 /* eye.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,7 +74,7 @@
 		C19F0DD21C752506009BD594 /* AllstateHeader_Dual.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AllstateHeader_Dual.png; sourceTree = "<group>"; };
 		C19F0DD41C759DB1009BD594 /* ChangeTicketTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeTicketTableViewCell.swift; sourceTree = "<group>"; };
 		C19F0DD61C75A28A009BD594 /* ChangeTicketTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeTicketTableViewController.swift; sourceTree = "<group>"; };
-		C19F0DD81C75A732009BD594 /* eye-close-up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "eye-close-up.png"; sourceTree = "<group>"; };
+		C19F0DDA1C75BAAA009BD594 /* eye.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eye.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,7 +131,7 @@
 				C19F0DD61C75A28A009BD594 /* ChangeTicketTableViewController.swift */,
 				48CFA2CA1C72938E0081A8E1 /* DashboardViewController.swift */,
 				48D741A91C5AAE86008D082E /* Assets.xcassets */,
-				C19F0DD81C75A732009BD594 /* eye-close-up.png */,
+				C19F0DDA1C75BAAA009BD594 /* eye.png */,
 				C19F0DD21C752506009BD594 /* AllstateHeader_Dual.png */,
 				C19F0DD01C750EA6009BD594 /* AllstateHeader_Royal.png */,
 				C19F0DC81C7455C6009BD594 /* man-user.png */,
@@ -283,10 +283,10 @@
 				48D741AA1C5AAE86008D082E /* Assets.xcassets in Resources */,
 				C19F0DD11C750EA6009BD594 /* AllstateHeader_Royal.png in Resources */,
 				48D741D11C5AB574008D082E /* user.png in Resources */,
-				C19F0DD91C75A732009BD594 /* eye-close-up.png in Resources */,
 				C19F0DC11C73E14F009BD594 /* binoculars-front-view.png in Resources */,
 				C19F0DC31C73E226009BD594 /* infographic-bars.png in Resources */,
 				48D741A81C5AAE86008D082E /* Main.storyboard in Resources */,
+				C19F0DDB1C75BAAA009BD594 /* eye.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
