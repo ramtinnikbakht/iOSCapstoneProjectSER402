@@ -53,98 +53,11 @@
                     <connections>
                         <outlet property="passwordTextField" destination="3YT-AT-x30" id="gFa-d4-tTg"/>
                         <outlet property="usernameTextField" destination="aEu-xc-Gec" id="IZm-6w-Uje"/>
-                        <segue destination="raj-XV-jel" kind="show" identifier="segueToAppSelection" id="Bmj-Hn-sbi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="439.5" y="358.5"/>
-        </scene>
-        <!--App Selection View Controller-->
-        <scene sceneID="ZAj-Wj-fb3">
-            <objects>
-                <viewController id="raj-XV-jel" customClass="AppSelectionViewController" customModule="CapstoneProjectSER402" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="x8w-Be-cjv"/>
-                        <viewControllerLayoutGuide type="bottom" id="WSf-M0-F7U"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="G4t-hH-U4S">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WsC-DD-TW8">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
-                                <items>
-                                    <navigationItem title="App Selection" id="RBW-kD-eft">
-                                        <barButtonItem key="leftBarButtonItem" title="Logout" id="URf-Q6-if7">
-                                            <connections>
-                                                <action selector="logoutButtonPressed:" destination="raj-XV-jel" id="G0X-Db-WER"/>
-                                            </connections>
-                                        </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" title="Next" id="Q4C-Qc-sDz">
-                                            <connections>
-                                                <action selector="nextButtonPressed:" destination="raj-XV-jel" id="I1G-eo-ZCd"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
-                            <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xyl-5E-Vt8">
-                                <rect key="frame" x="0.0" y="72" width="375" height="44"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </searchBar>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
-                    <connections>
-                        <segue destination="Irn-L4-tPO" kind="show" identifier="segueToDashboard" id="CYn-G8-Qjw"/>
-                        <segue destination="BYZ-38-t0r" kind="show" identifier="segueToLogin" id="lVi-Uy-Fig"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Nz8-45-LQX" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="888.5" y="358.5"/>
-        </scene>
-        <!--Reveal View Controller-->
-        <scene sceneID="rPu-I1-Vp6">
-            <objects>
-                <viewController id="Irn-L4-tPO" customClass="SWRevealViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="8SO-OI-aqs"/>
-                        <viewControllerLayoutGuide type="bottom" id="NnJ-sM-XMP"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Dmt-ci-vJh">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
-                    <connections>
-                        <segue destination="ARa-u8-GIN" kind="custom" identifier="sw_rear" customClass="SWRevealViewControllerSegueSetController" id="tFC-OL-NWX"/>
-                        <segue destination="9pW-KM-kcq" kind="custom" identifier="sw_front" customClass="SWRevealViewControllerSegueSetController" id="Vh2-54-09b"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="wRO-Ii-1IQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1344.5" y="358.5"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="OZ7-ZB-eqy">
-            <objects>
-                <navigationController id="9pW-KM-kcq" sceneMemberID="viewController">
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="s2G-yz-hOD">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="Ohx-Xd-Ugb" kind="relationship" relationship="rootViewController" id="kGC-8I-HrH"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="uoG-pK-s7K" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1813.5" y="630.5"/>
         </scene>
         <!--Dashboard-->
         <scene sceneID="rma-3S-cCV">
@@ -208,39 +121,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SRu-Qe-HQ7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2270.5" y="358.5"/>
-        </scene>
-        <!--Back TableVC-->
-        <scene sceneID="Jif-js-3Hb">
-            <objects>
-                <tableViewController id="ARa-u8-GIN" customClass="BackTableVC" customModule="CapstoneProjectSER402" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="ryW-Xj-h2o">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="UHb-GG-hDi">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UHb-GG-hDi" id="DFf-ic-HkB">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                                <connections>
-                                    <segue destination="Ohx-Xd-Ugb" kind="custom" customClass="SWRevealViewControllerSeguePushController" id="21P-EJ-LUY"/>
-                                </connections>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="ARa-u8-GIN" id="SD1-0c-Hju"/>
-                            <outlet property="delegate" destination="ARa-u8-GIN" id="xO8-7z-lIT"/>
-                        </connections>
-                    </tableView>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="7qU-xO-BHr" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1813.5" y="-119.5"/>
+            <point key="canvasLocation" x="1094.5" y="366.5"/>
         </scene>
     </scenes>
     <resources>
@@ -250,7 +131,4 @@
         <image name="infographic-bars.png" width="32" height="32"/>
         <image name="man-user.png" width="32" height="32"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="21P-EJ-LUY"/>
-    </inferredMetricsTieBreakers>
 </document>

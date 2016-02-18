@@ -7,10 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		48CFA2C91C7292DB0081A8E1 /* AppSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48CFA2C81C7292DB0081A8E1 /* AppSelectionViewController.swift */; };
 		48CFA2CB1C72938E0081A8E1 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48CFA2CA1C72938E0081A8E1 /* DashboardViewController.swift */; };
 		48CFA2D31C73C02E0081A8E1 /* menuoptions.png in Resources */ = {isa = PBXBuildFile; fileRef = 48CFA2D21C73C02E0081A8E1 /* menuoptions.png */; };
-		48CFA2D71C73C9550081A8E1 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48CFA2D61C73C9550081A8E1 /* SWRevealViewController.m */; };
 		48CFA2D91C73CD9C0081A8E1 /* BackTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48CFA2D81C73CD9C0081A8E1 /* BackTableVC.swift */; };
 		48D741A31C5AAE86008D082E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D741A21C5AAE86008D082E /* AppDelegate.swift */; };
 		48D741A51C5AAE86008D082E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D741A41C5AAE86008D082E /* LoginViewController.swift */; };
@@ -49,12 +47,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		48CFA2C81C7292DB0081A8E1 /* AppSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppSelectionViewController.swift; sourceTree = "<group>"; };
 		48CFA2CA1C72938E0081A8E1 /* DashboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 		48CFA2D21C73C02E0081A8E1 /* menuoptions.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menuoptions.png; sourceTree = "<group>"; };
-		48CFA2D41C73C9540081A8E1 /* CapstoneProjectSER402-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CapstoneProjectSER402-Bridging-Header.h"; sourceTree = "<group>"; };
-		48CFA2D51C73C9550081A8E1 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
-		48CFA2D61C73C9550081A8E1 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		48CFA2D81C73CD9C0081A8E1 /* BackTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackTableVC.swift; sourceTree = "<group>"; };
 		48D7419F1C5AAE86008D082E /* CapstoneProjectSER402.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CapstoneProjectSER402.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		48D741A21C5AAE86008D082E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -134,9 +128,6 @@
 				48D741A41C5AAE86008D082E /* LoginViewController.swift */,
 				48D741A61C5AAE86008D082E /* Main.storyboard */,
 				48CFA2CA1C72938E0081A8E1 /* DashboardViewController.swift */,
-				48CFA2C81C7292DB0081A8E1 /* AppSelectionViewController.swift */,
-				48CFA2D51C73C9550081A8E1 /* SWRevealViewController.h */,
-				48CFA2D61C73C9550081A8E1 /* SWRevealViewController.m */,
 				48D741A91C5AAE86008D082E /* Assets.xcassets */,
 				C19F0DD21C752506009BD594 /* AllstateHeader_Dual.png */,
 				C19F0DD01C750EA6009BD594 /* AllstateHeader_Royal.png */,
@@ -149,7 +140,6 @@
 				48D741D21C5AB57C008D082E /* lock.png */,
 				48D741AB1C5AAE86008D082E /* LaunchScreen.storyboard */,
 				48D741AE1C5AAE86008D082E /* Info.plist */,
-				48CFA2D41C73C9540081A8E1 /* CapstoneProjectSER402-Bridging-Header.h */,
 				C19F0DCA1C745C7E009BD594 /* TicketViewController.swift */,
 				C19F0DCC1C745DB6009BD594 /* ChangeTicket.swift */,
 			);
@@ -317,10 +307,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				48CFA2C91C7292DB0081A8E1 /* AppSelectionViewController.swift in Sources */,
 				48D741A51C5AAE86008D082E /* LoginViewController.swift in Sources */,
 				48CFA2D91C73CD9C0081A8E1 /* BackTableVC.swift in Sources */,
-				48CFA2D71C73C9550081A8E1 /* SWRevealViewController.m in Sources */,
 				C19F0DCB1C745C7E009BD594 /* TicketViewController.swift in Sources */,
 				48D741A31C5AAE86008D082E /* AppDelegate.swift in Sources */,
 				48CFA2CB1C72938E0081A8E1 /* DashboardViewController.swift in Sources */,
