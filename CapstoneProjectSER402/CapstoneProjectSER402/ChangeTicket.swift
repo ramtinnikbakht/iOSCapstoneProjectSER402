@@ -10,5 +10,6 @@ import Foundation
 
 struct ChangeTicket {
     let id : String
-    let priority : String
+    let priority : Int
+    let icon: UIImage?
 }
