@@ -21,12 +21,13 @@ class ChangeTicketTableViewController: UITableViewController {
     }
     
     func loadSampleTickets() {
-        let eyeIcon = UIImage(named: "eye.png")
+        let eyeIcon = UIImage(named: "eye_unclicked.png")
         let ticket1 = ChangeTicket(id: "CHG-001", priority: 8, icon: eyeIcon)
         let ticket2 = ChangeTicket(id: "CHG-002", priority: 4, icon: eyeIcon)
         let ticket3 = ChangeTicket(id: "CHG-003", priority: 1, icon: eyeIcon)
+        let ticket4 = ChangeTicket(id: "CHG-004", priority: 5, icon: eyeIcon)
         
-        changeTickets += [ticket1, ticket2, ticket3]
+        changeTickets += [ticket1, ticket2, ticket3, ticket4]
     }
 
     override func didReceiveMemoryWarning() {
@@ -54,9 +55,25 @@ class ChangeTicketTableViewController: UITableViewController {
         cell.ticketNumber.text = ticket.id
         cell.priorityLabel.text = "Priority: "
         cell.priorityValue.text = String(ticket.priority)
+        
+        if ticket.priority > 0 {
+            cell.priorityValue.textColor = UIColor.whiteColor()
+        }
+        if ticket.priority > 4 {
+            cell.priorityValue.textColor = UIColor.orangeColor()
+        }
         if ticket.priority > 7 {
             cell.priorityValue.textColor = UIColor.redColor()
+            
+            /* Text Glow Effect
+                cell.priorityValue.layer.shadowColor = UIColor.redColor().CGColor
+                cell.priorityValue.layer.shadowRadius = 4.0
+                cell.priorityValue.layer.shadowOpacity = 0.8
+                cell.priorityValue.layer.shadowOffset = CGSizeZero
+                cell.priorityValue.layer.masksToBounds = false
+            */
         }
+    
         cell.viewImage.image = ticket.icon
         return cell
     }
