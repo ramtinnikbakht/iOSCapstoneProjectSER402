@@ -49,21 +49,21 @@ class ChangeTicketTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cellIdentifier = "ChangeTicketTableViewCell"
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! ChangeTicketTableViewCell
-        let ticket = changeTickets[indexPath.row]
-
-        cell.ticketLabel.text = "Ticket Number: "
-        cell.ticketNumber.text = ticket.id
-        cell.priorityLabel.text = "Priority: "
-        cell.priorityValue.text = String(ticket.priority)
+        let ticket = changeTickets[indexPath.row] as ChangeTicket
         
-        if ticket.priority > 0 {
-            cell.priorityValue.textColor = UIColor.whiteColor()
+        if let ticketLabel = cell.viewWithTag(100) as? UILabel {
+            ticketLabel.text = ticket.id
         }
-        if ticket.priority > 4 {
-            cell.priorityValue.textColor = UIColor.orangeColor()
+        
+        if let priorityLabel = cell.viewWithTag(101) as? UILabel {
+            priorityLabel.text = String(ticket.priority)
         }
-        if ticket.priority > 7 {
-            cell.priorityValue.textColor = UIColor.redColor()
+        
+        if let viewImage = cell.viewWithTag(102) as? UIImageView {
+            viewImage.image = ticket.icon
+        }
+        
+        return cell
             
             /* Text Glow Effect
                 cell.priorityValue.layer.shadowColor = UIColor.redColor().CGColor
@@ -72,10 +72,8 @@ class ChangeTicketTableViewController: UITableViewController {
                 cell.priorityValue.layer.shadowOffset = CGSizeZero
                 cell.priorityValue.layer.masksToBounds = false
             */
-        }
     
-        cell.viewImage.image = ticket.icon
-        return cell
+        
     }
     
 

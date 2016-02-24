@@ -14,11 +14,8 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     
     @IBAction func submitButtonPressed(sender: UIButton) {
-        self.performSegueWithIdentifier("segueToAppSelection", sender: self)
+        self.performSegueWithIdentifier("segueToDashboard", sender: self)
     }
-    
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
