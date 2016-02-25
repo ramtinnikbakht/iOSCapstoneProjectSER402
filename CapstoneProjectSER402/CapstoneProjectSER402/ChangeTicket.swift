@@ -12,4 +12,5 @@ struct ChangeTicket {
     let id : String?
     let priority : Int
     var icon: UIImage?
+    var isWatched: Bool
 }
