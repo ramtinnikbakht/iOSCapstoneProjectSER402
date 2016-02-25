@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		489AFBA81C7F6B3000E9DEB9 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489AFBA71C7F6B3000E9DEB9 /* User.swift */; };
 		48CFA2D31C73C02E0081A8E1 /* menuoptions.png in Resources */ = {isa = PBXBuildFile; fileRef = 48CFA2D21C73C02E0081A8E1 /* menuoptions.png */; };
 		48D741A31C5AAE86008D082E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D741A21C5AAE86008D082E /* AppDelegate.swift */; };
 		48D741A51C5AAE86008D082E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D741A41C5AAE86008D082E /* LoginViewController.swift */; };
@@ -49,6 +50,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		489AFBA71C7F6B3000E9DEB9 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		48CFA2D21C73C02E0081A8E1 /* menuoptions.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menuoptions.png; sourceTree = "<group>"; };
 		48D7419F1C5AAE86008D082E /* CapstoneProjectSER402.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CapstoneProjectSER402.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		48D741A21C5AAE86008D082E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -129,6 +131,7 @@
 			children = (
 				48D741A21C5AAE86008D082E /* AppDelegate.swift */,
 				48D741A41C5AAE86008D082E /* LoginViewController.swift */,
+				489AFBA71C7F6B3000E9DEB9 /* User.swift */,
 				48D741A61C5AAE86008D082E /* Main.storyboard */,
 				C19F0DD61C75A28A009BD594 /* ChangeTicketTableViewController.swift */,
 				48D741A91C5AAE86008D082E /* Assets.xcassets */,
@@ -318,6 +321,7 @@
 			files = (
 				C19F0DD71C75A28A009BD594 /* ChangeTicketTableViewController.swift in Sources */,
 				48D741A51C5AAE86008D082E /* LoginViewController.swift in Sources */,
+				489AFBA81C7F6B3000E9DEB9 /* User.swift in Sources */,
 				C19F0DD51C759DB1009BD594 /* ChangeTicketTableViewCell.swift in Sources */,
 				48D741A31C5AAE86008D082E /* AppDelegate.swift in Sources */,
 				C19F0DCD1C745DB6009BD594 /* ChangeTicket.swift in Sources */,
