@@ -9,7 +9,7 @@
 import Foundation
 
 struct ChangeTicket {
-    let id : String
+    let id : String?
     let priority : Int
-    let icon: UIImage?
+    var icon: UIImage?
 }

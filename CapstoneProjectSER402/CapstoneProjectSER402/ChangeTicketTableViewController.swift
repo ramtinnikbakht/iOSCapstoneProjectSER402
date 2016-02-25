@@ -13,11 +13,23 @@ class ChangeTicketTableViewController: UITableViewController {
     // MARK: Properties
     
     var changeTickets = [ChangeTicket]()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        let recognizer = UITapGestureRecognizer(target: self, action: "iconTapped:")
+        self.tableView.addGestureRecognizer(recognizer)
+        
         loadSampleTickets()
+    }
+    
+    func iconTapped(sender: UITapGestureRecognizer) {
+        if sender.state == .Ended {
+            var location = sender.locationInView(self.tableView)
+            var indexPath = self.tableView.indexPathForRowAtPoint(location)
+            var cell = self.tableView.cellForRowAtIndexPath(indexPath!)
+            changeTickets[(indexPath?.row)!].icon = UIImage(named: "eye_clicked.png")
+            
+        }
     }
     
     func loadSampleTickets() {
@@ -48,33 +60,16 @@ class ChangeTicketTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cellIdentifier = "ChangeTicketTableViewCell"
+        
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! ChangeTicketTableViewCell
         let ticket = changeTickets[indexPath.row] as ChangeTicket
         
-        if let ticketLabel = cell.viewWithTag(100) as? UILabel {
-            ticketLabel.text = ticket.id
-        }
-        
-        if let priorityLabel = cell.viewWithTag(101) as? UILabel {
-            priorityLabel.text = String(ticket.priority)
-        }
-        
-        if let viewImage = cell.viewWithTag(102) as? UIImageView {
-            viewImage.image = ticket.icon
-        }
+        cell.ticket = ticket
         
         return cell
-            
-            /* Text Glow Effect
-                cell.priorityValue.layer.shadowColor = UIColor.redColor().CGColor
-                cell.priorityValue.layer.shadowRadius = 4.0
-                cell.priorityValue.layer.shadowOpacity = 0.8
-                cell.priorityValue.layer.shadowOffset = CGSizeZero
-                cell.priorityValue.layer.masksToBounds = false
-            */
-    
         
     }
+    
     
 
     /*
