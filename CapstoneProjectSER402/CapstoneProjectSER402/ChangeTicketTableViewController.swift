@@ -13,6 +13,7 @@ class ChangeTicketTableViewController: UITableViewController {
     // MARK: Properties
     
     var changeTickets = [ChangeTicket]()
+    var watchedTicketTableViewController = WatchedTicketTableViewController()
     let cellIdentifier = "ChangeTicketTableViewCell"
     
     override func viewDidLoad() {
@@ -25,7 +26,6 @@ class ChangeTicketTableViewController: UITableViewController {
         if sender.state == .Ended {
             let location = sender.locationInView(self.tableView)
             let indexPath = self.tableView.indexPathForRowAtPoint(location)
-            print(changeTickets[(indexPath?.row)!].icon)
             if changeTickets[(indexPath?.row)!].isWatched == false {
                 changeTickets[(indexPath?.row)!].icon = UIImage(named: "eye_clicked.png")
             } else {
@@ -33,6 +33,9 @@ class ChangeTicketTableViewController: UITableViewController {
             }
             self.tableView.reloadData()
             changeTickets[(indexPath?.row)!].isWatched = !changeTickets[(indexPath?.row)!].isWatched
+            let watchedTicket = WatchedTicket(id: changeTickets[(indexPath?.row)!].id, priority: changeTickets[(indexPath?.row)!].priority, icon: changeTickets[(indexPath?.row)!].icon)
+            watchedTicketTableViewController.setWatchedTickets(watchedTicket)
+            
         }
     }
     

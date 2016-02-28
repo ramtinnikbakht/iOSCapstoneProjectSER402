@@ -84,9 +84,9 @@
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" red="0.92549019610000005" green="0.92549019610000005" blue="0.92549019610000005" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
-                                    <outlet property="priorityLabel" destination="40L-Hc-tZg" id="NhR-UJ-sOt"/>
-                                    <outlet property="ticketLabel" destination="7WE-cv-huM" id="dhh-dR-dKq"/>
-                                    <outlet property="viewImage" destination="Zhr-yt-Lov" id="NC1-Fo-DeZ"/>
+                                    <outlet property="priorityLabel" destination="40L-Hc-tZg" id="AKJ-Rv-Fd5"/>
+                                    <outlet property="ticketLabel" destination="7WE-cv-huM" id="Vh3-XG-0xT"/>
+                                    <outlet property="viewImage" destination="Zhr-yt-Lov" id="DvV-Jt-emD"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -102,22 +102,68 @@
             </objects>
             <point key="canvasLocation" x="2699.5" y="-7.5"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Watched Ticket Table View Controller-->
         <scene sceneID="eW8-QC-8dc">
             <objects>
-                <tableViewController id="Qzr-Wx-7nc" sceneMemberID="viewController">
+                <tableViewController id="Qzr-Wx-7nc" customClass="WatchedTicketTableViewController" customModule="CapstoneProjectSER402" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="q5b-rf-CUq">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="rJj-w8-Fxh">
-                                <rect key="frame" x="0.0" y="92" width="375" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="WatchedTicketTableViewCell" rowHeight="60" id="f0W-Jj-neQ">
+                                <rect key="frame" x="0.0" y="92" width="375" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rJj-w8-Fxh" id="21Q-wE-6hc">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="f0W-Jj-neQ" id="lIn-Q6-X8i">
+                                    <rect key="frame" x="0.0" y="0.0" width="342" height="59.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="kxJ-S2-sgB">
+                                            <rect key="frame" x="28" y="8" width="286" height="44"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="MYU-6v-S7a">
+                                                    <rect key="frame" x="0.0" y="4" width="163" height="37"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Watched Ticket Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yKt-Hj-1OA">
+                                                            <rect key="frame" x="0.0" y="0.0" width="163" height="20"/>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Watched Priority Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hFF-Vx-ezw">
+                                                            <rect key="frame" x="0.0" y="20" width="163" height="17"/>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                                <imageView userInteractionEnabled="NO" tag="106" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ayt-WC-ooa">
+                                                    <rect key="frame" x="236" y="0.0" width="50" height="44"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="50" id="oA8-AY-w28"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="ayt-WC-ooa" firstAttribute="top" secondItem="kxJ-S2-sgB" secondAttribute="top" id="gXa-Zs-CfJ"/>
+                                            </constraints>
+                                        </stackView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailingMargin" secondItem="kxJ-S2-sgB" secondAttribute="trailing" constant="20" id="CUK-bt-2mO"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="kxJ-S2-sgB" secondAttribute="bottom" id="Oz8-u1-ygL"/>
+                                        <constraint firstItem="kxJ-S2-sgB" firstAttribute="leading" secondItem="lIn-Q6-X8i" secondAttribute="leadingMargin" constant="20" id="cCl-ov-Pxr"/>
+                                        <constraint firstItem="kxJ-S2-sgB" firstAttribute="top" secondItem="lIn-Q6-X8i" secondAttribute="topMargin" id="f9o-th-S4n"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="kxJ-S2-sgB" secondAttribute="bottom" id="jLN-9N-y3I"/>
+                                        <constraint firstItem="kxJ-S2-sgB" firstAttribute="leading" secondItem="lIn-Q6-X8i" secondAttribute="leadingMargin" constant="20" id="qWW-DO-U3O"/>
+                                        <constraint firstItem="kxJ-S2-sgB" firstAttribute="top" secondItem="lIn-Q6-X8i" secondAttribute="topMargin" id="y5e-ht-gda"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" red="0.92549019610000005" green="0.92549019610000005" blue="0.92549019610000005" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <outlet property="priorityLabel" destination="hFF-Vx-ezw" id="mFf-Dm-zBY"/>
+                                    <outlet property="ticketLabel" destination="yKt-Hj-1OA" id="G7S-wK-cgm"/>
+                                    <outlet property="viewImage" destination="ayt-WC-ooa" id="V58-Pm-AP4"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
