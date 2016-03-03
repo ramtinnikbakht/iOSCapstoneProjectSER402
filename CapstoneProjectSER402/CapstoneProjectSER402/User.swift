@@ -19,7 +19,8 @@ class User
     var usersAppList = [String]()
     var usersWatchList = [String]()
     
-    init(usersID: String, usersName: String, usersProfilePic: UIImage, usersBusinessUnit: String, usersAppList: [String], usersWatchList: [String]) {
+    init(usersID: String, usersName: String, usersProfilePic: UIImage, usersBusinessUnit: String, usersAppList: [String], usersWatchList: [String])
+    {
         
         self.usersID = usersID
         self.usersName = usersName

@@ -18,7 +18,7 @@ class ChangeTicketTableViewCell: UITableViewCell {
     @IBOutlet weak var priorityLabel: UILabel!
     @IBOutlet weak var viewImage: UIImageView!
     
-    var ticket: ChangeTicket! {
+    var ticket: ChangeTicket_Table_Template! {
         didSet {
             ticketLabel.text = ticket.id
             priorityLabel.text = String(ticket.priority)

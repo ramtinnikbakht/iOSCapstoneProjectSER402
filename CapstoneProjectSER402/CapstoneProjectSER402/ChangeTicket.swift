@@ -12,8 +12,6 @@ import Foundation
 
 class ChangeTicket
 {
-    var icon: UIImage?
-    var isWatched: Bool
     let number: String
     var approver: String
     var plannedStart: String
@@ -37,10 +35,8 @@ class ChangeTicket
     var BusinessApplication: String
     var BusinessApplicationCriticalityTier: String
     
-    init(icon: UIImage, isWatched: Bool, number: String, approver: String, plannedStart: String, plannedEnd: String, actualStart: String, actualEnd: String, requestedByGroup: String, requestedByGroupBusinessArea:String, requestedByGroupBusinessUnit: String, requestedByGroupSubBusinessUnit: String, causeCompleteServiceAppOutage: String, risk: String, type:String, impactScore:String, shortDescription:String, changeReason: String, closureCode: String, ImpactedEnviroment: String, SecondaryClosureCode: String, PartofRelease: String, BusinessApplication: String, BusinessApplicationCriticalityTier: String)
+    init(number: String, approver: String, plannedStart: String, plannedEnd: String, actualStart: String, actualEnd: String, requestedByGroup: String, requestedByGroupBusinessArea:String, requestedByGroupBusinessUnit: String, requestedByGroupSubBusinessUnit: String, causeCompleteServiceAppOutage: String, risk: String, type:String, impactScore:String, shortDescription:String, changeReason: String, closureCode: String, ImpactedEnviroment: String, SecondaryClosureCode: String, PartofRelease: String, BusinessApplication: String, BusinessApplicationCriticalityTier: String)
     {
-        self.icon = icon
-        self.isWatched = isWatched
         self.number = number
         self.approver = approver
         self.plannedStart = plannedStart
@@ -64,15 +60,7 @@ class ChangeTicket
         self.BusinessApplication = BusinessApplication
         self.BusinessApplicationCriticalityTier = BusinessApplicationCriticalityTier
     }
-    
-    func getIcon() -> UIImage
-    {
-        return self.icon!
-    }
-    func getIsWatched() -> Bool
-    {
-        return self.isWatched
-    }
+    //getters
     func getNumber() -> String
     {
         return self.number
@@ -160,5 +148,94 @@ class ChangeTicket
     func getBusinessApplicationCriticalityTier() -> String
     {
         return self.BusinessApplicationCriticalityTier
+    }
+    //setters
+    func setNumber(number: String)
+    {
+        self.number
+    }
+    func setApprover(approver: String)
+    {
+        self.approver = approver
+    }
+    func setPlannedStart(plannedStart: String)
+    {
+        self.plannedStart = plannedStart
+    }
+    func setPlannedEnd(plannedEnd: String)
+    {
+        self.plannedEnd = plannedEnd
+    }
+    func setActualStart(actualStart: String)
+    {
+        self.actualStart = actualStart
+    }
+    func setActualEnd(actualEnd: String)
+    {
+        self.actualEnd = actualEnd
+    }
+    func setRequestedByGroup(requestedByGroup: String)
+    {
+        self.requestedByGroup = requestedByGroup
+    }
+    func setRequestedByGroupBusinessArea(requestedByGroupBusinessArea: String)
+    {
+        self.requestedByGroupBusinessArea = requestedByGroupBusinessArea
+    }
+    func setRequestedByGroupBusinessUnit(requestedByGroupBusinessUnit: String)
+    {
+        self.requestedByGroupBusinessUnit = requestedByGroupBusinessUnit
+    }
+    func setRequestedByGroupSubBusinessUnit(requestedByGroupBusinessUnit: String)
+    {
+        self.requestedByGroupSubBusinessUnit = requestedByGroupBusinessUnit
+    }
+    func setCauseCompleteServiceAppOutage(causeCompleteServiceAppOutage: String)
+    {
+        self.causeCompleteServiceAppOutage = causeCompleteServiceAppOutage
+    }
+    func setRisk(risk: String)
+    {
+        self.risk = risk
+    }
+    func setType(type: String)
+    {
+        self.type = type
+    }
+    func setImpactScore(impactScore: String)
+    {
+        self.impactScore = impactScore
+    }
+    func setShortDescription(shortDescription: String)
+    {
+        self.shortDescription = shortDescription
+    }
+    func setChangeReason(changeReason: String)
+    {
+        self.changeReason = changeReason
+    }
+    func setClosureCode(closureCode: String)
+    {
+        self.closureCode = closureCode
+    }
+    func setImpactedEnviroment(ImpactedEnviroment: String)
+    {
+        self.ImpactedEnviroment = ImpactedEnviroment
+    }
+    func setSecondaryClosureCode(SecondaryClosureCode: String)
+    {
+        self.SecondaryClosureCode = SecondaryClosureCode
+    }
+    func setPartofRelease(PartofRelease: String)
+    {
+        self.PartofRelease = PartofRelease
+    }
+    func setBusinessApplication(BusinessApplication: String)
+    {
+        self.BusinessApplication = BusinessApplication
+    }
+    func setBusinessApplicationCriticalityTier(BusinessApplicationCriticalityTier: String)
+    {
+        self.BusinessApplicationCriticalityTier = BusinessApplicationCriticalityTier
     }
 }

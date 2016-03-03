@@ -12,7 +12,7 @@ class ChangeTicketTableViewController: UITableViewController {
     
     // MARK: Properties
     
-    var changeTickets = [ChangeTicket]()
+    var changeTickets = [ChangeTicket_Table_Template]()
     let cellIdentifier = "ChangeTicketTableViewCell"
     
     override func viewDidLoad() {
@@ -27,9 +27,9 @@ class ChangeTicketTableViewController: UITableViewController {
             let indexPath = self.tableView.indexPathForRowAtPoint(location)
             print(changeTickets[(indexPath?.row)!].icon)
             if changeTickets[(indexPath?.row)!].isWatched == false {
-                changeTickets[(indexPath?.row)!].icon = UIImage(named: "eye_clicked.png")
+                changeTickets[(indexPath?.row)!].icon = UIImage(named: "eye_clicked.png")!
             } else {
-                changeTickets[(indexPath?.row)!].icon = UIImage(named: "eye_unclicked.png")
+                changeTickets[(indexPath?.row)!].icon = UIImage(named: "eye_unclicked.png")!
             }
             self.tableView.reloadData()
             changeTickets[(indexPath?.row)!].isWatched = !changeTickets[(indexPath?.row)!].isWatched
@@ -38,14 +38,23 @@ class ChangeTicketTableViewController: UITableViewController {
     
     func loadSampleTickets() {
         let eyeIcon = UIImage(named: "eye_unclicked.png")
-        let ticket1 = ChangeTicket(id: "CHG-001", priority: 8, icon: eyeIcon, isWatched: false)
-        let ticket2 = ChangeTicket(id: "CHG-002", priority: 4, icon: eyeIcon, isWatched: false)
-        let ticket3 = ChangeTicket(id: "CHG-003", priority: 1, icon: eyeIcon, isWatched: false)
-        let ticket4 = ChangeTicket(id: "CHG-004", priority: 5, icon: eyeIcon, isWatched: false)
+        let obj1 = ChangeTicket(number: "CHG00313717", approver: "", plannedStart: "2016-02-11 02:00:00", plannedEnd: "2016-02-11 08:00:00", actualStart: "", actualEnd: "", requestedByGroup: "ServiceNow_DEV", requestedByGroupBusinessArea: "Infrastructure Services", requestedByGroupBusinessUnit: "IS – Infrastructure Services", requestedByGroupSubBusinessUnit: "IS - Production Process", causeCompleteServiceAppOutage: "No", risk: "4", type: "Normal", impactScore: "", shortDescription: "Servicenow 02/10 Release", changeReason: "New Capability", closureCode: "", ImpactedEnviroment: "Production", SecondaryClosureCode: "", PartofRelease: "", BusinessApplication: "ServiceNow Enterprise Edition", BusinessApplicationCriticalityTier: "Tier 2")
+        let obj2 = ChangeTicket(number: "CHG00314757", approver: "", plannedStart: "2016-02-11 02:00:00", plannedEnd: "2016-02-11 08:00:00", actualStart: "", actualEnd: "", requestedByGroup: "ServiceNow_DEV", requestedByGroupBusinessArea: "Infrastructure Services", requestedByGroupBusinessUnit: "IS – Infrastructure Services", requestedByGroupSubBusinessUnit: "IS - Production Process", causeCompleteServiceAppOutage: "No", risk: "8", type: "Normal", impactScore: "", shortDescription: "Servicenow 02/10 Release", changeReason: "New Capability", closureCode: "", ImpactedEnviroment: "Production", SecondaryClosureCode: "", PartofRelease: "", BusinessApplication: "ServiceNow Enterprise Edition", BusinessApplicationCriticalityTier: "Tier 2")
+        let obj3 = ChangeTicket(number: "CHG00318797", approver: "", plannedStart: "2016-02-11 02:00:00", plannedEnd: "2016-02-11 08:00:00", actualStart: "", actualEnd: "", requestedByGroup: "ServiceNow_DEV", requestedByGroupBusinessArea: "Infrastructure Services", requestedByGroupBusinessUnit: "IS – Infrastructure Services", requestedByGroupSubBusinessUnit: "IS - Production Process", causeCompleteServiceAppOutage: "No", risk: "2", type: "Normal", impactScore: "", shortDescription: "Servicenow 02/10 Release", changeReason: "New Capability", closureCode: "", ImpactedEnviroment: "Production", SecondaryClosureCode: "", PartofRelease: "", BusinessApplication: "ServiceNow Enterprise Edition", BusinessApplicationCriticalityTier: "Tier 2")
+        
+        let ticket1 = ChangeTicket_Table_Template(id: obj1.getNumber(), priority: obj1.getRisk(), icon: eyeIcon!, isWatched: false)
+        let ticket2 = ChangeTicket_Table_Template(id: obj2.getNumber(), priority: obj2.getRisk(), icon: eyeIcon!, isWatched: false)
+        let ticket3 = ChangeTicket_Table_Template(id: obj3.getNumber(), priority: obj3.getRisk(), icon: eyeIcon!, isWatched: false)
+        let ticket4 = ChangeTicket_Table_Template(id: "CHG-004", priority: "5", icon: eyeIcon!, isWatched: false)
+    
+        //let ticket2 = ChangeTicket()
+        //let ticket3 = ChangeTicket()
+        //let ticket4 = ChangeTicket()
         
         changeTickets += [ticket1, ticket2, ticket3, ticket4]
+        //changeTickets += [ticket1]
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -65,7 +74,7 @@ class ChangeTicketTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let recognizer = UITapGestureRecognizer(target: self, action: "iconTapped:")
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! ChangeTicketTableViewCell
-        let ticket = changeTickets[indexPath.row] as ChangeTicket
+        let ticket = changeTickets[indexPath.row] as ChangeTicket_Table_Template
         cell.ticket = ticket
         cell.addGestureRecognizer(recognizer)
         
