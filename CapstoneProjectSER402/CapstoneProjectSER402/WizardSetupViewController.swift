@@ -21,7 +21,7 @@ class WizardSetupViewController: UIViewController, UIPageViewControllerDataSourc
 
         // Do any additional setup after loading the view.
         
-        self.pageTitles = NSArray(objects: "Welcome", "Select User Type", "Additional Apps")
+        self.pageTitles = NSArray(objects: "Welcome", "Preview")
         self.pageViewController = self.storyboard?.instantiateViewControllerWithIdentifier("SetupPageViewController") as! UIPageViewController
         self.pageViewController.dataSource = self
         var startVC = self.viewControllerAtIndex(0) as SetupContentViewController
