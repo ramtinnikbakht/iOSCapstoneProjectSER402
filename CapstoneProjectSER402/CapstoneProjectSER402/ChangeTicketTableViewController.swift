@@ -33,8 +33,9 @@ class ChangeTicketTableViewController: UITableViewController {
             }
             self.tableView.reloadData()
             changeTickets[(indexPath?.row)!].isWatched = !changeTickets[(indexPath?.row)!].isWatched
-            let watchedTicket = WatchedTicket(id: changeTickets[(indexPath?.row)!].id, priority: changeTickets[(indexPath?.row)!].priority, icon: changeTickets[(indexPath?.row)!].icon)
+            let watchedTicket = WatchedTicket(id: changeTickets[(indexPath?.row)!].id, priority: changeTickets[(indexPath?.row)!].priority)
             watchedTicketTableViewController.setWatchedTickets(watchedTicket)
+            //watchedTicketTableViewController.tableView.reloadData()
             
         }
     }

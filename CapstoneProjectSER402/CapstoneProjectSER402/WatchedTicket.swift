@@ -11,5 +11,4 @@ import Foundation
 struct WatchedTicket {
     let id : String?
     let priority : Int
-    var icon: UIImage?
 }

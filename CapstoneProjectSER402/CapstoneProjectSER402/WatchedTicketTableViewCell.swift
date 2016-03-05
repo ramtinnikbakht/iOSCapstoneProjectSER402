@@ -13,6 +13,7 @@ import QuartzCore
 class WatchedTicketTableViewCell: UITableViewCell {
     
     // MARK: Properties
+   
     @IBOutlet weak var watchedTicketLabel: UILabel!
     @IBOutlet weak var watchedPriorityLabel: UILabel!
     

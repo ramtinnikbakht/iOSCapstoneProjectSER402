@@ -15,21 +15,22 @@ class WatchedTicketTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        loadSampleTickets()
+
+        print(watchedTickets)
+        //loadSampleTickets()
     }
     
     func setWatchedTickets(ticket: WatchedTicket) {
-        watchedTickets.append(ticket)
+        watchedTickets += [ticket]
         self.tableView.reloadData()
+        print(watchedTickets.count)
     }
     
     func loadSampleTickets() {
-        let eyeIcon = UIImage(named: "eye_unclicked.png")
-        let ticket1 = WatchedTicket(id: "CHG-001", priority: 8, icon: eyeIcon)
-        let ticket2 = WatchedTicket(id: "CHG-002", priority: 4, icon: eyeIcon)
-        let ticket3 = WatchedTicket(id: "CHG-003", priority: 1, icon: eyeIcon)
-        let ticket4 = WatchedTicket(id: "CHG-004", priority: 5, icon: eyeIcon)
+        let ticket1 = WatchedTicket(id: "CHG-001", priority: 8)
+        let ticket2 = WatchedTicket(id: "CHG-002", priority: 4)
+        let ticket3 = WatchedTicket(id: "CHG-003", priority: 1)
+        let ticket4 = WatchedTicket(id: "CHG-004", priority: 5)
         
         watchedTickets += [ticket1, ticket2, ticket3, ticket4]
     }
@@ -51,11 +52,11 @@ class WatchedTicketTableViewController: UITableViewController {
     
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        //let recognizer = UITapGestureRecognizer(target: self, action: "iconTapped:")
+
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! WatchedTicketTableViewCell
         let ticket = watchedTickets[indexPath.row] as WatchedTicket
         cell.ticket = ticket
-        //cell.addGestureRecognizer(recognizer)
+        print("I am here")
         
         return cell
         
