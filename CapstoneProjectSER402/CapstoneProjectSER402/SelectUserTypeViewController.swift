@@ -13,9 +13,8 @@ class SelectUserTypeViewController: UIViewController, UIPickerViewDataSource, UI
     @IBOutlet var userTypePickerView: UIPickerView!
     var userTypesPickerSource = ["ITSM", "Business/Leadership", "App Owner"]
     
-    @IBAction func nextButtonTouched(sender: AnyObject) {
-        
-    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.userTypePickerView.dataSource = self
@@ -39,6 +38,10 @@ class SelectUserTypeViewController: UIViewController, UIPickerViewDataSource, UI
     
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
         return userTypesPickerSource[row]
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
     }
     
     /*
