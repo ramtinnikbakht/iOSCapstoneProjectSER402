@@ -349,7 +349,7 @@
         <!--Suggested Apps-->
         <scene sceneID="Cca-Pi-Xp0">
             <objects>
-                <tableViewController id="Wf9-qM-V6X" sceneMemberID="viewController">
+                <tableViewController id="Wf9-qM-V6X" customClass="SuggestedAppsTableViewController" customModule="CapstoneProjectSER402" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="ENd-4K-Q4H">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -416,7 +416,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WxV-Td-QwS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="879.5" y="1207.5"/>
+            <point key="canvasLocation" x="1078.5" y="1207.5"/>
         </scene>
         <!--User Type-->
         <scene sceneID="mL5-tl-9y1">
