@@ -12,16 +12,16 @@ class SelectUserTypeViewController: UIViewController, UIPickerViewDataSource, UI
 
     @IBOutlet var userTypePickerView: UIPickerView!
     var userTypesPickerSource = ["ITSM", "Business/Leadership", "App Owner"]
-    var selectedUserType: String!
+    var selectedUserType: String = ""
     
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        
+        selectedUserType = userTypesPickerSource[userTypePickerView.selectedRowInComponent(0)]
         self.userTypePickerView.dataSource = self
         self.userTypePickerView.delegate = self
-        self.userTypePickerView.selectRow(0, inComponent: 0, animated: true)
+        
         
         // Do any additional setup after loading the view.
     }
