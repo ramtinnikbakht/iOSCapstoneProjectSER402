@@ -12,7 +12,7 @@ import Foundation
 
 class ChangeTicket
 {
-    let number: String
+    var number: String
     var approver: String
     var plannedStart: String
     var plannedEnd: String
@@ -152,7 +152,7 @@ class ChangeTicket
     //setters
     func setNumber(number: String)
     {
-        self.number
+        self.number = number
     }
     func setApprover(approver: String)
     {

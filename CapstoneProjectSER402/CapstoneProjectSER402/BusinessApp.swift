@@ -10,18 +10,18 @@ import Foundation
 
 class BusinessApp
 {
-    let appId: String
-    let businessAppSys: String
-    let businessApp: String
-    let appCriticality: String
-    let owner: String
-    let ownerSys: String
-    let businessArea: String
-    let businessAreaSys: String
-    let businessUnit: String
-    let businessUnitSys: String
-    let businessSubUnitSys: String
-    let businessSubUnit: String
+    var appId: String
+    var businessAppSys: String
+    var businessApp: String
+    var appCriticality: String
+    var owner: String
+    var ownerSys: String
+    var businessArea: String
+    var businessAreaSys: String
+    var businessUnit: String
+    var businessUnitSys: String
+    var businessSubUnitSys: String
+    var businessSubUnit: String
     
     init(appId: String, businessAppSys: String, businessApp: String, appCriticality: String,
         owner: String, ownerSys: String, businessArea: String, businessAreaSys: String, businessUnit: String,
@@ -95,6 +95,68 @@ class BusinessApp
     func getBusinessSubUnit() -> String
     {
         return self.businessSubUnit
+    }
+    
+    // setters
+    
+    func getAppId(appId: String)
+    {
+        self.appId = appId
+    }
+    
+    func getBusinessAppSys(businessAppSys: String)
+    {
+        self.businessAppSys = businessAppSys
+    }
+    
+    func getBusinessApp(businessApp: String)
+    {
+        self.businessApp = businessApp
+    }
+    
+    func getAppCriticality(appCriticality: String)
+    {
+        self.appCriticality = appCriticality
+    }
+    
+    func getOwner(owner: String)
+    {
+        self.owner = owner
+    }
+    
+    func getOwnerSys(ownerSys: String)
+    {
+        self.ownerSys = ownerSys
+    }
+    
+    func getBusinessArea(businessArea: String)
+    {
+        self.businessArea = businessArea
+    }
+    
+    func getBusinessAreaSys(businessAreaSys: String)
+    {
+        self.businessAreaSys = businessAreaSys
+    }
+    
+    func getBusinessUnit(businessUnit: String)
+    {
+        self.businessUnit = businessUnit
+    }
+    
+    func getBusinessUnitSys(businessUnitSys: String)
+    {
+        self.businessUnitSys = businessUnitSys
+    }
+    
+    func getBusinessSubUnit(businessSubUnit: String)
+    {
+        self.businessSubUnit = businessSubUnit
+    }
+    
+    func getBusinessSubUnitSys(businessSubUnitSys: String)
+    {
+        self.businessSubUnitSys = businessSubUnitSys
     }
     
     
