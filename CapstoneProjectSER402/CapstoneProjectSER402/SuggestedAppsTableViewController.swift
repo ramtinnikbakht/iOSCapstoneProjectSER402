@@ -42,9 +42,9 @@ class SuggestedAppsTableViewController: UITableViewController {
         var cell = tableView.dequeueReusableCellWithIdentifier("SuggestedAppsCell") as! SuggestedAppsTableViewCell!
         
         cell.appsTitleLabel.text = sectionsArray[indexPath.section].sectionContents[indexPath.row]
-        
-        cell.selectionButton.tag = indexPath.row
-        cell.selectionButton.addTarget(self, action: "selectionAction", forControlEvents: .TouchUpInside)
+        cell.checkboxImage.image = UIImage(named: "unchecked-circle")
+        //cell.selectionButton.tag = indexPath.row
+        //cell.selectionButton.addTarget(self, action: "selectionAction", forControlEvents: .TouchUpInside)
         
         return cell
     }
@@ -72,7 +72,8 @@ class SuggestedAppsTableViewController: UITableViewController {
     }*/
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
+        var cell = tableView.cellForRowAtIndexPath(indexPath) as! SuggestedAppsTableViewCell!
+        cell.checkboxImage.image = UIImage(named: "checked-circle")
     }
     
     override func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {

@@ -10,15 +10,18 @@ import UIKit
 
 class SuggestedAppsTableViewCell: UITableViewCell {
 
-    @IBOutlet var selectionButton: UIButton!
+
+    @IBOutlet var checkboxImage: UIImageView!
     @IBOutlet var appsTitleLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
         
-        let uncheckedCircleImage = UIImage(named: "unchecked-circle")
-        selectionButton.setImage(uncheckedCircleImage, forState: .Normal)
+        //let checkboxImage = UIImage(named: "unchecked-circle")
+        
+
+
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
