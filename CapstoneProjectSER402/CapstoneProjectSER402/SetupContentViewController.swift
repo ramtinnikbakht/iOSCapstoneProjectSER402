@@ -12,15 +12,21 @@ class SetupContentViewController: UIViewController {
 
     @IBOutlet var setupTitleLabel: UILabel!
     
+    @IBOutlet var setupDescriptionLabel: UILabel!
+    
     var pageIndex: Int!
     var titleText: String!
+    var descriptionText: String!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.setupTitleLabel.text = self.titleText
+        self.setupDescriptionLabel.text = self.descriptionText
+        
     }
-    
+        
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }

@@ -12,13 +12,8 @@ class WizardSetupViewController: UIViewController, UIPageViewControllerDataSourc
     
     var pageViewController = UIPageViewController!()
     var pageTitles = NSArray!()
-    
-
-    @IBAction func startOverButtonTouched(sender: AnyObject) {
-        var startVC = self.viewControllerAtIndex(0) as! SetupContentViewController
-        var viewControllers = NSArray(object: startVC)
-        self.pageViewController.setViewControllers(viewControllers as! [UIViewController], direction: .Forward, animated: true, completion: nil)
-    }
+    var pageDescriptions: String = "Thanks for downloading the AllState Predictive Analytics App. With this app you will be able to keep track of apps in the AllState ecosystem, pertaining to your interests. "
+    var pageUserTypes = NSArray!()
     
     
     override func viewDidLoad() {
@@ -26,8 +21,7 @@ class WizardSetupViewController: UIViewController, UIPageViewControllerDataSourc
 
         // Do any additional setup after loading the view.
         
-        self.pageTitles = NSArray(objects: "Welcome", "Recommended Apps", "Additional Apps")
-        
+        self.pageTitles = NSArray(objects: "Welcome", "Preview")
         self.pageViewController = self.storyboard?.instantiateViewControllerWithIdentifier("SetupPageViewController") as! UIPageViewController
         self.pageViewController.dataSource = self
         var startVC = self.viewControllerAtIndex(0) as SetupContentViewController
@@ -48,12 +42,16 @@ class WizardSetupViewController: UIViewController, UIPageViewControllerDataSourc
     }
     
     func viewControllerAtIndex(index: Int) -> SetupContentViewController {
-        
+        var vcontroller: SetupContentViewController = self.storyboard?.instantiateViewControllerWithIdentifier("SetupContentViewController") as! SetupContentViewController
         if ((self.pageTitles == 0) || (index >= self.pageTitles.count)) {
             return SetupContentViewController()
         }
         
-        var vcontroller: SetupContentViewController = self.storyboard?.instantiateViewControllerWithIdentifier("SetupContentViewController") as! SetupContentViewController
+        if (index == 0) {
+            vcontroller.descriptionText = self.pageDescriptions as! String
+            
+        }
+       
         
         vcontroller.titleText = self.pageTitles[index] as! String
         vcontroller.pageIndex = index
