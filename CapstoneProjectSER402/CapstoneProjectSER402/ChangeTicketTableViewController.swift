@@ -13,6 +13,7 @@ class ChangeTicketTableViewController: UITableViewController {
     // MARK: Properties
     
     var changeTickets = [ChangeTicket_Table_Template]()
+    var watchedTicketTableViewController = WatchedTicketTableViewController()
     let cellIdentifier = "ChangeTicketTableViewCell"
     
     override func viewDidLoad() {

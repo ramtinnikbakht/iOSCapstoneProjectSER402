@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		462EB8481C990BF00076C28D /* AllstateLoginHeader.png in Resources */ = {isa = PBXBuildFile; fileRef = 462EB83C1C990BF00076C28D /* AllstateLoginHeader.png */; };
+		462EB8491C990BF00076C28D /* AppSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462EB83D1C990BF00076C28D /* AppSelectionViewController.swift */; };
+		462EB84A1C990BF00076C28D /* Base.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 462EB83E1C990BF00076C28D /* Base.lproj */; };
+		462EB84B1C990BF00076C28D /* BusinessApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462EB83F1C990BF00076C28D /* BusinessApp.swift */; };
+		462EB84C1C990BF00076C28D /* SelectUserTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462EB8411C990BF00076C28D /* SelectUserTypeViewController.swift */; };
+		462EB84D1C990BF00076C28D /* SuggestedAppsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462EB8421C990BF00076C28D /* SuggestedAppsTableViewController.swift */; };
+		462EB84E1C990BF00076C28D /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 462EB8441C990BF00076C28D /* SWRevealViewController.m */; };
+		462EB84F1C990BF00076C28D /* UserTypeSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462EB8451C990BF00076C28D /* UserTypeSelectionViewController.swift */; };
+		462EB8501C990BF00076C28D /* WatchedTicketTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462EB8461C990BF00076C28D /* WatchedTicketTableViewCell.swift */; };
+		462EB8511C990BF00076C28D /* WatchedTicketTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462EB8471C990BF00076C28D /* WatchedTicketTableViewController.swift */; };
 		46E832A41C88DD81001C376F /* ChangeTicket_Table_Template.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E832A31C88DD81001C376F /* ChangeTicket_Table_Template.swift */; };
 		489AFBA81C7F6B3000E9DEB9 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489AFBA71C7F6B3000E9DEB9 /* User.swift */; };
 		489AFBAA1C7F8D2900E9DEB9 /* SetupContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489AFBA91C7F8D2900E9DEB9 /* SetupContentViewController.swift */; };
@@ -21,9 +31,7 @@
 		48D741C31C5AAE86008D082E /* CapstoneProjectSER402UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D741C21C5AAE86008D082E /* CapstoneProjectSER402UITests.swift */; };
 		48D741D11C5AB574008D082E /* user.png in Resources */ = {isa = PBXBuildFile; fileRef = 48D741D01C5AB574008D082E /* user.png */; };
 		48D741D31C5AB57C008D082E /* lock.png in Resources */ = {isa = PBXBuildFile; fileRef = 48D741D21C5AB57C008D082E /* lock.png */; };
-		C121B52B1C7FD68B001F3B16 /* WatchedTicketTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C121B52A1C7FD68B001F3B16 /* WatchedTicketTableViewController.swift */; };
 		C121B52D1C80075B001F3B16 /* WatchedTicket.swift in Sources */ = {isa = PBXBuildFile; fileRef = C121B52C1C80075B001F3B16 /* WatchedTicket.swift */; };
-		C121B52F1C8008CC001F3B16 /* WatchedTicketTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C121B52E1C8008CC001F3B16 /* WatchedTicketTableViewCell.swift */; };
 		C19F0DC11C73E14F009BD594 /* binoculars-front-view.png in Resources */ = {isa = PBXBuildFile; fileRef = C19F0DC01C73E14F009BD594 /* binoculars-front-view.png */; };
 		C19F0DC31C73E226009BD594 /* infographic-bars.png in Resources */ = {isa = PBXBuildFile; fileRef = C19F0DC21C73E226009BD594 /* infographic-bars.png */; };
 		C19F0DC51C73E2C3009BD594 /* home-page.png in Resources */ = {isa = PBXBuildFile; fileRef = C19F0DC41C73E2C3009BD594 /* home-page.png */; };
@@ -56,6 +64,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		462EB83C1C990BF00076C28D /* AllstateLoginHeader.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AllstateLoginHeader.png; sourceTree = "<group>"; };
+		462EB83D1C990BF00076C28D /* AppSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppSelectionViewController.swift; sourceTree = "<group>"; };
+		462EB83E1C990BF00076C28D /* Base.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Base.lproj; sourceTree = "<group>"; };
+		462EB83F1C990BF00076C28D /* BusinessApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusinessApp.swift; sourceTree = "<group>"; };
+		462EB8401C990BF00076C28D /* CapstoneProjectSER402-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CapstoneProjectSER402-Bridging-Header.h"; sourceTree = "<group>"; };
+		462EB8411C990BF00076C28D /* SelectUserTypeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectUserTypeViewController.swift; sourceTree = "<group>"; };
+		462EB8421C990BF00076C28D /* SuggestedAppsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SuggestedAppsTableViewController.swift; sourceTree = "<group>"; };
+		462EB8431C990BF00076C28D /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
+		462EB8441C990BF00076C28D /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
+		462EB8451C990BF00076C28D /* UserTypeSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTypeSelectionViewController.swift; sourceTree = "<group>"; };
+		462EB8461C990BF00076C28D /* WatchedTicketTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchedTicketTableViewCell.swift; sourceTree = "<group>"; };
+		462EB8471C990BF00076C28D /* WatchedTicketTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchedTicketTableViewController.swift; sourceTree = "<group>"; };
 		46E832A31C88DD81001C376F /* ChangeTicket_Table_Template.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeTicket_Table_Template.swift; sourceTree = "<group>"; };
 		489AFBA71C7F6B3000E9DEB9 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		489AFBA91C7F8D2900E9DEB9 /* SetupContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetupContentViewController.swift; sourceTree = "<group>"; };
@@ -76,9 +96,7 @@
 		48D741C41C5AAE86008D082E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		48D741D01C5AB574008D082E /* user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user.png; sourceTree = "<group>"; };
 		48D741D21C5AB57C008D082E /* lock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lock.png; sourceTree = "<group>"; };
-		C121B52A1C7FD68B001F3B16 /* WatchedTicketTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchedTicketTableViewController.swift; sourceTree = "<group>"; };
 		C121B52C1C80075B001F3B16 /* WatchedTicket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchedTicket.swift; sourceTree = "<group>"; };
-		C121B52E1C8008CC001F3B16 /* WatchedTicketTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchedTicketTableViewCell.swift; sourceTree = "<group>"; };
 		C19F0DC01C73E14F009BD594 /* binoculars-front-view.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "binoculars-front-view.png"; sourceTree = "<group>"; };
 		C19F0DC21C73E226009BD594 /* infographic-bars.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "infographic-bars.png"; sourceTree = "<group>"; };
 		C19F0DC41C73E2C3009BD594 /* home-page.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home-page.png"; sourceTree = "<group>"; };
@@ -141,34 +159,44 @@
 		48D741A11C5AAE86008D082E /* CapstoneProjectSER402 */ = {
 			isa = PBXGroup;
 			children = (
-				48D741A21C5AAE86008D082E /* AppDelegate.swift */,
-				48D741A41C5AAE86008D082E /* LoginViewController.swift */,
-				489AFBA71C7F6B3000E9DEB9 /* User.swift */,
-				48D741A61C5AAE86008D082E /* Main.storyboard */,
-				48993BEE1C8D06D900EDA13E /* SuggestedAppsTableViewController.swift */,
-				48993BEC1C8CBB0A00EDA13E /* SelectUserTypeViewController.swift */,
-				489AFBA91C7F8D2900E9DEB9 /* SetupContentViewController.swift */,
-				489AFBAB1C7F8F5B00E9DEB9 /* WizardSetupViewController.swift */,
-				C19F0DD61C75A28A009BD594 /* ChangeTicketTableViewController.swift */,
-				48D741A91C5AAE86008D082E /* Assets.xcassets */,
-				C19F0DDC1C768044009BD594 /* eye_unclicked.png */,
-				C19F0DDA1C75BAAA009BD594 /* eye_clicked.png */,
+				462EB8401C990BF00076C28D /* CapstoneProjectSER402-Bridging-Header.h */,
+				462EB8431C990BF00076C28D /* SWRevealViewController.h */,
+				462EB83E1C990BF00076C28D /* Base.lproj */,
+				462EB8441C990BF00076C28D /* SWRevealViewController.m */,
+				48D741AE1C5AAE86008D082E /* Info.plist */,
 				C19F0DDE1C76DB22009BD594 /* AllstateHeader_ASU.png */,
 				C19F0DD21C752506009BD594 /* AllstateHeader_Dual.png */,
 				C19F0DD01C750EA6009BD594 /* AllstateHeader_Royal.png */,
-				C19F0DC81C7455C6009BD594 /* man-user.png */,
-				C19F0DC41C73E2C3009BD594 /* home-page.png */,
+				462EB83C1C990BF00076C28D /* AllstateLoginHeader.png */,
 				C19F0DC01C73E14F009BD594 /* binoculars-front-view.png */,
+				C19F0DDA1C75BAAA009BD594 /* eye_clicked.png */,
+				C19F0DDC1C768044009BD594 /* eye_unclicked.png */,
+				C19F0DC41C73E2C3009BD594 /* home-page.png */,
 				C19F0DC21C73E226009BD594 /* infographic-bars.png */,
-				48D741D01C5AB574008D082E /* user.png */,
-				48CFA2D21C73C02E0081A8E1 /* menuoptions.png */,
 				48D741D21C5AB57C008D082E /* lock.png */,
-				48D741AB1C5AAE86008D082E /* LaunchScreen.storyboard */,
-				48D741AE1C5AAE86008D082E /* Info.plist */,
-				C19F0DCC1C745DB6009BD594 /* ChangeTicket.swift */,
-				C121B52C1C80075B001F3B16 /* WatchedTicket.swift */,
-				C19F0DD41C759DB1009BD594 /* ChangeTicketTableViewCell.swift */,
+				C19F0DC81C7455C6009BD594 /* man-user.png */,
+				48CFA2D21C73C02E0081A8E1 /* menuoptions.png */,
+				48D741D01C5AB574008D082E /* user.png */,
+				48D741A21C5AAE86008D082E /* AppDelegate.swift */,
+				462EB83D1C990BF00076C28D /* AppSelectionViewController.swift */,
+				462EB83F1C990BF00076C28D /* BusinessApp.swift */,
 				46E832A31C88DD81001C376F /* ChangeTicket_Table_Template.swift */,
+				C19F0DCC1C745DB6009BD594 /* ChangeTicket.swift */,
+				C19F0DD41C759DB1009BD594 /* ChangeTicketTableViewCell.swift */,
+				C19F0DD61C75A28A009BD594 /* ChangeTicketTableViewController.swift */,
+				48D741A41C5AAE86008D082E /* LoginViewController.swift */,
+				462EB8411C990BF00076C28D /* SelectUserTypeViewController.swift */,
+				489AFBA91C7F8D2900E9DEB9 /* SetupContentViewController.swift */,
+				462EB8421C990BF00076C28D /* SuggestedAppsTableViewController.swift */,
+				489AFBA71C7F6B3000E9DEB9 /* User.swift */,
+				462EB8451C990BF00076C28D /* UserTypeSelectionViewController.swift */,
+				C121B52C1C80075B001F3B16 /* WatchedTicket.swift */,
+				462EB8461C990BF00076C28D /* WatchedTicketTableViewCell.swift */,
+				462EB8471C990BF00076C28D /* WatchedTicketTableViewController.swift */,
+				489AFBAB1C7F8F5B00E9DEB9 /* WizardSetupViewController.swift */,
+				48D741A91C5AAE86008D082E /* Assets.xcassets */,
+				48D741AB1C5AAE86008D082E /* LaunchScreen.storyboard */,
+				48D741A61C5AAE86008D082E /* Main.storyboard */,
 			);
 			path = CapstoneProjectSER402;
 			sourceTree = "<group>";
@@ -298,12 +326,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				462EB84A1C990BF00076C28D /* Base.lproj in Resources */,
 				48D741AD1C5AAE86008D082E /* LaunchScreen.storyboard in Resources */,
 				C19F0DC51C73E2C3009BD594 /* home-page.png in Resources */,
 				C19F0DD31C752506009BD594 /* AllstateHeader_Dual.png in Resources */,
 				48CFA2D31C73C02E0081A8E1 /* menuoptions.png in Resources */,
 				C19F0DC91C7455C6009BD594 /* man-user.png in Resources */,
 				48D741D31C5AB57C008D082E /* lock.png in Resources */,
+				462EB8481C990BF00076C28D /* AllstateLoginHeader.png in Resources */,
 				48D741AA1C5AAE86008D082E /* Assets.xcassets in Resources */,
 				C19F0DD11C750EA6009BD594 /* AllstateHeader_Royal.png in Resources */,
 				48D741D11C5AB574008D082E /* user.png in Resources */,
@@ -337,14 +367,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				462EB8501C990BF00076C28D /* WatchedTicketTableViewCell.swift in Sources */,
 				46E832A41C88DD81001C376F /* ChangeTicket_Table_Template.swift in Sources */,
 				C19F0DD71C75A28A009BD594 /* ChangeTicketTableViewController.swift in Sources */,
 				48D741A51C5AAE86008D082E /* LoginViewController.swift in Sources */,
-				C121B52F1C8008CC001F3B16 /* WatchedTicketTableViewCell.swift in Sources */,
+				462EB84C1C990BF00076C28D /* SelectUserTypeViewController.swift in Sources */,
 				489AFBA81C7F6B3000E9DEB9 /* User.swift in Sources */,
-				48993BEF1C8D06D900EDA13E /* SuggestedAppsTableViewController.swift in Sources */,
 				489AFBAC1C7F8F5B00E9DEB9 /* WizardSetupViewController.swift in Sources */,
+				462EB84F1C990BF00076C28D /* UserTypeSelectionViewController.swift in Sources */,
+				462EB84D1C990BF00076C28D /* SuggestedAppsTableViewController.swift in Sources */,
+				462EB84B1C990BF00076C28D /* BusinessApp.swift in Sources */,
+				462EB8511C990BF00076C28D /* WatchedTicketTableViewController.swift in Sources */,
+				462EB8491C990BF00076C28D /* AppSelectionViewController.swift in Sources */,
 				489AFBAA1C7F8D2900E9DEB9 /* SetupContentViewController.swift in Sources */,
+				462EB84E1C990BF00076C28D /* SWRevealViewController.m in Sources */,
 				C121B52D1C80075B001F3B16 /* WatchedTicket.swift in Sources */,
 				C19F0DD51C759DB1009BD594 /* ChangeTicketTableViewCell.swift in Sources */,
 				48D741A31C5AAE86008D082E /* AppDelegate.swift in Sources */,
@@ -510,6 +546,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = edu.asu.bsse.rnikbakh.CapstoneProjectSER402;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "CapstoneProjectSER402/CapstoneProjectSER402-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Release;
 		};
