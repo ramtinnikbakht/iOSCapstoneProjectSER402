@@ -18,6 +18,7 @@ class User
     var usersBusinessUnit: String
     var usersAppList = [String]()
     var usersWatchList = [String]()
+    var userChangeList = [String]()
     
     init(usersID: String, usersName: String, usersProfilePic: UIImage, usersBusinessUnit: String, usersAppList: [String], usersWatchList: [String])
     {

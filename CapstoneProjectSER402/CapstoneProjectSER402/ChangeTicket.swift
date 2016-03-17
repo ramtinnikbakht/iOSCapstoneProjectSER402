@@ -12,28 +12,29 @@ import Foundation
 
 class ChangeTicket
 {
-    var number: String
-    var approver: String
-    var plannedStart: String
-    var plannedEnd: String
-    var actualStart: String
-    var actualEnd: String
-    var requestedByGroup: String
-    var requestedByGroupBusinessArea: String
-    var requestedByGroupBusinessUnit: String
-    var requestedByGroupSubBusinessUnit: String
-    var causeCompleteServiceAppOutage: String
-    var risk: String
-    var type: String
-    var impactScore: String
-    var shortDescription: String
-    var changeReason: String
-    var closureCode: String
-    var ImpactedEnviroment: String
-    var SecondaryClosureCode:String
-    var PartofRelease: String
-    var BusinessApplication: String
-    var BusinessApplicationCriticalityTier: String
+    var number: String = ""
+    var approver: String = ""
+    var plannedStart: String = ""
+    var plannedEnd: String = ""
+    var actualStart: String = ""
+    var actualEnd: String = ""
+    var requestedByGroup: String = ""
+    var requestedByGroupBusinessArea: String = ""
+    var requestedByGroupBusinessUnit: String = ""
+    var requestedByGroupSubBusinessUnit: String = ""
+    var causeCompleteServiceAppOutage: String = ""
+    var risk: String = ""
+    var type: String = ""
+    var impactScore: String = ""
+    var shortDescription: String = ""
+    var changeReason: String = ""
+    var closureCode: String = ""
+    var ImpactedEnviroment: String = ""
+    var SecondaryClosureCode:String = ""
+    var PartofRelease: String = ""
+    var BusinessApplication: String = ""
+    var BusinessApplicationCriticalityTier: String = ""
+    
     
     init(number: String, approver: String, plannedStart: String, plannedEnd: String, actualStart: String, actualEnd: String, requestedByGroup: String, requestedByGroupBusinessArea:String, requestedByGroupBusinessUnit: String, requestedByGroupSubBusinessUnit: String, causeCompleteServiceAppOutage: String, risk: String, type:String, impactScore:String, shortDescription:String, changeReason: String, closureCode: String, ImpactedEnviroment: String, SecondaryClosureCode: String, PartofRelease: String, BusinessApplication: String, BusinessApplicationCriticalityTier: String)
     {
@@ -60,6 +61,7 @@ class ChangeTicket
         self.BusinessApplication = BusinessApplication
         self.BusinessApplicationCriticalityTier = BusinessApplicationCriticalityTier
     }
+    
     //getters
     func getNumber() -> String
     {
