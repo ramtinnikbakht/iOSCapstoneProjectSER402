@@ -16,6 +16,17 @@ class TicketModel:NSObject {
         print(watchedTickets.count)
     }
     
+    func removeWatchedTicket(selectedID: String) {
+        var index = 0
+        for ticket in watchedTickets {
+            if (ticket.id == selectedID) {
+                watchedTickets.removeAtIndex(index)
+            } else {
+                index+=1
+            }
+        }
+    }
+    
 }
 
 class TicketTabBarController:UITabBarController {
