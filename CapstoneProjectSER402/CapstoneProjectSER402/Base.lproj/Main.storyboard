@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="prk-bP-1jA">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="uGM-NS-OLm">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -169,10 +169,10 @@
             </objects>
             <point key="canvasLocation" x="2699.5" y="807.5"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Ticket Tab Bar Controller-->
         <scene sceneID="bU8-Y6-USy">
             <objects>
-                <tabBarController id="uGM-NS-OLm" sceneMemberID="viewController">
+                <tabBarController id="uGM-NS-OLm" customClass="TicketTabBarController" customModule="CapstoneProjectSER402" customModuleProvider="target" sceneMemberID="viewController">
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="hfX-kt-0tK">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>

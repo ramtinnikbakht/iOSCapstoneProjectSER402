@@ -28,6 +28,7 @@
 		C121B52B1C7FD68B001F3B16 /* WatchedTicketTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C121B52A1C7FD68B001F3B16 /* WatchedTicketTableViewController.swift */; };
 		C121B52D1C80075B001F3B16 /* WatchedTicket.swift in Sources */ = {isa = PBXBuildFile; fileRef = C121B52C1C80075B001F3B16 /* WatchedTicket.swift */; };
 		C121B52F1C8008CC001F3B16 /* WatchedTicketTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C121B52E1C8008CC001F3B16 /* WatchedTicketTableViewCell.swift */; };
+		C142E6551C9BEC5A005F1DEC /* TicketModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C142E6541C9BEC5A005F1DEC /* TicketModel.swift */; };
 		C19F0DC11C73E14F009BD594 /* binoculars-front-view.png in Resources */ = {isa = PBXBuildFile; fileRef = C19F0DC01C73E14F009BD594 /* binoculars-front-view.png */; };
 		C19F0DC31C73E226009BD594 /* infographic-bars.png in Resources */ = {isa = PBXBuildFile; fileRef = C19F0DC21C73E226009BD594 /* infographic-bars.png */; };
 		C19F0DC51C73E2C3009BD594 /* home-page.png in Resources */ = {isa = PBXBuildFile; fileRef = C19F0DC41C73E2C3009BD594 /* home-page.png */; };
@@ -87,6 +88,7 @@
 		C121B52A1C7FD68B001F3B16 /* WatchedTicketTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchedTicketTableViewController.swift; sourceTree = "<group>"; };
 		C121B52C1C80075B001F3B16 /* WatchedTicket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchedTicket.swift; sourceTree = "<group>"; };
 		C121B52E1C8008CC001F3B16 /* WatchedTicketTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchedTicketTableViewCell.swift; sourceTree = "<group>"; };
+		C142E6541C9BEC5A005F1DEC /* TicketModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TicketModel.swift; sourceTree = "<group>"; };
 		C19F0DC01C73E14F009BD594 /* binoculars-front-view.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "binoculars-front-view.png"; sourceTree = "<group>"; };
 		C19F0DC21C73E226009BD594 /* infographic-bars.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "infographic-bars.png"; sourceTree = "<group>"; };
 		C19F0DC41C73E2C3009BD594 /* home-page.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home-page.png"; sourceTree = "<group>"; };
@@ -180,6 +182,7 @@
 				C121B52C1C80075B001F3B16 /* WatchedTicket.swift */,
 				C19F0DD41C759DB1009BD594 /* ChangeTicketTableViewCell.swift */,
 				C121B52A1C7FD68B001F3B16 /* WatchedTicketTableViewController.swift */,
+				C142E6541C9BEC5A005F1DEC /* TicketModel.swift */,
 				C121B52E1C8008CC001F3B16 /* WatchedTicketTableViewCell.swift */,
 			);
 			path = CapstoneProjectSER402;
@@ -356,6 +359,7 @@
 				C19F0DD71C75A28A009BD594 /* ChangeTicketTableViewController.swift in Sources */,
 				48D741A51C5AAE86008D082E /* LoginViewController.swift in Sources */,
 				C121B52F1C8008CC001F3B16 /* WatchedTicketTableViewCell.swift in Sources */,
+				C142E6551C9BEC5A005F1DEC /* TicketModel.swift in Sources */,
 				489AFBA81C7F6B3000E9DEB9 /* User.swift in Sources */,
 				48CE447C1C8FB73D00BECD12 /* SuggestedAppsTableViewCell.swift in Sources */,
 				48993BEF1C8D06D900EDA13E /* SuggestedAppsTableViewController.swift in Sources */,

@@ -11,13 +11,16 @@ import UIKit
 class ChangeTicketTableViewController: UITableViewController {
     
     // MARK: Properties
-    
+    private var tbvc = TicketTabBarController()
+    private var wTickets = TicketModel()
     var changeTickets = [ChangeTicket]()
-    var watchedTicketTableViewController = WatchedTicketTableViewController()
     let cellIdentifier = "ChangeTicketTableViewCell"
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tbvc = tabBarController as! TicketTabBarController
+        wTickets = tbvc.wTickets
         
         loadSampleTickets()
     }
@@ -34,7 +37,7 @@ class ChangeTicketTableViewController: UITableViewController {
             self.tableView.reloadData()
             changeTickets[(indexPath?.row)!].isWatched = !changeTickets[(indexPath?.row)!].isWatched
             let watchedTicket = WatchedTicket(id: changeTickets[(indexPath?.row)!].id, priority: changeTickets[(indexPath?.row)!].priority)
-            watchedTicketTableViewController.setWatchedTickets(watchedTicket)
+            wTickets.addWatchedTickets(watchedTicket)
             //watchedTicketTableViewController.tableView.reloadData()
             
         }

@@ -10,20 +10,23 @@ import UIKit
 
 class WatchedTicketTableViewController: UITableViewController {
     
+    private var wTickets = TicketModel()
+    private var tbvc = TicketTabBarController()
     var watchedTickets = [WatchedTicket]()
     let cellIdentifier = "WatchedTicketTableViewCell"
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        print(watchedTickets)
+        tbvc = tabBarController as! TicketTabBarController
+        wTickets = tbvc.wTickets
+        
+        print(wTickets.watchedTickets[0])
         //loadSampleTickets()
     }
     
-    func setWatchedTickets(ticket: WatchedTicket) {
-        watchedTickets += [ticket]
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         self.tableView.reloadData()
-        print(watchedTickets.count)
     }
     
     func loadSampleTickets() {
@@ -47,16 +50,15 @@ class WatchedTicketTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return watchedTickets.count
+        return tbvc.wTickets.watchedTickets.count
     }
     
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! WatchedTicketTableViewCell
-        let ticket = watchedTickets[indexPath.row] as WatchedTicket
+        let ticket = tbvc.wTickets.watchedTickets[indexPath.row] as WatchedTicket
         cell.ticket = ticket
-        print("I am here")
         
         return cell
         
