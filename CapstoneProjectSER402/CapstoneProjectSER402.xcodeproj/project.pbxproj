@@ -17,10 +17,14 @@
 		462EB84F1C990BF00076C28D /* UserTypeSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462EB8451C990BF00076C28D /* UserTypeSelectionViewController.swift */; };
 		462EB8501C990BF00076C28D /* WatchedTicketTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462EB8461C990BF00076C28D /* WatchedTicketTableViewCell.swift */; };
 		462EB8511C990BF00076C28D /* WatchedTicketTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462EB8471C990BF00076C28D /* WatchedTicketTableViewController.swift */; };
+		469E77251C9A1E620028D422 /* DataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469E77241C9A1E620028D422 /* DataHandler.swift */; };
 		46E832A41C88DD81001C376F /* ChangeTicket_Table_Template.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E832A31C88DD81001C376F /* ChangeTicket_Table_Template.swift */; };
 		489AFBA81C7F6B3000E9DEB9 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489AFBA71C7F6B3000E9DEB9 /* User.swift */; };
 		489AFBAA1C7F8D2900E9DEB9 /* SetupContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489AFBA91C7F8D2900E9DEB9 /* SetupContentViewController.swift */; };
 		489AFBAC1C7F8F5B00E9DEB9 /* WizardSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489AFBAB1C7F8F5B00E9DEB9 /* WizardSetupViewController.swift */; };
+		48CE447C1C8FB73D00BECD12 /* SuggestedAppsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48CE447B1C8FB73D00BECD12 /* SuggestedAppsTableViewCell.swift */; };
+		48CE44831C8FC88400BECD12 /* checked-circle.png in Resources */ = {isa = PBXBuildFile; fileRef = 48CE44811C8FC88400BECD12 /* checked-circle.png */; };
+		48CE44841C8FC88400BECD12 /* unchecked-circle.png in Resources */ = {isa = PBXBuildFile; fileRef = 48CE44821C8FC88400BECD12 /* unchecked-circle.png */; };
 		48CFA2D31C73C02E0081A8E1 /* menuoptions.png in Resources */ = {isa = PBXBuildFile; fileRef = 48CFA2D21C73C02E0081A8E1 /* menuoptions.png */; };
 		48D741A31C5AAE86008D082E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D741A21C5AAE86008D082E /* AppDelegate.swift */; };
 		48D741A51C5AAE86008D082E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D741A41C5AAE86008D082E /* LoginViewController.swift */; };
@@ -76,10 +80,14 @@
 		462EB8451C990BF00076C28D /* UserTypeSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTypeSelectionViewController.swift; sourceTree = "<group>"; };
 		462EB8461C990BF00076C28D /* WatchedTicketTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchedTicketTableViewCell.swift; sourceTree = "<group>"; };
 		462EB8471C990BF00076C28D /* WatchedTicketTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchedTicketTableViewController.swift; sourceTree = "<group>"; };
+		469E77241C9A1E620028D422 /* DataHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataHandler.swift; sourceTree = "<group>"; };
 		46E832A31C88DD81001C376F /* ChangeTicket_Table_Template.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeTicket_Table_Template.swift; sourceTree = "<group>"; };
 		489AFBA71C7F6B3000E9DEB9 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		489AFBA91C7F8D2900E9DEB9 /* SetupContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetupContentViewController.swift; sourceTree = "<group>"; };
 		489AFBAB1C7F8F5B00E9DEB9 /* WizardSetupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WizardSetupViewController.swift; sourceTree = "<group>"; };
+		48CE447B1C8FB73D00BECD12 /* SuggestedAppsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SuggestedAppsTableViewCell.swift; sourceTree = "<group>"; };
+		48CE44811C8FC88400BECD12 /* checked-circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checked-circle.png"; sourceTree = "<group>"; };
+		48CE44821C8FC88400BECD12 /* unchecked-circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "unchecked-circle.png"; sourceTree = "<group>"; };
 		48CFA2D21C73C02E0081A8E1 /* menuoptions.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menuoptions.png; sourceTree = "<group>"; };
 		48D7419F1C5AAE86008D082E /* CapstoneProjectSER402.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CapstoneProjectSER402.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		48D741A21C5AAE86008D082E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -169,6 +177,7 @@
 				C19F0DD01C750EA6009BD594 /* AllstateHeader_Royal.png */,
 				462EB83C1C990BF00076C28D /* AllstateLoginHeader.png */,
 				C19F0DC01C73E14F009BD594 /* binoculars-front-view.png */,
+				48CE44811C8FC88400BECD12 /* checked-circle.png */,
 				C19F0DDA1C75BAAA009BD594 /* eye_clicked.png */,
 				C19F0DDC1C768044009BD594 /* eye_unclicked.png */,
 				C19F0DC41C73E2C3009BD594 /* home-page.png */,
@@ -176,6 +185,7 @@
 				48D741D21C5AB57C008D082E /* lock.png */,
 				C19F0DC81C7455C6009BD594 /* man-user.png */,
 				48CFA2D21C73C02E0081A8E1 /* menuoptions.png */,
+				48CE44821C8FC88400BECD12 /* unchecked-circle.png */,
 				48D741D01C5AB574008D082E /* user.png */,
 				48D741A21C5AAE86008D082E /* AppDelegate.swift */,
 				462EB83D1C990BF00076C28D /* AppSelectionViewController.swift */,
@@ -184,9 +194,11 @@
 				C19F0DCC1C745DB6009BD594 /* ChangeTicket.swift */,
 				C19F0DD41C759DB1009BD594 /* ChangeTicketTableViewCell.swift */,
 				C19F0DD61C75A28A009BD594 /* ChangeTicketTableViewController.swift */,
+				469E77241C9A1E620028D422 /* DataHandler.swift */,
 				48D741A41C5AAE86008D082E /* LoginViewController.swift */,
 				462EB8411C990BF00076C28D /* SelectUserTypeViewController.swift */,
 				489AFBA91C7F8D2900E9DEB9 /* SetupContentViewController.swift */,
+				48CE447B1C8FB73D00BECD12 /* SuggestedAppsTableViewCell.swift */,
 				462EB8421C990BF00076C28D /* SuggestedAppsTableViewController.swift */,
 				489AFBA71C7F6B3000E9DEB9 /* User.swift */,
 				462EB8451C990BF00076C28D /* UserTypeSelectionViewController.swift */,
@@ -332,6 +344,7 @@
 				C19F0DD31C752506009BD594 /* AllstateHeader_Dual.png in Resources */,
 				48CFA2D31C73C02E0081A8E1 /* menuoptions.png in Resources */,
 				C19F0DC91C7455C6009BD594 /* man-user.png in Resources */,
+				48CE44841C8FC88400BECD12 /* unchecked-circle.png in Resources */,
 				48D741D31C5AB57C008D082E /* lock.png in Resources */,
 				462EB8481C990BF00076C28D /* AllstateLoginHeader.png in Resources */,
 				48D741AA1C5AAE86008D082E /* Assets.xcassets in Resources */,
@@ -339,6 +352,7 @@
 				48D741D11C5AB574008D082E /* user.png in Resources */,
 				C19F0DC11C73E14F009BD594 /* binoculars-front-view.png in Resources */,
 				C19F0DDD1C768044009BD594 /* eye_unclicked.png in Resources */,
+				48CE44831C8FC88400BECD12 /* checked-circle.png in Resources */,
 				C19F0DC31C73E226009BD594 /* infographic-bars.png in Resources */,
 				48D741A81C5AAE86008D082E /* Main.storyboard in Resources */,
 				C19F0DDF1C76DB22009BD594 /* AllstateHeader_ASU.png in Resources */,
@@ -373,7 +387,9 @@
 				48D741A51C5AAE86008D082E /* LoginViewController.swift in Sources */,
 				462EB84C1C990BF00076C28D /* SelectUserTypeViewController.swift in Sources */,
 				489AFBA81C7F6B3000E9DEB9 /* User.swift in Sources */,
+				48CE447C1C8FB73D00BECD12 /* SuggestedAppsTableViewCell.swift in Sources */,
 				489AFBAC1C7F8F5B00E9DEB9 /* WizardSetupViewController.swift in Sources */,
+				469E77251C9A1E620028D422 /* DataHandler.swift in Sources */,
 				462EB84F1C990BF00076C28D /* UserTypeSelectionViewController.swift in Sources */,
 				462EB84D1C990BF00076C28D /* SuggestedAppsTableViewController.swift in Sources */,
 				462EB84B1C990BF00076C28D /* BusinessApp.swift in Sources */,

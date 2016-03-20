@@ -9,47 +9,84 @@
 import UIKit
 
 class SuggestedAppsTableViewController: UITableViewController {
+    
+    
     var usertype : String = ""
+    
+    struct Sections {
+        var sectionName: String!
+        var sectionContents: [String]!
+    }
+    
+    var sectionsArray = [Sections]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        /*
         let alert = UIAlertController(title: "Alert", message: "Your User Type: \(usertype)", preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
         self.presentViewController(alert, animated: true, completion: nil)
+        */
+        sectionsArray = [Sections(sectionName: "Configuration", sectionContents: ["Select All", "UnSelect All"]), Sections(sectionName: "Suggested Apps", sectionContents: ["App1", "App2", "App3", "App4", "App5", "App6", "App7"])]
 
+
+        //setEditing(true, animated: true)
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    override func viewDidAppear(animated: Bool)
+    {
+        super.viewDidAppear(animated)
+        let alert = UIAlertController(title: "Alert", message: "Your User Type: \(usertype)", preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+        self.presentViewController(alert, animated: true, completion: nil)
     }
 
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        var cell = tableView.dequeueReusableCellWithIdentifier("SuggestedAppsCell") as! SuggestedAppsTableViewCell!
+        
+        cell.appsTitleLabel.text = sectionsArray[indexPath.section].sectionContents[indexPath.row]
+        cell.checkboxImage.image = UIImage(named: "unchecked-circle")
+        //cell.selectionButton.tag = indexPath.row
+        //cell.selectionButton.addTarget(self, action: "selectionAction", forControlEvents: .TouchUpInside)
+        
+        return cell
+    }
+    
+    
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+
+        return sectionsArray.count
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+
+        return sectionsArray[section].sectionContents.count
     }
 
-    /*
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
-
-        // Configure the cell...
-
-        return cell
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        
+        return sectionsArray[section].sectionName
     }
-    */
+    
+    /*override func tableView(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
+        
+    }*/
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        var cell = tableView.cellForRowAtIndexPath(indexPath) as! SuggestedAppsTableViewCell!
+        cell.checkboxImage.image = UIImage(named: "checked-circle")
+    }
+    
+    override func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
+        
+    }
 
     /*
     // Override to support conditional editing of the table view.
@@ -95,5 +132,10 @@ class SuggestedAppsTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+
 
 }

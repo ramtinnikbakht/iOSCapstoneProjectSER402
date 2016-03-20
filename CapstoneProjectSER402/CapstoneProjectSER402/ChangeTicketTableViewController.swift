@@ -19,16 +19,21 @@ class ChangeTicketTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        loadSampleTickets()
+        //loadSampleTickets()
     }
     
-    func iconTapped(sender: UITapGestureRecognizer) {
-        if sender.state == .Ended {
+    func iconTapped(sender: UITapGestureRecognizer)
+    {
+        if sender.state == .Ended
+        {
             let location = sender.locationInView(self.tableView)
             let indexPath = self.tableView.indexPathForRowAtPoint(location)
-            if changeTickets[(indexPath?.row)!].isWatched == false {
+            if changeTickets[(indexPath?.row)!].isWatched == false
+            {
                 changeTickets[(indexPath?.row)!].icon = UIImage(named: "eye_clicked.png")!
-            } else {
+            }
+            else
+            {
                 changeTickets[(indexPath?.row)!].icon = UIImage(named: "eye_unclicked.png")!
             }
             self.tableView.reloadData()
@@ -39,8 +44,9 @@ class ChangeTicketTableViewController: UITableViewController {
             
         }
     }
-    
-    func loadSampleTickets() {
+    /*
+    func loadSampleTickets()
+    {
         let eyeIcon = UIImage(named: "eye_unclicked.png")
         let obj1 = ChangeTicket(number: "CHG00313717", approver: "", plannedStart: "2016-02-11 02:00:00", plannedEnd: "2016-02-11 08:00:00", actualStart: "", actualEnd: "", requestedByGroup: "ServiceNow_DEV", requestedByGroupBusinessArea: "Infrastructure Services", requestedByGroupBusinessUnit: "IS – Infrastructure Services", requestedByGroupSubBusinessUnit: "IS - Production Process", causeCompleteServiceAppOutage: "No", risk: "4", type: "Normal", impactScore: "", shortDescription: "Servicenow 02/10 Release", changeReason: "New Capability", closureCode: "", ImpactedEnviroment: "Production", SecondaryClosureCode: "", PartofRelease: "", BusinessApplication: "ServiceNow Enterprise Edition", BusinessApplicationCriticalityTier: "Tier 2")
         let obj2 = ChangeTicket(number: "CHG00314757", approver: "", plannedStart: "2016-02-11 02:00:00", plannedEnd: "2016-02-11 08:00:00", actualStart: "", actualEnd: "", requestedByGroup: "ServiceNow_DEV", requestedByGroupBusinessArea: "Infrastructure Services", requestedByGroupBusinessUnit: "IS – Infrastructure Services", requestedByGroupSubBusinessUnit: "IS - Production Process", causeCompleteServiceAppOutage: "No", risk: "8", type: "Normal", impactScore: "", shortDescription: "Servicenow 02/10 Release", changeReason: "New Capability", closureCode: "", ImpactedEnviroment: "Production", SecondaryClosureCode: "", PartofRelease: "", BusinessApplication: "ServiceNow Enterprise Edition", BusinessApplicationCriticalityTier: "Tier 2")
@@ -58,6 +64,7 @@ class ChangeTicketTableViewController: UITableViewController {
         changeTickets += [ticket1, ticket2, ticket3, ticket4]
         //changeTickets += [ticket1]
     }
+    */
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
