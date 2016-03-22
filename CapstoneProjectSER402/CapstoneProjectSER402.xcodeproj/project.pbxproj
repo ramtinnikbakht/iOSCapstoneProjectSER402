@@ -38,8 +38,6 @@
 		C19F0DC51C73E2C3009BD594 /* home-page.png in Resources */ = {isa = PBXBuildFile; fileRef = C19F0DC41C73E2C3009BD594 /* home-page.png */; };
 		C19F0DC91C7455C6009BD594 /* man-user.png in Resources */ = {isa = PBXBuildFile; fileRef = C19F0DC81C7455C6009BD594 /* man-user.png */; };
 		C19F0DCD1C745DB6009BD594 /* ChangeTicket.swift in Sources */ = {isa = PBXBuildFile; fileRef = C19F0DCC1C745DB6009BD594 /* ChangeTicket.swift */; };
-		C19F0DD11C750EA6009BD594 /* AllstateHeader_Royal.png in Resources */ = {isa = PBXBuildFile; fileRef = C19F0DD01C750EA6009BD594 /* AllstateHeader_Royal.png */; };
-		C19F0DD31C752506009BD594 /* AllstateHeader_Dual.png in Resources */ = {isa = PBXBuildFile; fileRef = C19F0DD21C752506009BD594 /* AllstateHeader_Dual.png */; };
 		C19F0DD51C759DB1009BD594 /* ChangeTicketTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C19F0DD41C759DB1009BD594 /* ChangeTicketTableViewCell.swift */; };
 		C19F0DD71C75A28A009BD594 /* ChangeTicketTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C19F0DD61C75A28A009BD594 /* ChangeTicketTableViewController.swift */; };
 		C19F0DDB1C75BAAA009BD594 /* eye_clicked.png in Resources */ = {isa = PBXBuildFile; fileRef = C19F0DDA1C75BAAA009BD594 /* eye_clicked.png */; };
@@ -150,8 +148,6 @@
 		C19F0DC41C73E2C3009BD594 /* home-page.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home-page.png"; sourceTree = "<group>"; };
 		C19F0DC81C7455C6009BD594 /* man-user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "man-user.png"; sourceTree = "<group>"; };
 		C19F0DCC1C745DB6009BD594 /* ChangeTicket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeTicket.swift; sourceTree = "<group>"; };
-		C19F0DD01C750EA6009BD594 /* AllstateHeader_Royal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AllstateHeader_Royal.png; sourceTree = "<group>"; };
-		C19F0DD21C752506009BD594 /* AllstateHeader_Dual.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AllstateHeader_Dual.png; sourceTree = "<group>"; };
 		C19F0DD41C759DB1009BD594 /* ChangeTicketTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeTicketTableViewCell.swift; sourceTree = "<group>"; };
 		C19F0DD61C75A28A009BD594 /* ChangeTicketTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeTicketTableViewController.swift; sourceTree = "<group>"; };
 		C19F0DDA1C75BAAA009BD594 /* eye_clicked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eye_clicked.png; sourceTree = "<group>"; };
@@ -226,8 +222,6 @@
 				C19F0DDC1C768044009BD594 /* eye_unclicked.png */,
 				C19F0DDA1C75BAAA009BD594 /* eye_clicked.png */,
 				C19F0DDE1C76DB22009BD594 /* AllstateHeader_ASU.png */,
-				C19F0DD21C752506009BD594 /* AllstateHeader_Dual.png */,
-				C19F0DD01C750EA6009BD594 /* AllstateHeader_Royal.png */,
 				C19F0DC81C7455C6009BD594 /* man-user.png */,
 				C19F0DC41C73E2C3009BD594 /* home-page.png */,
 				C19F0DC01C73E14F009BD594 /* binoculars-front-view.png */,
@@ -425,13 +419,11 @@
 			files = (
 				48D741AD1C5AAE86008D082E /* LaunchScreen.storyboard in Resources */,
 				C19F0DC51C73E2C3009BD594 /* home-page.png in Resources */,
-				C19F0DD31C752506009BD594 /* AllstateHeader_Dual.png in Resources */,
 				48CFA2D31C73C02E0081A8E1 /* menuoptions.png in Resources */,
 				C19F0DC91C7455C6009BD594 /* man-user.png in Resources */,
 				48CE44841C8FC88400BECD12 /* unchecked-circle.png in Resources */,
 				48D741D31C5AB57C008D082E /* lock.png in Resources */,
 				48D741AA1C5AAE86008D082E /* Assets.xcassets in Resources */,
-				C19F0DD11C750EA6009BD594 /* AllstateHeader_Royal.png in Resources */,
 				48D741D11C5AB574008D082E /* user.png in Resources */,
 				C19F0DC11C73E14F009BD594 /* binoculars-front-view.png in Resources */,
 				C19F0DDD1C768044009BD594 /* eye_unclicked.png in Resources */,

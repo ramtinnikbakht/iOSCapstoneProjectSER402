@@ -194,23 +194,35 @@
             <objects>
                 <viewController id="S6Q-R1-NI0" customClass="AnalysisViewController" customModule="CapstoneProjectSER402" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="wJH-NV-t4h"/>
-                        <viewControllerLayoutGuide type="bottom" id="4N9-zf-Wz0"/>
+                        <viewControllerLayoutGuide type="top" id="0Uq-ZP-T5g"/>
+                        <viewControllerLayoutGuide type="bottom" id="ADt-df-Avk"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleAspectFit" id="Ntu-uk-p7K" customClass="BarChartView" customModule="Charts">
+                    <view key="view" contentMode="scaleToFill" id="fDh-vJ-RbJ">
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jrp-hd-Ish" customClass="BarChartView" customModule="Charts">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Jrp-hd-Ish" firstAttribute="top" secondItem="0Uq-ZP-T5g" secondAttribute="bottom" id="LNN-n2-sjY"/>
+                            <constraint firstItem="Jrp-hd-Ish" firstAttribute="leading" secondItem="fDh-vJ-RbJ" secondAttribute="leading" id="Mxy-Po-lxt"/>
+                            <constraint firstAttribute="trailing" secondItem="Jrp-hd-Ish" secondAttribute="trailing" id="b3M-EF-p9i"/>
+                            <constraint firstItem="ADt-df-Avk" firstAttribute="top" secondItem="Jrp-hd-Ish" secondAttribute="bottom" id="udz-Vw-ltL"/>
+                        </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" id="rAy-yl-TXK"/>
                     <connections>
-                        <outlet property="barChartView" destination="Ntu-uk-p7K" id="N8j-am-g6y"/>
+                        <outlet property="barChartView" destination="Jrp-hd-Ish" id="NQD-55-Doh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pvF-kw-0oo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2883.5" y="969.5"/>
+            <point key="canvasLocation" x="2835.5" y="1001.5"/>
         </scene>
         <!--Ticket Tab Bar Controller-->
         <scene sceneID="bU8-Y6-USy">

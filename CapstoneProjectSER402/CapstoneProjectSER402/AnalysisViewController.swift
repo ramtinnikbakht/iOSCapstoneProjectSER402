@@ -10,7 +10,8 @@ import Charts
 
 class AnalysisViewController: UIViewController {
     
-    @IBOutlet var barChartView: BarChartView!
+    
+    @IBOutlet weak var barChartView: BarChartView!
     
     var months: [String]!
     
@@ -34,10 +35,10 @@ class AnalysisViewController: UIViewController {
         }
         
         let chartDataSet = BarChartDataSet(yVals: dataEntries, label: "Change Tickets Entered")
-        chartDataSet.colors = ChartColorTemplates.liberty()
+        chartDataSet.colors = ChartColorTemplates.pastel()
         let chartData = BarChartData(xVals: months, dataSet: chartDataSet)
         barChartView.data = chartData
-        barChartView.animate(xAxisDuration: 2.0, yAxisDuration: 2.0, easingOption: .EaseInBounce)
+        barChartView.animate(xAxisDuration: 2.0, yAxisDuration: 2.0, easingOption: .EaseInQuart)
         
     }
 }
