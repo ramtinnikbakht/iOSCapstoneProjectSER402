@@ -13,6 +13,7 @@ class WatchedTicketTableViewController: UITableViewController {
     private var wTickets = TicketModel()
     private var tbvc = TicketTabBarController()
     var watchedTickets = [WatchedTicket]()
+    var selectedIndexPath : NSIndexPath?
     let cellIdentifier = "WatchedTicketTableViewCell"
     
     override func viewDidLoad() {
@@ -20,7 +21,7 @@ class WatchedTicketTableViewController: UITableViewController {
         tbvc = tabBarController as! TicketTabBarController
         wTickets = tbvc.wTickets
         
-        print(wTickets.watchedTickets[0])
+        //print(wTickets.watchedTickets[0])
         //loadSampleTickets()
     }
     
@@ -62,6 +63,51 @@ class WatchedTicketTableViewController: UITableViewController {
         
         return cell
         
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let previousIndexPath = selectedIndexPath
+        if indexPath == selectedIndexPath {
+            selectedIndexPath = nil
+        } else {
+            selectedIndexPath = indexPath
+        }
+        
+        var indexPaths : Array<NSIndexPath> = []
+        if let previous = previousIndexPath {
+            indexPaths += [previous]
+        }
+        
+        if let current = selectedIndexPath {
+            indexPaths += [current]
+        }
+        
+        if indexPaths.count > 0 {
+            tableView.reloadRowsAtIndexPaths(indexPaths, withRowAnimation: .Automatic)
+        }
+    }
+    
+    override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        (cell as! WatchedTicketTableViewCell).watchFrameChanges()
+    }
+    
+    override func tableView(tableView: UITableView, didEndDisplayingCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        (cell as! WatchedTicketTableViewCell).ignoreFrameChanges()
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        for cell in tableView.visibleCells as! [WatchedTicketTableViewCell] {
+            cell.ignoreFrameChanges()
+        }
+    }
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        if indexPath == selectedIndexPath {
+            return WatchedTicketTableViewCell.expandedHeight
+        } else {
+            return WatchedTicketTableViewCell.defaultHeight
+        }
     }
     
     
