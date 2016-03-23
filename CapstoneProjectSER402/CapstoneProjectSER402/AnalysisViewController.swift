@@ -8,16 +8,18 @@
 import UIKit
 import Charts
 
-class AnalysisViewController: UIViewController {
+class AnalysisViewController: UIViewController, ChartViewDelegate {
     
     
+    @IBOutlet weak var analysisView: UIView!
+    @IBOutlet weak var selectedTicketCount: UILabel!
     @IBOutlet weak var barChartView: BarChartView!
     
     var months: [String]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        barChartView.delegate = self
         // Do any additional setup after loading the view.
         
         months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov"]
@@ -28,17 +30,20 @@ class AnalysisViewController: UIViewController {
     
     func setChart(dataPoints: [String], values: [Double]) {
         var dataEntries: [BarChartDataEntry] = []
-        
         for i in 0..<dataPoints.count {
             let dataEntry = BarChartDataEntry(value: values[i], xIndex: i)
             dataEntries.append(dataEntry)
         }
         
         let chartDataSet = BarChartDataSet(yVals: dataEntries, label: "Change Tickets Entered")
-        chartDataSet.colors = ChartColorTemplates.pastel()
+        chartDataSet.colors = ChartColorTemplates.liberty()
         let chartData = BarChartData(xVals: months, dataSet: chartDataSet)
         barChartView.data = chartData
-        barChartView.animate(xAxisDuration: 2.0, yAxisDuration: 2.0, easingOption: .EaseInQuart)
+        barChartView.animate(xAxisDuration: 2.0, yAxisDuration: 2.0, easingOption: .EaseInBounce)
         
+    }
+    
+    func chartValueSelected(chartView: ChartViewBase, entry: ChartDataEntry, dataSetIndex: Int, highlight: ChartHighlight) {
+        selectedTicketCount.text = String(entry.value)
     }
 }

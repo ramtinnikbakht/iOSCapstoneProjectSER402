@@ -34,9 +34,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="KZl-a5-a6Q">
+                            <rect key="frame" x="0.0" y="64" width="375" height="359"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ChangeTicketTableViewCell" rowHeight="60" id="z3O-IQ-ZJo" customClass="ChangeTicketTableViewCell" customModule="CapstoneProjectSER402" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="113.5" width="375" height="60"/>
+                                <rect key="frame" x="0.0" y="472.5" width="375" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="z3O-IQ-ZJo" id="Dad-6B-B2X">
                                     <rect key="frame" x="0.0" y="0.0" width="342" height="59.5"/>
@@ -120,19 +125,19 @@
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Associated Application" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bh9-zp-xsd">
                                             <rect key="frame" x="19" y="48" width="175" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <fontDescription key="fontDescription" name="KannadaSangamMN" family="Kannada Sangam MN" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Risk Level" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ood-NQ-ry1">
                                             <rect key="frame" x="19" y="77" width="76" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <fontDescription key="fontDescription" name="KannadaSangamMN" family="Kannada Sangam MN" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Planned Start Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xlo-NI-pGe">
                                             <rect key="frame" x="19" y="106" width="145" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <fontDescription key="fontDescription" name="KannadaSangamMN" family="Kannada Sangam MN" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -144,7 +149,7 @@
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7xl-qc-1Ek">
                                             <rect key="frame" x="19" y="14" width="145" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <fontDescription key="fontDescription" name="KannadaSangamMN" family="Kannada Sangam MN" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -189,7 +194,7 @@
             </objects>
             <point key="canvasLocation" x="2197.5" y="1001.5"/>
         </scene>
-        <!--Analysis View Controller-->
+        <!--Analysis-->
         <scene sceneID="5bB-vm-Wod">
             <objects>
                 <viewController id="S6Q-R1-NI0" customClass="AnalysisViewController" customModule="CapstoneProjectSER402" customModuleProvider="target" sceneMemberID="viewController">
@@ -201,23 +206,31 @@
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jrp-hd-Ish" customClass="BarChartView" customModule="Charts">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Mwo-Hn-j1c">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="277"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2qT-Br-gdd">
+                                        <rect key="frame" x="166" y="128" width="42" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jrp-hd-Ish" customClass="BarChartView" customModule="Charts">
+                                <rect key="frame" x="0.0" y="277" width="375" height="277"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="Jrp-hd-Ish" firstAttribute="top" secondItem="0Uq-ZP-T5g" secondAttribute="bottom" id="LNN-n2-sjY"/>
-                            <constraint firstItem="Jrp-hd-Ish" firstAttribute="leading" secondItem="fDh-vJ-RbJ" secondAttribute="leading" id="Mxy-Po-lxt"/>
-                            <constraint firstAttribute="trailing" secondItem="Jrp-hd-Ish" secondAttribute="trailing" id="b3M-EF-p9i"/>
-                            <constraint firstItem="ADt-df-Avk" firstAttribute="top" secondItem="Jrp-hd-Ish" secondAttribute="bottom" id="udz-Vw-ltL"/>
-                        </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
-                    <navigationItem key="navigationItem" id="rAy-yl-TXK"/>
+                    <navigationItem key="navigationItem" title="Analysis" id="rAy-yl-TXK"/>
                     <connections>
+                        <outlet property="analysisView" destination="Mwo-Hn-j1c" id="TOG-F5-DLA"/>
                         <outlet property="barChartView" destination="Jrp-hd-Ish" id="NQD-55-Doh"/>
+                        <outlet property="selectedTicketCount" destination="2qT-Br-gdd" id="a3U-Qr-bwu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pvF-kw-0oo" userLabel="First Responder" sceneMemberID="firstResponder"/>
