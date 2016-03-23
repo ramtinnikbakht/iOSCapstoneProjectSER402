@@ -21,22 +21,11 @@ class WatchedTicketTableViewController: UITableViewController {
         tbvc = tabBarController as! TicketTabBarController
         wTickets = tbvc.wTickets
         
-        //print(wTickets.watchedTickets[0])
-        //loadSampleTickets()
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         self.tableView.reloadData()
-    }
-    
-    func loadSampleTickets() {
-        let ticket1 = WatchedTicket(id: "CHG-001", priority: 8)
-        let ticket2 = WatchedTicket(id: "CHG-002", priority: 4)
-        let ticket3 = WatchedTicket(id: "CHG-003", priority: 1)
-        let ticket4 = WatchedTicket(id: "CHG-004", priority: 5)
-        
-        watchedTickets += [ticket1, ticket2, ticket3, ticket4]
     }
     
     override func didReceiveMemoryWarning() {
