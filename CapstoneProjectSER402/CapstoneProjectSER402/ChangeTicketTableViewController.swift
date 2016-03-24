@@ -24,7 +24,7 @@ class ChangeTicketTableViewController: UITableViewController
         tbvc = tabBarController as! TicketTabBarController
         tickets = tbvc.wTickets
         
-        //loadSampleTickets()
+        loadSampleTickets()
     }
     
     func iconTapped(sender: UITapGestureRecognizer)
