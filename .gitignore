@@ -1,4 +1,4 @@
-gnoring the DS_store that is always created
+#ignoring the DS_store that is always created
 .DS_Store
 
 ## build generated
