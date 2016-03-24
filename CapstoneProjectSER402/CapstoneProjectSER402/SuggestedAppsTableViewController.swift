@@ -46,9 +46,8 @@ class SuggestedAppsTableViewController: UITableViewController {
         self.presentViewController(alert, animated: true, completion: nil)
     }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
-    {
-        var cell = tableView.dequeueReusableCellWithIdentifier("SuggestedAppsCell") as! SuggestedAppsTableViewCell!
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("SuggestedAppsCell") as! SuggestedAppsTableViewCell!
         
         cell.appsTitleLabel.text = sectionsArray[indexPath.section].sectionContents[indexPath.row]
         cell.checkboxImage.image = UIImage(named: "unchecked-circle")
@@ -83,9 +82,9 @@ class SuggestedAppsTableViewController: UITableViewController {
         
     }*/
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
-    {
-        var cell = tableView.cellForRowAtIndexPath(indexPath) as! SuggestedAppsTableViewCell!
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        let cell = tableView.cellForRowAtIndexPath(indexPath) as! SuggestedAppsTableViewCell!
         cell.checkboxImage.image = UIImage(named: "checked-circle")
     
 

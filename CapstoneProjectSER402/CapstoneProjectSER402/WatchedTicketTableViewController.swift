@@ -28,7 +28,7 @@ class WatchedTicketTableViewController: UITableViewController {
         self.tableView.reloadData()
         print(watchedTickets.count)
     }
-    
+    /*
     func loadSampleTickets() {
         let ticket1 = WatchedTicket(id: "CHG-001", priority: "8")
         let ticket2 = WatchedTicket(id: "CHG-002", priority: "4")
@@ -37,7 +37,7 @@ class WatchedTicketTableViewController: UITableViewController {
         
         watchedTickets += [ticket1, ticket2, ticket3, ticket4]
     }
-    
+    */
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

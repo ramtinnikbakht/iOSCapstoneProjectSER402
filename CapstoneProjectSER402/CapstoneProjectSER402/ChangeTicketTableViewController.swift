@@ -12,14 +12,17 @@ class ChangeTicketTableViewController: UITableViewController
 {
     
     // MARK: Properties
-    
+    private var tbvc = TicketTabBarController()
+    private var wTickets = TicketModel()
     var changeTickets = [ChangeTicket_Table_Template]()
-    var watchedTicketTableViewController = WatchedTicketTableViewController()
     let cellIdentifier = "ChangeTicketTableViewCell"
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        
+        tbvc = tabBarController as! TicketTabBarController
+        wTickets = tbvc.wTickets
         
         //loadSampleTickets()
     }
@@ -30,25 +33,25 @@ class ChangeTicketTableViewController: UITableViewController
         {
             let location = sender.locationInView(self.tableView)
             let indexPath = self.tableView.indexPathForRowAtPoint(location)
-            if changeTickets[(indexPath?.row)!].isWatched == false
-            {
-                changeTickets[(indexPath?.row)!].icon = UIImage(named: "eye_clicked.png")!
-            }
-            else
-            {
+            
+            if changeTickets[(indexPath?.row)!].isWatched == false {
+                changeTickets[(indexPath?.row)!].icon = UIImage(named: "eye_clicked.png")
+                let watchedTicket = WatchedTicket(id: changeTickets[(indexPath?.row)!].id, startDate: changeTickets[(indexPath?.row)!].startDate, priority: changeTickets[(indexPath?.row)!].priority)
+                wTickets.addWatchedTickets(watchedTicket)
+                changeTickets[(indexPath?.row)!].isWatched = !changeTickets[(indexPath?.row)!].isWatched
+            } else {
+                changeTickets[(indexPath?.row)!].icon = UIImage(named: "eye_unclicked.png")
+                wTickets.removeWatchedTicket(changeTickets[(indexPath?.row)!].id!)
+                changeTickets[(indexPath?.row)!].isWatched = !changeTickets[(indexPath?.row)!].isWatched
                 changeTickets[(indexPath?.row)!].icon = UIImage(named: "eye_unclicked.png")!
             }
-            
             self.tableView.reloadData()
             //watchedTicketTableViewController.tableView.reloadData()
             
         }
     }
-    
-    func loadSampleTickets()
-    {
-        let eyeIcon = UIImage(named: "eye_unclicked.png")
-        let obj1 = ChangeTicket(number: "CHG00313717", approver: "", plannedStart: "2016-02-11 02:00:00", plannedEnd: "2016-02-11 08:00:00", actualStart: "", actualEnd: "", requestedByGroup: "ServiceNow_DEV", requestedByGroupBusinessArea: "Infrastructure Services", requestedByGroupBusinessUnit: "IS – Infrastructure Services", requestedByGroupSubBusinessUnit: "IS - Production Process", causeCompleteServiceAppOutage: "No", risk: "4", type: "Normal", impactScore: "", shortDescription: "Servicenow 02/10 Release", changeReason: "New Capability", closureCode: "", ImpactedEnviroment: "Production", SecondaryClosureCode: "", PartofRelease: "", BusinessApplication: "ServiceNow Enterprise Edition", BusinessApplicationCriticalityTier: "Tier 2")
+    /*
+    func loadSampleTickets() {
         let obj2 = ChangeTicket(number: "CHG00314757", approver: "", plannedStart: "2016-02-11 02:00:00", plannedEnd: "2016-02-11 08:00:00", actualStart: "", actualEnd: "", requestedByGroup: "ServiceNow_DEV", requestedByGroupBusinessArea: "Infrastructure Services", requestedByGroupBusinessUnit: "IS – Infrastructure Services", requestedByGroupSubBusinessUnit: "IS - Production Process", causeCompleteServiceAppOutage: "No", risk: "8", type: "Normal", impactScore: "", shortDescription: "Servicenow 02/10 Release", changeReason: "New Capability", closureCode: "", ImpactedEnviroment: "Production", SecondaryClosureCode: "", PartofRelease: "", BusinessApplication: "ServiceNow Enterprise Edition", BusinessApplicationCriticalityTier: "Tier 2")
         let obj3 = ChangeTicket(number: "CHG00318797", approver: "", plannedStart: "2016-02-11 02:00:00", plannedEnd: "2016-02-11 08:00:00", actualStart: "", actualEnd: "", requestedByGroup: "ServiceNow_DEV", requestedByGroupBusinessArea: "Infrastructure Services", requestedByGroupBusinessUnit: "IS – Infrastructure Services", requestedByGroupSubBusinessUnit: "IS - Production Process", causeCompleteServiceAppOutage: "No", risk: "2", type: "Normal", impactScore: "", shortDescription: "Servicenow 02/10 Release", changeReason: "New Capability", closureCode: "", ImpactedEnviroment: "Production", SecondaryClosureCode: "", PartofRelease: "", BusinessApplication: "ServiceNow Enterprise Edition", BusinessApplicationCriticalityTier: "Tier 2")
         
@@ -58,12 +61,13 @@ class ChangeTicketTableViewController: UITableViewController
         let ticket4 = ChangeTicket_Table_Template(id: "CHG-004", priority: "5", icon: eyeIcon!, isWatched: false)
     
         //let ticket2 = ChangeTicket()
-        //let ticket3 = ChangeTicket()
-        //let ticket4 = ChangeTicket()
-        
+        let ticket1 = ChangeTicket(id: "CHG-001", priority: 8, startDate: "01/16", icon: eyeIcon, isWatched: false)
+        let ticket2 = ChangeTicket(id: "CHG-002", priority: 4, startDate: "02/16", icon: eyeIcon, isWatched: false)
+        let ticket3 = ChangeTicket(id: "CHG-003", priority: 1, startDate: "03/16", icon: eyeIcon, isWatched: false)
+        let ticket4 = ChangeTicket(id: "CHG-004", priority: 5, startDate: "04/16", icon: eyeIcon, isWatched: false)
         changeTickets += [ticket1, ticket2, ticket3, ticket4]
         //changeTickets += [ticket1]
-    }
+    }*/
  
     
     override func didReceiveMemoryWarning() {

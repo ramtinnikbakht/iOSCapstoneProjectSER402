@@ -10,5 +10,6 @@ import Foundation
 
 struct WatchedTicket {
     let id : String?
+    let startDate : String
     let priority : String
 }

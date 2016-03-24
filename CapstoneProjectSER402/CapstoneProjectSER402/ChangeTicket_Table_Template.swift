@@ -12,13 +12,15 @@ class ChangeTicket_Table_Template
 {
     var id : String?
     var priority : String
+    var startDate: String
     var icon: UIImage?
     var isWatched: Bool
     
-    init(id: String, priority: String, icon: UIImage, isWatched: Bool)
+    init(id: String, priority: String, startDate: String, icon: UIImage, isWatched: Bool)
     {
         self.id = id
         self.priority = priority
+        self.startDate = startDate
         self.icon = icon
         self.isWatched = isWatched
     }
@@ -30,6 +32,10 @@ class ChangeTicket_Table_Template
     func getPriority() -> String
     {
         return self.priority
+    }
+    func getStartDate() -> String
+    {
+        return self.startDate
     }
     func getIcon() -> UIImage
     {
@@ -47,6 +53,10 @@ class ChangeTicket_Table_Template
     func setPriority(priority: String)
     {
         self.priority = priority
+    }
+    func setStartDate(startDate: String)
+    {
+        self.startDate = startDate
     }
     func setIcon(icon: UIImage)
     {

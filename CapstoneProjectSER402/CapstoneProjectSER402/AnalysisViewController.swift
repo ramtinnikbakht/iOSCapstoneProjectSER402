@@ -74,7 +74,7 @@ class AnalysisViewController: UIViewController, UITextFieldDelegate, ChartViewDe
         tbvc = tabBarController as! TicketTabBarController
         wTickets = tbvc.wTickets
         for i in 0..<wTickets.watchedTickets.count {
-            ticketRisks.append(Double(wTickets.watchedTickets[i].priority))
+            ticketRisks.append(Double(wTickets.watchedTickets[i].priority)!)
             ticketStartDates.append(wTickets.watchedTickets[i].startDate)
         }
         setChart(ticketStartDates, values: ticketRisks)
@@ -89,7 +89,7 @@ class AnalysisViewController: UIViewController, UITextFieldDelegate, ChartViewDe
             ticketRisks.removeAll()
             ticketStartDates.removeAll()
             for i in 0..<wTickets.watchedTickets.count {
-                ticketRisks.append(Double(wTickets.watchedTickets[i].priority))
+                ticketRisks.append(Double(wTickets.watchedTickets[i].priority)!)
                 ticketStartDates.append(wTickets.watchedTickets[i].startDate)
             }
             lineChartView.clear()
