@@ -18,6 +18,7 @@
 		462EB8501C990BF00076C28D /* WatchedTicketTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462EB8461C990BF00076C28D /* WatchedTicketTableViewCell.swift */; };
 		462EB8511C990BF00076C28D /* WatchedTicketTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462EB8471C990BF00076C28D /* WatchedTicketTableViewController.swift */; };
 		469E77251C9A1E620028D422 /* DataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469E77241C9A1E620028D422 /* DataHandler.swift */; };
+		46D0586C1CA3B79D005CFB61 /* AEXML.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D0586B1CA3B79D005CFB61 /* AEXML.swift */; };
 		46E832A41C88DD81001C376F /* ChangeTicket_Table_Template.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E832A31C88DD81001C376F /* ChangeTicket_Table_Template.swift */; };
 		489AFBA81C7F6B3000E9DEB9 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489AFBA71C7F6B3000E9DEB9 /* User.swift */; };
 		489AFBAA1C7F8D2900E9DEB9 /* SetupContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489AFBA91C7F8D2900E9DEB9 /* SetupContentViewController.swift */; };
@@ -81,6 +82,7 @@
 		462EB8461C990BF00076C28D /* WatchedTicketTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchedTicketTableViewCell.swift; sourceTree = "<group>"; };
 		462EB8471C990BF00076C28D /* WatchedTicketTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchedTicketTableViewController.swift; sourceTree = "<group>"; };
 		469E77241C9A1E620028D422 /* DataHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataHandler.swift; sourceTree = "<group>"; };
+		46D0586B1CA3B79D005CFB61 /* AEXML.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AEXML.swift; sourceTree = "<group>"; };
 		46E832A31C88DD81001C376F /* ChangeTicket_Table_Template.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeTicket_Table_Template.swift; sourceTree = "<group>"; };
 		489AFBA71C7F6B3000E9DEB9 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		489AFBA91C7F8D2900E9DEB9 /* SetupContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetupContentViewController.swift; sourceTree = "<group>"; };
@@ -167,6 +169,7 @@
 		48D741A11C5AAE86008D082E /* CapstoneProjectSER402 */ = {
 			isa = PBXGroup;
 			children = (
+				46D0586B1CA3B79D005CFB61 /* AEXML.swift */,
 				462EB8401C990BF00076C28D /* CapstoneProjectSER402-Bridging-Header.h */,
 				462EB8431C990BF00076C28D /* SWRevealViewController.h */,
 				462EB83E1C990BF00076C28D /* Base.lproj */,
@@ -385,6 +388,7 @@
 				46E832A41C88DD81001C376F /* ChangeTicket_Table_Template.swift in Sources */,
 				C19F0DD71C75A28A009BD594 /* ChangeTicketTableViewController.swift in Sources */,
 				48D741A51C5AAE86008D082E /* LoginViewController.swift in Sources */,
+				46D0586C1CA3B79D005CFB61 /* AEXML.swift in Sources */,
 				462EB84C1C990BF00076C28D /* SelectUserTypeViewController.swift in Sources */,
 				489AFBA81C7F6B3000E9DEB9 /* User.swift in Sources */,
 				48CE447C1C8FB73D00BECD12 /* SuggestedAppsTableViewCell.swift in Sources */,

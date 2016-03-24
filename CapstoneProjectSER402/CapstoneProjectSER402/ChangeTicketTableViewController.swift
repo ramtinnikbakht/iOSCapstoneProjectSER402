@@ -46,7 +46,7 @@ class ChangeTicketTableViewController: UITableViewController
             
         }
     }
-    /*
+    
     func loadSampleTickets()
     {
         let eyeIcon = UIImage(named: "eye_unclicked.png")
@@ -66,7 +66,7 @@ class ChangeTicketTableViewController: UITableViewController
         changeTickets += [ticket1, ticket2, ticket3, ticket4]
         //changeTickets += [ticket1]
     }
-    */
+ 
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
