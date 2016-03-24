@@ -7,9 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		48993BED1C8CBB0A00EDA13E /* SelectUserTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48993BEC1C8CBB0A00EDA13E /* SelectUserTypeViewController.swift */; };
+		48993BEF1C8D06D900EDA13E /* SuggestedAppsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48993BEE1C8D06D900EDA13E /* SuggestedAppsTableViewController.swift */; };
 		489AFBA81C7F6B3000E9DEB9 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489AFBA71C7F6B3000E9DEB9 /* User.swift */; };
 		489AFBAA1C7F8D2900E9DEB9 /* SetupContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489AFBA91C7F8D2900E9DEB9 /* SetupContentViewController.swift */; };
 		489AFBAC1C7F8F5B00E9DEB9 /* WizardSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489AFBAB1C7F8F5B00E9DEB9 /* WizardSetupViewController.swift */; };
+		48CE447C1C8FB73D00BECD12 /* SuggestedAppsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48CE447B1C8FB73D00BECD12 /* SuggestedAppsTableViewCell.swift */; };
+		48CE44831C8FC88400BECD12 /* checked-circle.png in Resources */ = {isa = PBXBuildFile; fileRef = 48CE44811C8FC88400BECD12 /* checked-circle.png */; };
+		48CE44841C8FC88400BECD12 /* unchecked-circle.png in Resources */ = {isa = PBXBuildFile; fileRef = 48CE44821C8FC88400BECD12 /* unchecked-circle.png */; };
 		48CFA2D31C73C02E0081A8E1 /* menuoptions.png in Resources */ = {isa = PBXBuildFile; fileRef = 48CFA2D21C73C02E0081A8E1 /* menuoptions.png */; };
 		48D741A31C5AAE86008D082E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D741A21C5AAE86008D082E /* AppDelegate.swift */; };
 		48D741A51C5AAE86008D082E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D741A41C5AAE86008D082E /* LoginViewController.swift */; };
@@ -20,6 +25,9 @@
 		48D741C31C5AAE86008D082E /* CapstoneProjectSER402UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D741C21C5AAE86008D082E /* CapstoneProjectSER402UITests.swift */; };
 		48D741D11C5AB574008D082E /* user.png in Resources */ = {isa = PBXBuildFile; fileRef = 48D741D01C5AB574008D082E /* user.png */; };
 		48D741D31C5AB57C008D082E /* lock.png in Resources */ = {isa = PBXBuildFile; fileRef = 48D741D21C5AB57C008D082E /* lock.png */; };
+		C121B52B1C7FD68B001F3B16 /* WatchedTicketTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C121B52A1C7FD68B001F3B16 /* WatchedTicketTableViewController.swift */; };
+		C121B52D1C80075B001F3B16 /* WatchedTicket.swift in Sources */ = {isa = PBXBuildFile; fileRef = C121B52C1C80075B001F3B16 /* WatchedTicket.swift */; };
+		C121B52F1C8008CC001F3B16 /* WatchedTicketTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C121B52E1C8008CC001F3B16 /* WatchedTicketTableViewCell.swift */; };
 		C19F0DC11C73E14F009BD594 /* binoculars-front-view.png in Resources */ = {isa = PBXBuildFile; fileRef = C19F0DC01C73E14F009BD594 /* binoculars-front-view.png */; };
 		C19F0DC31C73E226009BD594 /* infographic-bars.png in Resources */ = {isa = PBXBuildFile; fileRef = C19F0DC21C73E226009BD594 /* infographic-bars.png */; };
 		C19F0DC51C73E2C3009BD594 /* home-page.png in Resources */ = {isa = PBXBuildFile; fileRef = C19F0DC41C73E2C3009BD594 /* home-page.png */; };
@@ -52,9 +60,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		48993BEC1C8CBB0A00EDA13E /* SelectUserTypeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectUserTypeViewController.swift; sourceTree = "<group>"; };
+		48993BEE1C8D06D900EDA13E /* SuggestedAppsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SuggestedAppsTableViewController.swift; sourceTree = "<group>"; };
 		489AFBA71C7F6B3000E9DEB9 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		489AFBA91C7F8D2900E9DEB9 /* SetupContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetupContentViewController.swift; sourceTree = "<group>"; };
 		489AFBAB1C7F8F5B00E9DEB9 /* WizardSetupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WizardSetupViewController.swift; sourceTree = "<group>"; };
+		48CE447B1C8FB73D00BECD12 /* SuggestedAppsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SuggestedAppsTableViewCell.swift; sourceTree = "<group>"; };
+		48CE44811C8FC88400BECD12 /* checked-circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checked-circle.png"; sourceTree = "<group>"; };
+		48CE44821C8FC88400BECD12 /* unchecked-circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "unchecked-circle.png"; sourceTree = "<group>"; };
 		48CFA2D21C73C02E0081A8E1 /* menuoptions.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menuoptions.png; sourceTree = "<group>"; };
 		48D7419F1C5AAE86008D082E /* CapstoneProjectSER402.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CapstoneProjectSER402.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		48D741A21C5AAE86008D082E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -71,6 +84,9 @@
 		48D741C41C5AAE86008D082E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		48D741D01C5AB574008D082E /* user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user.png; sourceTree = "<group>"; };
 		48D741D21C5AB57C008D082E /* lock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lock.png; sourceTree = "<group>"; };
+		C121B52A1C7FD68B001F3B16 /* WatchedTicketTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchedTicketTableViewController.swift; sourceTree = "<group>"; };
+		C121B52C1C80075B001F3B16 /* WatchedTicket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchedTicket.swift; sourceTree = "<group>"; };
+		C121B52E1C8008CC001F3B16 /* WatchedTicketTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchedTicketTableViewCell.swift; sourceTree = "<group>"; };
 		C19F0DC01C73E14F009BD594 /* binoculars-front-view.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "binoculars-front-view.png"; sourceTree = "<group>"; };
 		C19F0DC21C73E226009BD594 /* infographic-bars.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "infographic-bars.png"; sourceTree = "<group>"; };
 		C19F0DC41C73E2C3009BD594 /* home-page.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home-page.png"; sourceTree = "<group>"; };
@@ -137,10 +153,15 @@
 				48D741A41C5AAE86008D082E /* LoginViewController.swift */,
 				489AFBA71C7F6B3000E9DEB9 /* User.swift */,
 				48D741A61C5AAE86008D082E /* Main.storyboard */,
+				48CE447B1C8FB73D00BECD12 /* SuggestedAppsTableViewCell.swift */,
+				48993BEE1C8D06D900EDA13E /* SuggestedAppsTableViewController.swift */,
+				48993BEC1C8CBB0A00EDA13E /* SelectUserTypeViewController.swift */,
 				489AFBA91C7F8D2900E9DEB9 /* SetupContentViewController.swift */,
 				489AFBAB1C7F8F5B00E9DEB9 /* WizardSetupViewController.swift */,
 				C19F0DD61C75A28A009BD594 /* ChangeTicketTableViewController.swift */,
 				48D741A91C5AAE86008D082E /* Assets.xcassets */,
+				48CE44811C8FC88400BECD12 /* checked-circle.png */,
+				48CE44821C8FC88400BECD12 /* unchecked-circle.png */,
 				C19F0DDC1C768044009BD594 /* eye_unclicked.png */,
 				C19F0DDA1C75BAAA009BD594 /* eye_clicked.png */,
 				C19F0DDE1C76DB22009BD594 /* AllstateHeader_ASU.png */,
@@ -156,7 +177,10 @@
 				48D741AB1C5AAE86008D082E /* LaunchScreen.storyboard */,
 				48D741AE1C5AAE86008D082E /* Info.plist */,
 				C19F0DCC1C745DB6009BD594 /* ChangeTicket.swift */,
+				C121B52C1C80075B001F3B16 /* WatchedTicket.swift */,
 				C19F0DD41C759DB1009BD594 /* ChangeTicketTableViewCell.swift */,
+				C121B52A1C7FD68B001F3B16 /* WatchedTicketTableViewController.swift */,
+				C121B52E1C8008CC001F3B16 /* WatchedTicketTableViewCell.swift */,
 			);
 			path = CapstoneProjectSER402;
 			sourceTree = "<group>";
@@ -291,12 +315,14 @@
 				C19F0DD31C752506009BD594 /* AllstateHeader_Dual.png in Resources */,
 				48CFA2D31C73C02E0081A8E1 /* menuoptions.png in Resources */,
 				C19F0DC91C7455C6009BD594 /* man-user.png in Resources */,
+				48CE44841C8FC88400BECD12 /* unchecked-circle.png in Resources */,
 				48D741D31C5AB57C008D082E /* lock.png in Resources */,
 				48D741AA1C5AAE86008D082E /* Assets.xcassets in Resources */,
 				C19F0DD11C750EA6009BD594 /* AllstateHeader_Royal.png in Resources */,
 				48D741D11C5AB574008D082E /* user.png in Resources */,
 				C19F0DC11C73E14F009BD594 /* binoculars-front-view.png in Resources */,
 				C19F0DDD1C768044009BD594 /* eye_unclicked.png in Resources */,
+				48CE44831C8FC88400BECD12 /* checked-circle.png in Resources */,
 				C19F0DC31C73E226009BD594 /* infographic-bars.png in Resources */,
 				48D741A81C5AAE86008D082E /* Main.storyboard in Resources */,
 				C19F0DDF1C76DB22009BD594 /* AllstateHeader_ASU.png in Resources */,
@@ -325,11 +351,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C121B52B1C7FD68B001F3B16 /* WatchedTicketTableViewController.swift in Sources */,
+				48993BED1C8CBB0A00EDA13E /* SelectUserTypeViewController.swift in Sources */,
 				C19F0DD71C75A28A009BD594 /* ChangeTicketTableViewController.swift in Sources */,
 				48D741A51C5AAE86008D082E /* LoginViewController.swift in Sources */,
+				C121B52F1C8008CC001F3B16 /* WatchedTicketTableViewCell.swift in Sources */,
 				489AFBA81C7F6B3000E9DEB9 /* User.swift in Sources */,
+				48CE447C1C8FB73D00BECD12 /* SuggestedAppsTableViewCell.swift in Sources */,
+				48993BEF1C8D06D900EDA13E /* SuggestedAppsTableViewController.swift in Sources */,
 				489AFBAC1C7F8F5B00E9DEB9 /* WizardSetupViewController.swift in Sources */,
 				489AFBAA1C7F8D2900E9DEB9 /* SetupContentViewController.swift in Sources */,
+				C121B52D1C80075B001F3B16 /* WatchedTicket.swift in Sources */,
 				C19F0DD51C759DB1009BD594 /* ChangeTicketTableViewCell.swift in Sources */,
 				48D741A31C5AAE86008D082E /* AppDelegate.swift in Sources */,
 				C19F0DCD1C745DB6009BD594 /* ChangeTicket.swift in Sources */,
