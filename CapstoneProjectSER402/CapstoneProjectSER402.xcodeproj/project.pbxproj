@@ -10,6 +10,7 @@
 		46A2AB121CA47C0E00F87C80 /* AnalysisViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A2AB0D1CA47C0E00F87C80 /* AnalysisViewController.swift */; };
 		46A2AB131CA47C0E00F87C80 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46A2AB101CA47C0E00F87C80 /* SWRevealViewController.m */; };
 		46A2AB141CA47C0E00F87C80 /* UserTypeSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A2AB111CA47C0E00F87C80 /* UserTypeSelectionViewController.swift */; };
+		4818FE0D1CA498CF00B7EB47 /* settings-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4818FE0C1CA498CF00B7EB47 /* settings-icon.png */; };
 		48993BED1C8CBB0A00EDA13E /* SelectUserTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48993BEC1C8CBB0A00EDA13E /* SelectUserTypeViewController.swift */; };
 		48993BEF1C8D06D900EDA13E /* SuggestedAppsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48993BEE1C8D06D900EDA13E /* SuggestedAppsTableViewController.swift */; };
 		489AFBA81C7F6B3000E9DEB9 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489AFBA71C7F6B3000E9DEB9 /* User.swift */; };
@@ -120,6 +121,7 @@
 		46A2AB0F1CA47C0E00F87C80 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		46A2AB101CA47C0E00F87C80 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		46A2AB111CA47C0E00F87C80 /* UserTypeSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTypeSelectionViewController.swift; sourceTree = "<group>"; };
+		4818FE0C1CA498CF00B7EB47 /* settings-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings-icon.png"; sourceTree = "<group>"; };
 		48993BEC1C8CBB0A00EDA13E /* SelectUserTypeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectUserTypeViewController.swift; sourceTree = "<group>"; };
 		48993BEE1C8D06D900EDA13E /* SuggestedAppsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SuggestedAppsTableViewController.swift; sourceTree = "<group>"; };
 		489AFBA71C7F6B3000E9DEB9 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -230,6 +232,7 @@
 				489AFBAB1C7F8F5B00E9DEB9 /* WizardSetupViewController.swift */,
 				C19F0DD61C75A28A009BD594 /* ChangeTicketTableViewController.swift */,
 				48D741A91C5AAE86008D082E /* Assets.xcassets */,
+				4818FE0C1CA498CF00B7EB47 /* settings-icon.png */,
 				48CE44811C8FC88400BECD12 /* checked-circle.png */,
 				48CE44821C8FC88400BECD12 /* unchecked-circle.png */,
 				C19F0DDC1C768044009BD594 /* eye_unclicked.png */,
@@ -441,6 +444,7 @@
 				C19F0DC11C73E14F009BD594 /* binoculars-front-view.png in Resources */,
 				C19F0DDD1C768044009BD594 /* eye_unclicked.png in Resources */,
 				48CE44831C8FC88400BECD12 /* checked-circle.png in Resources */,
+				4818FE0D1CA498CF00B7EB47 /* settings-icon.png in Resources */,
 				C14333831CA0E9540083CA88 /* Charts in Resources */,
 				C19F0DC31C73E226009BD594 /* infographic-bars.png in Resources */,
 				48D741A81C5AAE86008D082E /* Main.storyboard in Resources */,
