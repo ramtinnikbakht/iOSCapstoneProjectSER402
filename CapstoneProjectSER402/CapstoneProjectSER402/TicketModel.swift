@@ -13,7 +13,6 @@ class TicketModel:NSObject {
     
     func addWatchedTickets(ticket: WatchedTicket) {
         watchedTickets += [ticket]
-        print(watchedTickets.count)
     }
     
     func removeWatchedTicket(selectedID: String) {

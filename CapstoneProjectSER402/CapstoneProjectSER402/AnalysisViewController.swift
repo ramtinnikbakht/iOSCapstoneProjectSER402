@@ -14,14 +14,12 @@ class AnalysisViewController: UIViewController, UITextFieldDelegate, ChartViewDe
     private var tbvc = TicketTabBarController()
     var ticketRisks = [Double]()
     var ticketStartDates = [String]()
+    var selectedTF = UITextField()
     @IBOutlet weak var initialDate: UITextField!
     @IBOutlet weak var endDate: UITextField!
-    @IBOutlet weak var analysisView: UIView!
     @IBOutlet weak var selectedTicketCount: UILabel!
     @IBOutlet weak var lineChartView: LineChartView!
     
-    
-    var months: [String]!
     
     // MARK: TextField Delegate
     
@@ -29,22 +27,14 @@ class AnalysisViewController: UIViewController, UITextFieldDelegate, ChartViewDe
         let datePickerView  : UIDatePicker = UIDatePicker()
         datePickerView.datePickerMode = UIDatePickerMode.Date
         textField.inputView = datePickerView
+        selectedTF = textField
+        datePickerView.addTarget(self, action: "datePickerChanged:", forControlEvents: .ValueChanged)
     }
     
-    @IBAction func dateField(sender: UITextField) {
-        
-        let datePickerView  : UIDatePicker = UIDatePicker()
-        datePickerView.datePickerMode = UIDatePickerMode.Date
-        sender.inputView = datePickerView
-        datePickerView.addTarget(self, action: "handleDatePicker:", forControlEvents: UIControlEvents.ValueChanged)
-        
-    }
-    
-    func handleDatePicker(sender: UIDatePicker) {
-        let timeFormatter = NSDateFormatter()
-        timeFormatter.dateStyle = .MediumStyle
-        print(sender.date)
-        initialDate.text = timeFormatter.stringFromDate(sender.date)
+    func datePickerChanged(sender: UIDatePicker) {
+        let formatter = NSDateFormatter()
+        formatter.dateStyle = .MediumStyle
+        selectedTF.text = formatter.stringFromDate(sender.date)
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
@@ -66,9 +56,11 @@ class AnalysisViewController: UIViewController, UITextFieldDelegate, ChartViewDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         lineChartView.delegate = self
         initialDate.delegate = self
-//        endDate.delegate = self
+        endDate.delegate = self
+        
         // Do any additional setup after loading the view.
         
         tbvc = tabBarController as! TicketTabBarController
@@ -84,8 +76,6 @@ class AnalysisViewController: UIViewController, UITextFieldDelegate, ChartViewDe
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         if (ticketRisks.count != wTickets.watchedTickets.count) {
-            print(ticketRisks.count)
-            print(wTickets.watchedTickets.count)
             ticketRisks.removeAll()
             ticketStartDates.removeAll()
             for i in 0..<wTickets.watchedTickets.count {
