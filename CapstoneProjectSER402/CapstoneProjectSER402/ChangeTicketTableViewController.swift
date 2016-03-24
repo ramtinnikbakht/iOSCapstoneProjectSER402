@@ -8,7 +8,8 @@
 
 import UIKit
 
-class ChangeTicketTableViewController: UITableViewController {
+class ChangeTicketTableViewController: UITableViewController
+{
     
     // MARK: Properties
     
@@ -16,7 +17,8 @@ class ChangeTicketTableViewController: UITableViewController {
     var watchedTicketTableViewController = WatchedTicketTableViewController()
     let cellIdentifier = "ChangeTicketTableViewCell"
     
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
         
         //loadSampleTickets()

@@ -8,16 +8,19 @@
 
 import UIKit
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController
+{
 
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
-    @IBAction func submitButtonPressed(sender: UIButton) {
+    @IBAction func submitButtonPressed(sender: UIButton)
+    {
         self.performSegueWithIdentifier("segueToDashboard", sender: self)
     }
     
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         /*var blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Light)
@@ -44,7 +47,8 @@ class LoginViewController: UIViewController {
         
     }
 
-    override func didReceiveMemoryWarning() {
+    override func didReceiveMemoryWarning()
+    {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }

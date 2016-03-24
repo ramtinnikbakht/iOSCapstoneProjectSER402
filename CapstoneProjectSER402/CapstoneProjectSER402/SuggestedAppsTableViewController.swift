@@ -20,7 +20,8 @@ class SuggestedAppsTableViewController: UITableViewController {
     
     var sectionsArray = [Sections]()
     
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
         /*
         let alert = UIAlertController(title: "Alert", message: "Your User Type: \(usertype)", preferredStyle: UIAlertControllerStyle.Alert)
@@ -46,7 +47,8 @@ class SuggestedAppsTableViewController: UITableViewController {
         self.presentViewController(alert, animated: true, completion: nil)
     }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
+    {
         var cell = tableView.dequeueReusableCellWithIdentifier("SuggestedAppsCell") as! SuggestedAppsTableViewCell!
         
         cell.appsTitleLabel.text = sectionsArray[indexPath.section].sectionContents[indexPath.row]
@@ -60,17 +62,20 @@ class SuggestedAppsTableViewController: UITableViewController {
     
     // MARK: - Table view data source
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int
+    {
 
         return sectionsArray.count
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    {
 
         return sectionsArray[section].sectionContents.count
     }
 
-    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String?
+    {
         
         return sectionsArray[section].sectionName
     }
@@ -79,12 +84,14 @@ class SuggestedAppsTableViewController: UITableViewController {
         
     }*/
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
+    {
         var cell = tableView.cellForRowAtIndexPath(indexPath) as! SuggestedAppsTableViewCell!
         cell.checkboxImage.image = UIImage(named: "checked-circle")
     }
     
-    override func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath)
+    {
         
     }
 
@@ -132,7 +139,8 @@ class SuggestedAppsTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
-    override func didReceiveMemoryWarning() {
+    override func didReceiveMemoryWarning()
+    {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }

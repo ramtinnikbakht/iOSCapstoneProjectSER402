@@ -153,8 +153,11 @@
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" red="0.92549019610000005" green="0.92549019610000005" blue="0.92549019610000005" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
-                                    <outlet property="watchedPriorityLabel" destination="Ka8-pV-80x" id="W2x-nr-2cC"/>
-                                    <outlet property="watchedTicketLabel" destination="Hns-z1-d1w" id="lFc-1M-pSt"/>
+                                    <outlet property="watchedTicketAppLabel" destination="bh9-zp-xsd" id="GTi-CL-MJa"/>
+                                    <outlet property="watchedTicketID" destination="7xl-qc-1Ek" id="t46-2W-b7r"/>
+                                    <outlet property="watchedTicketPlannedLabel" destination="xlo-NI-pGe" id="jUG-HO-xLl"/>
+                                    <outlet property="watchedTicketPriority" destination="Eqf-Y5-ncn" id="Yn9-Pt-u7i"/>
+                                    <outlet property="watchedTicketRiskLabel" destination="ood-NQ-ry1" id="lgs-MC-MZr"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -163,16 +166,77 @@
                             <outlet property="delegate" destination="Qzr-Wx-7nc" id="g9B-TK-jrs"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="eJ2-cS-Qmq"/>
+                    <navigationItem key="navigationItem" title="Watched Tickets" id="eJ2-cS-Qmq"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dZ8-Z5-Bnz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2699.5" y="807.5"/>
+            <point key="canvasLocation" x="2835.5" y="125.5"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Analysis-->
+        <scene sceneID="DeN-0n-qJK">
+            <objects>
+                <navigationController id="bFC-NC-BRL" sceneMemberID="viewController">
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
+                    <tabBarItem key="tabBarItem" title="Analysis" image="infographic-bars.png" id="QBF-Sq-gKJ"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Ojv-Iv-YUq">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="S6Q-R1-NI0" kind="relationship" relationship="rootViewController" id="39c-OL-wdQ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5sE-CW-dhm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2197.5" y="1001.5"/>
+        </scene>
+        <!--Analysis-->
+        <scene sceneID="5bB-vm-Wod">
+            <objects>
+                <viewController id="S6Q-R1-NI0" customClass="AnalysisViewController" customModule="CapstoneProjectSER402" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="0Uq-ZP-T5g"/>
+                        <viewControllerLayoutGuide type="bottom" id="ADt-df-Avk"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="fDh-vJ-RbJ">
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Mwo-Hn-j1c">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="277"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2qT-Br-gdd">
+                                        <rect key="frame" x="166" y="128" width="42" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jrp-hd-Ish" customClass="BarChartView" customModule="Charts">
+                                <rect key="frame" x="0.0" y="277" width="375" height="277"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
+                    <navigationItem key="navigationItem" title="Analysis" id="rAy-yl-TXK"/>
+                    <connections>
+                        <outlet property="analysisView" destination="Mwo-Hn-j1c" id="TOG-F5-DLA"/>
+                        <outlet property="barChartView" destination="Jrp-hd-Ish" id="NQD-55-Doh"/>
+                        <outlet property="selectedTicketCount" destination="2qT-Br-gdd" id="a3U-Qr-bwu"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pvF-kw-0oo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2835.5" y="1001.5"/>
+        </scene>
+        <!--Ticket Tab Bar Controller-->
         <scene sceneID="bU8-Y6-USy">
             <objects>
-                <tabBarController id="uGM-NS-OLm" sceneMemberID="viewController">
+                <tabBarController id="uGM-NS-OLm" customClass="TicketTabBarController" customModule="CapstoneProjectSER402" customModuleProvider="target" sceneMemberID="viewController">
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="hfX-kt-0tK">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
@@ -182,11 +246,12 @@
                     <connections>
                         <segue destination="7An-ne-Cma" kind="relationship" relationship="viewControllers" id="L1M-UZ-pND"/>
                         <segue destination="yLS-8U-Rt6" kind="relationship" relationship="viewControllers" id="Kga-l4-OFu"/>
+                        <segue destination="bFC-NC-BRL" kind="relationship" relationship="viewControllers" id="zuC-gj-ifd"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="axf-97-TpI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1079" y="470"/>
+            <point key="canvasLocation" x="1478.5" y="125.5"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -325,7 +390,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tqa-km-rWv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1923" y="-7"/>
+            <point key="canvasLocation" x="2178.5" y="-735.5"/>
         </scene>
         <!--Watched-->
         <scene sceneID="dnv-CJ-Vq9">
@@ -344,7 +409,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xys-U1-cKF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1922.5" y="807.5"/>
+            <point key="canvasLocation" x="2178.5" y="125.5"/>
         </scene>
         <!--Suggested Apps-->
         <scene sceneID="Cca-Pi-Xp0">
@@ -441,7 +506,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WxV-Td-QwS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1078.5" y="1207.5"/>
+            <point key="canvasLocation" x="1006.5" y="983.5"/>
         </scene>
         <!--User Type-->
         <scene sceneID="mL5-tl-9y1">
@@ -466,7 +531,7 @@
                                     <segue destination="Wf9-qM-V6X" kind="show" id="AqE-c9-M89"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Please your user type below:" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Ym-7s-mEk">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Please select your user type below:" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Ym-7s-mEk">
                                 <rect key="frame" x="20" y="180" width="335" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.01470920679" green="0.033905307000000003" blue="0.19942326569999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -509,5 +574,6 @@
         <image name="AllstateHeader_ASU.png" width="1563" height="2779"/>
         <image name="binoculars-front-view.png" width="32" height="32"/>
         <image name="home-page.png" width="32" height="32"/>
+        <image name="infographic-bars.png" width="32" height="32"/>
     </resources>
 </document>

@@ -8,7 +8,8 @@
 
 import UIKit
 
-class SetupContentViewController: UIViewController {
+class SetupContentViewController: UIViewController
+{
 
     @IBOutlet var setupTitleLabel: UILabel!
     
@@ -19,7 +20,8 @@ class SetupContentViewController: UIViewController {
     var descriptionText: String!
     
     
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
         
         self.setupTitleLabel.text = self.titleText
@@ -27,7 +29,8 @@ class SetupContentViewController: UIViewController {
         
     }
         
-    override func didReceiveMemoryWarning() {
+    override func didReceiveMemoryWarning()
+    {
         super.didReceiveMemoryWarning()
     }
 }

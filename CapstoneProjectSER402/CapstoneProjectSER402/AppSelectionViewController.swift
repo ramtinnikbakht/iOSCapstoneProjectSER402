@@ -8,21 +8,26 @@
 
 import UIKit
 
-class AppSelectionViewController: UIViewController {
+class AppSelectionViewController: UIViewController
+{
 
-    @IBAction func nextButtonPressed(sender: UIBarButtonItem) {
+    @IBAction func nextButtonPressed(sender: UIBarButtonItem)
+    {
         self.performSegueWithIdentifier("segueToDashboard", sender: self)
     }
-    @IBAction func logoutButtonPressed(sender: UIBarButtonItem) {
+    @IBAction func logoutButtonPressed(sender: UIBarButtonItem)
+    {
         self.performSegueWithIdentifier("segueToLogin", sender: self)
     }
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
 
-    override func didReceiveMemoryWarning() {
+    override func didReceiveMemoryWarning()
+    {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }

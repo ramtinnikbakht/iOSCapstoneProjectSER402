@@ -8,13 +8,15 @@
 
 import UIKit
 
-class SuggestedAppsTableViewCell: UITableViewCell {
+class SuggestedAppsTableViewCell: UITableViewCell
+{
 
 
     @IBOutlet var checkboxImage: UIImageView!
     @IBOutlet var appsTitleLabel: UILabel!
     
-    override func awakeFromNib() {
+    override func awakeFromNib()
+    {
         super.awakeFromNib()
         // Initialization code
         
@@ -24,7 +26,8 @@ class SuggestedAppsTableViewCell: UITableViewCell {
 
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(selected: Bool, animated: Bool)
+    {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state

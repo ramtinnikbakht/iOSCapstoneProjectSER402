@@ -8,14 +8,16 @@
 
 import UIKit
 
-class SelectUserTypeViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
+class SelectUserTypeViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate
+{
 
     @IBOutlet var userTypePickerView: UIPickerView!
     var userTypesPickerSource = ["ITSM", "Business/Leadership", "App Owner"]
     var selectedUserType: String = ""
     
     
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         
         super.viewDidLoad()
         selectedUserType = userTypesPickerSource[userTypePickerView.selectedRowInComponent(0)]
@@ -26,42 +28,52 @@ class SelectUserTypeViewController: UIViewController, UIPickerViewDataSource, UI
         // Do any additional setup after loading the view.
     }
 
-    override func didReceiveMemoryWarning() {
+    override func didReceiveMemoryWarning()
+    {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
 
-    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int
+    {
         return 1
     }
     
-    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int
+    {
         return userTypesPickerSource.count;
     }
     
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
+    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String!
+    {
         return userTypesPickerSource[row]
     }
     
-    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        if (row == 0) {
+    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)
+    {
+        if (row == 0)
+        {
             selectedUserType = userTypesPickerSource[0]
         }
-        else if (row == 1) {
+        else if (row == 1)
+        {
             selectedUserType = userTypesPickerSource[1]
         }
-        else if (row == 2) {
+        else if (row == 2)
+        {
             selectedUserType = userTypesPickerSource[2]
         }
-        else {
+        else
+        {
             let alert = UIAlertController(title: "Alert", message: "Please select a user type.", preferredStyle: UIAlertControllerStyle.Alert)
             alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
             self.presentViewController(alert, animated: true, completion: nil)
         }
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
+    {
         var destViewController : SuggestedAppsTableViewController = segue.destinationViewController as! SuggestedAppsTableViewController
             destViewController.usertype = selectedUserType
         
