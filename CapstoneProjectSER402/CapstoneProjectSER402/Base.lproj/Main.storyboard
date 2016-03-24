@@ -214,10 +214,10 @@
             </objects>
             <point key="canvasLocation" x="2835.5" y="125.5"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Settings Table View Controller-->
         <scene sceneID="1or-57-m9r">
             <objects>
-                <tableViewController id="RRz-o0-Bh3" sceneMemberID="viewController">
+                <tableViewController id="RRz-o0-Bh3" customClass="SettingsTableViewController" customModule="CapstoneProjectSER402" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Lin-N7-TN7">
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
