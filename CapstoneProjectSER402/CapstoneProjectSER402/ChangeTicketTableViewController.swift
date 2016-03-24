@@ -13,7 +13,7 @@ class ChangeTicketTableViewController: UITableViewController
     
     // MARK: Properties
     private var tbvc = TicketTabBarController()
-    private var wTickets = TicketModel()
+    private var tickets = TicketModel()
     var changeTickets = [ChangeTicket_Table_Template]()
     let cellIdentifier = "ChangeTicketTableViewCell"
     
@@ -65,7 +65,19 @@ class ChangeTicketTableViewController: UITableViewController
         let ticket2 = ChangeTicket(id: "CHG-002", priority: 4, startDate: "02/16", icon: eyeIcon, isWatched: false)
         let ticket3 = ChangeTicket(id: "CHG-003", priority: 1, startDate: "03/16", icon: eyeIcon, isWatched: false)
         let ticket4 = ChangeTicket(id: "CHG-004", priority: 5, startDate: "04/16", icon: eyeIcon, isWatched: false)
+     
         changeTickets += [ticket1, ticket2, ticket3, ticket4]
+     let eyeIcon = UIImage(named: "eye_unclicked.png")
+     let ticket1 = ChangeTicket(id: "CHG-001", priority: 8, startDate: "01/16", icon: eyeIcon, isWatched: false)
+     let ticket2 = ChangeTicket(id: "CHG-002", priority: 4, startDate: "02/16", icon: eyeIcon, isWatched: false)
+     let ticket3 = ChangeTicket(id: "CHG-003", priority: 1, startDate: "03/16", icon: eyeIcon, isWatched: false)
+     let ticket4 = ChangeTicket(id: "CHG-004", priority: 5, startDate: "04/16", icon: eyeIcon, isWatched: false)
+     
+     changeTickets += [ticket1, ticket2, ticket3, ticket4]
+     tickets.addChangeTickets(ticket1)
+     tickets.addChangeTickets(ticket2)
+     tickets.addChangeTickets(ticket3)
+     tickets.addChangeTickets(ticket4)
         //changeTickets += [ticket1]
     }*/
  

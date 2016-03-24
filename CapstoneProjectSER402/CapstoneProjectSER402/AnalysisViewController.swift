@@ -111,9 +111,14 @@ class AnalysisViewController: UIViewController, UITextFieldDelegate, ChartViewDe
         
         tbvc = tabBarController as! TicketTabBarController
         wTickets = tbvc.wTickets
-        for i in 0..<wTickets.watchedTickets.count {
-            ticketRisks.append(Double(wTickets.watchedTickets[i].priority)!)
-            ticketStartDates.append(wTickets.watchedTickets[i].startDate)
+        if (wTickets.watchedTickets.count > 0) {
+            for i in 0..<wTickets.watchedTickets.count {
+                ticketRisks.append(Double(wTickets.watchedTickets[i].priority)!)
+                ticketStartDates.append(wTickets.watchedTickets[i].startDate)
+            }
+            setChart(ticketStartDates, values: ticketRisks)
+        } else {
+            repIndexChanged(0)
         }
     }
     

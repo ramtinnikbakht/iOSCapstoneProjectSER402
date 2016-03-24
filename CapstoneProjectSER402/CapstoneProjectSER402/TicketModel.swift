@@ -10,7 +10,7 @@ import UIKit
 
 class TicketModel:NSObject {
     var watchedTickets = [WatchedTicket]()
-    var changeTickets = [ChangeTicket]()
+    var changeTickets = [ChangeTicket_Table_Template]()
     
     func addWatchedTickets(ticket: WatchedTicket) {
         watchedTickets += [ticket]
@@ -27,7 +27,7 @@ class TicketModel:NSObject {
         }
     }
     
-    func addChangeTickets(ticket: ChangeTicket) {
+    func addChangeTickets(ticket: ChangeTicket_Table_Template) {
         changeTickets += [ticket]
     }
     
