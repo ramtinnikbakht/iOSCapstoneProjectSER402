@@ -19,7 +19,7 @@ class AnalysisViewController: UIViewController, UITextFieldDelegate, ChartViewDe
     @IBOutlet weak var endDate: UITextField!
     @IBOutlet weak var selectedTicketCount: UILabel!
     @IBOutlet weak var lineChartView: LineChartView!
-    
+    @IBOutlet weak var graphRepresentationControl: UISegmentedControl!
     
     // MARK: TextField Delegate
     
@@ -52,6 +52,22 @@ class AnalysisViewController: UIViewController, UITextFieldDelegate, ChartViewDe
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         closeKeyboard()
+    }
+    
+    @IBAction func repIndexChanged(sender: AnyObject) {
+        switch graphRepresentationControl.selectedSegmentIndex
+        {
+        case 0:
+            let historicalDates = ["1/14", "2/14", "3/14", "4/14", "5/14"]
+            let historicalTickets = [3.0, 4.0, 8.0, 6.0, 10.0]
+            setChart(historicalDates, values: historicalTickets)
+        case 1:
+            let forwardDates = ["4/16", "5/16", "6/16", "7/16", "8/16"]
+            let forwardTickets = [1.0, 1.0, 2.0, 1.0, 4.0]
+            setChart(forwardDates, values: forwardTickets)
+        default:
+            break; 
+        }
     }
     
     override func viewDidLoad() {
