@@ -10,9 +10,8 @@ import UIKit
 
 class SuggestedAppsTableViewController: UITableViewController {
     
-    
-    var usertype : String = ""
-    
+    var usertype: String = ""
+
     struct Sections {
         var sectionName: String!
         var sectionContents: [String]!
@@ -30,7 +29,7 @@ class SuggestedAppsTableViewController: UITableViewController {
         */
         sectionsArray = [Sections(sectionName: "Configuration", sectionContents: ["Select All", "UnSelect All"]), Sections(sectionName: "Suggested Apps", sectionContents: ["App1", "App2", "App3", "App4", "App5", "App6", "App7"])]
 
-
+        
         //setEditing(true, animated: true)
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -88,6 +87,8 @@ class SuggestedAppsTableViewController: UITableViewController {
     {
         var cell = tableView.cellForRowAtIndexPath(indexPath) as! SuggestedAppsTableViewCell!
         cell.checkboxImage.image = UIImage(named: "checked-circle")
+    
+
     }
     
     override func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath)
