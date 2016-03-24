@@ -280,6 +280,7 @@
 				C142E6541C9BEC5A005F1DEC /* TicketModel.swift */,
 				C121B52E1C8008CC001F3B16 /* WatchedTicketTableViewCell.swift */,
 				C14333A51CA4146D0083CA88 /* CustomHeaderCell.swift */,
+				4818FE111CA49CFA00B7EB47 /* SettingsTableViewController.swift */,
 			);
 			path = CapstoneProjectSER402;
 			sourceTree = "<group>";
@@ -472,6 +473,7 @@
 				C19F0DC11C73E14F009BD594 /* binoculars-front-view.png in Resources */,
 				C19F0DDD1C768044009BD594 /* eye_unclicked.png in Resources */,
 				48CE44831C8FC88400BECD12 /* checked-circle.png in Resources */,
+				4818FE0D1CA498CF00B7EB47 /* settings-icon.png in Resources */,
 				C14333831CA0E9540083CA88 /* Charts in Resources */,
 				C19F0DC31C73E226009BD594 /* infographic-bars.png in Resources */,
 				48D741A81C5AAE86008D082E /* Main.storyboard in Resources */,
@@ -522,6 +524,7 @@
 				489AFBAA1C7F8D2900E9DEB9 /* SetupContentViewController.swift in Sources */,
 				46A2AB121CA47C0E00F87C80 /* AnalysisViewController.swift in Sources */,
 				C121B52D1C80075B001F3B16 /* WatchedTicket.swift in Sources */,
+				4818FE121CA49CFA00B7EB47 /* SettingsTableViewController.swift in Sources */,
 				C19F0DD51C759DB1009BD594 /* ChangeTicketTableViewCell.swift in Sources */,
 				48D741A31C5AAE86008D082E /* AppDelegate.swift in Sources */,
 				C19F0DCD1C745DB6009BD594 /* ChangeTicket.swift in Sources */,
