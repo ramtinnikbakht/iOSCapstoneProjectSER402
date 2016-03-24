@@ -11,6 +11,8 @@ import Foundation
 struct ChangeTicket {
     let id : String?
     let priority : Int
+    let startDate : String
     var icon: UIImage?
     var isWatched: Bool
+    
 }

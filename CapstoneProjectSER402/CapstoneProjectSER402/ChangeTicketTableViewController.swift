@@ -32,7 +32,7 @@ class ChangeTicketTableViewController: UITableViewController {
             
             if changeTickets[(indexPath?.row)!].isWatched == false {
                 changeTickets[(indexPath?.row)!].icon = UIImage(named: "eye_clicked.png")
-                let watchedTicket = WatchedTicket(id: changeTickets[(indexPath?.row)!].id, priority: changeTickets[(indexPath?.row)!].priority)
+                let watchedTicket = WatchedTicket(id: changeTickets[(indexPath?.row)!].id, startDate: changeTickets[(indexPath?.row)!].startDate, priority: changeTickets[(indexPath?.row)!].priority)
                 wTickets.addWatchedTickets(watchedTicket)
                 changeTickets[(indexPath?.row)!].isWatched = !changeTickets[(indexPath?.row)!].isWatched
             } else {
@@ -49,10 +49,10 @@ class ChangeTicketTableViewController: UITableViewController {
     
     func loadSampleTickets() {
         let eyeIcon = UIImage(named: "eye_unclicked.png")
-        let ticket1 = ChangeTicket(id: "CHG-001", priority: 8, icon: eyeIcon, isWatched: false)
-        let ticket2 = ChangeTicket(id: "CHG-002", priority: 4, icon: eyeIcon, isWatched: false)
-        let ticket3 = ChangeTicket(id: "CHG-003", priority: 1, icon: eyeIcon, isWatched: false)
-        let ticket4 = ChangeTicket(id: "CHG-004", priority: 5, icon: eyeIcon, isWatched: false)
+        let ticket1 = ChangeTicket(id: "CHG-001", priority: 8, startDate: "01/16", icon: eyeIcon, isWatched: false)
+        let ticket2 = ChangeTicket(id: "CHG-002", priority: 4, startDate: "02/16", icon: eyeIcon, isWatched: false)
+        let ticket3 = ChangeTicket(id: "CHG-003", priority: 1, startDate: "03/16", icon: eyeIcon, isWatched: false)
+        let ticket4 = ChangeTicket(id: "CHG-004", priority: 5, startDate: "04/16", icon: eyeIcon, isWatched: false)
         
         changeTickets += [ticket1, ticket2, ticket3, ticket4]
     }

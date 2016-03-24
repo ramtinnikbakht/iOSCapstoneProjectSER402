@@ -210,7 +210,26 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="277"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2qT-Br-gdd">
-                                        <rect key="frame" x="166" y="128" width="42" height="21"/>
+                                        <rect key="frame" x="20" y="23" width="42" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" clipsSubviews="YES" tag="101" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tgq-ff-gb7">
+                                        <rect key="frame" x="219" y="124" width="115" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" tag="100" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IxC-Vs-g5u">
+                                        <rect key="frame" x="41" y="124" width="115" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <action selector="dateField:" destination="S6Q-R1-NI0" eventType="editingDidEnd" id="Rkp-tV-Rbe"/>
+                                        </connections>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="to" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xes-aw-4mG">
+                                        <rect key="frame" x="179" y="128" width="16" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -218,7 +237,7 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jrp-hd-Ish" customClass="BarChartView" customModule="Charts">
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jrp-hd-Ish" customClass="LineChartView" customModule="Charts">
                                 <rect key="frame" x="0.0" y="277" width="375" height="277"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
@@ -229,7 +248,9 @@
                     <navigationItem key="navigationItem" title="Analysis" id="rAy-yl-TXK"/>
                     <connections>
                         <outlet property="analysisView" destination="Mwo-Hn-j1c" id="TOG-F5-DLA"/>
-                        <outlet property="barChartView" destination="Jrp-hd-Ish" id="NQD-55-Doh"/>
+                        <outlet property="endDate" destination="tgq-ff-gb7" id="8ql-NN-X0Q"/>
+                        <outlet property="initialDate" destination="IxC-Vs-g5u" id="BLc-yZ-38E"/>
+                        <outlet property="lineChartView" destination="Jrp-hd-Ish" id="CP3-VA-eyJ"/>
                         <outlet property="selectedTicketCount" destination="2qT-Br-gdd" id="a3U-Qr-bwu"/>
                     </connections>
                 </viewController>

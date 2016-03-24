@@ -8,44 +8,92 @@
 import UIKit
 import Charts
 
-class AnalysisViewController: UIViewController, ChartViewDelegate {
+class AnalysisViewController: UIViewController, UITextFieldDelegate, ChartViewDelegate {
     
     private var wTickets = TicketModel()
     private var tbvc = TicketTabBarController()
     var ticketRisks = [Double]()
+    var ticketStartDates = [String]()
+    @IBOutlet weak var initialDate: UITextField!
+    @IBOutlet weak var endDate: UITextField!
     @IBOutlet weak var analysisView: UIView!
     @IBOutlet weak var selectedTicketCount: UILabel!
-    @IBOutlet weak var barChartView: BarChartView!
+    @IBOutlet weak var lineChartView: LineChartView!
+    
     
     var months: [String]!
     
+    // MARK: TextField Delegate
+    
+    func textFieldDidBeginEditing(textField: UITextField) {
+        let datePickerView  : UIDatePicker = UIDatePicker()
+        datePickerView.datePickerMode = UIDatePickerMode.Date
+        textField.inputView = datePickerView
+    }
+    
+    @IBAction func dateField(sender: UITextField) {
+        
+        let datePickerView  : UIDatePicker = UIDatePicker()
+        datePickerView.datePickerMode = UIDatePickerMode.Date
+        sender.inputView = datePickerView
+        datePickerView.addTarget(self, action: "handleDatePicker:", forControlEvents: UIControlEvents.ValueChanged)
+        
+    }
+    
+    func handleDatePicker(sender: UIDatePicker) {
+        let timeFormatter = NSDateFormatter()
+        timeFormatter.dateStyle = .MediumStyle
+        print(sender.date)
+        initialDate.text = timeFormatter.stringFromDate(sender.date)
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    // MARK: Helper Methods
+    
+    func closeKeyboard() {
+        self.view.endEditing(true)
+    }
+    
+    // MARK: Touch Events
+    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        closeKeyboard()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        barChartView.delegate = self
+        lineChartView.delegate = self
+        initialDate.delegate = self
+//        endDate.delegate = self
         // Do any additional setup after loading the view.
         
         tbvc = tabBarController as! TicketTabBarController
         wTickets = tbvc.wTickets
         for i in 0..<wTickets.watchedTickets.count {
             ticketRisks.append(Double(wTickets.watchedTickets[i].priority))
+            ticketStartDates.append(wTickets.watchedTickets[i].startDate)
         }
-        months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov"]
-        setChart(months, values: ticketRisks)
+        setChart(ticketStartDates, values: ticketRisks)
         
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov"]
         if (ticketRisks.count != wTickets.watchedTickets.count) {
             print(ticketRisks.count)
             print(wTickets.watchedTickets.count)
             ticketRisks.removeAll()
+            ticketStartDates.removeAll()
             for i in 0..<wTickets.watchedTickets.count {
                 ticketRisks.append(Double(wTickets.watchedTickets[i].priority))
+                ticketStartDates.append(wTickets.watchedTickets[i].startDate)
             }
-            barChartView.clear()
-            setChart(months, values: ticketRisks)
+            lineChartView.clear()
+            setChart(ticketStartDates, values: ticketRisks)
         }
     }
     
@@ -56,15 +104,17 @@ class AnalysisViewController: UIViewController, ChartViewDelegate {
             dataEntries.append(dataEntry)
         }
         
-        let chartDataSet = BarChartDataSet(yVals: dataEntries, label: "Change Tickets Entered")
-        chartDataSet.colors = ChartColorTemplates.liberty()
-        let chartData = BarChartData(xVals: months, dataSet: chartDataSet)
-        barChartView.data = chartData
-        barChartView.animate(xAxisDuration: 2.0, yAxisDuration: 2.0, easingOption: .EaseInBounce)
+        let chartDataSet = LineChartDataSet(yVals: dataEntries, label: "Change Tickets Entered")
+        let ll = ChartLimitLine(limit: 1.0, label: "Release Deployment Window")
+        let chartData = LineChartData(xVals: dataPoints, dataSet: chartDataSet)
+        lineChartView.xAxis.addLimitLine(ll)
+        lineChartView.data = chartData
+        lineChartView.animate(xAxisDuration: 2.0, yAxisDuration: 2.0, easingOption: .EaseInBounce)
         
     }
     
     func chartValueSelected(chartView: ChartViewBase, entry: ChartDataEntry, dataSetIndex: Int, highlight: ChartHighlight) {
         selectedTicketCount.text = String(entry.value)
     }
+    
 }
