@@ -45,8 +45,7 @@ class SelectUserTypeViewController: UIViewController, UIPickerViewDataSource, UI
         return userTypesPickerSource.count;
     }
     
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String!
-    {
+    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return userTypesPickerSource[row]
     }
     
@@ -72,9 +71,8 @@ class SelectUserTypeViewController: UIViewController, UIPickerViewDataSource, UI
         }
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
-    {
-        var destViewController : SuggestedAppsTableViewController = segue.destinationViewController as! SuggestedAppsTableViewController
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        let destViewController : SuggestedAppsTableViewController = segue.destinationViewController as! SuggestedAppsTableViewController
             destViewController.usertype = selectedUserType
         
         

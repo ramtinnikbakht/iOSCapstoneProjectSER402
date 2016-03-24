@@ -10,22 +10,25 @@ import UIKit
 
 class WatchedTicketTableViewController: UITableViewController {
     
+    private var wTickets = TicketModel()
+    private var tbvc = TicketTabBarController()
     var watchedTickets = [WatchedTicket]()
+    var selectedIndexPath : NSIndexPath?
     let cellIdentifier = "WatchedTicketTableViewCell"
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        print(watchedTickets)
-        //loadSampleTickets()
+        tbvc = tabBarController as! TicketTabBarController
+        wTickets = tbvc.wTickets
+        
     }
     
-    func setWatchedTickets(ticket: WatchedTicket) {
-        watchedTickets += [ticket]
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         self.tableView.reloadData()
         print(watchedTickets.count)
     }
-    
+    /*
     func loadSampleTickets() {
         let ticket1 = WatchedTicket(id: "CHG-001", priority: "8")
         let ticket2 = WatchedTicket(id: "CHG-002", priority: "4")
@@ -34,7 +37,7 @@ class WatchedTicketTableViewController: UITableViewController {
         
         watchedTickets += [ticket1, ticket2, ticket3, ticket4]
     }
-    
+    */
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -47,19 +50,63 @@ class WatchedTicketTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return watchedTickets.count
+        return tbvc.wTickets.watchedTickets.count
     }
     
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! WatchedTicketTableViewCell
-        let ticket = watchedTickets[indexPath.row] as WatchedTicket
+        let ticket = tbvc.wTickets.watchedTickets[indexPath.row] as WatchedTicket
         cell.ticket = ticket
-        print("I am here")
         
         return cell
         
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let previousIndexPath = selectedIndexPath
+        if indexPath == selectedIndexPath {
+            selectedIndexPath = nil
+        } else {
+            selectedIndexPath = indexPath
+        }
+        
+        var indexPaths : Array<NSIndexPath> = []
+        if let previous = previousIndexPath {
+            indexPaths += [previous]
+        }
+        
+        if let current = selectedIndexPath {
+            indexPaths += [current]
+        }
+        
+        if indexPaths.count > 0 {
+            tableView.reloadRowsAtIndexPaths(indexPaths, withRowAnimation: .Automatic)
+        }
+    }
+    
+    override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        (cell as! WatchedTicketTableViewCell).watchFrameChanges()
+    }
+    
+    override func tableView(tableView: UITableView, didEndDisplayingCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        (cell as! WatchedTicketTableViewCell).ignoreFrameChanges()
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        for cell in tableView.visibleCells as! [WatchedTicketTableViewCell] {
+            cell.ignoreFrameChanges()
+        }
+    }
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        if indexPath == selectedIndexPath {
+            return WatchedTicketTableViewCell.expandedHeight
+        } else {
+            return WatchedTicketTableViewCell.defaultHeight
+        }
     }
     
     

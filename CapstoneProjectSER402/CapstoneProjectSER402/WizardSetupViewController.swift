@@ -24,9 +24,9 @@ class WizardSetupViewController: UIViewController, UIPageViewControllerDataSourc
         self.pageTitles = NSArray(objects: "Welcome", "Preview")
         self.pageViewController = self.storyboard?.instantiateViewControllerWithIdentifier("SetupPageViewController") as! UIPageViewController
         self.pageViewController.dataSource = self
-        var startVC = self.viewControllerAtIndex(0) as SetupContentViewController
-        var viewControllers = NSArray(object: startVC)
-        self.pageViewController.setViewControllers(viewControllers as! [UIViewController], direction: .Forward, animated: true, completion: nil)
+        let startVC = self.viewControllerAtIndex(0) as SetupContentViewController
+        let viewControllers = NSArray(object: startVC)
+        self.pageViewController.setViewControllers(viewControllers as? [UIViewController], direction: .Forward, animated: true, completion: nil)
         
         self.pageViewController.view.frame = CGRectMake(0, 30, self.view.frame.width, self.view.frame.height - 60)
         
@@ -42,13 +42,13 @@ class WizardSetupViewController: UIViewController, UIPageViewControllerDataSourc
     }
     
     func viewControllerAtIndex(index: Int) -> SetupContentViewController {
-        var vcontroller: SetupContentViewController = self.storyboard?.instantiateViewControllerWithIdentifier("SetupContentViewController") as! SetupContentViewController
+        let vcontroller: SetupContentViewController = self.storyboard?.instantiateViewControllerWithIdentifier("SetupContentViewController") as! SetupContentViewController
         if ((self.pageTitles == 0) || (index >= self.pageTitles.count)) {
             return SetupContentViewController()
         }
         
         if (index == 0) {
-            vcontroller.descriptionText = self.pageDescriptions as! String
+            vcontroller.descriptionText = self.pageDescriptions
             
         }
        
@@ -63,8 +63,8 @@ class WizardSetupViewController: UIViewController, UIPageViewControllerDataSourc
     
     func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
         
-        var vcontroller = viewController as! SetupContentViewController
-        var index = vcontroller.pageIndex as! Int
+        let vcontroller = viewController as! SetupContentViewController
+        var index = vcontroller.pageIndex as Int
         
         if (index == 0 || index == NSNotFound) {
             return nil
@@ -76,8 +76,8 @@ class WizardSetupViewController: UIViewController, UIPageViewControllerDataSourc
     
     func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
         
-        var vcontroller = viewController as! SetupContentViewController
-        var index = vcontroller.pageIndex as! Int
+        let vcontroller = viewController as! SetupContentViewController
+        var index = vcontroller.pageIndex as Int
         
         if (index == NSNotFound) {
             return nil
