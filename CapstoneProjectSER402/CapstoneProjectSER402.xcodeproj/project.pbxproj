@@ -32,7 +32,8 @@
 		C14333831CA0E9540083CA88 /* Charts in Resources */ = {isa = PBXBuildFile; fileRef = C14333821CA0E9540083CA88 /* Charts */; };
 		C14333931CA0E9CF0083CA88 /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C143338C1CA0E99B0083CA88 /* Charts.framework */; };
 		C14333941CA0E9CF0083CA88 /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C143338C1CA0E99B0083CA88 /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		C14333991CA0EC7D0083CA88 /* AnalysisViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14333981CA0EC7D0083CA88 /* AnalysisViewController.swift */; };
+		C14333A61CA4146D0083CA88 /* CustomHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14333A51CA4146D0083CA88 /* CustomHeaderCell.swift */; };
+		C14333AD1CA424210083CA88 /* AnalysisViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14333AC1CA424210083CA88 /* AnalysisViewController.swift */; };
 		C19F0DC11C73E14F009BD594 /* binoculars-front-view.png in Resources */ = {isa = PBXBuildFile; fileRef = C19F0DC01C73E14F009BD594 /* binoculars-front-view.png */; };
 		C19F0DC31C73E226009BD594 /* infographic-bars.png in Resources */ = {isa = PBXBuildFile; fileRef = C19F0DC21C73E226009BD594 /* infographic-bars.png */; };
 		C19F0DC51C73E2C3009BD594 /* home-page.png in Resources */ = {isa = PBXBuildFile; fileRef = C19F0DC41C73E2C3009BD594 /* home-page.png */; };
@@ -142,7 +143,8 @@
 		C142E6541C9BEC5A005F1DEC /* TicketModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TicketModel.swift; sourceTree = "<group>"; };
 		C14333821CA0E9540083CA88 /* Charts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Charts; sourceTree = "<group>"; };
 		C14333841CA0E99B0083CA88 /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = Charts/Charts.xcodeproj; sourceTree = "<group>"; };
-		C14333981CA0EC7D0083CA88 /* AnalysisViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalysisViewController.swift; sourceTree = "<group>"; };
+		C14333A51CA4146D0083CA88 /* CustomHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomHeaderCell.swift; sourceTree = "<group>"; };
+		C14333AC1CA424210083CA88 /* AnalysisViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AnalysisViewController.swift; path = ../../../../.Trash/AnalysisViewController.swift; sourceTree = "<group>"; };
 		C19F0DC01C73E14F009BD594 /* binoculars-front-view.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "binoculars-front-view.png"; sourceTree = "<group>"; };
 		C19F0DC21C73E226009BD594 /* infographic-bars.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "infographic-bars.png"; sourceTree = "<group>"; };
 		C19F0DC41C73E2C3009BD594 /* home-page.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home-page.png"; sourceTree = "<group>"; };
@@ -234,10 +236,11 @@
 				C19F0DCC1C745DB6009BD594 /* ChangeTicket.swift */,
 				C121B52C1C80075B001F3B16 /* WatchedTicket.swift */,
 				C19F0DD41C759DB1009BD594 /* ChangeTicketTableViewCell.swift */,
+				C14333AC1CA424210083CA88 /* AnalysisViewController.swift */,
 				C121B52A1C7FD68B001F3B16 /* WatchedTicketTableViewController.swift */,
 				C142E6541C9BEC5A005F1DEC /* TicketModel.swift */,
 				C121B52E1C8008CC001F3B16 /* WatchedTicketTableViewCell.swift */,
-				C14333981CA0EC7D0083CA88 /* AnalysisViewController.swift */,
+				C14333A51CA4146D0083CA88 /* CustomHeaderCell.swift */,
 			);
 			path = CapstoneProjectSER402;
 			sourceTree = "<group>";
@@ -457,6 +460,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C14333A61CA4146D0083CA88 /* CustomHeaderCell.swift in Sources */,
 				C121B52B1C7FD68B001F3B16 /* WatchedTicketTableViewController.swift in Sources */,
 				48993BED1C8CBB0A00EDA13E /* SelectUserTypeViewController.swift in Sources */,
 				C19F0DD71C75A28A009BD594 /* ChangeTicketTableViewController.swift in Sources */,
@@ -467,9 +471,9 @@
 				48CE447C1C8FB73D00BECD12 /* SuggestedAppsTableViewCell.swift in Sources */,
 				48993BEF1C8D06D900EDA13E /* SuggestedAppsTableViewController.swift in Sources */,
 				489AFBAC1C7F8F5B00E9DEB9 /* WizardSetupViewController.swift in Sources */,
-				C14333991CA0EC7D0083CA88 /* AnalysisViewController.swift in Sources */,
 				489AFBAA1C7F8D2900E9DEB9 /* SetupContentViewController.swift in Sources */,
 				C121B52D1C80075B001F3B16 /* WatchedTicket.swift in Sources */,
+				C14333AD1CA424210083CA88 /* AnalysisViewController.swift in Sources */,
 				C19F0DD51C759DB1009BD594 /* ChangeTicketTableViewCell.swift in Sources */,
 				48D741A31C5AAE86008D082E /* AppDelegate.swift in Sources */,
 				C19F0DCD1C745DB6009BD594 /* ChangeTicket.swift in Sources */,

@@ -10,6 +10,7 @@ import UIKit
 
 class TicketModel:NSObject {
     var watchedTickets = [WatchedTicket]()
+    var changeTickets = [ChangeTicket]()
     
     func addWatchedTickets(ticket: WatchedTicket) {
         watchedTickets += [ticket]
@@ -20,6 +21,21 @@ class TicketModel:NSObject {
         for ticket in watchedTickets {
             if (ticket.id == selectedID) {
                 watchedTickets.removeAtIndex(index)
+            } else {
+                index+=1
+            }
+        }
+    }
+    
+    func addChangeTickets(ticket: ChangeTicket) {
+        changeTickets += [ticket]
+    }
+    
+    func removeChangeTicket(selectedID: String) {
+        var index = 0
+        for ticket in changeTickets {
+            if (ticket.id == selectedID) {
+                changeTickets.removeAtIndex(index)
             } else {
                 index+=1
             }

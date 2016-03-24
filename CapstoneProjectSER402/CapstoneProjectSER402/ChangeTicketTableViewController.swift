@@ -12,7 +12,7 @@ class ChangeTicketTableViewController: UITableViewController {
     
     // MARK: Properties
     private var tbvc = TicketTabBarController()
-    private var wTickets = TicketModel()
+    private var tickets = TicketModel()
     var changeTickets = [ChangeTicket]()
     let cellIdentifier = "ChangeTicketTableViewCell"
     
@@ -20,7 +20,7 @@ class ChangeTicketTableViewController: UITableViewController {
         super.viewDidLoad()
         
         tbvc = tabBarController as! TicketTabBarController
-        wTickets = tbvc.wTickets
+        tickets = tbvc.wTickets
         
         loadSampleTickets()
     }
@@ -33,11 +33,11 @@ class ChangeTicketTableViewController: UITableViewController {
             if changeTickets[(indexPath?.row)!].isWatched == false {
                 changeTickets[(indexPath?.row)!].icon = UIImage(named: "eye_clicked.png")
                 let watchedTicket = WatchedTicket(id: changeTickets[(indexPath?.row)!].id, startDate: changeTickets[(indexPath?.row)!].startDate, priority: changeTickets[(indexPath?.row)!].priority)
-                wTickets.addWatchedTickets(watchedTicket)
+                tickets.addWatchedTickets(watchedTicket)
                 changeTickets[(indexPath?.row)!].isWatched = !changeTickets[(indexPath?.row)!].isWatched
             } else {
                 changeTickets[(indexPath?.row)!].icon = UIImage(named: "eye_unclicked.png")
-                wTickets.removeWatchedTicket(changeTickets[(indexPath?.row)!].id!)
+                tickets.removeWatchedTicket(changeTickets[(indexPath?.row)!].id!)
                 changeTickets[(indexPath?.row)!].isWatched = !changeTickets[(indexPath?.row)!].isWatched
             }
             
@@ -55,6 +55,11 @@ class ChangeTicketTableViewController: UITableViewController {
         let ticket4 = ChangeTicket(id: "CHG-004", priority: 5, startDate: "04/16", icon: eyeIcon, isWatched: false)
         
         changeTickets += [ticket1, ticket2, ticket3, ticket4]
+        tickets.addChangeTickets(ticket1)
+        tickets.addChangeTickets(ticket2)
+        tickets.addChangeTickets(ticket3)
+        tickets.addChangeTickets(ticket4)
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -83,6 +88,22 @@ class ChangeTicketTableViewController: UITableViewController {
         return cell
         
     }
+    
+//    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//        let  headerCell = tableView.dequeueReusableCellWithIdentifier("HeaderCell") as! CustomHeaderCell
+//        headerCell.backgroundColor = UIColor.blackColor()
+//        print("We made it here")
+//        switch (section) {
+//        case 0:
+//            headerCell.headerLabel.text = "Recent Activity";
+//            headerCell.headerLabel.textColor = UIColor.whiteColor()
+//            //return sectionHeaderView
+//        default:
+//            headerCell.headerLabel.text = "Other";
+//        }
+//        
+//        return headerCell
+//    }
     
     
 
