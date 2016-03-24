@@ -31,67 +31,91 @@
             <objects>
                 <tableViewController id="Miq-kP-hxa" customClass="ChangeTicketTableViewController" customModule="CapstoneProjectSER402" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="80" sectionHeaderHeight="18" sectionFooterHeight="18" id="LlF-9O-8u4">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="KZl-a5-a6Q">
-                            <rect key="frame" x="0.0" y="64" width="375" height="359"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="270"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ChangeTicketTableViewCell" rowHeight="60" id="z3O-IQ-ZJo" customClass="ChangeTicketTableViewCell" customModule="CapstoneProjectSER402" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="472.5" width="375" height="60"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="HeaderCell" rowHeight="50" id="z3O-IQ-ZJo" customClass="CustomHeaderCell" customModule="CapstoneProjectSER402" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="319.5" width="375" height="50"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="z3O-IQ-ZJo" id="Dad-6B-B2X">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="49.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7WE-cv-huM">
+                                            <rect key="frame" x="187.5" y="25" width="0.0" height="0.0"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="16"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="7WE-cv-huM" firstAttribute="centerY" secondItem="Dad-6B-B2X" secondAttribute="centerY" id="1VS-WV-2vT"/>
+                                        <constraint firstItem="7WE-cv-huM" firstAttribute="centerX" secondItem="Dad-6B-B2X" secondAttribute="centerX" id="ftY-NA-Zk4"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" red="0.3473256562" green="0.47567623180000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <outlet property="headerLabel" destination="7WE-cv-huM" id="CEK-3Q-1li"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ChangeTicketTableViewCell" rowHeight="60" id="IbJ-hg-NKP" customClass="ChangeTicketTableViewCell" customModule="CapstoneProjectSER402" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="369.5" width="375" height="60"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="IbJ-hg-NKP" id="jLm-By-vOP">
                                     <rect key="frame" x="0.0" y="0.0" width="342" height="59.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="7AK-TO-Vme">
+                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="qUc-Ag-zCn">
                                             <rect key="frame" x="28" y="8" width="286" height="44"/>
                                             <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="6Qj-cQ-E6c">
-                                                    <rect key="frame" x="0.0" y="4" width="92" height="37"/>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ba9-1n-X3V">
+                                                    <rect key="frame" x="0.0" y="4" width="77" height="36"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ticket Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7WE-cv-huM">
-                                                            <rect key="frame" x="0.0" y="0.0" width="92" height="20"/>
-                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ticket Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="voN-6A-FiB">
+                                                            <rect key="frame" x="0.0" y="0.0" width="77" height="19"/>
+                                                            <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="16"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" tag="101" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Priority Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="40L-Hc-tZg">
-                                                            <rect key="frame" x="0.0" y="20" width="92" height="17"/>
-                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" tag="101" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Priority Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FJR-DF-ayu">
+                                                            <rect key="frame" x="0.0" y="19" width="77" height="17"/>
+                                                            <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="14"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
                                                 </stackView>
-                                                <imageView userInteractionEnabled="NO" tag="102" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Zhr-yt-Lov">
+                                                <imageView userInteractionEnabled="NO" tag="102" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zRD-lN-xx2">
                                                     <rect key="frame" x="236" y="0.0" width="50" height="44"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="50" id="PVE-fT-jpF"/>
+                                                        <constraint firstAttribute="width" constant="50" id="ucz-Td-xJl"/>
                                                     </constraints>
                                                 </imageView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="Zhr-yt-Lov" firstAttribute="top" secondItem="7AK-TO-Vme" secondAttribute="top" id="qVe-87-mAq"/>
+                                                <constraint firstItem="zRD-lN-xx2" firstAttribute="top" secondItem="qUc-Ag-zCn" secondAttribute="top" id="aGL-tu-LfP"/>
                                             </constraints>
                                         </stackView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="7AK-TO-Vme" firstAttribute="top" secondItem="Dad-6B-B2X" secondAttribute="topMargin" id="7Md-xh-vCt"/>
-                                        <constraint firstItem="7AK-TO-Vme" firstAttribute="leading" secondItem="Dad-6B-B2X" secondAttribute="leadingMargin" constant="20" id="8lp-Xh-hQD"/>
-                                        <constraint firstItem="7AK-TO-Vme" firstAttribute="leading" secondItem="Dad-6B-B2X" secondAttribute="leadingMargin" constant="20" id="RKh-Rg-fjw"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="7AK-TO-Vme" secondAttribute="trailing" constant="20" id="YlH-aV-Wsy"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="7AK-TO-Vme" secondAttribute="bottom" id="aSG-ai-fCO"/>
-                                        <constraint firstItem="7AK-TO-Vme" firstAttribute="top" secondItem="Dad-6B-B2X" secondAttribute="topMargin" id="suk-Qc-Kfp"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="7AK-TO-Vme" secondAttribute="bottom" id="uir-W9-n2N"/>
+                                        <constraint firstItem="qUc-Ag-zCn" firstAttribute="top" secondItem="jLm-By-vOP" secondAttribute="topMargin" id="2HT-mz-LQW"/>
+                                        <constraint firstItem="qUc-Ag-zCn" firstAttribute="leading" secondItem="jLm-By-vOP" secondAttribute="leadingMargin" constant="20" id="47c-Ep-5T8"/>
+                                        <constraint firstItem="qUc-Ag-zCn" firstAttribute="leading" secondItem="jLm-By-vOP" secondAttribute="leadingMargin" constant="20" id="OGG-lr-2mb"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="qUc-Ag-zCn" secondAttribute="trailing" constant="20" id="RmE-1k-I83"/>
+                                        <constraint firstItem="qUc-Ag-zCn" firstAttribute="top" secondItem="jLm-By-vOP" secondAttribute="topMargin" id="fMb-0u-jdq"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="qUc-Ag-zCn" secondAttribute="bottom" id="p5F-FN-o1U"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="qUc-Ag-zCn" secondAttribute="bottom" id="uvB-Rf-RBa"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" red="0.92549019610000005" green="0.92549019610000005" blue="0.92549019610000005" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
-                                    <outlet property="priorityLabel" destination="40L-Hc-tZg" id="AKJ-Rv-Fd5"/>
-                                    <outlet property="ticketLabel" destination="7WE-cv-huM" id="Vh3-XG-0xT"/>
-                                    <outlet property="viewImage" destination="Zhr-yt-Lov" id="DvV-Jt-emD"/>
+                                    <outlet property="priorityLabel" destination="FJR-DF-ayu" id="5js-Td-yrc"/>
+                                    <outlet property="ticketLabel" destination="voN-6A-FiB" id="JMe-SC-Klj"/>
+                                    <outlet property="viewImage" destination="zRD-lN-xx2" id="cda-W4-XXo"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -112,44 +136,44 @@
             <objects>
                 <tableViewController id="Qzr-Wx-7nc" customClass="WatchedTicketTableViewController" customModule="CapstoneProjectSER402" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="q5b-rf-CUq">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="WatchedTicketTableViewCell" rowHeight="150" id="f0W-Jj-neQ" customClass="WatchedTicketTableViewCell" customModule="CapstoneProjectSER402" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="92" width="375" height="150"/>
+                                <rect key="frame" x="0.0" y="28" width="375" height="150"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="f0W-Jj-neQ" id="lIn-Q6-X8i">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="149.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Associated Application" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bh9-zp-xsd">
-                                            <rect key="frame" x="19" y="48" width="175" height="21"/>
-                                            <fontDescription key="fontDescription" name="KannadaSangamMN" family="Kannada Sangam MN" pointSize="17"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Risk Level" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ood-NQ-ry1">
-                                            <rect key="frame" x="19" y="77" width="76" height="21"/>
-                                            <fontDescription key="fontDescription" name="KannadaSangamMN" family="Kannada Sangam MN" pointSize="17"/>
+                                            <rect key="frame" x="19" y="77" width="87" height="21"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Planned Start Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xlo-NI-pGe">
                                             <rect key="frame" x="19" y="106" width="145" height="21"/>
-                                            <fontDescription key="fontDescription" name="KannadaSangamMN" family="Kannada Sangam MN" pointSize="17"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eqf-Y5-ncn">
                                             <rect key="frame" x="292" y="77" width="42" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7xl-qc-1Ek">
                                             <rect key="frame" x="19" y="14" width="145" height="21"/>
-                                            <fontDescription key="fontDescription" name="KannadaSangamMN" family="Kannada Sangam MN" pointSize="17"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Associated Application" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bh9-zp-xsd">
+                                            <rect key="frame" x="19" y="48" width="175" height="21"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -182,7 +206,7 @@
                 <navigationController id="bFC-NC-BRL" sceneMemberID="viewController">
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <tabBarItem key="tabBarItem" title="Analysis" image="infographic-bars.png" id="QBF-Sq-gKJ"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Ojv-Iv-YUq">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="Ojv-Iv-YUq">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -194,7 +218,7 @@
             </objects>
             <point key="canvasLocation" x="2197.5" y="1001.5"/>
         </scene>
-        <!--Analysis-->
+        <!--Analysis View Controller-->
         <scene sceneID="5bB-vm-Wod">
             <objects>
                 <viewController id="S6Q-R1-NI0" customClass="AnalysisViewController" customModule="CapstoneProjectSER402" customModuleProvider="target" sceneMemberID="viewController">
@@ -215,29 +239,36 @@
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" clipsSubviews="YES" tag="101" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tgq-ff-gb7">
-                                        <rect key="frame" x="219" y="124" width="115" height="30"/>
+                                    <textField opaque="NO" clipsSubviews="YES" tag="101" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="End Date" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tgq-ff-gb7">
+                                        <rect key="frame" x="232" y="102" width="115" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" tag="100" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IxC-Vs-g5u">
-                                        <rect key="frame" x="41" y="124" width="115" height="30"/>
+                                    <textField opaque="NO" clipsSubviews="YES" tag="100" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Start Date" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IxC-Vs-g5u">
+                                        <rect key="frame" x="232" y="64" width="115" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
-                                        <connections>
-                                            <action selector="dateField:" destination="S6Q-R1-NI0" eventType="editingDidEnd" id="Rkp-tV-Rbe"/>
-                                        </connections>
                                     </textField>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="to" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xes-aw-4mG">
-                                        <rect key="frame" x="179" y="128" width="16" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Time Frame" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xes-aw-4mG">
+                                        <rect key="frame" x="20" y="64" width="91" height="21"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Release Deployment Window" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zph-xs-zKM">
+                                        <rect key="frame" x="20" y="208" width="215" height="21"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <switch hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="jcY-QH-2dz">
+                                        <rect key="frame" x="292" y="203" width="51" height="31"/>
+                                        <color key="onTintColor" red="0.3473256562" green="0.47567623180000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    </switch>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jrp-hd-Ish" customClass="LineChartView" customModule="Charts">
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jrp-hd-Ish" customClass="HorizontalBarChartView" customModule="Charts">
                                 <rect key="frame" x="0.0" y="277" width="375" height="277"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
@@ -245,12 +276,27 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
-                    <navigationItem key="navigationItem" title="Analysis" id="rAy-yl-TXK"/>
+                    <navigationItem key="navigationItem" id="rAy-yl-TXK">
+                        <nil key="title"/>
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="fmE-Gy-q97">
+                            <rect key="frame" x="115" y="7.5" width="145" height="29"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segments>
+                                <segment title="Historical"/>
+                                <segment title="Forward"/>
+                            </segments>
+                            <connections>
+                                <action selector="repIndexChanged:" destination="S6Q-R1-NI0" eventType="valueChanged" id="dOL-Dc-szG"/>
+                            </connections>
+                        </segmentedControl>
+                    </navigationItem>
                     <connections>
-                        <outlet property="analysisView" destination="Mwo-Hn-j1c" id="TOG-F5-DLA"/>
                         <outlet property="endDate" destination="tgq-ff-gb7" id="8ql-NN-X0Q"/>
+                        <outlet property="graphRepresentationControl" destination="fmE-Gy-q97" id="6P2-at-1LJ"/>
+                        <outlet property="horizontalBarChartView" destination="Jrp-hd-Ish" id="EeI-wp-ji0"/>
                         <outlet property="initialDate" destination="IxC-Vs-g5u" id="BLc-yZ-38E"/>
-                        <outlet property="lineChartView" destination="Jrp-hd-Ish" id="CP3-VA-eyJ"/>
+                        <outlet property="releaseWindowLabel" destination="Zph-xs-zKM" id="JWf-HO-q4b"/>
+                        <outlet property="releaseWindowSwitch" destination="jcY-QH-2dz" id="i53-7S-Oa7"/>
                         <outlet property="selectedTicketCount" destination="2qT-Br-gdd" id="a3U-Qr-bwu"/>
                     </connections>
                 </viewController>
@@ -404,7 +450,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="7An-ne-Cma" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Dashboard" image="home-page.png" id="ru5-ud-iy9"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="csT-bh-cxf">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="csT-bh-cxf">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -423,7 +469,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="yLS-8U-Rt6" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Watched" image="binoculars-front-view.png" id="Hto-mW-Cdb"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="e3x-yU-cOF">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="e3x-yU-cOF">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

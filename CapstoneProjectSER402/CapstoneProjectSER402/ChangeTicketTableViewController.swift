@@ -22,7 +22,7 @@ class ChangeTicketTableViewController: UITableViewController
         super.viewDidLoad()
         
         tbvc = tabBarController as! TicketTabBarController
-        wTickets = tbvc.wTickets
+        tickets = tbvc.wTickets
         
         //loadSampleTickets()
     }
@@ -37,11 +37,11 @@ class ChangeTicketTableViewController: UITableViewController
             if changeTickets[(indexPath?.row)!].isWatched == false {
                 changeTickets[(indexPath?.row)!].icon = UIImage(named: "eye_clicked.png")
                 let watchedTicket = WatchedTicket(id: changeTickets[(indexPath?.row)!].id, startDate: changeTickets[(indexPath?.row)!].startDate, priority: changeTickets[(indexPath?.row)!].priority)
-                wTickets.addWatchedTickets(watchedTicket)
+                tickets.addWatchedTickets(watchedTicket)
                 changeTickets[(indexPath?.row)!].isWatched = !changeTickets[(indexPath?.row)!].isWatched
             } else {
                 changeTickets[(indexPath?.row)!].icon = UIImage(named: "eye_unclicked.png")
-                wTickets.removeWatchedTicket(changeTickets[(indexPath?.row)!].id!)
+                tickets.removeWatchedTicket(changeTickets[(indexPath?.row)!].id!)
                 changeTickets[(indexPath?.row)!].isWatched = !changeTickets[(indexPath?.row)!].isWatched
                 changeTickets[(indexPath?.row)!].icon = UIImage(named: "eye_unclicked.png")!
             }
@@ -96,6 +96,22 @@ class ChangeTicketTableViewController: UITableViewController
         return cell
         
     }
+    
+//    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//        let  headerCell = tableView.dequeueReusableCellWithIdentifier("HeaderCell") as! CustomHeaderCell
+//        headerCell.backgroundColor = UIColor.blackColor()
+//        print("We made it here")
+//        switch (section) {
+//        case 0:
+//            headerCell.headerLabel.text = "Recent Activity";
+//            headerCell.headerLabel.textColor = UIColor.whiteColor()
+//            //return sectionHeaderView
+//        default:
+//            headerCell.headerLabel.text = "Other";
+//        }
+//        
+//        return headerCell
+//    }
     
     
 
