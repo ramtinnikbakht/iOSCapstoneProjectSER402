@@ -22,10 +22,12 @@ class BusinessApp
     var businessUnitSys: String
     var businessSubUnitSys: String
     var businessSubUnit: String
+    var ticketCount: Int
+    var containsEmergencyTicket: Bool
     
     init(appId: String, businessAppSys: String, businessApp: String, appCriticality: String,
         owner: String, ownerSys: String, businessArea: String, businessAreaSys: String, businessUnit: String,
-        businessUnitSys: String, businessSubUnitSys: String, businessSubUnit: String)
+        businessUnitSys: String, businessSubUnitSys: String, businessSubUnit: String, ticketCount: Int, containsEmergencyTicket: Bool)
     {
         self.appId = appId
         self.businessAppSys = businessAppSys
@@ -39,6 +41,8 @@ class BusinessApp
         self.businessUnitSys = businessUnitSys
         self.businessSubUnit = businessSubUnit
         self.businessSubUnitSys = businessSubUnitSys
+        self.ticketCount = ticketCount
+        self.containsEmergencyTicket = containsEmergencyTicket
     }
     
     // getters
@@ -95,6 +99,16 @@ class BusinessApp
     func getBusinessSubUnit() -> String
     {
         return self.businessSubUnit
+    }
+    
+    func getTicketCount() -> Int
+    {
+        return self.ticketCount
+    }
+    
+    func getContainsEmergencyTicket() -> Bool
+    {
+        return self.containsEmergencyTicket
     }
     
     // setters
@@ -157,6 +171,14 @@ class BusinessApp
     func getBusinessSubUnitSys(businessSubUnitSys: String)
     {
         self.businessSubUnitSys = businessSubUnitSys
+    }
+    
+    func setTicketCount(ticketCount: Int) {
+        self.ticketCount = ticketCount
+    }
+    
+    func setContainsEmergencyTicket(containsEmergencyTicket: Bool) {
+        self.containsEmergencyTicket = containsEmergencyTicket
     }
     
     

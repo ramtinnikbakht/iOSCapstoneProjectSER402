@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -30,7 +29,7 @@
         <scene sceneID="Es9-XN-nFI">
             <objects>
                 <tableViewController id="Miq-kP-hxa" customClass="ChangeTicketTableViewController" customModule="CapstoneProjectSER402" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="80" sectionHeaderHeight="18" sectionFooterHeight="18" id="LlF-9O-8u4">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="50" sectionHeaderHeight="18" sectionFooterHeight="18" id="LlF-9O-8u4">
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -40,82 +39,34 @@
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="HeaderCell" rowHeight="50" id="z3O-IQ-ZJo" customClass="CustomHeaderCell" customModule="CapstoneProjectSER402" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ChangeTicketTableViewCell" rowHeight="50" id="IbJ-hg-NKP" customClass="ChangeTicketTableViewCell" customModule="CapstoneProjectSER402" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="319.5" width="375" height="50"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="z3O-IQ-ZJo" id="Dad-6B-B2X">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="49.5"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="IbJ-hg-NKP" id="jLm-By-vOP">
+                                    <rect key="frame" x="0.0" y="0.0" width="342" height="49.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7WE-cv-huM">
-                                            <rect key="frame" x="187.5" y="25" width="0.0" height="0.0"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="circle.png" translatesAutoresizingMaskIntoConstraints="NO" id="FnE-xp-uT7">
+                                            <rect key="frame" x="18" y="9" width="30" height="30"/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fqL-yM-TeE">
+                                            <rect key="frame" x="18" y="9" width="30" height="30"/>
+                                            <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="11"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="voN-6A-FiB">
+                                            <rect key="frame" x="64" y="14" width="250" height="20"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="16"/>
-                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
-                                    <constraints>
-                                        <constraint firstItem="7WE-cv-huM" firstAttribute="centerY" secondItem="Dad-6B-B2X" secondAttribute="centerY" id="1VS-WV-2vT"/>
-                                        <constraint firstItem="7WE-cv-huM" firstAttribute="centerX" secondItem="Dad-6B-B2X" secondAttribute="centerX" id="ftY-NA-Zk4"/>
-                                    </constraints>
                                 </tableViewCellContentView>
-                                <color key="backgroundColor" red="0.3473256562" green="0.47567623180000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
-                                    <outlet property="headerLabel" destination="7WE-cv-huM" id="CEK-3Q-1li"/>
-                                </connections>
-                            </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ChangeTicketTableViewCell" rowHeight="60" id="IbJ-hg-NKP" customClass="ChangeTicketTableViewCell" customModule="CapstoneProjectSER402" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="369.5" width="375" height="60"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="IbJ-hg-NKP" id="jLm-By-vOP">
-                                    <rect key="frame" x="0.0" y="0.0" width="342" height="59.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="qUc-Ag-zCn">
-                                            <rect key="frame" x="28" y="8" width="286" height="44"/>
-                                            <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ba9-1n-X3V">
-                                                    <rect key="frame" x="0.0" y="4" width="77" height="36"/>
-                                                    <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ticket Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="voN-6A-FiB">
-                                                            <rect key="frame" x="0.0" y="0.0" width="77" height="19"/>
-                                                            <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="16"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" tag="101" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Priority Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FJR-DF-ayu">
-                                                            <rect key="frame" x="0.0" y="19" width="77" height="17"/>
-                                                            <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="14"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                    </subviews>
-                                                </stackView>
-                                                <imageView userInteractionEnabled="NO" tag="102" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zRD-lN-xx2">
-                                                    <rect key="frame" x="236" y="0.0" width="50" height="44"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="50" id="ucz-Td-xJl"/>
-                                                    </constraints>
-                                                </imageView>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="zRD-lN-xx2" firstAttribute="top" secondItem="qUc-Ag-zCn" secondAttribute="top" id="aGL-tu-LfP"/>
-                                            </constraints>
-                                        </stackView>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="qUc-Ag-zCn" firstAttribute="top" secondItem="jLm-By-vOP" secondAttribute="topMargin" id="2HT-mz-LQW"/>
-                                        <constraint firstItem="qUc-Ag-zCn" firstAttribute="leading" secondItem="jLm-By-vOP" secondAttribute="leadingMargin" constant="20" id="47c-Ep-5T8"/>
-                                        <constraint firstItem="qUc-Ag-zCn" firstAttribute="leading" secondItem="jLm-By-vOP" secondAttribute="leadingMargin" constant="20" id="OGG-lr-2mb"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="qUc-Ag-zCn" secondAttribute="trailing" constant="20" id="RmE-1k-I83"/>
-                                        <constraint firstItem="qUc-Ag-zCn" firstAttribute="top" secondItem="jLm-By-vOP" secondAttribute="topMargin" id="fMb-0u-jdq"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="qUc-Ag-zCn" secondAttribute="bottom" id="p5F-FN-o1U"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="qUc-Ag-zCn" secondAttribute="bottom" id="uvB-Rf-RBa"/>
-                                    </constraints>
-                                </tableViewCellContentView>
-                                <color key="backgroundColor" red="0.92549019610000005" green="0.92549019610000005" blue="0.92549019610000005" alpha="1" colorSpace="calibratedRGB"/>
-                                <connections>
-                                    <outlet property="priorityLabel" destination="FJR-DF-ayu" id="5js-Td-yrc"/>
-                                    <outlet property="ticketLabel" destination="voN-6A-FiB" id="JMe-SC-Klj"/>
-                                    <outlet property="viewImage" destination="zRD-lN-xx2" id="cda-W4-XXo"/>
+                                    <outlet property="businessAppName" destination="voN-6A-FiB" id="kGw-2X-Pid"/>
+                                    <outlet property="circle" destination="FnE-xp-uT7" id="fFq-up-8yg"/>
+                                    <outlet property="ticketCount" destination="fqL-yM-TeE" id="Kf0-tR-jIH"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -721,11 +672,12 @@
     <resources>
         <image name="AllstateHeader_ASU.png" width="1563" height="2779"/>
         <image name="binoculars-front-view.png" width="32" height="32"/>
+        <image name="circle.png" width="32" height="32"/>
         <image name="gear.png" width="24" height="24"/>
         <image name="home-page.png" width="32" height="32"/>
         <image name="infographic-bars.png" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="hhp-6w-DOy"/>
+        <segue reference="QgG-3O-c3k"/>
     </inferredMetricsTieBreakers>
 </document>

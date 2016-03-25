@@ -15,17 +15,17 @@ class ChangeTicketTableViewCell: UITableViewCell
     
     // MARK: Properties
     
-    @IBOutlet weak var ticketLabel: UILabel!
-    @IBOutlet weak var priorityLabel: UILabel!
-    @IBOutlet weak var viewImage: UIImageView!
+    @IBOutlet weak var ticketCount: UILabel!
+    @IBOutlet weak var businessAppName: UILabel!
+    @IBOutlet weak var circle: UIImageView!
     
-    var ticket: ChangeTicket_Table_Template!
+    var app: BusinessApp_Table_Template!
     {
         didSet
         {
-            ticketLabel.text = ticket.id
-            priorityLabel.text = String(ticket.priority)
-            viewImage.image = ticket.icon
+            businessAppName.text = app.appName
+            ticketCount.text = String(app.ticketCount)
+            circle.image = app.icon
         }
     }
     
