@@ -66,16 +66,16 @@ class AnalysisViewController: UIViewController, UITextFieldDelegate, ChartViewDe
             releaseWindowLabel.hidden = true
             releaseWindowSwitch.hidden = true
             releaseWindowSwitch.setOn(false, animated: true)
-            let historicalDates = ["Jan '14", "Feb '14", "Mar '14", "Apr '14", "May '14"]
-            let historicalTickets = [3.0, 4.0, 8.0, 6.0, 10.0]
+            let historicalDates = ["Jan '14", "Feb '14", "Mar '14", "Apr '14", "May '14", "Jun '14", "Jul '14", "Aug '14", "Sep '14", "Oct '14", "Nov '14", "Dec '14"]
+            let historicalTickets = [3.0, 4.0, 8.0, 6.0, 7.0, 12.0, 5.0, 9.0, 10.0, 2.0, 3.0, 11.0]
             horizontalBarChartView.clear()
             setChart(historicalDates, values: historicalTickets)
             horizontalBarChartView.xAxis.removeLimitLine(releaseWindowLL)
         case 1:
             releaseWindowLabel.hidden = false
             releaseWindowSwitch.hidden = false
-            let forwardDates = ["April '16", "May '16", "June '16", "Jul '16", "Aug '16"]
-            let forwardTickets = [1.0, 1.0, 2.0, 1.0, 4.0]
+            let forwardDates = ["5-10-16", "5-11-16", "5-12-16", "5-13-16", "5-14-16", "5-15-16", "5-16-16"]
+            let forwardTickets = [1.0, 4.0, 2.0, 1.0, 5.0, 3.0, 7.0]
             horizontalBarChartView.clear()
             setChart(forwardDates, values: forwardTickets)
         default:
@@ -158,22 +158,40 @@ class AnalysisViewController: UIViewController, UITextFieldDelegate, ChartViewDe
         chartData.setValueFont(UIFont(name: "Helvetica", size: 12))
         
         var colors: [UIColor] = []
-        for _ in 0..<dataPoints.count {
-            let randBlue = Double(arc4random_uniform(256))
-            
-            let color = UIColor(red: CGFloat(0), green: CGFloat(0), blue: CGFloat(randBlue/255), alpha: 1)
+        let low = UIColor(red: CGFloat(38/255.0), green: CGFloat(166/255.0), blue: CGFloat(91/255.0), alpha: 1)
+        let med = UIColor(red: CGFloat(244/255.0), green: CGFloat(208/255.0), blue: CGFloat(63/255.0), alpha: 1)
+        let high = UIColor(red: CGFloat(207/255.0), green: CGFloat(0), blue: CGFloat(15/255.0), alpha: 1)
+        
+        for i in 0..<values.count {
+            var color : UIColor
+            if (values[i] <= 3) {
+                color = low
+            } else if (values[i] > 3 && values[i] <= 7) {
+                color = med
+            } else {
+                color = high
+            }
             colors.append(color)
         }
-        chartDataSet.colors = ChartColorTemplates.liberty()
+        
+        chartDataSet.colors = colors
         horizontalBarChartView.leftAxis.enabled = false
         horizontalBarChartView.descriptionText = ""
         horizontalBarChartView.rightAxis.drawGridLinesEnabled = false
         horizontalBarChartView.xAxis.drawGridLinesEnabled = false
         horizontalBarChartView.rightAxis.valueFormatter = numberFormatter
         horizontalBarChartView.data = chartData
+        
+        // Legend Data
+        horizontalBarChartView.legend.position = .RightOfChartInside
+        horizontalBarChartView.legend.font = UIFont(name: "Helvetica", size: 10)!
+        horizontalBarChartView.legend.colors = [low, med, high]
+        horizontalBarChartView.legend.labels = ["Low Volume","Medium Volume","High Volume"]
+        horizontalBarChartView.legend.enabled = true
+        
         horizontalBarChartView.backgroundColor = UIColor(red: CGFloat(228/255.0), green: CGFloat(241/255.0), blue: CGFloat(254/255.0), alpha: 1)
         horizontalBarChartView.drawBordersEnabled = false
-        horizontalBarChartView.animate(xAxisDuration: 2.0, yAxisDuration: 2.0, easingOption: .EaseInBounce)
+        horizontalBarChartView.animate(xAxisDuration: 2.0, yAxisDuration: 2.0, easingOption: .EaseOutBounce)
         
     }
     
