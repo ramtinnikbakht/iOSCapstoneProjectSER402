@@ -17,21 +17,29 @@ class WatchedTicketTableViewCell: UITableViewCell {
    
     @IBOutlet weak var watchedTicketID: UILabel!
     
-    @IBOutlet weak var watchedTicketAppLabel: UILabel!
+    
+    @IBOutlet weak var watchedBusinessGroupLabel: UILabel!
+    @IBOutlet weak var watchedBusinessGroup: UILabel!
+    @IBOutlet weak var watchedSubBusinessGroupLabel: UILabel!
+    @IBOutlet weak var watchedSubBusinessGroup: UILabel!
     @IBOutlet weak var watchedTicketRiskLabel: UILabel!
     @IBOutlet weak var watchedTicketPlannedLabel: UILabel!
-    
+    @IBOutlet weak var watchedPlannedDate: UILabel!
     @IBOutlet weak var watchedTicketPriority: UILabel!
     
-    class var expandedHeight : CGFloat { get { return 150 } }
+    class var expandedHeight : CGFloat { get { return 170 } }
     class var defaultHeight : CGFloat { get { return 44 } }
     
     func checkHeight() {
-        watchedTicketAppLabel.hidden = frame.size.height < WatchedTicketTableViewCell.expandedHeight
+        watchedBusinessGroupLabel.hidden = frame.size.height < WatchedTicketTableViewCell.expandedHeight
+        watchedSubBusinessGroupLabel.hidden = frame.size.height < WatchedTicketTableViewCell.expandedHeight
         watchedTicketRiskLabel.hidden = frame.size.height < WatchedTicketTableViewCell.expandedHeight
         watchedTicketPlannedLabel.hidden = frame.size.height < WatchedTicketTableViewCell.expandedHeight
         
         watchedTicketPriority.hidden = frame.size.height < WatchedTicketTableViewCell.expandedHeight
+        watchedBusinessGroup.hidden = frame.size.height < WatchedTicketTableViewCell.expandedHeight
+        watchedSubBusinessGroup.hidden = frame.size.height < WatchedTicketTableViewCell.expandedHeight
+        watchedPlannedDate.hidden = frame.size.height < WatchedTicketTableViewCell.expandedHeight
         
     }
     
@@ -62,6 +70,9 @@ class WatchedTicketTableViewCell: UITableViewCell {
         didSet {
             watchedTicketID.text = ticket.id
             watchedTicketPriority.text = String(ticket.priority)
+            watchedBusinessGroup.text = ticket.requestedByGroupBusinessUnit
+            watchedSubBusinessGroup.text = ticket.requestedByGroupSubBusinessUnit
+            watchedPlannedDate.text = ticket.startDate
         }
     }
     

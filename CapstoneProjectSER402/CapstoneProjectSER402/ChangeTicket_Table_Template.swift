@@ -15,14 +15,18 @@ class ChangeTicket_Table_Template
     var startDate: String
     var icon: UIImage?
     var isWatched: Bool
+    var requestedByGroupBusinessUnit: String
+    var requestedByGroupSubBusinessUnit: String
     
-    init(id: String, priority: String, startDate: String, icon: UIImage, isWatched: Bool)
+    init(id: String, priority: String, startDate: String, icon: UIImage, isWatched: Bool, requestedByGroupBusinessUnit: String, requestedByGroupSubBusinessUnit: String)
     {
         self.id = id
         self.priority = priority
         self.startDate = startDate
         self.icon = icon
         self.isWatched = isWatched
+        self.requestedByGroupBusinessUnit = requestedByGroupBusinessUnit
+        self.requestedByGroupSubBusinessUnit = requestedByGroupSubBusinessUnit
     }
     
     func getId() -> String
@@ -45,6 +49,14 @@ class ChangeTicket_Table_Template
     {
         return self.isWatched
     }
+    func getRequestedByGroupBusinessUnit() -> String
+    {
+        return self.requestedByGroupBusinessUnit
+    }
+    func getRequestedByGroupSubBusinessUnit() -> String
+    {
+        return self.requestedByGroupSubBusinessUnit
+    }
     
     func setId(id: String)
     {
@@ -65,5 +77,13 @@ class ChangeTicket_Table_Template
     func setIsWatched(isWatched: Bool)
     {
         self.isWatched = isWatched
+    }
+    func setRequestedByGroupBusinessUnit(requestedByGroupBusinessUnit: String)
+    {
+        self.requestedByGroupBusinessUnit = requestedByGroupBusinessUnit
+    }
+    func setRequestedByGroupSubBusinessUnit(requestedByGroupSubBusinessUnit: String)
+    {
+        self.requestedByGroupSubBusinessUnit = requestedByGroupSubBusinessUnit
     }
 }

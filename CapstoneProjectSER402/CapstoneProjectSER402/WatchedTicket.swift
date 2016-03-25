@@ -12,4 +12,6 @@ struct WatchedTicket {
     let id : String?
     let startDate : String
     let priority : String
+    let requestedByGroupBusinessUnit: String
+    let requestedByGroupSubBusinessUnit: String
 }
