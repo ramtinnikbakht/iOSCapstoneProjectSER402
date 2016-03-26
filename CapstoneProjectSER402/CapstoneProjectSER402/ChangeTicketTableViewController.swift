@@ -17,6 +17,7 @@ class ChangeTicketTableViewController: UITableViewController
  
     private var tbvc = TicketTabBarController()
     private var apps = BusinessModel()
+    var appsSearchResults:[BusinessApp_Table_Template]?
     var businessApps = [BusinessApp_Table_Template]()
     let cellIdentifier = "ChangeTicketTableViewCell"
     
@@ -64,7 +65,7 @@ class ChangeTicketTableViewController: UITableViewController
         let obj3 = BusinessApp(appId: "ServiceNow Enterprise Edition", businessAppSys: "", businessApp: "Allstate Application 3", appCriticality: "", owner: "", ownerSys: "", businessArea: "", businessAreaSys: "", businessUnit: "",
             businessUnitSys: "", businessSubUnitSys: "", businessSubUnit: "", ticketCount: 10, containsEmergencyTicket: false)
         let obj4 = BusinessApp(appId: "ServiceNow Enterprise Edition", businessAppSys: "", businessApp: "Allstate Application 4", appCriticality: "", owner: "", ownerSys: "", businessArea: "", businessAreaSys: "", businessUnit: "",
-            businessUnitSys: "", businessSubUnitSys: "", businessSubUnit: "", ticketCount: 5, containsEmergencyTicket: true)
+            businessUnitSys: "", businessSubUnitSys: "", businessSubUnit: "", ticketCount: 5, containsEmergencyTicket: false)
         
         let app1 = BusinessApp_Table_Template(appName: obj1.businessApp, ticketCount: obj1.ticketCount, containsEmergencyTicket: obj1.containsEmergencyTicket, icon: icon!)
         let app2 = BusinessApp_Table_Template(appName: obj2.businessApp, ticketCount: obj2.ticketCount, containsEmergencyTicket: obj2.containsEmergencyTicket, icon: icon!)
@@ -87,7 +88,6 @@ class ChangeTicketTableViewController: UITableViewController
         }
     }
  
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -109,39 +109,50 @@ class ChangeTicketTableViewController: UITableViewController
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! ChangeTicketTableViewCell
         let app = businessApps[indexPath.row] as BusinessApp_Table_Template
         if (app.containsEmergencyTicket) {
-            let red = UIColor(red: CGFloat(207/255.0), green: CGFloat(0), blue: CGFloat(15/255.0), alpha: 1)
-            cell.backgroundColor = UIColor(red: CGFloat(217/255.0), green: CGFloat(30/255.0), blue: CGFloat(24/255.0), alpha: 1)
-            cell.layer.shadowColor = red.CGColor
-            cell.layer.shadowRadius = 5.0
+            let nextApp = (businessApps[indexPath.row + 1]) as BusinessApp_Table_Template
+            if (nextApp.containsEmergencyTicket) {
+                let white = UIColor.whiteColor()
+                cell.backgroundColor = UIColor(red: CGFloat(217/255.0), green: CGFloat(30/255.0), blue: CGFloat(24/255.0), alpha: 1)
+                cell.layer.shadowColor = white.CGColor
+                cell.layer.shadowRadius = 3.5
+                cell.layer.shadowOpacity = 0.7
+                cell.layer.shadowOffset = CGSizeZero
+                cell.layer.masksToBounds = false
+                cell.ticketCount.textColor = UIColor.whiteColor()
+                cell.businessAppName.textColor = UIColor.whiteColor()
+                app.icon = UIImage(named: "circleEmergency.png")!
+            } else {
+                let red = UIColor(red: CGFloat(207/255.0), green: CGFloat(0), blue: CGFloat(15/255.0), alpha: 1)
+                cell.backgroundColor = UIColor(red: CGFloat(217/255.0), green: CGFloat(30/255.0), blue: CGFloat(24/255.0), alpha: 1)
+                cell.layer.shadowColor = red.CGColor
+                cell.layer.shadowRadius = 3.5
+                cell.layer.shadowOpacity = 0.9
+                cell.layer.shadowOffset = CGSizeZero
+                cell.layer.masksToBounds = false
+                cell.ticketCount.textColor = UIColor.whiteColor()
+                cell.businessAppName.textColor = UIColor.whiteColor()
+                app.icon = UIImage(named: "circleEmergency.png")!
+            }
+        } else {
+            let light_gray = UIColor.lightGrayColor()
+            cell.layer.shadowColor = light_gray.CGColor
+            cell.layer.shadowRadius = 2.5
             cell.layer.shadowOpacity = 0.9
             cell.layer.shadowOffset = CGSizeZero
             cell.layer.masksToBounds = false
-            cell.ticketCount.textColor = UIColor.whiteColor()
-            cell.businessAppName.textColor = UIColor.whiteColor()
-            app.icon = UIImage(named: "circleEmergency.png")!
         }
         cell.app = app
         //cell.addGestureRecognizer(recognizer)
-        
         return cell
         
     }
     
-//    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//        let  headerCell = tableView.dequeueReusableCellWithIdentifier("HeaderCell") as! CustomHeaderCell
-//        headerCell.backgroundColor = UIColor.blackColor()
-//        print("We made it here")
-//        switch (section) {
-//        case 0:
-//            headerCell.headerLabel.text = "Recent Activity";
-//            headerCell.headerLabel.textColor = UIColor.whiteColor()
-//            //return sectionHeaderView
-//        default:
-//            headerCell.headerLabel.text = "Other";
-//        }
-//        
-//        return headerCell
-//    }
+    
+    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let  headerCell = tableView.dequeueReusableCellWithIdentifier("HeaderCell") as! CustomHeaderCell
+        headerCell.backgroundColor = UIColor.lightGrayColor()
+        return headerCell
+    }
     
     
 
