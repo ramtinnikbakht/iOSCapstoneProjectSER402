@@ -50,6 +50,7 @@
 		C14333CE1CA6CCBB0083CA88 /* circle.png in Resources */ = {isa = PBXBuildFile; fileRef = C14333C41CA5B0B60083CA88 /* circle.png */; };
 		C14333CF1CA6CCCD0083CA88 /* gear.png in Resources */ = {isa = PBXBuildFile; fileRef = C14333CA1CA6948E0083CA88 /* gear.png */; };
 		C14333D01CA6CCD50083CA88 /* circleEmergency.png in Resources */ = {isa = PBXBuildFile; fileRef = C14333C81CA5BE850083CA88 /* circleEmergency.png */; };
+		C14333D21CA6D8300083CA88 /* BusinessAppTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14333D11CA6D8300083CA88 /* BusinessAppTableViewController.swift */; };
 		C19F0DC11C73E14F009BD594 /* binoculars-front-view.png in Resources */ = {isa = PBXBuildFile; fileRef = C19F0DC01C73E14F009BD594 /* binoculars-front-view.png */; };
 		C19F0DC31C73E226009BD594 /* infographic-bars.png in Resources */ = {isa = PBXBuildFile; fileRef = C19F0DC21C73E226009BD594 /* infographic-bars.png */; };
 		C19F0DC51C73E2C3009BD594 /* home-page.png in Resources */ = {isa = PBXBuildFile; fileRef = C19F0DC41C73E2C3009BD594 /* home-page.png */; };
@@ -183,6 +184,7 @@
 		C14333C61CA5B25E0083CA88 /* BusinessApp_Table_Template.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusinessApp_Table_Template.swift; sourceTree = "<group>"; };
 		C14333C81CA5BE850083CA88 /* circleEmergency.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = circleEmergency.png; sourceTree = "<group>"; };
 		C14333CA1CA6948E0083CA88 /* gear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gear.png; sourceTree = "<group>"; };
+		C14333D11CA6D8300083CA88 /* BusinessAppTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusinessAppTableViewController.swift; sourceTree = "<group>"; };
 		C19F0DC01C73E14F009BD594 /* binoculars-front-view.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "binoculars-front-view.png"; sourceTree = "<group>"; };
 		C19F0DC21C73E226009BD594 /* infographic-bars.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "infographic-bars.png"; sourceTree = "<group>"; };
 		C19F0DC41C73E2C3009BD594 /* home-page.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home-page.png"; sourceTree = "<group>"; };
@@ -283,6 +285,7 @@
 				C14333C61CA5B25E0083CA88 /* BusinessApp_Table_Template.swift */,
 				C19F0DCC1C745DB6009BD594 /* ChangeTicket.swift */,
 				C19F0DD61C75A28A009BD594 /* ChangeTicketTableViewController.swift */,
+				C14333D11CA6D8300083CA88 /* BusinessAppTableViewController.swift */,
 				469E77241C9A1E620028D422 /* DataHandler.swift */,
 				48D741A41C5AAE86008D082E /* LoginViewController.swift */,
 				489AFBA91C7F8D2900E9DEB9 /* SetupContentViewController.swift */,
@@ -545,6 +548,7 @@
 				C14333BE1CA5ADFF0083CA88 /* BusinessModel.swift in Sources */,
 				462EB84B1C990BF00076C28D /* BusinessApp.swift in Sources */,
 				462EB8511C990BF00076C28D /* WatchedTicketTableViewController.swift in Sources */,
+				C14333D21CA6D8300083CA88 /* BusinessAppTableViewController.swift in Sources */,
 				462EB8491C990BF00076C28D /* AppSelectionViewController.swift in Sources */,
 				489AFBAA1C7F8D2900E9DEB9 /* SetupContentViewController.swift in Sources */,
 				46A2AB121CA47C0E00F87C80 /* AnalysisViewController.swift in Sources */,
