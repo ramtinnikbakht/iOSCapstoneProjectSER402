@@ -18,7 +18,7 @@ class BusinessAppTableViewController: UITableViewController
     private var tbvc = TicketTabBarController()
     private var apps = BusinessModel()
     var businessApps = [BusinessApp_Table_Template]()
-    let cellIdentifier = "ChangeTicketTableViewCell"
+    let cellIdentifier = "BusinessAppCell"
     
     override func viewDidLoad()
     {
@@ -29,7 +29,6 @@ class BusinessAppTableViewController: UITableViewController
         loadSampleApps()
     }
 
-    
     func loadSampleApps()
     {
         let icon = UIImage(named: "circle.png")
@@ -80,7 +79,7 @@ class BusinessAppTableViewController: UITableViewController
     
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! ChangeTicketTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! BusinessAppTableViewCell
         let app = businessApps[indexPath.row] as BusinessApp_Table_Template
         if (app.containsEmergencyTicket) {
             let nextApp = (businessApps[indexPath.row + 1]) as BusinessApp_Table_Template
