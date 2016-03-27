@@ -11,7 +11,7 @@
 		462EB8491C990BF00076C28D /* AppSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462EB83D1C990BF00076C28D /* AppSelectionViewController.swift */; };
 		462EB84A1C990BF00076C28D /* Base.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 462EB83E1C990BF00076C28D /* Base.lproj */; };
 		462EB84B1C990BF00076C28D /* BusinessApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462EB83F1C990BF00076C28D /* BusinessApp.swift */; };
-		462EB84D1C990BF00076C28D /* SuggestedAppsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462EB8421C990BF00076C28D /* SuggestedAppsTableViewController.swift */; };
+		462EB84D1C990BF00076C28D /* AppSelectionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462EB8421C990BF00076C28D /* AppSelectionTableViewController.swift */; };
 		462EB8511C990BF00076C28D /* WatchedTicketTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462EB8471C990BF00076C28D /* WatchedTicketTableViewController.swift */; };
 		469E77251C9A1E620028D422 /* DataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469E77241C9A1E620028D422 /* DataHandler.swift */; };
 		46A2AB121CA47C0E00F87C80 /* AnalysisViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A2AB0D1CA47C0E00F87C80 /* AnalysisViewController.swift */; };
@@ -25,7 +25,7 @@
 		489AFBA81C7F6B3000E9DEB9 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489AFBA71C7F6B3000E9DEB9 /* User.swift */; };
 		489AFBAA1C7F8D2900E9DEB9 /* SetupContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489AFBA91C7F8D2900E9DEB9 /* SetupContentViewController.swift */; };
 		489AFBAC1C7F8F5B00E9DEB9 /* WizardSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489AFBAB1C7F8F5B00E9DEB9 /* WizardSetupViewController.swift */; };
-		48CE447C1C8FB73D00BECD12 /* SuggestedAppsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48CE447B1C8FB73D00BECD12 /* SuggestedAppsTableViewCell.swift */; };
+		48CE447C1C8FB73D00BECD12 /* AppSelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48CE447B1C8FB73D00BECD12 /* AppSelectionTableViewCell.swift */; };
 		48CE44831C8FC88400BECD12 /* checked-circle.png in Resources */ = {isa = PBXBuildFile; fileRef = 48CE44811C8FC88400BECD12 /* checked-circle.png */; };
 		48CE44841C8FC88400BECD12 /* unchecked-circle.png in Resources */ = {isa = PBXBuildFile; fileRef = 48CE44821C8FC88400BECD12 /* unchecked-circle.png */; };
 		48CFA2D31C73C02E0081A8E1 /* menuoptions.png in Resources */ = {isa = PBXBuildFile; fileRef = 48CFA2D21C73C02E0081A8E1 /* menuoptions.png */; };
@@ -135,7 +135,7 @@
 		462EB83E1C990BF00076C28D /* Base.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Base.lproj; sourceTree = "<group>"; };
 		462EB83F1C990BF00076C28D /* BusinessApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusinessApp.swift; sourceTree = "<group>"; };
 		462EB8401C990BF00076C28D /* CapstoneProjectSER402-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CapstoneProjectSER402-Bridging-Header.h"; sourceTree = "<group>"; };
-		462EB8421C990BF00076C28D /* SuggestedAppsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SuggestedAppsTableViewController.swift; sourceTree = "<group>"; };
+		462EB8421C990BF00076C28D /* AppSelectionTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppSelectionTableViewController.swift; sourceTree = "<group>"; };
 		462EB8431C990BF00076C28D /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		462EB8441C990BF00076C28D /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		462EB8471C990BF00076C28D /* WatchedTicketTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchedTicketTableViewController.swift; sourceTree = "<group>"; };
@@ -150,11 +150,10 @@
 		4818FE0C1CA498CF00B7EB47 /* settings-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings-icon.png"; sourceTree = "<group>"; };
 		4818FE111CA49CFA00B7EB47 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		48993BEC1C8CBB0A00EDA13E /* SelectUserTypeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectUserTypeViewController.swift; sourceTree = "<group>"; };
-		48993BEE1C8D06D900EDA13E /* SuggestedAppsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SuggestedAppsTableViewController.swift; sourceTree = "<group>"; };
 		489AFBA71C7F6B3000E9DEB9 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		489AFBA91C7F8D2900E9DEB9 /* SetupContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetupContentViewController.swift; sourceTree = "<group>"; };
 		489AFBAB1C7F8F5B00E9DEB9 /* WizardSetupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WizardSetupViewController.swift; sourceTree = "<group>"; };
-		48CE447B1C8FB73D00BECD12 /* SuggestedAppsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SuggestedAppsTableViewCell.swift; sourceTree = "<group>"; };
+		48CE447B1C8FB73D00BECD12 /* AppSelectionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppSelectionTableViewCell.swift; sourceTree = "<group>"; };
 		48CE44811C8FC88400BECD12 /* checked-circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checked-circle.png"; sourceTree = "<group>"; };
 		48CE44821C8FC88400BECD12 /* unchecked-circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "unchecked-circle.png"; sourceTree = "<group>"; };
 		48CFA2D21C73C02E0081A8E1 /* menuoptions.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menuoptions.png; sourceTree = "<group>"; };
@@ -262,7 +261,6 @@
 				46A2AB0F1CA47C0E00F87C80 /* SWRevealViewController.h */,
 				46A2AB101CA47C0E00F87C80 /* SWRevealViewController.m */,
 				46A2AB111CA47C0E00F87C80 /* UserTypeSelectionViewController.swift */,
-				48993BEE1C8D06D900EDA13E /* SuggestedAppsTableViewController.swift */,
 				48993BEC1C8CBB0A00EDA13E /* SelectUserTypeViewController.swift */,
 				4818FE0C1CA498CF00B7EB47 /* settings-icon.png */,
 				C14333CA1CA6948E0083CA88 /* gear.png */,
@@ -289,8 +287,8 @@
 				469E77241C9A1E620028D422 /* DataHandler.swift */,
 				48D741A41C5AAE86008D082E /* LoginViewController.swift */,
 				489AFBA91C7F8D2900E9DEB9 /* SetupContentViewController.swift */,
-				48CE447B1C8FB73D00BECD12 /* SuggestedAppsTableViewCell.swift */,
-				462EB8421C990BF00076C28D /* SuggestedAppsTableViewController.swift */,
+				48CE447B1C8FB73D00BECD12 /* AppSelectionTableViewCell.swift */,
+				462EB8421C990BF00076C28D /* AppSelectionTableViewController.swift */,
 				489AFBA71C7F6B3000E9DEB9 /* User.swift */,
 				C121B52C1C80075B001F3B16 /* WatchedTicket.swift */,
 				462EB8471C990BF00076C28D /* WatchedTicketTableViewController.swift */,
@@ -540,7 +538,7 @@
 				C142E6551C9BEC5A005F1DEC /* TicketModel.swift in Sources */,
 				46A2AB141CA47C0E00F87C80 /* UserTypeSelectionViewController.swift in Sources */,
 				489AFBA81C7F6B3000E9DEB9 /* User.swift in Sources */,
-				48CE447C1C8FB73D00BECD12 /* SuggestedAppsTableViewCell.swift in Sources */,
+				48CE447C1C8FB73D00BECD12 /* AppSelectionTableViewCell.swift in Sources */,
 				489AFBAC1C7F8F5B00E9DEB9 /* WizardSetupViewController.swift in Sources */,
 				469E77251C9A1E620028D422 /* DataHandler.swift in Sources */,
 				462EB84D1C990BF00076C28D /* SuggestedAppsTableViewController.swift in Sources */,
