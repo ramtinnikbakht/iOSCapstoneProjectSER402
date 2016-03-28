@@ -408,6 +408,12 @@
                                         <rect key="frame" x="292" y="203" width="51" height="31"/>
                                         <color key="onTintColor" red="0.3473256562" green="0.47567623180000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     </switch>
+                                    <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.0" maxValue="3" continuous="NO" translatesAutoresizingMaskIntoConstraints="NO" id="brR-Uq-4sY">
+                                        <rect key="frame" x="231" y="153" width="118" height="31"/>
+                                        <connections>
+                                            <action selector="sliderValueChanged:" destination="S6Q-R1-NI0" eventType="valueChanged" id="qRd-GC-nDM"/>
+                                        </connections>
+                                    </slider>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
@@ -440,6 +446,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="dateSlider" destination="brR-Uq-4sY" id="jnx-c8-A1Q"/>
                         <outlet property="endDate" destination="tgq-ff-gb7" id="8ql-NN-X0Q"/>
                         <outlet property="graphRepresentationControl" destination="fmE-Gy-q97" id="6P2-at-1LJ"/>
                         <outlet property="horizontalBarChartView" destination="Jrp-hd-Ish" id="EeI-wp-ji0"/>
@@ -743,6 +750,6 @@
         <image name="infographic-bars.png" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="QgG-3O-c3k"/>
+        <segue reference="RvY-rT-1hV"/>
     </inferredMetricsTieBreakers>
 </document>

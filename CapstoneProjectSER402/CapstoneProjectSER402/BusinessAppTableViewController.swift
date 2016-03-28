@@ -16,6 +16,7 @@ class BusinessAppTableViewController: UITableViewController
     
     
     private var tbvc = TicketTabBarController()
+    private var tickets = TicketModel()
     private var apps = BusinessModel()
     var businessApps = [BusinessApp_Table_Template]()
     let cellIdentifier = "BusinessAppCell"

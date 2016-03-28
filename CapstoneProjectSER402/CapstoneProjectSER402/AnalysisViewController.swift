@@ -7,6 +7,7 @@
 //
 import UIKit
 import Charts
+import Foundation
 
 class AnalysisViewController: UIViewController, UITextFieldDelegate, ChartViewDelegate {
     
@@ -18,6 +19,7 @@ class AnalysisViewController: UIViewController, UITextFieldDelegate, ChartViewDe
     var selectedTF = UITextField()
     var releaseWindowLL = ChartLimitLine(limit: 1.0, label: "Release \nDeployment \nWindow")
     
+    @IBOutlet weak var dateSlider: UISlider!
     @IBOutlet weak var initialDate: UITextField!
     @IBOutlet weak var endDate: UITextField!
     @IBOutlet weak var selectedTicketCount: UILabel!
@@ -83,6 +85,22 @@ class AnalysisViewController: UIViewController, UITextFieldDelegate, ChartViewDe
         }
     }
     
+    @IBAction func sliderValueChanged(sender: UISlider) {
+        var currentValue = Int(sender.value) * 1
+        let date = NSDate()
+        let formatter = NSDateFormatter()
+        formatter.timeStyle = .ShortStyle
+        let timeString = formatter.stringFromDate(date)
+        print(timeString)
+        if (currentValue < 1) {
+            let historicalDates = ["Jan '14", "Feb '14", "Mar '14", "Apr '14", "May '14", "Jun '14", "Jul '14", "Aug '14", "Sep '14", "Oct '14", "Nov '14", "Dec '14"]
+            let historicalTickets = [3.0, 4.0, 8.0, 6.0, 7.0, 12.0, 5.0, 9.0, 10.0, 2.0, 3.0, 11.0]
+            horizontalBarChartView.clear()
+            setChart(historicalDates, values: historicalTickets)
+        }
+        
+    }
+    
     func stateChanged(switchState: UISwitch) {
         if switchState.on {
             horizontalBarChartView.xAxis.removeLimitLine(releaseWindowLL)
@@ -106,7 +124,7 @@ class AnalysisViewController: UIViewController, UITextFieldDelegate, ChartViewDe
         initialDate.delegate = self
         endDate.delegate = self
         releaseWindowSwitch.addTarget(self, action: Selector("stateChanged:"), forControlEvents: .ValueChanged)
-        
+        print(wTickets.changeTickets.count)
         // Do any additional setup after loading the view.
         
         tbvc = tabBarController as! TicketTabBarController
