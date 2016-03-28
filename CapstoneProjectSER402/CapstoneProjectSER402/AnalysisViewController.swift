@@ -20,6 +20,9 @@ class AnalysisViewController: UIViewController, UITextFieldDelegate, ChartViewDe
     var releaseWindowLL = ChartLimitLine(limit: 1.0, label: "Release \nDeployment \nWindow")
     
     @IBOutlet weak var dateSlider: UISlider!
+    @IBOutlet weak var dailyLabel: UILabel!
+    @IBOutlet weak var weeklyLabel: UILabel!
+    @IBOutlet weak var monthlyLabel: UILabel!
     @IBOutlet weak var initialDate: UITextField!
     @IBOutlet weak var endDate: UITextField!
     @IBOutlet weak var selectedTicketCount: UILabel!
@@ -86,17 +89,44 @@ class AnalysisViewController: UIViewController, UITextFieldDelegate, ChartViewDe
     }
     
     @IBAction func sliderValueChanged(sender: UISlider) {
-        var currentValue = Int(sender.value) * 1
-        let date = NSDate()
-        let formatter = NSDateFormatter()
-        formatter.timeStyle = .ShortStyle
-        let timeString = formatter.stringFromDate(date)
-        print(timeString)
+        let currentValue = Int(sender.value)
+        let now = NSDate()
+
+        // Daily View
         if (currentValue < 1) {
-            let historicalDates = ["Jan '14", "Feb '14", "Mar '14", "Apr '14", "May '14", "Jun '14", "Jul '14", "Aug '14", "Sep '14", "Oct '14", "Nov '14", "Dec '14"]
-            let historicalTickets = [3.0, 4.0, 8.0, 6.0, 7.0, 12.0, 5.0, 9.0, 10.0, 2.0, 3.0, 11.0]
+            dailyLabel.textColor = UIColor.blueColor()
+            weeklyLabel.textColor = UIColor.blackColor()
+            monthlyLabel.textColor = UIColor.blackColor()
+            let formatter = NSDateFormatter()
+            formatter.timeStyle = .ShortStyle
+            let daily = [formatter.stringFromDate(now), formatter.stringFromDate(now.plusHours(2)), formatter.stringFromDate(now.plusHours(4)), formatter.stringFromDate(now.plusHours(6)), formatter.stringFromDate(now.plusHours(8)), formatter.stringFromDate(now.plusHours(10)), formatter.stringFromDate(now.plusHours(12))]
+            let historicalTickets = [3.0, 4.0, 8.0, 6.0, 7.0, 12.0, 5.0]
             horizontalBarChartView.clear()
-            setChart(historicalDates, values: historicalTickets)
+            setChart(daily, values: historicalTickets)
+        }
+        // Weekly View
+        else if (currentValue >= 1 && currentValue < 2) {
+            dailyLabel.textColor = UIColor.blackColor()
+            weeklyLabel.textColor = UIColor.blueColor()
+            monthlyLabel.textColor = UIColor.blackColor()
+            let weeklyFormatter = NSDateFormatter()
+            weeklyFormatter.dateStyle = .ShortStyle
+            let weekly = [weeklyFormatter.stringFromDate(now), weeklyFormatter.stringFromDate(now.plusDays(1)), weeklyFormatter.stringFromDate(now.plusDays(2)), weeklyFormatter.stringFromDate(now.plusDays(3)), weeklyFormatter.stringFromDate(now.plusDays(4)), weeklyFormatter.stringFromDate(now.plusDays(5)), weeklyFormatter.stringFromDate(now.plusDays(6))]
+            let historicalTickets = [3.0, 4.0, 8.0, 6.0, 7.0, 12.0, 5.0]
+            horizontalBarChartView.clear()
+            setChart(weekly, values: historicalTickets)
+        }
+        // Monthly View
+        else {
+            dailyLabel.textColor = UIColor.blackColor()
+            weeklyLabel.textColor = UIColor.blackColor()
+            monthlyLabel.textColor = UIColor.blueColor()
+            let monthlyFormatter = NSDateFormatter()
+            monthlyFormatter.dateFormat = "MM/dd"
+            let monthly = [monthlyFormatter.stringFromDate(now) + "-" + monthlyFormatter.stringFromDate(now.plusDays(7)), monthlyFormatter.stringFromDate(now.plusDays(7)) + "-" + monthlyFormatter.stringFromDate(now.plusDays(14)), monthlyFormatter.stringFromDate(now.plusDays(14)) + "-" + monthlyFormatter.stringFromDate(now.plusDays(21)), monthlyFormatter.stringFromDate(now.plusDays(21)) + "-" + monthlyFormatter.stringFromDate(now.plusDays(28))]
+            let historicalTickets = [3.0, 4.0, 8.0, 6.0]
+            horizontalBarChartView.clear()
+            setChart(monthly, values: historicalTickets)
         }
         
     }
