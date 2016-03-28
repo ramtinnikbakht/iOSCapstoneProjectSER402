@@ -7,6 +7,7 @@
 //
 import UIKit
 import Charts
+import Foundation
 
 class AnalysisViewController: UIViewController, UITextFieldDelegate, ChartViewDelegate {
     
@@ -18,6 +19,10 @@ class AnalysisViewController: UIViewController, UITextFieldDelegate, ChartViewDe
     var selectedTF = UITextField()
     var releaseWindowLL = ChartLimitLine(limit: 1.0, label: "Release \nDeployment \nWindow")
     
+    @IBOutlet weak var dateSlider: UISlider!
+    @IBOutlet weak var dailyLabel: UILabel!
+    @IBOutlet weak var weeklyLabel: UILabel!
+    @IBOutlet weak var monthlyLabel: UILabel!
     @IBOutlet weak var initialDate: UITextField!
     @IBOutlet weak var endDate: UITextField!
     @IBOutlet weak var selectedTicketCount: UILabel!
@@ -83,6 +88,49 @@ class AnalysisViewController: UIViewController, UITextFieldDelegate, ChartViewDe
         }
     }
     
+    @IBAction func sliderValueChanged(sender: UISlider) {
+        let currentValue = Int(sender.value)
+        let now = NSDate()
+
+        // Daily View
+        if (currentValue < 1) {
+            dailyLabel.textColor = UIColor.blueColor()
+            weeklyLabel.textColor = UIColor.blackColor()
+            monthlyLabel.textColor = UIColor.blackColor()
+            let formatter = NSDateFormatter()
+            formatter.timeStyle = .ShortStyle
+            let daily = [formatter.stringFromDate(now), formatter.stringFromDate(now.plusHours(2)), formatter.stringFromDate(now.plusHours(4)), formatter.stringFromDate(now.plusHours(6)), formatter.stringFromDate(now.plusHours(8)), formatter.stringFromDate(now.plusHours(10)), formatter.stringFromDate(now.plusHours(12))]
+            let historicalTickets = [3.0, 4.0, 8.0, 6.0, 7.0, 12.0, 5.0]
+            horizontalBarChartView.clear()
+            setChart(daily, values: historicalTickets)
+        }
+        // Weekly View
+        else if (currentValue >= 1 && currentValue < 2) {
+            dailyLabel.textColor = UIColor.blackColor()
+            weeklyLabel.textColor = UIColor.blueColor()
+            monthlyLabel.textColor = UIColor.blackColor()
+            let weeklyFormatter = NSDateFormatter()
+            weeklyFormatter.dateStyle = .ShortStyle
+            let weekly = [weeklyFormatter.stringFromDate(now), weeklyFormatter.stringFromDate(now.plusDays(1)), weeklyFormatter.stringFromDate(now.plusDays(2)), weeklyFormatter.stringFromDate(now.plusDays(3)), weeklyFormatter.stringFromDate(now.plusDays(4)), weeklyFormatter.stringFromDate(now.plusDays(5)), weeklyFormatter.stringFromDate(now.plusDays(6))]
+            let historicalTickets = [3.0, 4.0, 8.0, 6.0, 7.0, 12.0, 5.0]
+            horizontalBarChartView.clear()
+            setChart(weekly, values: historicalTickets)
+        }
+        // Monthly View
+        else {
+            dailyLabel.textColor = UIColor.blackColor()
+            weeklyLabel.textColor = UIColor.blackColor()
+            monthlyLabel.textColor = UIColor.blueColor()
+            let monthlyFormatter = NSDateFormatter()
+            monthlyFormatter.dateFormat = "MM/dd"
+            let monthly = [monthlyFormatter.stringFromDate(now) + "-" + monthlyFormatter.stringFromDate(now.plusDays(7)), monthlyFormatter.stringFromDate(now.plusDays(7)) + "-" + monthlyFormatter.stringFromDate(now.plusDays(14)), monthlyFormatter.stringFromDate(now.plusDays(14)) + "-" + monthlyFormatter.stringFromDate(now.plusDays(21)), monthlyFormatter.stringFromDate(now.plusDays(21)) + "-" + monthlyFormatter.stringFromDate(now.plusDays(28))]
+            let historicalTickets = [3.0, 4.0, 8.0, 6.0]
+            horizontalBarChartView.clear()
+            setChart(monthly, values: historicalTickets)
+        }
+        
+    }
+    
     func stateChanged(switchState: UISwitch) {
         if switchState.on {
             horizontalBarChartView.xAxis.removeLimitLine(releaseWindowLL)
@@ -106,7 +154,7 @@ class AnalysisViewController: UIViewController, UITextFieldDelegate, ChartViewDe
         initialDate.delegate = self
         endDate.delegate = self
         releaseWindowSwitch.addTarget(self, action: Selector("stateChanged:"), forControlEvents: .ValueChanged)
-        
+        print(wTickets.changeTickets.count)
         // Do any additional setup after loading the view.
         
         tbvc = tabBarController as! TicketTabBarController

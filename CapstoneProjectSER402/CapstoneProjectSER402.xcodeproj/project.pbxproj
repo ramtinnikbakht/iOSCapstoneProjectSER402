@@ -11,7 +11,7 @@
 		462EB8491C990BF00076C28D /* AppSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462EB83D1C990BF00076C28D /* AppSelectionViewController.swift */; };
 		462EB84A1C990BF00076C28D /* Base.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 462EB83E1C990BF00076C28D /* Base.lproj */; };
 		462EB84B1C990BF00076C28D /* BusinessApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462EB83F1C990BF00076C28D /* BusinessApp.swift */; };
-		462EB84D1C990BF00076C28D /* SuggestedAppsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462EB8421C990BF00076C28D /* SuggestedAppsTableViewController.swift */; };
+		462EB84D1C990BF00076C28D /* AppSelectionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462EB8421C990BF00076C28D /* AppSelectionTableViewController.swift */; };
 		462EB8511C990BF00076C28D /* WatchedTicketTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462EB8471C990BF00076C28D /* WatchedTicketTableViewController.swift */; };
 		469E77251C9A1E620028D422 /* DataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469E77241C9A1E620028D422 /* DataHandler.swift */; };
 		46A2AB121CA47C0E00F87C80 /* AnalysisViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A2AB0D1CA47C0E00F87C80 /* AnalysisViewController.swift */; };
@@ -25,7 +25,7 @@
 		489AFBA81C7F6B3000E9DEB9 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489AFBA71C7F6B3000E9DEB9 /* User.swift */; };
 		489AFBAA1C7F8D2900E9DEB9 /* SetupContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489AFBA91C7F8D2900E9DEB9 /* SetupContentViewController.swift */; };
 		489AFBAC1C7F8F5B00E9DEB9 /* WizardSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489AFBAB1C7F8F5B00E9DEB9 /* WizardSetupViewController.swift */; };
-		48CE447C1C8FB73D00BECD12 /* SuggestedAppsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48CE447B1C8FB73D00BECD12 /* SuggestedAppsTableViewCell.swift */; };
+		48CE447C1C8FB73D00BECD12 /* AppSelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48CE447B1C8FB73D00BECD12 /* AppSelectionTableViewCell.swift */; };
 		48CE44831C8FC88400BECD12 /* checked-circle.png in Resources */ = {isa = PBXBuildFile; fileRef = 48CE44811C8FC88400BECD12 /* checked-circle.png */; };
 		48CE44841C8FC88400BECD12 /* unchecked-circle.png in Resources */ = {isa = PBXBuildFile; fileRef = 48CE44821C8FC88400BECD12 /* unchecked-circle.png */; };
 		48CFA2D31C73C02E0081A8E1 /* menuoptions.png in Resources */ = {isa = PBXBuildFile; fileRef = 48CFA2D21C73C02E0081A8E1 /* menuoptions.png */; };
@@ -45,7 +45,14 @@
 		C14333931CA0E9CF0083CA88 /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C143338C1CA0E99B0083CA88 /* Charts.framework */; };
 		C14333941CA0E9CF0083CA88 /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C143338C1CA0E99B0083CA88 /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C14333A61CA4146D0083CA88 /* CustomHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14333A51CA4146D0083CA88 /* CustomHeaderCell.swift */; };
-		C14333E11CA9E3430083CA88 /* gear.png in Resources */ = {isa = PBXBuildFile; fileRef = C14333E01CA9E3430083CA88 /* gear.png */; };
+		C14333BE1CA5ADFF0083CA88 /* BusinessModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14333BD1CA5ADFF0083CA88 /* BusinessModel.swift */; };
+		C14333C71CA5B25E0083CA88 /* BusinessApp_Table_Template.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14333C61CA5B25E0083CA88 /* BusinessApp_Table_Template.swift */; };
+		C14333CE1CA6CCBB0083CA88 /* circle.png in Resources */ = {isa = PBXBuildFile; fileRef = C14333C41CA5B0B60083CA88 /* circle.png */; };
+		C14333CF1CA6CCCD0083CA88 /* gear.png in Resources */ = {isa = PBXBuildFile; fileRef = C14333CA1CA6948E0083CA88 /* gear.png */; };
+		C14333D01CA6CCD50083CA88 /* circleEmergency.png in Resources */ = {isa = PBXBuildFile; fileRef = C14333C81CA5BE850083CA88 /* circleEmergency.png */; };
+		C14333D21CA6D8300083CA88 /* BusinessAppTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14333D11CA6D8300083CA88 /* BusinessAppTableViewController.swift */; };
+		C14333D41CA6E9920083CA88 /* BusinessAppTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14333D31CA6E9920083CA88 /* BusinessAppTableViewCell.swift */; };
+		C14333D71CA9BCF70083CA88 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14333D61CA9BCF70083CA88 /* DateExtension.swift */; };
 		C19F0DC11C73E14F009BD594 /* binoculars-front-view.png in Resources */ = {isa = PBXBuildFile; fileRef = C19F0DC01C73E14F009BD594 /* binoculars-front-view.png */; };
 		C19F0DC31C73E226009BD594 /* infographic-bars.png in Resources */ = {isa = PBXBuildFile; fileRef = C19F0DC21C73E226009BD594 /* infographic-bars.png */; };
 		C19F0DC51C73E2C3009BD594 /* home-page.png in Resources */ = {isa = PBXBuildFile; fileRef = C19F0DC41C73E2C3009BD594 /* home-page.png */; };
@@ -130,7 +137,7 @@
 		462EB83E1C990BF00076C28D /* Base.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Base.lproj; sourceTree = "<group>"; };
 		462EB83F1C990BF00076C28D /* BusinessApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusinessApp.swift; sourceTree = "<group>"; };
 		462EB8401C990BF00076C28D /* CapstoneProjectSER402-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CapstoneProjectSER402-Bridging-Header.h"; sourceTree = "<group>"; };
-		462EB8421C990BF00076C28D /* SuggestedAppsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SuggestedAppsTableViewController.swift; sourceTree = "<group>"; };
+		462EB8421C990BF00076C28D /* AppSelectionTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppSelectionTableViewController.swift; sourceTree = "<group>"; };
 		462EB8431C990BF00076C28D /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		462EB8441C990BF00076C28D /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		462EB8471C990BF00076C28D /* WatchedTicketTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchedTicketTableViewController.swift; sourceTree = "<group>"; };
@@ -145,11 +152,10 @@
 		4818FE0C1CA498CF00B7EB47 /* settings-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings-icon.png"; sourceTree = "<group>"; };
 		4818FE111CA49CFA00B7EB47 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		48993BEC1C8CBB0A00EDA13E /* SelectUserTypeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectUserTypeViewController.swift; sourceTree = "<group>"; };
-		48993BEE1C8D06D900EDA13E /* SuggestedAppsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SuggestedAppsTableViewController.swift; sourceTree = "<group>"; };
 		489AFBA71C7F6B3000E9DEB9 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		489AFBA91C7F8D2900E9DEB9 /* SetupContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetupContentViewController.swift; sourceTree = "<group>"; };
 		489AFBAB1C7F8F5B00E9DEB9 /* WizardSetupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WizardSetupViewController.swift; sourceTree = "<group>"; };
-		48CE447B1C8FB73D00BECD12 /* SuggestedAppsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SuggestedAppsTableViewCell.swift; sourceTree = "<group>"; };
+		48CE447B1C8FB73D00BECD12 /* AppSelectionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppSelectionTableViewCell.swift; sourceTree = "<group>"; };
 		48CE44811C8FC88400BECD12 /* checked-circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checked-circle.png"; sourceTree = "<group>"; };
 		48CE44821C8FC88400BECD12 /* unchecked-circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "unchecked-circle.png"; sourceTree = "<group>"; };
 		48CFA2D21C73C02E0081A8E1 /* menuoptions.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menuoptions.png; sourceTree = "<group>"; };
@@ -174,7 +180,14 @@
 		C14333821CA0E9540083CA88 /* Charts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Charts; sourceTree = "<group>"; };
 		C14333841CA0E99B0083CA88 /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = Charts/Charts.xcodeproj; sourceTree = "<group>"; };
 		C14333A51CA4146D0083CA88 /* CustomHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomHeaderCell.swift; sourceTree = "<group>"; };
-		C14333E01CA9E3430083CA88 /* gear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gear.png; sourceTree = "<group>"; };
+		C14333BD1CA5ADFF0083CA88 /* BusinessModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusinessModel.swift; sourceTree = "<group>"; };
+		C14333C41CA5B0B60083CA88 /* circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = circle.png; sourceTree = "<group>"; };
+		C14333C61CA5B25E0083CA88 /* BusinessApp_Table_Template.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusinessApp_Table_Template.swift; sourceTree = "<group>"; };
+		C14333C81CA5BE850083CA88 /* circleEmergency.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = circleEmergency.png; sourceTree = "<group>"; };
+		C14333CA1CA6948E0083CA88 /* gear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gear.png; sourceTree = "<group>"; };
+		C14333D11CA6D8300083CA88 /* BusinessAppTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusinessAppTableViewController.swift; sourceTree = "<group>"; };
+		C14333D31CA6E9920083CA88 /* BusinessAppTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusinessAppTableViewCell.swift; sourceTree = "<group>"; };
+		C14333D61CA9BCF70083CA88 /* DateExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		C19F0DC01C73E14F009BD594 /* binoculars-front-view.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "binoculars-front-view.png"; sourceTree = "<group>"; };
 		C19F0DC21C73E226009BD594 /* infographic-bars.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "infographic-bars.png"; sourceTree = "<group>"; };
 		C19F0DC41C73E2C3009BD594 /* home-page.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home-page.png"; sourceTree = "<group>"; };
@@ -252,10 +265,11 @@
 				46A2AB0F1CA47C0E00F87C80 /* SWRevealViewController.h */,
 				46A2AB101CA47C0E00F87C80 /* SWRevealViewController.m */,
 				46A2AB111CA47C0E00F87C80 /* UserTypeSelectionViewController.swift */,
+				C14333D61CA9BCF70083CA88 /* DateExtension.swift */,
 				48993BEE1C8D06D900EDA13E /* SuggestedAppsTableViewController.swift */,
 				48993BEC1C8CBB0A00EDA13E /* SelectUserTypeViewController.swift */,
 				4818FE0C1CA498CF00B7EB47 /* settings-icon.png */,
-				C14333E01CA9E3430083CA88 /* gear.png */,
+				C14333CA1CA6948E0083CA88 /* gear.png */,
 				48CE44811C8FC88400BECD12 /* checked-circle.png */,
 				C19F0DDA1C75BAAA009BD594 /* eye_clicked.png */,
 				C19F0DDC1C768044009BD594 /* eye_unclicked.png */,
@@ -266,17 +280,21 @@
 				48CFA2D21C73C02E0081A8E1 /* menuoptions.png */,
 				48CE44821C8FC88400BECD12 /* unchecked-circle.png */,
 				48D741D01C5AB574008D082E /* user.png */,
+				C14333C41CA5B0B60083CA88 /* circle.png */,
+				C14333C81CA5BE850083CA88 /* circleEmergency.png */,
 				48D741A21C5AAE86008D082E /* AppDelegate.swift */,
 				462EB83D1C990BF00076C28D /* AppSelectionViewController.swift */,
 				462EB83F1C990BF00076C28D /* BusinessApp.swift */,
 				46E832A31C88DD81001C376F /* ChangeTicket_Table_Template.swift */,
+				C14333C61CA5B25E0083CA88 /* BusinessApp_Table_Template.swift */,
 				C19F0DCC1C745DB6009BD594 /* ChangeTicket.swift */,
 				C19F0DD61C75A28A009BD594 /* ChangeTicketTableViewController.swift */,
+				C14333D11CA6D8300083CA88 /* BusinessAppTableViewController.swift */,
 				469E77241C9A1E620028D422 /* DataHandler.swift */,
 				48D741A41C5AAE86008D082E /* LoginViewController.swift */,
 				489AFBA91C7F8D2900E9DEB9 /* SetupContentViewController.swift */,
-				48CE447B1C8FB73D00BECD12 /* SuggestedAppsTableViewCell.swift */,
-				462EB8421C990BF00076C28D /* SuggestedAppsTableViewController.swift */,
+				48CE447B1C8FB73D00BECD12 /* AppSelectionTableViewCell.swift */,
+				462EB8421C990BF00076C28D /* AppSelectionTableViewController.swift */,
 				489AFBA71C7F6B3000E9DEB9 /* User.swift */,
 				C121B52C1C80075B001F3B16 /* WatchedTicket.swift */,
 				462EB8471C990BF00076C28D /* WatchedTicketTableViewController.swift */,
@@ -285,7 +303,9 @@
 				48D741AB1C5AAE86008D082E /* LaunchScreen.storyboard */,
 				48D741A61C5AAE86008D082E /* Main.storyboard */,
 				C19F0DD41C759DB1009BD594 /* ChangeTicketTableViewCell.swift */,
+				C14333D31CA6E9920083CA88 /* BusinessAppTableViewCell.swift */,
 				C142E6541C9BEC5A005F1DEC /* TicketModel.swift */,
+				C14333BD1CA5ADFF0083CA88 /* BusinessModel.swift */,
 				C121B52E1C8008CC001F3B16 /* WatchedTicketTableViewCell.swift */,
 				C14333A51CA4146D0083CA88 /* CustomHeaderCell.swift */,
 				4818FE111CA49CFA00B7EB47 /* SettingsTableViewController.swift */,
@@ -468,6 +488,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C14333D01CA6CCD50083CA88 /* circleEmergency.png in Resources */,
+				C14333CF1CA6CCCD0083CA88 /* gear.png in Resources */,
+				C14333CE1CA6CCBB0083CA88 /* circle.png in Resources */,
 				462EB84A1C990BF00076C28D /* Base.lproj in Resources */,
 				48D741AD1C5AAE86008D082E /* LaunchScreen.storyboard in Resources */,
 				C19F0DC51C73E2C3009BD594 /* home-page.png in Resources */,
@@ -513,6 +536,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				46E832A41C88DD81001C376F /* ChangeTicket_Table_Template.swift in Sources */,
+				C14333D71CA9BCF70083CA88 /* DateExtension.swift in Sources */,
 				C14333A61CA4146D0083CA88 /* CustomHeaderCell.swift in Sources */,
 				48993BED1C8CBB0A00EDA13E /* SelectUserTypeViewController.swift in Sources */,
 				C19F0DD71C75A28A009BD594 /* ChangeTicketTableViewController.swift in Sources */,
@@ -523,12 +547,16 @@
 				C142E6551C9BEC5A005F1DEC /* TicketModel.swift in Sources */,
 				46A2AB141CA47C0E00F87C80 /* UserTypeSelectionViewController.swift in Sources */,
 				489AFBA81C7F6B3000E9DEB9 /* User.swift in Sources */,
-				48CE447C1C8FB73D00BECD12 /* SuggestedAppsTableViewCell.swift in Sources */,
+				48CE447C1C8FB73D00BECD12 /* AppSelectionTableViewCell.swift in Sources */,
 				489AFBAC1C7F8F5B00E9DEB9 /* WizardSetupViewController.swift in Sources */,
+				C14333D41CA6E9920083CA88 /* BusinessAppTableViewCell.swift in Sources */,
 				469E77251C9A1E620028D422 /* DataHandler.swift in Sources */,
 				462EB84D1C990BF00076C28D /* SuggestedAppsTableViewController.swift in Sources */,
+				C14333C71CA5B25E0083CA88 /* BusinessApp_Table_Template.swift in Sources */,
+				C14333BE1CA5ADFF0083CA88 /* BusinessModel.swift in Sources */,
 				462EB84B1C990BF00076C28D /* BusinessApp.swift in Sources */,
 				462EB8511C990BF00076C28D /* WatchedTicketTableViewController.swift in Sources */,
+				C14333D21CA6D8300083CA88 /* BusinessAppTableViewController.swift in Sources */,
 				462EB8491C990BF00076C28D /* AppSelectionViewController.swift in Sources */,
 				489AFBAA1C7F8D2900E9DEB9 /* SetupContentViewController.swift in Sources */,
 				46A2AB121CA47C0E00F87C80 /* AnalysisViewController.swift in Sources */,

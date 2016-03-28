@@ -8,9 +8,10 @@
 
 import UIKit
 
-class SuggestedAppsTableViewController: UITableViewController {
+class AppSelectionTableViewController: UITableViewController {
     
     var usertype: String = ""
+    var appsArray: [String] = ["App1", "App2", "App3", "App4", "App5", "App6", "App7"]
 
     struct Sections {
         var sectionName: String!
@@ -22,12 +23,13 @@ class SuggestedAppsTableViewController: UITableViewController {
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        /*
-        let alert = UIAlertController(title: "Alert", message: "Your User Type: \(usertype)", preferredStyle: UIAlertControllerStyle.Alert)
+        
+        /*let alert = UIAlertController(title: "Alert", message: "Your User Type: \(usertype)", preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
         self.presentViewController(alert, animated: true, completion: nil)
         */
-        sectionsArray = [Sections(sectionName: "Configuration", sectionContents: ["Select All", "UnSelect All"]), Sections(sectionName: "Suggested Apps", sectionContents: ["App1", "App2", "App3", "App4", "App5", "App6", "App7"])]
+        
+        //sectionsArray = [Sections(sectionName: "Configuration", sectionContents: ["Select All", "UnSelect All"]), Sections(sectionName: "Select Your Apps", sectionContents: ["App1", "App2", "App3", "App4", "App5", "App6", "App7"])]
 
         
         //setEditing(true, animated: true)
@@ -47,12 +49,16 @@ class SuggestedAppsTableViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("SuggestedAppsCell") as! SuggestedAppsTableViewCell!
         
-        cell.appsTitleLabel.text = sectionsArray[indexPath.section].sectionContents[indexPath.row]
+        if indexPath.section == 0 {
+            let cell = tableView.dequeueReusableCellWithIdentifier("appsoptioncell")
+            return cell!
+        }
+        let cell = tableView.dequeueReusableCellWithIdentifier("appscell") as! AppSelectionTableViewCell!
+        
+        cell.appsTitleLabel.text = appsArray[indexPath.row]
         cell.checkboxImage.image = UIImage(named: "unchecked-circle")
-        //cell.selectionButton.tag = indexPath.row
-        //cell.selectionButton.addTarget(self, action: "selectionAction", forControlEvents: .TouchUpInside)
+    
         
         return cell
     }
@@ -63,19 +69,27 @@ class SuggestedAppsTableViewController: UITableViewController {
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int
     {
 
-        return sectionsArray.count
+        return 2
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
+        if section == 0 {
+            return 1
+        }
+        return appsArray.count
 
-        return sectionsArray[section].sectionContents.count
+        //return sectionsArray[section].sectionContents.count
     }
 
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String?
     {
+        if section == 0 {
+            return "Options"
+        } else {
+            return "Apps"
+        }
         
-        return sectionsArray[section].sectionName
     }
     
     /*override func tableView(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
@@ -84,7 +98,8 @@ class SuggestedAppsTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        let cell = tableView.cellForRowAtIndexPath(indexPath) as! SuggestedAppsTableViewCell!
+        
+        let cell = tableView.cellForRowAtIndexPath(indexPath) as! AppSelectionTableViewCell!
         cell.checkboxImage.image = UIImage(named: "checked-circle")
     
 

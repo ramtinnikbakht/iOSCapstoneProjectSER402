@@ -14,18 +14,66 @@ class ChangeTicketTableViewCell: UITableViewCell
 {
     
     // MARK: Properties
+    var isObserving = false
     
-    @IBOutlet weak var ticketLabel: UILabel!
-    @IBOutlet weak var priorityLabel: UILabel!
-    @IBOutlet weak var viewImage: UIImageView!
+    @IBOutlet weak var ticketID: UILabel!
+    @IBOutlet weak var businessUnitLabel: UILabel!
+    @IBOutlet weak var plannedStartLabel: UILabel!
+    @IBOutlet weak var riskLevelLabel: UILabel!
+    @IBOutlet weak var subBusinessUnitLabel: UILabel!
+    
+    @IBOutlet weak var businessUnit: UILabel!
+    @IBOutlet weak var subBusinessUnit: UILabel!
+    @IBOutlet weak var riskLevel: UILabel!
+    @IBOutlet weak var plannedStart: UILabel!
+    
+    class var expandedHeight : CGFloat { get { return 170 } }
+    class var defaultHeight : CGFloat { get { return 44 } }
+    
+    func checkHeight() {
+        businessUnitLabel.hidden = frame.size.height < WatchedTicketTableViewCell.expandedHeight
+        subBusinessUnitLabel.hidden = frame.size.height < WatchedTicketTableViewCell.expandedHeight
+        riskLevelLabel.hidden = frame.size.height < WatchedTicketTableViewCell.expandedHeight
+        plannedStartLabel.hidden = frame.size.height < WatchedTicketTableViewCell.expandedHeight
+        
+        businessUnit.hidden = frame.size.height < WatchedTicketTableViewCell.expandedHeight
+        subBusinessUnit.hidden = frame.size.height < WatchedTicketTableViewCell.expandedHeight
+        riskLevel.hidden = frame.size.height < WatchedTicketTableViewCell.expandedHeight
+        plannedStart.hidden = frame.size.height < WatchedTicketTableViewCell.expandedHeight
+        
+    }
+    
+    func watchFrameChanges() {
+        if !isObserving {
+            addObserver(self, forKeyPath: "frame", options: [NSKeyValueObservingOptions.New, NSKeyValueObservingOptions.Initial], context: nil)
+            isObserving = true
+        }
+        
+        checkHeight()
+    }
+    
+    func ignoreFrameChanges() {
+        if isObserving {
+            removeObserver(self, forKeyPath: "frame")
+            isObserving = false
+        }
+        
+    }
+    
+    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+        if keyPath == "frame" {
+            checkHeight()
+        }
+    }
     
     var ticket: ChangeTicket_Table_Template!
     {
-        didSet
-        {
-            ticketLabel.text = ticket.id
-            priorityLabel.text = String(ticket.priority)
-            viewImage.image = ticket.icon
+        didSet {
+            ticketID.text = ticket.id
+            riskLevel.text = String(ticket.priority)
+            businessUnit.text = ticket.requestedByGroupBusinessUnit
+            subBusinessUnit.text = ticket.requestedByGroupSubBusinessUnit
+            plannedStart.text = ticket.startDate
         }
     }
     
