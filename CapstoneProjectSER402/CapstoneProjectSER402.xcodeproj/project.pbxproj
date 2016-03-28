@@ -19,6 +19,7 @@
 		46A2AB141CA47C0E00F87C80 /* UserTypeSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A2AB111CA47C0E00F87C80 /* UserTypeSelectionViewController.swift */; };
 		46D0586C1CA3B79D005CFB61 /* AEXML.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D0586B1CA3B79D005CFB61 /* AEXML.swift */; };
 		46E832A41C88DD81001C376F /* ChangeTicket_Table_Template.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E832A31C88DD81001C376F /* ChangeTicket_Table_Template.swift */; };
+		46F792B61CA8F6E600F00404 /* ConnectionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F792B51CA8F6E600F00404 /* ConnectionService.swift */; };
 		4818FE0D1CA498CF00B7EB47 /* settings-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4818FE0C1CA498CF00B7EB47 /* settings-icon.png */; };
 		4818FE121CA49CFA00B7EB47 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4818FE111CA49CFA00B7EB47 /* SettingsTableViewController.swift */; };
 		48993BED1C8CBB0A00EDA13E /* SelectUserTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48993BEC1C8CBB0A00EDA13E /* SelectUserTypeViewController.swift */; };
@@ -147,6 +148,7 @@
 		46A2AB111CA47C0E00F87C80 /* UserTypeSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTypeSelectionViewController.swift; sourceTree = "<group>"; };
 		46D0586B1CA3B79D005CFB61 /* AEXML.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AEXML.swift; sourceTree = "<group>"; };
 		46E832A31C88DD81001C376F /* ChangeTicket_Table_Template.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeTicket_Table_Template.swift; sourceTree = "<group>"; };
+		46F792B51CA8F6E600F00404 /* ConnectionService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionService.swift; sourceTree = "<group>"; };
 		4818FE0C1CA498CF00B7EB47 /* settings-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings-icon.png"; sourceTree = "<group>"; };
 		4818FE111CA49CFA00B7EB47 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		48993BEC1C8CBB0A00EDA13E /* SelectUserTypeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectUserTypeViewController.swift; sourceTree = "<group>"; };
@@ -247,6 +249,7 @@
 		48D741A11C5AAE86008D082E /* CapstoneProjectSER402 */ = {
 			isa = PBXGroup;
 			children = (
+				46F792B51CA8F6E600F00404 /* ConnectionService.swift */,
 				46D0586B1CA3B79D005CFB61 /* AEXML.swift */,
 				462EB8401C990BF00076C28D /* CapstoneProjectSER402-Bridging-Header.h */,
 				462EB8431C990BF00076C28D /* SWRevealViewController.h */,
@@ -534,6 +537,7 @@
 				48D741A51C5AAE86008D082E /* LoginViewController.swift in Sources */,
 				46D0586C1CA3B79D005CFB61 /* AEXML.swift in Sources */,
 				46A2AB131CA47C0E00F87C80 /* SWRevealViewController.m in Sources */,
+				46F792B61CA8F6E600F00404 /* ConnectionService.swift in Sources */,
 				C121B52F1C8008CC001F3B16 /* WatchedTicketTableViewCell.swift in Sources */,
 				C142E6551C9BEC5A005F1DEC /* TicketModel.swift in Sources */,
 				46A2AB141CA47C0E00F87C80 /* UserTypeSelectionViewController.swift in Sources */,
@@ -541,7 +545,7 @@
 				48CE447C1C8FB73D00BECD12 /* AppSelectionTableViewCell.swift in Sources */,
 				489AFBAC1C7F8F5B00E9DEB9 /* WizardSetupViewController.swift in Sources */,
 				469E77251C9A1E620028D422 /* DataHandler.swift in Sources */,
-				462EB84D1C990BF00076C28D /* SuggestedAppsTableViewController.swift in Sources */,
+				462EB84D1C990BF00076C28D /* AppSelectionTableViewController.swift in Sources */,
 				C14333C71CA5B25E0083CA88 /* BusinessApp_Table_Template.swift in Sources */,
 				C14333BE1CA5ADFF0083CA88 /* BusinessModel.swift in Sources */,
 				462EB84B1C990BF00076C28D /* BusinessApp.swift in Sources */,
