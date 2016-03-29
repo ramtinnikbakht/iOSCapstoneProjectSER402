@@ -8,11 +8,13 @@
 //
 
 import UIKit
+import Charts
 
-class ChangeTicketTableViewController: UITableViewController {
+class ChangeTicketTableViewController: UITableViewController, ChartViewDelegate {
     
     // MARK: Properties
     @IBOutlet weak var selectedAppLabel: UILabel!
+    @IBOutlet weak var pieChartView: PieChartView!
     
     private var tbvc = TicketTabBarController()
     private var tickets = TicketModel()
@@ -20,12 +22,19 @@ class ChangeTicketTableViewController: UITableViewController {
     var selectedApp = String()
     var selectedIndexPath : NSIndexPath?
     let cellIdentifier = "TicketCell"
+    let low = UIColor(red: CGFloat(38/255.0), green: CGFloat(166/255.0), blue: CGFloat(91/255.0), alpha: 1)
+    let med = UIColor(red: CGFloat(244/255.0), green: CGFloat(208/255.0), blue: CGFloat(63/255.0), alpha: 1)
+    let high = UIColor(red: CGFloat(207/255.0), green: CGFloat(0), blue: CGFloat(15/255.0), alpha: 1)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         selectedAppLabel.text = selectedApp
         loadSampleTickets()
+        let months = ["Low", "Med", "High"]
+        let unitsSold = [2.0, 3.0, 1.0]
+        
+        setChart(months, values: unitsSold)
     }
     
     
@@ -46,7 +55,22 @@ class ChangeTicketTableViewController: UITableViewController {
         tickets.addChangeTickets(ticket2)
         tickets.addChangeTickets(ticket3)
         tickets.addChangeTickets(ticket4)
-
+        var medIndex = 0
+        for ticket in changeTickets {
+            if (Int(ticket.priority) > 3 && Int(ticket.priority) <= 7) {
+                changeTickets.removeAtIndex(medIndex)
+                changeTickets.insert(ticket, atIndex: 0)
+            }
+            medIndex++
+        }
+        var highIndex = 0
+        for ticket in changeTickets {
+            if (Int(ticket.priority) > 7) {
+                changeTickets.removeAtIndex(highIndex)
+                changeTickets.insert(ticket, atIndex: 0)
+            }
+            highIndex++
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -68,6 +92,48 @@ class ChangeTicketTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! ChangeTicketTableViewCell
         let ticket = changeTickets[indexPath.row] as ChangeTicket_Table_Template
+        if (Int(ticket.priority) <= 3) {
+            cell.backgroundColor = low
+            let white = UIColor.whiteColor()
+            cell.plannedStartLabel.textColor = white
+            cell.businessUnitLabel.textColor = white
+            cell.subBusinessUnitLabel.textColor = white
+            cell.riskLevelLabel.textColor = white
+            cell.ticketID.textColor = white
+            cell.businessUnit.textColor = white
+            cell.subBusinessUnit.textColor = white
+            cell.plannedStart.textColor = white
+            cell.riskLevel.textColor = white
+        } else if (Int(ticket.priority) > 3 && Int(ticket.priority) <= 7) {
+            cell.backgroundColor = med
+            cell.plannedStartLabel.textColor = UIColor.blackColor()
+            cell.businessUnitLabel.textColor = UIColor.blackColor()
+            cell.subBusinessUnitLabel.textColor = UIColor.blackColor()
+            cell.riskLevelLabel.textColor = UIColor.blackColor()
+            cell.ticketID.textColor = UIColor.blackColor()
+            cell.businessUnit.textColor = UIColor.blackColor()
+            cell.subBusinessUnit.textColor = UIColor.blackColor()
+            cell.plannedStart.textColor = UIColor.blackColor()
+            cell.riskLevel.textColor = UIColor.blackColor()
+        } else if (Int(ticket.priority) > 7) {
+            cell.backgroundColor = high
+            let white = UIColor.whiteColor()
+            cell.plannedStartLabel.textColor = white
+            cell.businessUnitLabel.textColor = white
+            cell.subBusinessUnitLabel.textColor = white
+            cell.riskLevelLabel.textColor = white
+            cell.ticketID.textColor = white
+            cell.businessUnit.textColor = white
+            cell.subBusinessUnit.textColor = white
+            cell.plannedStart.textColor = white
+            cell.riskLevel.textColor = white
+        }
+        let white = UIColor.whiteColor()
+        cell.layer.shadowColor = white.CGColor
+        cell.layer.shadowRadius = 3.5
+        cell.layer.shadowOpacity = 0.7
+        cell.layer.shadowOffset = CGSizeZero
+        cell.layer.masksToBounds = false
         cell.ticket = ticket
         
         return cell
@@ -117,6 +183,46 @@ class ChangeTicketTableViewController: UITableViewController {
         } else {
             return ChangeTicketTableViewCell.defaultHeight
         }
+    }
+    
+    func setChart(dataPoints: [String], values: [Double]) {
+        pieChartView.clear()
+        var dataEntries: [ChartDataEntry] = []
+        
+        for i in 0..<dataPoints.count {
+            let dataEntry = ChartDataEntry(value: values[i], xIndex: i)
+            dataEntries.append(dataEntry)
+        }
+        
+        let pieChartDataSet = PieChartDataSet(yVals: dataEntries, label: "Units Sold")
+        let pieChartData = PieChartData(xVals: dataPoints, dataSet: pieChartDataSet)
+        pieChartView.data = pieChartData
+        
+        pieChartData.setValueFont(UIFont(name: "Helvetica", size: 12))
+        
+        var colors: [UIColor] = []
+    
+        for i in 0..<dataPoints.count {
+            if (dataPoints[i] == "Low") {
+                let color = low
+                colors.append(color)
+            } else if (dataPoints[i] == "Med") {
+                let color = med
+                colors.append(color)
+            } else if (dataPoints[i] == "High"){
+                let color = high
+                colors.append(color)
+            }
+            pieChartDataSet.colors = colors
+        }
+        
+        // Legend Data
+        pieChartView.legend.position = .PiechartCenter
+        pieChartView.legend.font = UIFont(name: "Helvetica", size: 10)!
+        pieChartView.legend.colors = [low, med, high]
+        pieChartView.legend.labels = ["Low Risk","Medium Risk","High Risk"]
+        pieChartView.legend.enabled = true
+        
     }
     
 }
