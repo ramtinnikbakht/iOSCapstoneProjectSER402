@@ -12,13 +12,18 @@ class AppSelectionTableViewController: UITableViewController {
     
     var usertype: String = ""
     var appsArray: [String] = ["App1", "App2", "App3", "App4", "App5", "App6", "App7"]
+    var selectedApps = [String]()
 
-    struct Sections {
+    /*struct Sections {
         var sectionName: String!
         var sectionContents: [String]!
-    }
+    }*/
     
-    var sectionsArray = [Sections]()
+    //var sectionsArray = [Sections]()
+    
+    @IBAction func selectAllSwitchAction(sender: AnyObject) {
+        print("Switch Pressed")
+    }
     
     override func viewDidLoad()
     {
@@ -51,8 +56,10 @@ class AppSelectionTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         if indexPath.section == 0 {
-            let cell = tableView.dequeueReusableCellWithIdentifier("appsoptioncell")
-            return cell!
+            let cell = tableView.dequeueReusableCellWithIdentifier("appsoptioncell") as! AppsOptionTableViewCell!
+            cell.selectAllSwitch.setOn(false, animated: true)
+            
+            return cell
         }
         let cell = tableView.dequeueReusableCellWithIdentifier("appscell") as! AppSelectionTableViewCell!
         
@@ -98,10 +105,21 @@ class AppSelectionTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        
         let cell = tableView.cellForRowAtIndexPath(indexPath) as! AppSelectionTableViewCell!
+        
+        if selectedApps.contains(cell.appsTitleLabel.text!) {
+            cell.checkboxImage.image = UIImage(named: "unchecked-circle")
+            selectedApps = selectedApps.filter {$0 != cell.appsTitleLabel.text!}
+            print("worked")
+            print(selectedApps)
+        } else {
+        
         cell.checkboxImage.image = UIImage(named: "checked-circle")
-    
+        
+        selectedApps += [cell.appsTitleLabel.text!]
+        
+        print(selectedApps)
+        }
 
     }
     
