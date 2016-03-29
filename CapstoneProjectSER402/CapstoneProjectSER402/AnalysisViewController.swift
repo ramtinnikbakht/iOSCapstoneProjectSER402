@@ -28,6 +28,7 @@ class AnalysisViewController: UIViewController, UITextFieldDelegate, ChartViewDe
     @IBOutlet weak var selectedTicketCount: UILabel!
     @IBOutlet weak var horizontalBarChartView: HorizontalBarChartView!
     @IBOutlet weak var graphRepresentationControl: UISegmentedControl!
+    @IBOutlet weak var timeSegmentedControl: UISegmentedControl!
     @IBOutlet weak var releaseWindowSwitch: UISwitch!
     @IBOutlet weak var releaseWindowLabel: UILabel!
     
@@ -83,6 +84,45 @@ class AnalysisViewController: UIViewController, UITextFieldDelegate, ChartViewDe
             let forwardTickets = [1.0, 4.0, 2.0, 1.0, 5.0, 3.0, 7.0]
             horizontalBarChartView.clear()
             setChart(forwardDates, values: forwardTickets)
+        default:
+            break;
+        }
+    }
+    
+    @IBAction func timeIndexChanged(sender: AnyObject) {
+        let now = NSDate()
+        switch timeSegmentedControl.selectedSegmentIndex
+        {
+        case 0:
+            dailyLabel.textColor = UIColor.blueColor()
+            weeklyLabel.textColor = UIColor.blackColor()
+            monthlyLabel.textColor = UIColor.blackColor()
+            let formatter = NSDateFormatter()
+            formatter.timeStyle = .ShortStyle
+            let daily = [formatter.stringFromDate(now), formatter.stringFromDate(now.plusHours(2)), formatter.stringFromDate(now.plusHours(4)), formatter.stringFromDate(now.plusHours(6)), formatter.stringFromDate(now.plusHours(8)), formatter.stringFromDate(now.plusHours(10)), formatter.stringFromDate(now.plusHours(12))]
+            let historicalTickets = [3.0, 4.0, 8.0, 6.0, 7.0, 12.0, 5.0]
+            horizontalBarChartView.clear()
+            setChart(daily, values: historicalTickets)
+        case 1:
+            dailyLabel.textColor = UIColor.blackColor()
+            weeklyLabel.textColor = UIColor.blueColor()
+            monthlyLabel.textColor = UIColor.blackColor()
+            let weeklyFormatter = NSDateFormatter()
+            weeklyFormatter.dateStyle = .ShortStyle
+            let weekly = [weeklyFormatter.stringFromDate(now), weeklyFormatter.stringFromDate(now.plusDays(1)), weeklyFormatter.stringFromDate(now.plusDays(2)), weeklyFormatter.stringFromDate(now.plusDays(3)), weeklyFormatter.stringFromDate(now.plusDays(4)), weeklyFormatter.stringFromDate(now.plusDays(5)), weeklyFormatter.stringFromDate(now.plusDays(6))]
+            let historicalTickets = [3.0, 4.0, 8.0, 6.0, 7.0, 12.0, 5.0]
+            horizontalBarChartView.clear()
+            setChart(weekly, values: historicalTickets)
+        case 2:
+            dailyLabel.textColor = UIColor.blackColor()
+            weeklyLabel.textColor = UIColor.blackColor()
+            monthlyLabel.textColor = UIColor.blueColor()
+            let monthlyFormatter = NSDateFormatter()
+            monthlyFormatter.dateFormat = "MM/dd"
+            let monthly = [monthlyFormatter.stringFromDate(now) + "-" + monthlyFormatter.stringFromDate(now.plusDays(7)), monthlyFormatter.stringFromDate(now.plusDays(7)) + "-" + monthlyFormatter.stringFromDate(now.plusDays(14)), monthlyFormatter.stringFromDate(now.plusDays(14)) + "-" + monthlyFormatter.stringFromDate(now.plusDays(21)), monthlyFormatter.stringFromDate(now.plusDays(21)) + "-" + monthlyFormatter.stringFromDate(now.plusDays(28))]
+            let historicalTickets = [3.0, 4.0, 8.0, 6.0]
+            horizontalBarChartView.clear()
+            setChart(monthly, values: historicalTickets)
         default:
             break;
         }
@@ -239,7 +279,7 @@ class AnalysisViewController: UIViewController, UITextFieldDelegate, ChartViewDe
         
         horizontalBarChartView.backgroundColor = UIColor(red: CGFloat(228/255.0), green: CGFloat(241/255.0), blue: CGFloat(254/255.0), alpha: 1)
         horizontalBarChartView.drawBordersEnabled = false
-        horizontalBarChartView.animate(xAxisDuration: 2.0, yAxisDuration: 2.0, easingOption: .EaseOutBounce)
+        horizontalBarChartView.animate(xAxisDuration: 1.0, yAxisDuration: 1.0, easingOption: .Linear)
         
     }
     

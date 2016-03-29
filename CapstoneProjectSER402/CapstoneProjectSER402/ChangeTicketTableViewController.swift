@@ -242,7 +242,7 @@ class ChangeTicketTableViewController: UITableViewController, ChartViewDelegate 
         pieChartView.legend.enabled = true
         
         pieChartView.descriptionText = ""
-        pieChartView.animate(xAxisDuration: 2.0, yAxisDuration: 2.0, easingOption: .EaseOutBounce)
+        pieChartView.animate(xAxisDuration: 1.0, yAxisDuration: 1.0, easingOption: .EaseOutSine)
         
     }
     
