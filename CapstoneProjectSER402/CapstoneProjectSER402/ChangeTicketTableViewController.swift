@@ -274,4 +274,9 @@ class ChangeTicketTableViewController: UITableViewController, ChartViewDelegate 
         tableView.reloadData()
 
     }
+    
+    func chartValueNothingSelected(chartView: ChartViewBase) {
+        isGraphSelected = false
+        tableView.reloadData()
+    }
 }
