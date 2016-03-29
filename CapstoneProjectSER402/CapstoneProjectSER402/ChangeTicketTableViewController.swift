@@ -196,7 +196,11 @@ class ChangeTicketTableViewController: UITableViewController, ChartViewDelegate 
         
         let pieChartDataSet = PieChartDataSet(yVals: dataEntries, label: "Units Sold")
         let pieChartData = PieChartData(xVals: dataPoints, dataSet: pieChartDataSet)
+        let numberFormatter = NSNumberFormatter()
         pieChartView.data = pieChartData
+
+        numberFormatter.generatesDecimalNumbers = false
+        pieChartData.setValueFormatter(numberFormatter)
         
         pieChartData.setValueFont(UIFont(name: "Helvetica", size: 12))
         
@@ -222,6 +226,9 @@ class ChangeTicketTableViewController: UITableViewController, ChartViewDelegate 
         pieChartView.legend.colors = [low, med, high]
         pieChartView.legend.labels = ["Low Risk","Medium Risk","High Risk"]
         pieChartView.legend.enabled = true
+        
+        pieChartView.descriptionText = ""
+        pieChartView.animate(xAxisDuration: 2.0, yAxisDuration: 2.0, easingOption: .EaseOutBounce)
         
     }
     
