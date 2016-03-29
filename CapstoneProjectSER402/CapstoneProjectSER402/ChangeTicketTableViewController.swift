@@ -19,22 +19,26 @@ class ChangeTicketTableViewController: UITableViewController, ChartViewDelegate 
     private var tbvc = TicketTabBarController()
     private var tickets = TicketModel()
     var changeTickets = [ChangeTicket_Table_Template]()
+    var filteredTickets = [ChangeTicket_Table_Template]()
     var selectedApp = String()
     var selectedIndexPath : NSIndexPath?
+    var isGraphSelected = false
     let cellIdentifier = "TicketCell"
     let low = UIColor(red: CGFloat(38/255.0), green: CGFloat(166/255.0), blue: CGFloat(91/255.0), alpha: 1)
     let med = UIColor(red: CGFloat(244/255.0), green: CGFloat(208/255.0), blue: CGFloat(63/255.0), alpha: 1)
     let high = UIColor(red: CGFloat(207/255.0), green: CGFloat(0), blue: CGFloat(15/255.0), alpha: 1)
+    let riskLevels = ["Low", "Med", "High"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        pieChartView.delegate = self
         selectedAppLabel.text = selectedApp
         loadSampleTickets()
-        let months = ["Low", "Med", "High"]
+        
         let unitsSold = [2.0, 3.0, 1.0]
         
-        setChart(months, values: unitsSold)
+        setChart(riskLevels, values: unitsSold)
     }
     
     
@@ -85,13 +89,23 @@ class ChangeTicketTableViewController: UITableViewController, ChartViewDelegate 
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return changeTickets.count
+        if (isGraphSelected) {
+            return filteredTickets.count
+        } else {
+            return changeTickets.count
+        }
+        
     }
     
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! ChangeTicketTableViewCell
-        let ticket = changeTickets[indexPath.row] as ChangeTicket_Table_Template
+        var ticket : ChangeTicket_Table_Template
+        if (isGraphSelected) {
+            ticket = filteredTickets[indexPath.row] as ChangeTicket_Table_Template
+        } else {
+            ticket = changeTickets[indexPath.row] as ChangeTicket_Table_Template
+        }
         if (Int(ticket.priority) <= 3) {
             cell.backgroundColor = low
             let white = UIColor.whiteColor()
@@ -194,7 +208,7 @@ class ChangeTicketTableViewController: UITableViewController, ChartViewDelegate 
             dataEntries.append(dataEntry)
         }
         
-        let pieChartDataSet = PieChartDataSet(yVals: dataEntries, label: "Units Sold")
+        let pieChartDataSet = PieChartDataSet(yVals: dataEntries, label: "Risk Level")
         let pieChartData = PieChartData(xVals: dataPoints, dataSet: pieChartDataSet)
         let numberFormatter = NSNumberFormatter()
         pieChartView.data = pieChartData
@@ -232,4 +246,32 @@ class ChangeTicketTableViewController: UITableViewController, ChartViewDelegate 
         
     }
     
+    func chartValueSelected(chartView: ChartViewBase, entry: ChartDataEntry, dataSetIndex: Int, highlight: ChartHighlight) {
+        isGraphSelected = true
+        filteredTickets.removeAll()
+        print(entry.value)
+        if (entry.value == 2.0) {
+            for ticket in changeTickets {
+                if (Int(ticket.priority) <= 3) {
+                    filteredTickets += [ticket]
+                }
+            }
+        }
+        else if(entry.value == 3.0) {
+            for ticket in changeTickets {
+                if (Int(ticket.priority) > 3 && Int(ticket.priority) <= 7) {
+                    filteredTickets += [ticket]
+                }
+            }
+        }
+        else if(entry.value == 1.0) {
+            for ticket in changeTickets {
+                if (Int(ticket.priority) > 7) {
+                    filteredTickets += [ticket]
+                }
+            }
+        }
+        tableView.reloadData()
+
+    }
 }
