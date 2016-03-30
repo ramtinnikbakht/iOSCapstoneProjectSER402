@@ -39,6 +39,7 @@
 		48D741C31C5AAE86008D082E /* CapstoneProjectSER402UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D741C21C5AAE86008D082E /* CapstoneProjectSER402UITests.swift */; };
 		48D741D11C5AB574008D082E /* user.png in Resources */ = {isa = PBXBuildFile; fileRef = 48D741D01C5AB574008D082E /* user.png */; };
 		48D741D31C5AB57C008D082E /* lock.png in Resources */ = {isa = PBXBuildFile; fileRef = 48D741D21C5AB57C008D082E /* lock.png */; };
+		48D8FADB1CAB096900753943 /* AppsOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D8FADA1CAB096900753943 /* AppsOptionTableViewCell.swift */; };
 		C121B52D1C80075B001F3B16 /* WatchedTicket.swift in Sources */ = {isa = PBXBuildFile; fileRef = C121B52C1C80075B001F3B16 /* WatchedTicket.swift */; };
 		C121B52F1C8008CC001F3B16 /* WatchedTicketTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C121B52E1C8008CC001F3B16 /* WatchedTicketTableViewCell.swift */; };
 		C142E6551C9BEC5A005F1DEC /* TicketModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C142E6541C9BEC5A005F1DEC /* TicketModel.swift */; };
@@ -178,6 +179,7 @@
 		48D741C41C5AAE86008D082E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		48D741D01C5AB574008D082E /* user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user.png; sourceTree = "<group>"; };
 		48D741D21C5AB57C008D082E /* lock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lock.png; sourceTree = "<group>"; };
+		48D8FADA1CAB096900753943 /* AppsOptionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppsOptionTableViewCell.swift; sourceTree = "<group>"; };
 		C121B52C1C80075B001F3B16 /* WatchedTicket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchedTicket.swift; sourceTree = "<group>"; };
 		C121B52E1C8008CC001F3B16 /* WatchedTicketTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchedTicketTableViewCell.swift; sourceTree = "<group>"; };
 		C142E6541C9BEC5A005F1DEC /* TicketModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TicketModel.swift; sourceTree = "<group>"; };
@@ -310,6 +312,7 @@
 				48D741A91C5AAE86008D082E /* Assets.xcassets */,
 				48D741AB1C5AAE86008D082E /* LaunchScreen.storyboard */,
 				48D741A61C5AAE86008D082E /* Main.storyboard */,
+				48D8FADA1CAB096900753943 /* AppsOptionTableViewCell.swift */,
 				C19F0DD41C759DB1009BD594 /* ChangeTicketTableViewCell.swift */,
 				C14333D31CA6E9920083CA88 /* BusinessAppTableViewCell.swift */,
 				C142E6541C9BEC5A005F1DEC /* TicketModel.swift */,
@@ -552,6 +555,7 @@
 				48D741A51C5AAE86008D082E /* LoginViewController.swift in Sources */,
 				46D0586C1CA3B79D005CFB61 /* AEXML.swift in Sources */,
 				46A2AB131CA47C0E00F87C80 /* SWRevealViewController.m in Sources */,
+				48D8FADB1CAB096900753943 /* AppsOptionTableViewCell.swift in Sources */,
 				46F792B61CA8F6E600F00404 /* ConnectionService.swift in Sources */,
 				C121B52F1C8008CC001F3B16 /* WatchedTicketTableViewCell.swift in Sources */,
 				C142E6551C9BEC5A005F1DEC /* TicketModel.swift in Sources */,
