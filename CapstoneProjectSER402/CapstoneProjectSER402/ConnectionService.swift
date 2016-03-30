@@ -17,9 +17,9 @@ class ConnectionService : NSObject, NSURLSessionDelegate {
     let proxyPort : CFNumber = NSNumber(int: 8080) as CFNumber
     let proxyEnable : CFNumber = NSNumber(int: 1) as CFNumber
     
-    func parseChange(xml: AEXMLDocument) -> (ChangeTicket[]) {
-        let ticketList: (ChangeTicket[])
-        if let tickets = xml.root["SOAP-ENV:Body"]["insertResponse"]["status_message"]["ReturnMessage"]["ChangeStatus"]["changeInformation"].all? {
+    func parseChange(xml: AEXMLDocument) -> ([ChangeTicket]) {
+        let ticketList: ([ChangeTicket])
+        if let tickets = xml.root["SOAP-ENV:Body"]["insertResponse"]["status_message"]["ReturnMessage"]["ChangeStatus"]["changeInformation"].all {
             for ticket in tickets {
                 var newTicket = ChangeTicket(number: ticket["Number"].value, approver: ticket["Approver"].value, plannedStart: ticket["PlannedStart"].value, plannedEnd: ticket["PlannedEnd"].value, actualStart: ticket["ActualStart"].value, actualEnd: ticket["ActualEnd"].value, requestedByGroup: ticket["Requested_By_Group"].value, requestedByGroupBusinessArea:ticket["Request_By_Group_Business_Area"].value, requestedByGroupBusinessUnit: ticket["Requested_By_Group_Business_Unit"].value, requestedByGroupSubBusinessUnit: ticket["Requested_By_GroupSub_Business_Unit"].value, causeCompleteServiceAppOutage: ticket["Causes_Complete_ServiceApplication_Outage"].value, risk: ticket["Risk"].value, type:ticket["Type"].value, impactScore:ticket["Impact_Score"].value, shortDescription:ticket["Short_Description"].value, changeReason: ticket["Change_Reason"].value, closureCode: ticket["Closure_Code"].value, ImpactedEnviroment: ticket["Impacted_Environments"].value, SecondaryClosureCode: ticket["Secondary_Closure_Code"].value, PartofRelease: ticket["Part_of_a_release"].value)
                 ticketList.append(newElement: newTicket)
@@ -31,7 +31,7 @@ class ConnectionService : NSObject, NSURLSessionDelegate {
         
     }
     
-    func getChange(number: String?="", approver: String?="", plannedStart: String?="", plannedEnd: String?="", actualStart: String?="", actualEnd: String?="", plannedStart2: String?="", plannedEnd2: String?="", actualStart2: String?="", actualEnd2: String?="", reqByGroup: String?="", reqByGrp_BusArea: String?="", reqByGrpBusUnit: String?="", reqByGrpSubBusUnit: String?="", risk: String?="", psD: String?="", peD: String?="", asD: String?="", aeD: String?="", application: String?="") -> (ChangeTicket[]) {
+    func getChange(number: String?="", approver: String?="", plannedStart: String?="", plannedEnd: String?="", actualStart: String?="", actualEnd: String?="", plannedStart2: String?="", plannedEnd2: String?="", actualStart2: String?="", actualEnd2: String?="", reqByGroup: String?="", reqByGrp_BusArea: String?="", reqByGrpBusUnit: String?="", reqByGrpSubBusUnit: String?="", risk: String?="", psD: String?="", peD: String?="", asD: String?="", aeD: String?="", application: String?="") -> ([ChangeTicket]) {
         
         let soapRequest = AEXMLDocument()
         
@@ -73,7 +73,7 @@ class ConnectionService : NSObject, NSURLSessionDelegate {
         insert.addChild(name: "u:u_process", value: "ASU.B.eChangeProject")
         insert.addChild(name: "u:u_product", value: "CHG")
         let xml = sendData(soapRequest.xmlString)
-        let ticketList = parseChange(xml: xml)
+        let ticketList = parseChange(xml)
         return ticketList
         
     }
