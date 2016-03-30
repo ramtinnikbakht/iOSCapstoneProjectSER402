@@ -14,13 +14,15 @@ class BusinessApp_Table_Template
     var ticketCount : Int
     var containsEmergencyTicket : Bool
     var icon : UIImage
+    var appCriticality : Int
     
-    init(appName: String, ticketCount: Int, containsEmergencyTicket: Bool, icon: UIImage)
+    init(appName: String, ticketCount: Int, containsEmergencyTicket: Bool, icon: UIImage, appCriticality: Int)
     {
         self.appName = appName
         self.ticketCount = ticketCount
         self.containsEmergencyTicket = containsEmergencyTicket
         self.icon = icon
+        self.appCriticality = appCriticality
     }
     
     func getAppName() -> String
@@ -37,6 +39,10 @@ class BusinessApp_Table_Template
     }
     func getIcon() -> UIImage {
         return self.icon
+    }
+    func getAppCriticality() -> Int
+    {
+        return self.appCriticality
     }
     
     func setAppName(appName: String)
@@ -57,6 +63,11 @@ class BusinessApp_Table_Template
     func getIcon(icon: UIImage)
     {
         self.icon = icon
+    }
+    
+    func setAppCriticality(appCriticality: Int)
+    {
+        self.appCriticality = appCriticality
     }
 }
 
