@@ -9,6 +9,10 @@
 import UIKit
 
 class SettingsTableViewController: UITableViewController {
+    
+    @IBAction func pushNotificationSwitchAction(sender: AnyObject) {
+    }
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,23 +33,51 @@ class SettingsTableViewController: UITableViewController {
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 3
+    }
+    
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String?
+    {
+        if section == 0 {
+            return "Alerts"
+        } else if section == 1 {
+            return "Profile"
+        } else {
+            return "Support"
+        }
+        
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        if section == 0 {
+            return 1
+        } else if section == 1 {
+            return 1
+        }
+        return 1
     }
 
-    /*
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
+        
+        if indexPath.section == 0 {
+            let cell = tableView.dequeueReusableCellWithIdentifier("alertscell") as! AlertsTableViewCell!
+            cell.pushNotificationSwitch.setOn(false, animated: true)
+            
+            return cell
+        }
 
-        // Configure the cell...
-
+        else if indexPath.section == 1 {
+            let cell = tableView.dequeueReusableCellWithIdentifier("profilecell") as! ProfileTableViewCell!
+            cell.profileCellTitleLabel.text = "My Apps"
+            return cell
+        }
+        
+        let cell = tableView.dequeueReusableCellWithIdentifier("profilecell") as! ProfileTableViewCell!
+        cell.profileCellTitleLabel.text = "Send us Feedback"
         return cell
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.
