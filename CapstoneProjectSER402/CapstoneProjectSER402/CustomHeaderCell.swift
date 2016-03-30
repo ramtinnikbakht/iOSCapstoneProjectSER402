@@ -17,6 +17,7 @@ class CustomHeaderCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         self.tag = 200
+        expandSectionButton.userInteractionEnabled = true
         // Initialization code
     }
 

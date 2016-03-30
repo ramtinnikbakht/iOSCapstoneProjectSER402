@@ -21,6 +21,7 @@ class BusinessAppTableViewController: UITableViewController
     let cellIdentifier = "BusinessAppCell"
     let tierList = [2, 1, 0]
     
+    var isShifting = false
     var isCollapsed = [false, false, false]
     var t2Section = [BusinessApp_Table_Template]()
     var t1Section = [BusinessApp_Table_Template]()
@@ -45,7 +46,7 @@ class BusinessAppTableViewController: UITableViewController
         let obj3 = BusinessApp(appId: "ServiceNow Enterprise Edition", businessAppSys: "", businessApp: "Allstate Application 3", appCriticality: "1", owner: "", ownerSys: "", businessArea: "", businessAreaSys: "", businessUnit: "",
             businessUnitSys: "", businessSubUnitSys: "", businessSubUnit: "", ticketCount: 10, containsEmergencyTicket: false)
         let obj4 = BusinessApp(appId: "ServiceNow Enterprise Edition", businessAppSys: "", businessApp: "Allstate Application 4", appCriticality: "1", owner: "", ownerSys: "", businessArea: "", businessAreaSys: "", businessUnit: "",
-            businessUnitSys: "", businessSubUnitSys: "", businessSubUnit: "", ticketCount: 5, containsEmergencyTicket: false)
+            businessUnitSys: "", businessSubUnitSys: "", businessSubUnit: "", ticketCount: 5, containsEmergencyTicket: true)
         let obj5 = BusinessApp(appId: "ServiceNow Enterprise Edition", businessAppSys: "", businessApp: "Allstate Application 5", appCriticality: "2", owner: "", ownerSys: "", businessArea: "", businessAreaSys: "", businessUnit: "",
             businessUnitSys: "", businessSubUnitSys: "", businessSubUnit: "", ticketCount: 5, containsEmergencyTicket: false)
         
@@ -63,12 +64,8 @@ class BusinessAppTableViewController: UITableViewController
         apps.addBusinessApp(app4)
         apps.addBusinessApp(app5)
     
-        var sortIndex = 0
+        
         for app in businessApps {
-            if (app.containsEmergencyTicket) {
-                businessApps.removeAtIndex(sortIndex)
-                businessApps.insert(app, atIndex: 0)
-            }
             if (app.appCriticality == 2) {
                 t2Section += [app]
             } else if (app.appCriticality == 1) {
@@ -76,7 +73,35 @@ class BusinessAppTableViewController: UITableViewController
             } else if (app.appCriticality == 0) {
                 t0Section += [app]
             }
-            sortIndex++
+        }
+        for tier in tierList {
+            var sortIndex = 0
+            if (tier == 2) {
+                for app in t2Section {
+                    if (app.containsEmergencyTicket) {
+                        t2Section.removeAtIndex(sortIndex)
+                        t2Section.insert(app, atIndex: 0)
+                    }
+                    sortIndex++
+                }
+            } else if (tier == 1) {
+                for app in t1Section {
+                    if (app.containsEmergencyTicket) {
+                        t1Section.removeAtIndex(sortIndex)
+                        t1Section.insert(app, atIndex: 0)
+                    }
+                    sortIndex++
+                }
+            } else {
+                for app in t0Section {
+                    if (app.containsEmergencyTicket) {
+                        t0Section.removeAtIndex(sortIndex)
+                        t0Section.insert(app, atIndex: 0)
+                    }
+                    sortIndex++
+                }
+            }
+            
         }
     }
     
@@ -196,47 +221,72 @@ class BusinessAppTableViewController: UITableViewController
     
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let  headerCell = tableView.dequeueReusableCellWithIdentifier("HeaderCell") as! CustomHeaderCell
-        let icon = UIImage(named: "expand.png")
+        let collapse = UIImage(named: "collapse.png")
+        let expand = UIImage(named: "expand.png")
         headerCell.backgroundColor = UIColor(red: (236/255.0), green: (236/255.0), blue: (236/255.0), alpha: 1)
         headerCell.appTierLabel.text = "Tier " + String(tierList[section])
-        headerCell.expandSectionButton.setImage(icon!, forState: .Normal)
-        headerCell.tag = (tierList[section])
+        headerCell.expandSectionButton.tag = (section)
+        
+        if (isCollapsed[section]) {
+            headerCell.expandSectionButton.setImage(expand!, forState: .Normal)
+        } else {
+            headerCell.expandSectionButton.setImage(collapse!, forState: .Normal)
+        }
         
         return headerCell
     }
     
     @IBAction func expandSection(sender: AnyObject) {
+        
+        isCollapsed[sender.tag!] = !isCollapsed[sender.tag!];
+        isShifting = true
         tableView.reloadData()
     }
     
     
     // MARK: - Animate Table View Cell
     
+    // Row Animation
     override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-        let rotationTransform = CATransform3DTranslate(CATransform3DIdentity, 1000, 0, 0)
-        cell.layer.transform = rotationTransform
-        cell.tag = 20
+        if (isShifting) {
+            let rotationTransform = CATransform3DTranslate(CATransform3DIdentity, -1000, 0, 0)
+            cell.layer.transform = rotationTransform
+            
+            UIView.animateWithDuration(0.5, animations: { () -> Void in
+                cell.layer.transform = CATransform3DIdentity
+            })
+        } else {
+            let rotationTransform = CATransform3DTranslate(CATransform3DIdentity, 1000, 0, 0)
+            cell.layer.transform = rotationTransform
+            cell.tag = 20
+            
+            UIView.animateWithDuration(1.0, animations: { () -> Void in
+                cell.layer.transform = CATransform3DIdentity
+            })
+        }
         
-        UIView.animateWithDuration(1.0, animations: { () -> Void in
-            cell.layer.transform = CATransform3DIdentity
-        })
     }
     
+    // Header Animation
     override func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        let rotationTransform = CATransform3DTranslate(CATransform3DIdentity, -500, 0, 0)
-        view.layer.transform = rotationTransform
-        view.tag = 21
+        if (isShifting) {
+
+        } else {
+            let rotationTransform = CATransform3DTranslate(CATransform3DIdentity, -500, 0, 0)
+            view.layer.transform = rotationTransform
+            view.tag = 21
+            
+            UIView.animateWithDuration(1.0, animations: { () -> Void in
+                view.layer.transform = CATransform3DIdentity
+            })
+        }
         
-        UIView.animateWithDuration(1.0, animations: { () -> Void in
-            view.layer.transform = CATransform3DIdentity
-        })
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         if segue.identifier == "showAppDetail" {
             if (sender.tag == 20) {
                 let indexPath:NSIndexPath = self.tableView.indexPathForSelectedRow!
-                isCollapsed[indexPath.section] = !isCollapsed[indexPath.section];
                 let detailVC:ChangeTicketTableViewController = segue.destinationViewController as! ChangeTicketTableViewController
                 let app:BusinessApp_Table_Template
                 let icon = UIImage(named: "circle.png")
