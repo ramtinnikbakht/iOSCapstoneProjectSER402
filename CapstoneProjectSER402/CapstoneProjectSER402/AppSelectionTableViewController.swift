@@ -23,10 +23,11 @@ class AppSelectionTableViewController: UITableViewController {
     
     @IBAction func selectAllSwitchAction(sender: AnyObject) {
         print("Switch Pressed")
+            
+    
     }
     
-    override func viewDidLoad()
-    {
+    override func viewDidLoad() {
         super.viewDidLoad()
         
         /*let alert = UIAlertController(title: "Alert", message: "Your User Type: \(usertype)", preferredStyle: UIAlertControllerStyle.Alert)

@@ -77,7 +77,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Dashboard" id="iHV-qC-U5N">
                         <barButtonItem key="rightBarButtonItem" image="gear.png" id="DCM-IQ-bL3">
-                            <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <segue destination="RRz-o0-Bh3" kind="show" id="QgG-3O-c3k"/>
                             </connections>
@@ -309,7 +309,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Watched Tickets" id="eJ2-cS-Qmq">
                         <barButtonItem key="rightBarButtonItem" image="gear.png" id="53a-TB-2iV">
-                            <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <segue destination="RRz-o0-Bh3" kind="show" id="hhp-6w-DOy"/>
                             </connections>
@@ -320,7 +320,7 @@
             </objects>
             <point key="canvasLocation" x="2835.5" y="125.5"/>
         </scene>
-        <!--Settings Table View Controller-->
+        <!--Settings-->
         <scene sceneID="1or-57-m9r">
             <objects>
                 <tableViewController id="RRz-o0-Bh3" customClass="SettingsTableViewController" customModule="CapstoneProjectSER402" customModuleProvider="target" sceneMemberID="viewController">
@@ -343,6 +343,7 @@
                             <outlet property="delegate" destination="RRz-o0-Bh3" id="tBJ-pR-C2o"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" title="Settings" id="AeZ-fd-HV9"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h9a-yj-M9G" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -476,7 +477,7 @@
                             </connections>
                         </segmentedControl>
                         <barButtonItem key="rightBarButtonItem" image="gear.png" id="z6i-9w-XjN">
-                            <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <segue destination="RRz-o0-Bh3" kind="show" id="RvY-rT-1hV"/>
                             </connections>
