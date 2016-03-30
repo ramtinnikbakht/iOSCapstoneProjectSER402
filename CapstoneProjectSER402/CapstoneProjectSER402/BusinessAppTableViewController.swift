@@ -213,9 +213,11 @@ class BusinessAppTableViewController: UITableViewController
             cell.layer.shadowOpacity = 0.9
             cell.layer.shadowOffset = CGSizeZero
             cell.layer.masksToBounds = false
+            app.icon = UIImage(named: "circle.png")!
         }
         cell.app = app
         return cell
+        
         
     }
     
@@ -237,7 +239,6 @@ class BusinessAppTableViewController: UITableViewController
     }
     
     @IBAction func expandSection(sender: AnyObject) {
-        
         isCollapsed[sender.tag!] = !isCollapsed[sender.tag!];
         isShifting = true
         tableView.reloadData()

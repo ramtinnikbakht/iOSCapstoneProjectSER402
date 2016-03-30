@@ -23,14 +23,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         pageController.currentPageIndicatorTintColor = UIColor.blackColor()
         pageController.backgroundColor = UIColor.whiteColor()
         
-        var navigationBarAppearace = UINavigationBar.appearance()
+        let navigationBarAppearence = UINavigationBar.appearance()
         
-        navigationBarAppearace.tintColor = UIColor.whiteColor()
-        navigationBarAppearace.barTintColor = UIColor(red: 0/255.0,
-                                                      green: 64/255.0,
-                                                      blue: 128/255.0,
-                                                      alpha: 1.0)
-        navigationBarAppearace.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+        navigationBarAppearence.tintColor = UIColor.whiteColor()
+        navigationBarAppearence.barTintColor = UIColor(red: 0/255.0, green: 64/255.0, blue: 128/255.0, alpha: 1.0)
+        navigationBarAppearence.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+        
+        let tabBarAppearence = UITabBar.appearance()
+        tabBarAppearence.barTintColor = UIColor.whiteColor()
+        tabBarAppearence.tintColor = UIColor(red: 0/255.0, green: 64/255.0, blue: 128/255.0, alpha: 1.0)
         
         
         return true

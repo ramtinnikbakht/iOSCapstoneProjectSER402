@@ -8,6 +8,8 @@
 
 import UIKit
 
+weak var tabBar: UITabBar!
+
 class TicketModel:NSObject {
     var watchedTickets = [WatchedTicket]()
     var changeTickets = [ChangeTicket_Table_Template]()
@@ -46,4 +48,5 @@ class TicketModel:NSObject {
 
 class TicketTabBarController:UITabBarController {
     let wTickets = TicketModel()
+    
 }
