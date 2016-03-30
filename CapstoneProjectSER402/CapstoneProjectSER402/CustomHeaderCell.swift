@@ -10,10 +10,13 @@ import UIKit
 
 class CustomHeaderCell: UITableViewCell {
     
-    @IBOutlet weak var searchBar: UISearchBar!
+
+    @IBOutlet weak var appTierLabel: UILabel!
+    @IBOutlet weak var expandSectionButton: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.tag = 200
         // Initialization code
     }
 
