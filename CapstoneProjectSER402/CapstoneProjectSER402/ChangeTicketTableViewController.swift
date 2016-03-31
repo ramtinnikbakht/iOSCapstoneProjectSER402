@@ -15,6 +15,8 @@ class ChangeTicketTableViewController: UITableViewController, ChartViewDelegate 
     // MARK: Properties
     @IBOutlet weak var selectedAppLabel: UILabel!
     @IBOutlet weak var pieChartView: PieChartView!
+    @IBOutlet weak var lineChartView: LineChartView!
+    @IBOutlet weak var profilePageControl: UIPageControl!
     
     private var tbvc = TicketTabBarController()
     private var tickets = TicketModel()
@@ -27,6 +29,7 @@ class ChangeTicketTableViewController: UITableViewController, ChartViewDelegate 
     let low = UIColor(red: CGFloat(38/255.0), green: CGFloat(166/255.0), blue: CGFloat(91/255.0), alpha: 1)
     let med = UIColor(red: CGFloat(244/255.0), green: CGFloat(208/255.0), blue: CGFloat(63/255.0), alpha: 1)
     let high = UIColor(red: CGFloat(207/255.0), green: CGFloat(0), blue: CGFloat(15/255.0), alpha: 1)
+    let navy = UIColor(red: 0/255.0, green: 64/255.0, blue: 128/255.0, alpha: 1.0)
     let riskLevels = ["Low", "Med", "High"]
     
     override func viewDidLoad() {
@@ -34,6 +37,7 @@ class ChangeTicketTableViewController: UITableViewController, ChartViewDelegate 
         
         pieChartView.delegate = self
         selectedAppLabel.text = selectedApp
+        configurePageControl()
         loadSampleTickets()
         
         let unitsSold = [2.0, 3.0, 1.0]
@@ -41,6 +45,15 @@ class ChangeTicketTableViewController: UITableViewController, ChartViewDelegate 
         setChart(riskLevels, values: unitsSold)
     }
     
+    @IBAction func pageControlUpdated(sender: AnyObject) {
+        if (sender.currentPage! == 0) {
+            lineChartView.hidden = true
+            pieChartView.hidden = false
+        } else {
+            lineChartView.hidden = false
+            pieChartView.hidden = true
+        }
+    }
     
     func loadSampleTickets() {
         let eyeIcon = UIImage(named: "eye_unclicked.png")
@@ -96,7 +109,6 @@ class ChangeTicketTableViewController: UITableViewController, ChartViewDelegate 
         }
         
     }
-    
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! ChangeTicketTableViewCell
@@ -241,6 +253,7 @@ class ChangeTicketTableViewController: UITableViewController, ChartViewDelegate 
         pieChartView.legend.labels = ["Low Risk","Medium Risk","High Risk"]
         pieChartView.legend.enabled = true
         
+        pieChartView.rotationEnabled = false
         pieChartView.descriptionText = ""
         pieChartView.animate(xAxisDuration: 1.0, yAxisDuration: 1.0, easingOption: .EaseOutSine)
         
@@ -279,4 +292,11 @@ class ChangeTicketTableViewController: UITableViewController, ChartViewDelegate 
         isGraphSelected = false
         tableView.reloadData()
     }
+    
+    func configurePageControl() {
+        profilePageControl.backgroundColor = navy
+        profilePageControl.pageIndicatorTintColor = UIColor.lightGrayColor()
+        profilePageControl.currentPageIndicatorTintColor = UIColor.whiteColor()
+    }
+    
 }
