@@ -337,7 +337,7 @@ class ChangeTicketTableViewController: UITableViewController, ChartViewDelegate 
             dataEntries.append(dataEntry)
         }
         
-        let lineChartDataSet = LineChartDataSet(yVals: dataEntries, label: "Units Sold")
+        let lineChartDataSet = LineChartDataSet(yVals: dataEntries, label: "Change Tickets")
         let lineChartData = LineChartData(xVals: dataPoints, dataSet: lineChartDataSet)
         let numberFormatter = NSNumberFormatter()
         
@@ -345,7 +345,31 @@ class ChangeTicketTableViewController: UITableViewController, ChartViewDelegate 
         
         numberFormatter.generatesDecimalNumbers = false
         lineChartData.setValueFormatter(numberFormatter)
+        lineChartData.setDrawValues(false)
         lineChartData.setValueFont(UIFont(name: "Helvetica", size: 12))
+        lineChartDataSet.setColor(navy.colorWithAlphaComponent(0.5))
+        lineChartDataSet.fillAlpha = 62 / 255.0
+        lineChartDataSet.setCircleColor(navy) // our circle will be dark red
+        lineChartDataSet.lineWidth = 2.0
+        lineChartDataSet.circleRadius = 6.0
+
+        
+        var colors: [UIColor] = []
+        
+        for i in 0..<dataPoints.count {
+            if (values[i] == 4.0) {
+                let color = low
+                colors.append(color)
+            } else if (values[i] == 3.0) {
+                let color = med
+                colors.append(color)
+            } else if (values[i] == 2.0){
+                let color = high
+                colors.append(color)
+            }
+//            lineChartDataSet.colors = colors
+        }
+        
 
         // Legend Data
         lineChartView.legend.position = .RightOfChartInside
@@ -355,11 +379,16 @@ class ChangeTicketTableViewController: UITableViewController, ChartViewDelegate 
         lineChartView.legend.enabled = true
         
         lineChartView.leftAxis.valueFormatter = numberFormatter
+        lineChartView.leftAxis.drawAxisLineEnabled = false
         lineChartView.rightAxis.drawGridLinesEnabled = false
         lineChartView.rightAxis.drawLabelsEnabled = false
+        lineChartView.rightAxis.drawAxisLineEnabled = false
         lineChartView.xAxis.drawGridLinesEnabled = false
+        lineChartView.xAxis.drawAxisLineEnabled = false
         lineChartView.xAxis.labelPosition = .Bottom
         lineChartView.descriptionText = ""
+        lineChartView.extraRightOffset = 20
+        lineChartView.userInteractionEnabled = false
         lineChartView.animate(xAxisDuration: 1.0, yAxisDuration: 1.0, easingOption: .EaseOutSine)
         
         lineChartView.data = lineChartData
@@ -422,6 +451,7 @@ class ChangeTicketTableViewController: UITableViewController, ChartViewDelegate 
     
     func chartValueNothingSelected(chartView: ChartViewBase) {
         isGraphSelected = false
+        pieChartView.centerText?.removeAll()
         tableView.reloadData()
     }
     
