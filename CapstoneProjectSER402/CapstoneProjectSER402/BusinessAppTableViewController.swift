@@ -40,15 +40,15 @@ class BusinessAppTableViewController: UITableViewController
     {
         let icon = UIImage(named: "circle.png")
         let obj1 = BusinessApp(appId: "ServiceNow Enterprise Edition", businessAppSys: "", businessApp: "ServiceNow Enterprise Edition", appCriticality: "2", owner: "", ownerSys: "", businessArea: "", businessAreaSys: "", businessUnit: "",
-            businessUnitSys: "", businessSubUnitSys: "", businessSubUnit: "", ticketCount: 12, containsEmergencyTicket: true)
-        let obj2 = BusinessApp(appId: "ServiceNow Enterprise Edition", businessAppSys: "", businessApp: "Allstate Application 2", appCriticality: "0", owner: "", ownerSys: "", businessArea: "", businessAreaSys: "", businessUnit: "",
-            businessUnitSys: "", businessSubUnitSys: "", businessSubUnit: "", ticketCount: 8, containsEmergencyTicket: true)
-        let obj3 = BusinessApp(appId: "ServiceNow Enterprise Edition", businessAppSys: "", businessApp: "Allstate Application 3", appCriticality: "1", owner: "", ownerSys: "", businessArea: "", businessAreaSys: "", businessUnit: "",
+            businessUnitSys: "", businessSubUnitSys: "", businessSubUnit: "", ticketCount: 9, containsEmergencyTicket: true)
+        let obj2 = BusinessApp(appId: "ServiceNow Enterprise Edition", businessAppSys: "", businessApp: "Allstate Application 2", appCriticality: "2", owner: "", ownerSys: "", businessArea: "", businessAreaSys: "", businessUnit: "",
+            businessUnitSys: "", businessSubUnitSys: "", businessSubUnit: "", ticketCount: 8, containsEmergencyTicket: false)
+        let obj3 = BusinessApp(appId: "ServiceNow Enterprise Edition", businessAppSys: "", businessApp: "Allstate Application 3", appCriticality: "2", owner: "", ownerSys: "", businessArea: "", businessAreaSys: "", businessUnit: "",
             businessUnitSys: "", businessSubUnitSys: "", businessSubUnit: "", ticketCount: 10, containsEmergencyTicket: false)
-        let obj4 = BusinessApp(appId: "ServiceNow Enterprise Edition", businessAppSys: "", businessApp: "Allstate Application 4", appCriticality: "1", owner: "", ownerSys: "", businessArea: "", businessAreaSys: "", businessUnit: "",
-            businessUnitSys: "", businessSubUnitSys: "", businessSubUnit: "", ticketCount: 5, containsEmergencyTicket: true)
-        let obj5 = BusinessApp(appId: "ServiceNow Enterprise Edition", businessAppSys: "", businessApp: "Allstate Application 5", appCriticality: "2", owner: "", ownerSys: "", businessArea: "", businessAreaSys: "", businessUnit: "",
+        let obj4 = BusinessApp(appId: "ServiceNow Enterprise Edition", businessAppSys: "", businessApp: "Allstate Application 4", appCriticality: "2", owner: "", ownerSys: "", businessArea: "", businessAreaSys: "", businessUnit: "",
             businessUnitSys: "", businessSubUnitSys: "", businessSubUnit: "", ticketCount: 5, containsEmergencyTicket: false)
+        let obj5 = BusinessApp(appId: "ServiceNow Enterprise Edition", businessAppSys: "", businessApp: "Allstate Application 5", appCriticality: "2", owner: "", ownerSys: "", businessArea: "", businessAreaSys: "", businessUnit: "",
+            businessUnitSys: "", businessSubUnitSys: "", businessSubUnit: "", ticketCount: 5, containsEmergencyTicket: true)
         
         let app1 = BusinessApp_Table_Template(appName: obj1.businessApp, ticketCount: obj1.ticketCount, containsEmergencyTicket: obj1.containsEmergencyTicket, icon: icon!, appCriticality: Int(obj1.appCriticality)!)
         let app2 = BusinessApp_Table_Template(appName: obj2.businessApp, ticketCount: obj2.ticketCount, containsEmergencyTicket: obj2.containsEmergencyTicket, icon: icon!, appCriticality: Int(obj2.appCriticality)!)
@@ -147,7 +147,7 @@ class BusinessAppTableViewController: UITableViewController
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! BusinessAppTableViewCell
         let app : BusinessApp_Table_Template
         var nextApp : BusinessApp_Table_Template
-        let icon = UIImage(named: "circle.png")
+        let icon = UIImage(named: "circle")
         
         if (indexPath.section == 0) {
             app = t2Section[indexPath.row] as BusinessApp_Table_Template
@@ -183,37 +183,35 @@ class BusinessAppTableViewController: UITableViewController
         }
         
         if (app.containsEmergencyTicket) {
+            cell.backgroundColor = UIColor(red: CGFloat(217/255.0), green: CGFloat(30/255.0), blue: CGFloat(24/255.0), alpha: 1)
+            cell.layer.shadowRadius = 3.5
+            cell.layer.shadowOpacity = 0.7
+            cell.layer.shadowOffset = CGSizeZero
+            cell.layer.masksToBounds = false
+            cell.ticketCount.textColor = UIColor.whiteColor()
+            cell.businessAppName.textColor = UIColor.whiteColor()
+            app.icon = UIImage(named: "circleEmergency.png")!
+            
             if (nextApp.containsEmergencyTicket) {
                 let white = UIColor.whiteColor()
-                cell.backgroundColor = UIColor(red: CGFloat(217/255.0), green: CGFloat(30/255.0), blue: CGFloat(24/255.0), alpha: 1)
                 cell.layer.shadowColor = white.CGColor
-                cell.layer.shadowRadius = 3.5
-                cell.layer.shadowOpacity = 0.7
-                cell.layer.shadowOffset = CGSizeZero
-                cell.layer.masksToBounds = false
-                cell.ticketCount.textColor = UIColor.whiteColor()
-                cell.businessAppName.textColor = UIColor.whiteColor()
-                app.icon = UIImage(named: "circleEmergency.png")!
+                
             } else {
                 let red = UIColor(red: CGFloat(207/255.0), green: CGFloat(0), blue: CGFloat(15/255.0), alpha: 1)
-                cell.backgroundColor = UIColor(red: CGFloat(217/255.0), green: CGFloat(30/255.0), blue: CGFloat(24/255.0), alpha: 1)
                 cell.layer.shadowColor = red.CGColor
-                cell.layer.shadowRadius = 3.5
-                cell.layer.shadowOpacity = 0.9
-                cell.layer.shadowOffset = CGSizeZero
-                cell.layer.masksToBounds = false
-                cell.ticketCount.textColor = UIColor.whiteColor()
-                cell.businessAppName.textColor = UIColor.whiteColor()
-                app.icon = UIImage(named: "circleEmergency.png")!
             }
         } else {
-            let light_gray = UIColor.lightGrayColor()
-            cell.layer.shadowColor = light_gray.CGColor
+            let white = UIColor.whiteColor()
+            let charcoal = UIColor(red: (34/255.0), green: (34/255.0), blue: (34/255.0), alpha: 1)
+            cell.backgroundColor = white
+            cell.layer.shadowColor = UIColor.lightGrayColor().CGColor
             cell.layer.shadowRadius = 2.5
             cell.layer.shadowOpacity = 0.9
             cell.layer.shadowOffset = CGSizeZero
             cell.layer.masksToBounds = false
-            app.icon = UIImage(named: "circle.png")!
+            cell.ticketCount.textColor = charcoal
+            cell.businessAppName.textColor = charcoal
+            app.icon = UIImage(named: "circle")!
         }
         cell.app = app
         return cell
@@ -249,20 +247,28 @@ class BusinessAppTableViewController: UITableViewController
     
     // Row Animation
     override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        let cellPosition = indexPath.indexAtPosition(1)
+        let delay : Double = Double(cellPosition) * 0.1
+        
         if (isShifting) {
             let rotationTransform = CATransform3DTranslate(CATransform3DIdentity, -1000, 0, 0)
             cell.layer.transform = rotationTransform
             
-            UIView.animateWithDuration(0.5, animations: { () -> Void in
+            UIView.animateWithDuration(1.0, delay: delay, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.3, options: UIViewAnimationOptions.BeginFromCurrentState, animations: {
                 cell.layer.transform = CATransform3DIdentity
+                }, completion: { finished in
+                    
             })
-        } else {
+        }
+         else {
             let rotationTransform = CATransform3DTranslate(CATransform3DIdentity, 1000, 0, 0)
             cell.layer.transform = rotationTransform
             cell.tag = 20
             
-            UIView.animateWithDuration(1.0, animations: { () -> Void in
+            UIView.animateWithDuration(1.0, delay: delay, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.3, options: UIViewAnimationOptions.BeginFromCurrentState, animations: {
                 cell.layer.transform = CATransform3DIdentity
+                }, completion: { finished in
+                    
             })
         }
         

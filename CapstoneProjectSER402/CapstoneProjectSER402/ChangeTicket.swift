@@ -24,6 +24,7 @@ class ChangeTicket
     var requestedByGroupSubBusinessUnit: String = ""
     var causeCompleteServiceAppOutage: String = ""
     var risk: String = ""
+    var risksys: String = ""
     var type: String = ""
     var impactScore: String = ""
     var shortDescription: String = ""
@@ -36,7 +37,7 @@ class ChangeTicket
     var BusinessApplicationCriticalityTier: String = ""
     
     
-    init(number: String, approver: String, plannedStart: String, plannedEnd: String, actualStart: String, actualEnd: String, requestedByGroup: String, requestedByGroupBusinessArea:String, requestedByGroupBusinessUnit: String, requestedByGroupSubBusinessUnit: String, causeCompleteServiceAppOutage: String, risk: String, type:String, impactScore:String, shortDescription:String, changeReason: String, closureCode: String, ImpactedEnviroment: String, SecondaryClosureCode: String, PartofRelease: String, BusinessApplication: String, BusinessApplicationCriticalityTier: String)
+    init(number: String, approver: String, plannedStart: String, plannedEnd: String, actualStart: String, actualEnd: String, requestedByGroup: String, requestedByGroupBusinessArea:String, requestedByGroupBusinessUnit: String, requestedByGroupSubBusinessUnit: String, causeCompleteServiceAppOutage: String,risk: String, risksys: String, type:String, impactScore:String, shortDescription:String, changeReason: String, closureCode: String, ImpactedEnviroment: String, SecondaryClosureCode: String, PartofRelease: String, BusinessApplication: String, BusinessApplicationCriticalityTier: String)
     {
         self.number = number
         self.approver = approver
@@ -50,6 +51,7 @@ class ChangeTicket
         self.requestedByGroupSubBusinessUnit = requestedByGroupSubBusinessUnit
         self.causeCompleteServiceAppOutage = causeCompleteServiceAppOutage
         self.risk = risk
+        self.risksys = risksys
         self.type = type
         self.impactScore = impactScore
         self.shortDescription = shortDescription
@@ -110,6 +112,10 @@ class ChangeTicket
     func getRisk() -> String
     {
         return self.risk
+    }
+    func getRisksys() -> String
+    {
+        return self.risksys
     }
     func getType() -> String
     {
@@ -199,6 +205,10 @@ class ChangeTicket
     func setRisk(risk: String)
     {
         self.risk = risk
+    }
+    func setRisksys(risksys: String)
+    {
+        self.risksys = risksys
     }
     func setType(type: String)
     {

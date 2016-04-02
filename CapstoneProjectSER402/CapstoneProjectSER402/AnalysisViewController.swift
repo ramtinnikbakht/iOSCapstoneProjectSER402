@@ -176,10 +176,10 @@ class AnalysisViewController: UIViewController, UITextFieldDelegate, ChartViewDe
             horizontalBarChartView.xAxis.removeLimitLine(releaseWindowLL)
             releaseWindowLL.valueTextColor = UIColor(red: (255/255.0), green: 0, blue: 0, alpha: 0.3)
             releaseWindowLL.lineColor = UIColor(red: (255/255.0), green: 0, blue: 0, alpha: 0.3)
-            releaseWindowLL.lineWidth = CGFloat(horizontalBarChartView.xAxis.spaceBetweenLabels)
             releaseWindowLL.valueFont = UIFont(name: "Helvetica", size: 10)!
             releaseWindowLL.labelPosition = .RightBottom
             horizontalBarChartView.xAxis.addLimitLine(releaseWindowLL)
+            horizontalBarChartView.xAxis.drawLimitLinesBehindDataEnabled = true
             horizontalBarChartView.setNeedsDisplay()
         } else {
             horizontalBarChartView.xAxis.removeLimitLine(releaseWindowLL)
