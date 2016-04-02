@@ -139,7 +139,6 @@
                                 </view>
                                 <pageControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="2" translatesAutoresizingMaskIntoConstraints="NO" id="znV-Ap-oxp">
                                     <rect key="frame" x="0.0" y="281" width="375" height="37"/>
-                                    <color key="backgroundColor" red="0.0" green="0.25098039220000001" blue="0.50196078430000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <connections>
                                         <action selector="pageControlUpdated:" destination="4l6-UN-Ceb" eventType="valueChanged" id="E52-Cy-HgI"/>
                                     </connections>
@@ -240,110 +239,6 @@
             </objects>
             <point key="canvasLocation" x="3497.5" y="-941.5"/>
         </scene>
-        <!--Watched Tickets-->
-        <scene sceneID="eW8-QC-8dc">
-            <objects>
-                <tableViewController id="Qzr-Wx-7nc" customClass="WatchedTicketTableViewController" customModule="CapstoneProjectSER402" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="q5b-rf-CUq">
-                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="WatchedTicketTableViewCell" rowHeight="170" id="f0W-Jj-neQ" customClass="WatchedTicketTableViewCell" customModule="CapstoneProjectSER402" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="170"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="f0W-Jj-neQ" id="lIn-Q6-X8i">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="169.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Planned Start Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xlo-NI-pGe">
-                                            <rect key="frame" x="19" y="132" width="145" height="21"/>
-                                            <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="14"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7xl-qc-1Ek">
-                                            <rect key="frame" x="19" y="14" width="145" height="21"/>
-                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Requested Business Unit" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bh9-zp-xsd">
-                                            <rect key="frame" x="19" y="48" width="175" height="21"/>
-                                            <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="14"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Requested Sub Business Unit" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7dx-NT-P5x">
-                                            <rect key="frame" x="19" y="74" width="175" height="21"/>
-                                            <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="14"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MmA-rB-Txn">
-                                            <rect key="frame" x="202" y="48" width="156" height="21"/>
-                                            <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="13"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qDu-SU-qhi">
-                                            <rect key="frame" x="202" y="74" width="156" height="21"/>
-                                            <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="13"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lLL-Jx-WhB">
-                                            <rect key="frame" x="225" y="133" width="133" height="21"/>
-                                            <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="13"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eqf-Y5-ncn">
-                                            <rect key="frame" x="316" y="103" width="42" height="21"/>
-                                            <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="13"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Risk Level" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ood-NQ-ry1">
-                                            <rect key="frame" x="19" y="103" width="87" height="21"/>
-                                            <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="14"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                </tableViewCellContentView>
-                                <color key="backgroundColor" red="0.92549019610000005" green="0.92549019610000005" blue="0.92549019610000005" alpha="1" colorSpace="calibratedRGB"/>
-                                <connections>
-                                    <outlet property="watchedBusinessGroup" destination="MmA-rB-Txn" id="bwx-nU-aHN"/>
-                                    <outlet property="watchedBusinessGroupLabel" destination="bh9-zp-xsd" id="iYb-Y5-c5n"/>
-                                    <outlet property="watchedPlannedDate" destination="lLL-Jx-WhB" id="cca-iu-D43"/>
-                                    <outlet property="watchedSubBusinessGroup" destination="qDu-SU-qhi" id="oE6-t9-Ya1"/>
-                                    <outlet property="watchedSubBusinessGroupLabel" destination="7dx-NT-P5x" id="QzE-Du-1PV"/>
-                                    <outlet property="watchedTicketID" destination="7xl-qc-1Ek" id="t46-2W-b7r"/>
-                                    <outlet property="watchedTicketPlannedLabel" destination="xlo-NI-pGe" id="jUG-HO-xLl"/>
-                                    <outlet property="watchedTicketPriority" destination="Eqf-Y5-ncn" id="Yn9-Pt-u7i"/>
-                                    <outlet property="watchedTicketRiskLabel" destination="ood-NQ-ry1" id="lgs-MC-MZr"/>
-                                </connections>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="Qzr-Wx-7nc" id="U2K-gW-sL4"/>
-                            <outlet property="delegate" destination="Qzr-Wx-7nc" id="g9B-TK-jrs"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Watched Tickets" id="eJ2-cS-Qmq">
-                        <barButtonItem key="rightBarButtonItem" image="gear.png" id="53a-TB-2iV">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <connections>
-                                <segue destination="RRz-o0-Bh3" kind="show" id="hhp-6w-DOy"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dZ8-Z5-Bnz" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2835.5" y="125.5"/>
-        </scene>
         <!--Settings-->
         <scene sceneID="1or-57-m9r">
             <objects>
@@ -443,6 +338,10 @@
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jrp-hd-Ish" customClass="HorizontalBarChartView" customModule="Charts">
+                                <rect key="frame" x="0.0" y="277" width="375" height="277"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Mwo-Hn-j1c">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="277"/>
                                 <subviews>
@@ -516,10 +415,6 @@
                                         <color key="onTintColor" red="0.0" green="0.25098039220000001" blue="0.50196078430000002" alpha="1" colorSpace="calibratedRGB"/>
                                     </switch>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jrp-hd-Ish" customClass="HorizontalBarChartView" customModule="Charts">
-                                <rect key="frame" x="0.0" y="277" width="375" height="277"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
@@ -674,11 +569,11 @@
             </objects>
             <point key="canvasLocation" x="2178.5" y="-735.5"/>
         </scene>
-        <!--Watched-->
+        <!--Archive-->
         <scene sceneID="dnv-CJ-Vq9">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="yLS-8U-Rt6" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Watched" image="binoculars-front-view.png" id="Hto-mW-Cdb">
+                    <tabBarItem key="tabBarItem" title="Archive" image="binoculars-front-view.png" id="Hto-mW-Cdb">
                         <inset key="imageInsets" minX="0.0" minY="1" maxX="0.0" maxY="0.0"/>
                     </tabBarItem>
                     <toolbarItems/>
@@ -688,12 +583,55 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="Qzr-Wx-7nc" kind="relationship" relationship="rootViewController" id="gaf-oO-UMj"/>
+                        <segue destination="U0G-KN-PWc" kind="relationship" relationship="rootViewController" id="9n7-kg-dqj"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xys-U1-cKF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2178.5" y="125.5"/>
+        </scene>
+        <!--Archive-->
+        <scene sceneID="GcE-aA-pew">
+            <objects>
+                <viewController id="U0G-KN-PWc" customClass="ArchiveViewController" customModule="CapstoneProjectSER402" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="a43-sE-9FJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="gdL-Pg-cTc"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="jek-2E-04L">
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="r7r-VX-XcC" customClass="PieChartView" customModule="Charts">
+                                <rect key="frame" x="20" y="0.0" width="335" height="275"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5BO-3L-veJ">
+                                <rect key="frame" x="0.0" y="274" width="375" height="280"/>
+                                <subviews>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="PHN-Pq-th0">
+                                        <rect key="frame" x="8" y="8" width="359" height="29"/>
+                                        <segments>
+                                            <segment title="Past Day"/>
+                                            <segment title="Past 3 Days"/>
+                                            <segment title="Past Week"/>
+                                        </segments>
+                                        <color key="tintColor" red="0.0" green="0.25098039220000001" blue="0.50196078430000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    </segmentedControl>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Archive" id="PCm-Us-rZJ"/>
+                    <connections>
+                        <outlet property="pieChartView" destination="r7r-VX-XcC" id="3QK-hk-u7E"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="any-Ok-R2d" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2765.5" y="88.5"/>
         </scene>
         <!--My Apps-->
         <scene sceneID="Cca-Pi-Xp0">
@@ -850,6 +788,6 @@
         <image name="infographic-bars.png" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="RvY-rT-1hV"/>
+        <segue reference="QgG-3O-c3k"/>
     </inferredMetricsTieBreakers>
 </document>

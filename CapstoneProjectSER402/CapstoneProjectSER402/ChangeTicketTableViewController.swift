@@ -39,6 +39,7 @@ class ChangeTicketTableViewController: UITableViewController, ChartViewDelegate 
     let med = UIColor(red: CGFloat(244/255.0), green: CGFloat(208/255.0), blue: CGFloat(63/255.0), alpha: 1)
     let high = UIColor(red: CGFloat(207/255.0), green: CGFloat(0), blue: CGFloat(15/255.0), alpha: 1)
     let navy = UIColor(red: 0/255.0, green: 64/255.0, blue: 128/255.0, alpha: 1.0)
+    let navy_comp = UIColor(red: CGFloat(51/255.0), green: CGFloat(204/255.0), blue: CGFloat(153/255.0), alpha: 1)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -292,7 +293,7 @@ class ChangeTicketTableViewController: UITableViewController, ChartViewDelegate 
         
         numberFormatter.generatesDecimalNumbers = false
         pieChartData.setValueFormatter(numberFormatter)
-        pieChartData.setValueFont(UIFont(name: "Helvetica", size: 12))
+        pieChartData.setValueFont(UIFont(name: "Helvetica", size: 17))
         pieChartView.data = pieChartData
         
         
@@ -352,23 +353,6 @@ class ChangeTicketTableViewController: UITableViewController, ChartViewDelegate 
         lineChartDataSet.setCircleColor(navy) // our circle will be dark red
         lineChartDataSet.lineWidth = 2.0
         lineChartDataSet.circleRadius = 6.0
-
-        
-        var colors: [UIColor] = []
-        
-        for i in 0..<dataPoints.count {
-            if (values[i] == 4.0) {
-                let color = low
-                colors.append(color)
-            } else if (values[i] == 3.0) {
-                let color = med
-                colors.append(color)
-            } else if (values[i] == 2.0){
-                let color = high
-                colors.append(color)
-            }
-//            lineChartDataSet.colors = colors
-        }
         
 
         // Legend Data
@@ -389,7 +373,7 @@ class ChangeTicketTableViewController: UITableViewController, ChartViewDelegate 
         lineChartView.descriptionText = ""
         lineChartView.extraRightOffset = 20
         lineChartView.userInteractionEnabled = false
-        lineChartView.animate(xAxisDuration: 1.0, yAxisDuration: 1.0, easingOption: .EaseOutSine)
+        lineChartView.animate(yAxisDuration: 1.0, easingOption: .EaseInCubic)
         
         lineChartView.data = lineChartData
         

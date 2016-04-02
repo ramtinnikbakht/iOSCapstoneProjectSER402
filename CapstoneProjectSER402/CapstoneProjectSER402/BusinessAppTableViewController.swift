@@ -283,8 +283,10 @@ class BusinessAppTableViewController: UITableViewController
             view.layer.transform = rotationTransform
             view.tag = 21
             
-            UIView.animateWithDuration(1.0, animations: { () -> Void in
+            UIView.animateWithDuration(1.0, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.3, options: UIViewAnimationOptions.BeginFromCurrentState, animations: {
                 view.layer.transform = CATransform3DIdentity
+                }, completion: { finished in
+                    
             })
         }
         
