@@ -14,10 +14,10 @@ class ChangeTicket
 {
     var number: String = ""
     var approver: String = ""
-    var plannedStart: String = ""
-    var plannedEnd: String = ""
-    var actualStart: String = ""
-    var actualEnd: String = ""
+    var plannedStart: NSDate
+    var plannedEnd: NSDate
+    var actualStart: NSDate
+    var actualEnd: NSDate
     var requestedByGroup: String = ""
     var requestedByGroupBusinessArea: String = ""
     var requestedByGroupBusinessUnit: String = ""
@@ -35,15 +35,20 @@ class ChangeTicket
     var BusinessApplication: String = ""
     var BusinessApplicationCriticalityTier: String = ""
     
+    let DateFormat = NSDateFormatter()
+    
     
     init(number: String, approver: String, plannedStart: String, plannedEnd: String, actualStart: String, actualEnd: String, requestedByGroup: String, requestedByGroupBusinessArea:String, requestedByGroupBusinessUnit: String, requestedByGroupSubBusinessUnit: String, causeCompleteServiceAppOutage: String, risk: String, type:String, impactScore:String, shortDescription:String, changeReason: String, closureCode: String, ImpactedEnviroment: String, SecondaryClosureCode: String, PartofRelease: String, BusinessApplication: String, BusinessApplicationCriticalityTier: String)
     {
+        DateFormat.locale = NSLocale(localeIdentifier: "en_US_POSIX")
+        DateFormat.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        
         self.number = number
         self.approver = approver
-        self.plannedStart = plannedStart
-        self.plannedEnd = plannedEnd
-        self.actualStart = actualStart
-        self.actualEnd = actualEnd
+        self.plannedStart = DateFormat.dateFromString(plannedStart)!
+        self.plannedEnd = DateFormat.dateFromString(plannedEnd)!
+        self.actualStart = DateFormat.dateFromString(actualStart)!
+        self.actualEnd = DateFormat.dateFromString(actualEnd)!
         self.requestedByGroup = requestedByGroup
         self.requestedByGroupBusinessArea = requestedByGroupBusinessArea
         self.requestedByGroupBusinessUnit = requestedByGroupBusinessUnit
@@ -71,19 +76,19 @@ class ChangeTicket
     {
         return self.approver
     }
-    func getPlannedStart() -> String
+    func getPlannedStart() -> NSDate
     {
         return self.plannedStart
     }
-    func getPlannedEnd() -> String
+    func getPlannedEnd() -> NSDate
     {
         return self.plannedEnd
     }
-    func getActualStart() -> String
+    func getActualStart() -> NSDate
     {
         return self.actualStart
     }
-    func getActualEnd()-> String
+    func getActualEnd()-> NSDate
     {
         return self.actualEnd
     }
@@ -160,19 +165,19 @@ class ChangeTicket
     {
         self.approver = approver
     }
-    func setPlannedStart(plannedStart: String)
+    func setPlannedStart(plannedStart: NSDate)
     {
         self.plannedStart = plannedStart
     }
-    func setPlannedEnd(plannedEnd: String)
+    func setPlannedEnd(plannedEnd: NSDate)
     {
         self.plannedEnd = plannedEnd
     }
-    func setActualStart(actualStart: String)
+    func setActualStart(actualStart: NSDate)
     {
         self.actualStart = actualStart
     }
-    func setActualEnd(actualEnd: String)
+    func setActualEnd(actualEnd: NSDate)
     {
         self.actualEnd = actualEnd
     }

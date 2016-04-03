@@ -18,17 +18,30 @@ class ConnectionService : NSObject, NSURLSessionDelegate {
     let proxyEnable : CFNumber = NSNumber(int: 1) as CFNumber
     
     func parseChange(xml: AEXMLDocument) -> ([ChangeTicket]) {
-        let ticketList: ([ChangeTicket])
+        var ticketList = [ChangeTicket]()
         if let tickets = xml.root["SOAP-ENV:Body"]["insertResponse"]["status_message"]["ReturnMessage"]["ChangeStatus"]["changeInformation"].all {
             for ticket in tickets {
-                var newTicket = ChangeTicket(number: ticket["Number"].value, approver: ticket["Approver"].value, plannedStart: ticket["PlannedStart"].value, plannedEnd: ticket["PlannedEnd"].value, actualStart: ticket["ActualStart"].value, actualEnd: ticket["ActualEnd"].value, requestedByGroup: ticket["Requested_By_Group"].value, requestedByGroupBusinessArea:ticket["Request_By_Group_Business_Area"].value, requestedByGroupBusinessUnit: ticket["Requested_By_Group_Business_Unit"].value, requestedByGroupSubBusinessUnit: ticket["Requested_By_GroupSub_Business_Unit"].value, causeCompleteServiceAppOutage: ticket["Causes_Complete_ServiceApplication_Outage"].value, risk: ticket["Risk"].value, type:ticket["Type"].value, impactScore:ticket["Impact_Score"].value, shortDescription:ticket["Short_Description"].value, changeReason: ticket["Change_Reason"].value, closureCode: ticket["Closure_Code"].value, ImpactedEnviroment: ticket["Impacted_Environments"].value, SecondaryClosureCode: ticket["Secondary_Closure_Code"].value, PartofRelease: ticket["Part_of_a_release"].value)
-                ticketList.append(newElement: newTicket)
+                let newTicket = ChangeTicket(number: ticket["Number"].value!, approver: ticket["Approver"].value!, plannedStart: ticket["PlannedStart"].value!, plannedEnd: ticket["PlannedEnd"].value!, actualStart: ticket["ActualStart"].value!, actualEnd: ticket["ActualEnd"].value!, requestedByGroup: ticket["Requested_By_Group"].value!,
+                    requestedByGroupBusinessArea:ticket["Request_By_Group_Business_Area"].value!, requestedByGroupBusinessUnit: ticket["Requested_By_Group_Business_Unit"].value!, requestedByGroupSubBusinessUnit: ticket["Requested_By_GroupSub_Business_Unit"].value!, causeCompleteServiceAppOutage: ticket["Causes_Complete_ServiceApplication_Outage"].value!, risk: ticket["Risk"].value!, type:ticket["Type"].value!, impactScore:ticket["Impact_Score"].value!, shortDescription:ticket["Short_Description"].value!, changeReason: ticket["Change_Reason"].value!, closureCode: ticket["Closure_Code"].value!, ImpactedEnviroment: ticket["Impacted_Environments"].value!, SecondaryClosureCode: ticket["Secondary_Closure_Code"].value!, PartofRelease: ticket["Part_of_a_release"].value!, BusinessApplication: "", BusinessApplicationCriticalityTier: "")
+                ticketList.append(newTicket)
             }
         }
+        return ticketList
     }
     
-    func parseBusiness(xml: AEXMLDocument) {
+    func parseBusiness(xml: AEXMLDocument) -> ([BusinessApp]) {
+        var businessApps = [BusinessApp]()
+        if let apps = xml.root["SOAP-ENV:Body"]["insertResponse"]["status_message"]["ReturnMessage"]["applicationData"].all {
+            for app in apps {
+                let newApp = BusinessApp(appId: app["appID"].value!, businessAppSys: app["businessAppSys"].value!, businessApp: app["businessApp"].value!, appCriticality: app["appCriticality"].value!,
+                    owner: app["owner"].value!, ownerSys: app["ownerSys"].value!, businessArea: app["businessArea"].value!, businessAreaSys: app["businessAreaSys"].value!, businessUnit: app["businessUnit"].value!,
+                    businessUnitSys: app["businessUnitSys"].value!, businessSubUnitSys: app["businessSubUnitSys"].value!, businessSubUnit: app["businessSubUnit"].value!, ticketCount: 0, containsEmergencyTicket: false)
+                businessApps.append(newApp)
+            }
+            
+        }
         
+        return businessApps
     }
     
     func getChange(number: String?="", approver: String?="", plannedStart: String?="", plannedEnd: String?="", actualStart: String?="", actualEnd: String?="", plannedStart2: String?="", plannedEnd2: String?="", actualStart2: String?="", actualEnd2: String?="", reqByGroup: String?="", reqByGrp_BusArea: String?="", reqByGrpBusUnit: String?="", reqByGrpSubBusUnit: String?="", risk: String?="", psD: String?="", peD: String?="", asD: String?="", aeD: String?="", application: String?="") -> ([ChangeTicket]) {
@@ -67,8 +80,6 @@ class ConnectionService : NSObject, NSURLSessionDelegate {
         message.addChild(name: "asD", value: asD)
         message.addChild(name: "aeD", value: aeD)
         message.addChild(name: "application", value: application)
-
-
         
         insert.addChild(name: "u:u_process", value: "ASU.B.eChangeProject")
         insert.addChild(name: "u:u_product", value: "CHG")
@@ -88,7 +99,7 @@ class ConnectionService : NSObject, NSURLSessionDelegate {
         let body = envelope.addChild(name: "soapenv:Body")
         let insert = body.addChild(name: "u:insert")
         insert.addChild(name: "u:template_import_log")
-        insert.addChild(name: "u:u_action", value: "eProjectChange")
+        insert.addChild(name: "u:u_action", value: "eProjectAppData")
         let xmlMessage = insert.addChild(name: "u:u_message")
         let message = xmlMessage.addChild(name: "Message")
         
@@ -98,7 +109,7 @@ class ConnectionService : NSObject, NSURLSessionDelegate {
         message.addChild(name: "appSubUnit", value: appSubUnit)
         message.addChild(name: "requestUnits", value: requestUnits)
         message.addChild(name: "requestAreas", value: requestAreas)
-
+        
         insert.addChild(name: "u:u_process", value: "ASU.B.eChangeProject")
         insert.addChild(name: "u:u_product", value: "CHG")
         let xml = sendData(soapRequest.xmlString)
@@ -141,7 +152,7 @@ class ConnectionService : NSObject, NSURLSessionDelegate {
         request.addValue(msgLength, forHTTPHeaderField: "Content-Length")
         request.HTTPMethod = "POST"
         request.HTTPBody = message.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
-
+        
         // send request and capture output in completion handler
         let task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
             // if the data is not nil then convert data into a string
@@ -159,12 +170,12 @@ class ConnectionService : NSObject, NSURLSessionDelegate {
                     let xml = try AEXMLDocument(xmlData: returnData!)
                     xmlDoc = xml
                     print(xml.root.xmlString)
-
+                    
                 }
                 catch {
                     print("\(error)")
                 }
-
+                
             }
             
             if (error != nil) {
