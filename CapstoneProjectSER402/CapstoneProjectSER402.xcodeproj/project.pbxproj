@@ -42,7 +42,8 @@
 		48D741D11C5AB574008D082E /* user.png in Resources */ = {isa = PBXBuildFile; fileRef = 48D741D01C5AB574008D082E /* user.png */; };
 		48D741D31C5AB57C008D082E /* lock.png in Resources */ = {isa = PBXBuildFile; fileRef = 48D741D21C5AB57C008D082E /* lock.png */; };
 		48D8FADB1CAB096900753943 /* AppsOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D8FADA1CAB096900753943 /* AppsOptionTableViewCell.swift */; };
-		C108ADEA1CAFB1DF00CB60F0 /* ArchiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C108ADE91CAFB1DF00CB60F0 /* ArchiveViewController.swift */; };
+		C108ADEA1CAFB1DF00CB60F0 /* ArchiveTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C108ADE91CAFB1DF00CB60F0 /* ArchiveTableViewController.swift */; };
+		C108ADEC1CB1B9B500CB60F0 /* ArchiveTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C108ADEB1CB1B9B500CB60F0 /* ArchiveTableViewCell.swift */; };
 		C121B52D1C80075B001F3B16 /* WatchedTicket.swift in Sources */ = {isa = PBXBuildFile; fileRef = C121B52C1C80075B001F3B16 /* WatchedTicket.swift */; };
 		C121B52F1C8008CC001F3B16 /* WatchedTicketTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C121B52E1C8008CC001F3B16 /* WatchedTicketTableViewCell.swift */; };
 		C142E6551C9BEC5A005F1DEC /* TicketModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C142E6541C9BEC5A005F1DEC /* TicketModel.swift */; };
@@ -185,7 +186,8 @@
 		48D741D01C5AB574008D082E /* user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user.png; sourceTree = "<group>"; };
 		48D741D21C5AB57C008D082E /* lock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lock.png; sourceTree = "<group>"; };
 		48D8FADA1CAB096900753943 /* AppsOptionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppsOptionTableViewCell.swift; sourceTree = "<group>"; };
-		C108ADE91CAFB1DF00CB60F0 /* ArchiveViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArchiveViewController.swift; sourceTree = "<group>"; };
+		C108ADE91CAFB1DF00CB60F0 /* ArchiveTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArchiveTableViewController.swift; sourceTree = "<group>"; };
+		C108ADEB1CB1B9B500CB60F0 /* ArchiveTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArchiveTableViewCell.swift; sourceTree = "<group>"; };
 		C121B52C1C80075B001F3B16 /* WatchedTicket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchedTicket.swift; sourceTree = "<group>"; };
 		C121B52E1C8008CC001F3B16 /* WatchedTicketTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchedTicketTableViewCell.swift; sourceTree = "<group>"; };
 		C142E6541C9BEC5A005F1DEC /* TicketModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TicketModel.swift; sourceTree = "<group>"; };
@@ -318,6 +320,7 @@
 				48D741A91C5AAE86008D082E /* Assets.xcassets */,
 				48D741AB1C5AAE86008D082E /* LaunchScreen.storyboard */,
 				48D741A61C5AAE86008D082E /* Main.storyboard */,
+				C108ADEB1CB1B9B500CB60F0 /* ArchiveTableViewCell.swift */,
 				4852EEAD1CAC71D80060CD3E /* ProfileTableViewCell.swift */,
 				48D8FADA1CAB096900753943 /* AppsOptionTableViewCell.swift */,
 				C19F0DD41C759DB1009BD594 /* ChangeTicketTableViewCell.swift */,
@@ -328,7 +331,7 @@
 				C14333A51CA4146D0083CA88 /* CustomHeaderCell.swift */,
 				4818FE111CA49CFA00B7EB47 /* SettingsTableViewController.swift */,
 				4852EEA81CAC6D280060CD3E /* AlertsTableViewCell.swift */,
-				C108ADE91CAFB1DF00CB60F0 /* ArchiveViewController.swift */,
+				C108ADE91CAFB1DF00CB60F0 /* ArchiveTableViewController.swift */,
 			);
 			path = CapstoneProjectSER402;
 			sourceTree = "<group>";
@@ -562,6 +565,7 @@
 				48993BED1C8CBB0A00EDA13E /* SelectUserTypeViewController.swift in Sources */,
 				C19F0DD71C75A28A009BD594 /* ChangeTicketTableViewController.swift in Sources */,
 				48D741A51C5AAE86008D082E /* LoginViewController.swift in Sources */,
+				C108ADEC1CB1B9B500CB60F0 /* ArchiveTableViewCell.swift in Sources */,
 				46D0586C1CA3B79D005CFB61 /* AEXML.swift in Sources */,
 				46A2AB131CA47C0E00F87C80 /* SWRevealViewController.m in Sources */,
 				48D8FADB1CAB096900753943 /* AppsOptionTableViewCell.swift in Sources */,
@@ -569,7 +573,7 @@
 				C121B52F1C8008CC001F3B16 /* WatchedTicketTableViewCell.swift in Sources */,
 				4852EEAE1CAC71D80060CD3E /* ProfileTableViewCell.swift in Sources */,
 				4852EEA91CAC6D280060CD3E /* AlertsTableViewCell.swift in Sources */,
-				C108ADEA1CAFB1DF00CB60F0 /* ArchiveViewController.swift in Sources */,
+				C108ADEA1CAFB1DF00CB60F0 /* ArchiveTableViewController.swift in Sources */,
 				C142E6551C9BEC5A005F1DEC /* TicketModel.swift in Sources */,
 				46A2AB141CA47C0E00F87C80 /* UserTypeSelectionViewController.swift in Sources */,
 				489AFBA81C7F6B3000E9DEB9 /* User.swift in Sources */,
