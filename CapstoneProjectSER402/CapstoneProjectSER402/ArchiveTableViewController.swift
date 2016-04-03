@@ -157,29 +157,29 @@ class ArchiveTableViewController: UITableViewController, UITextFieldDelegate, Ch
         let ticket = changeTickets[indexPath.row] as ChangeTicket_Table_Template
        
         if ((ticket.closureCode) == "Implemented as Planned") {
-            cell.backgroundColor = cc1
+            cell.ccIndicator.backgroundColor = cc1
             let white = UIColor.whiteColor()
-            cell.ticketID.textColor = white
+            cell.backgroundColor = white
         } else if ((ticket.closureCode) == "Implemented with Effort") {
-            cell.backgroundColor = cc2
+            cell.ccIndicator.backgroundColor = cc2
             let white = UIColor.whiteColor()
-            cell.ticketID.textColor = white
+            cell.backgroundColor = white
         } else if ((ticket.closureCode) == "Backed Out No Customer/User Impacts") {
             cell.backgroundColor = cc3
             let white = UIColor.whiteColor()
-            cell.ticketID.textColor = white
+            cell.backgroundColor = white
         } else if ((ticket.closureCode) == "Implemented with Issues") {
-            cell.backgroundColor = cc4
+            cell.ccIndicator.backgroundColor = cc4
             let white = UIColor.whiteColor()
-            cell.ticketID.textColor = white
+            cell.backgroundColor = white
         } else if ((ticket.closureCode) == "Backed Out Customer/User Impacts") {
-            cell.backgroundColor = cc5
+            cell.ccIndicator.backgroundColor = cc5
             let white = UIColor.whiteColor()
-            cell.ticketID.textColor = white
+            cell.backgroundColor = white
         } else if ((ticket.closureCode) == "Failed to report status") {
-            cell.backgroundColor = cc6
+            cell.ccIndicator.backgroundColor = cc6
             let white = UIColor.whiteColor()
-            cell.ticketID.textColor = white
+            cell.backgroundColor = white
         } else {
             cell.backgroundColor = navy
             cell.ticketID.textColor = UIColor.whiteColor()

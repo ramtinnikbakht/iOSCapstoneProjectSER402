@@ -11,6 +11,7 @@ import UIKit
 class ArchiveTableViewCell: UITableViewCell {
 
     @IBOutlet weak var ticketID: UILabel!
+    @IBOutlet weak var ccIndicator: UIImageView!
     
     var ticket: ChangeTicket_Table_Template!
         {
