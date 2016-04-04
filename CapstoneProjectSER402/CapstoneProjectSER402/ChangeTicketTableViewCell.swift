@@ -27,6 +27,9 @@ class ChangeTicketTableViewCell: UITableViewCell
     @IBOutlet weak var riskLevel: UILabel!
     @IBOutlet weak var plannedStart: UILabel!
     
+    @IBOutlet weak var riskIndicator: UIImageView!
+    @IBOutlet weak var expandIndicator: UIImageView!
+    
     class var expandedHeight : CGFloat { get { return 170 } }
     class var defaultHeight : CGFloat { get { return 44 } }
     

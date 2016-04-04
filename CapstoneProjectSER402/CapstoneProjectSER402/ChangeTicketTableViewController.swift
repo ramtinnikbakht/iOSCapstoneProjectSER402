@@ -27,6 +27,7 @@ class ChangeTicketTableViewController: UITableViewController, ChartViewDelegate 
     var selectedApp = String()
     var selectedIndexPath : NSIndexPath?
     var isGraphSelected = false
+    var shouldAnimate = true
     var lowRiskTickets = Array<[ChangeTicket_Table_Template]>()
     var medRiskTickets = Array<[ChangeTicket_Table_Template]>()
     var highRiskTickets = Array<[ChangeTicket_Table_Template]>()
@@ -117,10 +118,10 @@ class ChangeTicketTableViewController: UITableViewController, ChartViewDelegate 
         let obj3 = ChangeTicket(number: "CHG00318797", approver: "", plannedStart: "2016-03-18 06:15:00", plannedEnd: "2016-03-19 08:00:00", actualStart: "", actualEnd: "", requestedByGroup: "ServiceNow_DEV", requestedByGroupBusinessArea: "Infrastructure Services", requestedByGroupBusinessUnit: "IS – Infrastructure Services", requestedByGroupSubBusinessUnit: "IS - Production Process", causeCompleteServiceAppOutage: "No", risk: "High", risksys: "2", type: "Normal", impactScore: "", shortDescription: "Servicenow 02/10 Release", changeReason: "New Capability", closureCode: "", ImpactedEnviroment: "Production", SecondaryClosureCode: "", PartofRelease: "", BusinessApplication: "ServiceNow Enterprise Edition", BusinessApplicationCriticalityTier: "Tier 2")
         let obj4 = ChangeTicket(number: "CHG00318345", approver: "", plannedStart: "2016-01-18 12:15:00", plannedEnd: "2016-02-11 08:00:00", actualStart: "", actualEnd: "", requestedByGroup: "ServiceNow_DEV", requestedByGroupBusinessArea: "Infrastructure Services", requestedByGroupBusinessUnit: "IS – Infrastructure Services", requestedByGroupSubBusinessUnit: "IS - Production Process", causeCompleteServiceAppOutage: "No", risk: "Low", risksys: "4", type: "Emergency", impactScore: "", shortDescription: "Servicenow 02/10 Release", changeReason: "New Capability", closureCode: "", ImpactedEnviroment: "Production", SecondaryClosureCode: "", PartofRelease: "", BusinessApplication: "MMA - Master Membership Application", BusinessApplicationCriticalityTier: "Tier 2")
         
-        let ticket1 = ChangeTicket_Table_Template(id: obj1.getNumber(), priority: obj1.getRisksys(), startDate: obj1.getPlannedStart(), icon: eyeIcon!, isWatched: false, requestedByGroupBusinessUnit: obj1.getRequestedByGroupBusinessUnit(), requestedByGroupSubBusinessUnit: obj1.getRequestedByGroupSubBusinessUnit(), closureCode: obj1.closureCode)
-        let ticket2 = ChangeTicket_Table_Template(id: obj2.getNumber(), priority: obj2.getRisksys(),startDate: obj2.getPlannedStart(), icon: eyeIcon!, isWatched: false, requestedByGroupBusinessUnit: obj2.getRequestedByGroupBusinessUnit(), requestedByGroupSubBusinessUnit: obj2.getRequestedByGroupSubBusinessUnit(), closureCode: obj2.closureCode)
-        let ticket3 = ChangeTicket_Table_Template(id: obj3.getNumber(), priority: obj3.getRisksys(),startDate: obj3.getPlannedStart(), icon: eyeIcon!, isWatched: false, requestedByGroupBusinessUnit: obj3.getRequestedByGroupBusinessUnit(), requestedByGroupSubBusinessUnit: obj3.getRequestedByGroupSubBusinessUnit(), closureCode: obj3.closureCode)
-        let ticket4 = ChangeTicket_Table_Template(id: obj4.getNumber(), priority: obj4.getRisksys(),startDate: obj4.getPlannedStart(), icon: eyeIcon!, isWatched: false, requestedByGroupBusinessUnit: obj4.getRequestedByGroupBusinessUnit(), requestedByGroupSubBusinessUnit: obj4.getRequestedByGroupSubBusinessUnit(), closureCode: obj4.closureCode)
+        let ticket1 = ChangeTicket_Table_Template(id: obj1.getNumber(), priority: obj1.getRisksys(), startDate: obj1.getPlannedStart(), icon: eyeIcon!, isWatched: false, requestedByGroupBusinessUnit: obj1.getRequestedByGroupBusinessUnit(), requestedByGroupSubBusinessUnit: obj1.getRequestedByGroupSubBusinessUnit(), closureCode: obj1.closureCode, actualEnd: obj1.actualEnd)
+        let ticket2 = ChangeTicket_Table_Template(id: obj2.getNumber(), priority: obj2.getRisksys(),startDate: obj2.getPlannedStart(), icon: eyeIcon!, isWatched: false, requestedByGroupBusinessUnit: obj2.getRequestedByGroupBusinessUnit(), requestedByGroupSubBusinessUnit: obj2.getRequestedByGroupSubBusinessUnit(), closureCode: obj2.closureCode, actualEnd: obj2.actualEnd)
+        let ticket3 = ChangeTicket_Table_Template(id: obj3.getNumber(), priority: obj3.getRisksys(),startDate: obj3.getPlannedStart(), icon: eyeIcon!, isWatched: false, requestedByGroupBusinessUnit: obj3.getRequestedByGroupBusinessUnit(), requestedByGroupSubBusinessUnit: obj3.getRequestedByGroupSubBusinessUnit(), closureCode: obj3.closureCode, actualEnd: obj3.actualEnd)
+        let ticket4 = ChangeTicket_Table_Template(id: obj4.getNumber(), priority: obj4.getRisksys(),startDate: obj4.getPlannedStart(), icon: eyeIcon!, isWatched: false, requestedByGroupBusinessUnit: obj4.getRequestedByGroupBusinessUnit(), requestedByGroupSubBusinessUnit: obj4.getRequestedByGroupSubBusinessUnit(), closureCode: obj4.closureCode, actualEnd: obj4.actualEnd)
         
         fullTickets += [obj1, obj2, obj3, obj4]
         changeTickets += [ticket1, ticket2, ticket3, ticket4]
@@ -185,40 +186,11 @@ class ChangeTicketTableViewController: UITableViewController, ChartViewDelegate 
             ticket = changeTickets[indexPath.row] as ChangeTicket_Table_Template
         }
         if (Int(ticket.priority) == 4) {
-            cell.backgroundColor = low
-            let white = UIColor.whiteColor()
-            cell.plannedStartLabel.textColor = white
-            cell.businessUnitLabel.textColor = white
-            cell.subBusinessUnitLabel.textColor = white
-            cell.riskLevelLabel.textColor = white
-            cell.ticketID.textColor = white
-            cell.businessUnit.textColor = white
-            cell.subBusinessUnit.textColor = white
-            cell.plannedStart.textColor = white
-            cell.riskLevel.textColor = white
+            cell.riskIndicator.backgroundColor = low
         } else if (Int(ticket.priority) == 3) {
-            cell.backgroundColor = med
-            cell.plannedStartLabel.textColor = UIColor.blackColor()
-            cell.businessUnitLabel.textColor = UIColor.blackColor()
-            cell.subBusinessUnitLabel.textColor = UIColor.blackColor()
-            cell.riskLevelLabel.textColor = UIColor.blackColor()
-            cell.ticketID.textColor = UIColor.blackColor()
-            cell.businessUnit.textColor = UIColor.blackColor()
-            cell.subBusinessUnit.textColor = UIColor.blackColor()
-            cell.plannedStart.textColor = UIColor.blackColor()
-            cell.riskLevel.textColor = UIColor.blackColor()
+            cell.riskIndicator.backgroundColor = med
         } else if (Int(ticket.priority) == 2) {
-            cell.backgroundColor = high
-            let white = UIColor.whiteColor()
-            cell.plannedStartLabel.textColor = white
-            cell.businessUnitLabel.textColor = white
-            cell.subBusinessUnitLabel.textColor = white
-            cell.riskLevelLabel.textColor = white
-            cell.ticketID.textColor = white
-            cell.businessUnit.textColor = white
-            cell.subBusinessUnit.textColor = white
-            cell.plannedStart.textColor = white
-            cell.riskLevel.textColor = white
+            cell.riskIndicator.backgroundColor = high
         }
         let white = UIColor.whiteColor()
         cell.layer.shadowColor = white.CGColor
@@ -233,6 +205,7 @@ class ChangeTicketTableViewController: UITableViewController, ChartViewDelegate 
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        shouldAnimate = !shouldAnimate
         let previousIndexPath = selectedIndexPath
         if indexPath == selectedIndexPath {
             selectedIndexPath = nil
@@ -254,8 +227,29 @@ class ChangeTicketTableViewController: UITableViewController, ChartViewDelegate 
         }
     }
     
+    // MARK: - Animate Table View Cell
+    
+    // Row Animation
     override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
         (cell as! ChangeTicketTableViewCell).watchFrameChanges()
+        if (cell.frame.height > 50) {
+            (cell as! ChangeTicketTableViewCell).expandIndicator.image = UIImage(named: "expand_less")
+        } else if (cell.frame.height < 50) {
+            (cell as! ChangeTicketTableViewCell).expandIndicator.image = UIImage(named: "expand_more")
+        }
+        if (shouldAnimate) {
+            let cellPosition = indexPath.indexAtPosition(1)
+            let delay : Double = Double(cellPosition) * 0.1
+            let rotationTransform = CATransform3DTranslate(CATransform3DIdentity, -1000, 0, 0)
+            
+            cell.layer.transform = rotationTransform
+            
+            UIView.animateWithDuration(1.0, delay: delay, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.3, options: UIViewAnimationOptions.BeginFromCurrentState, animations: {
+                cell.layer.transform = CATransform3DIdentity
+                }, completion: { finished in
+                    
+            })
+        }
     }
     
     override func tableView(tableView: UITableView, didEndDisplayingCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
@@ -325,8 +319,6 @@ class ChangeTicketTableViewController: UITableViewController, ChartViewDelegate 
         pieChartView.rotationEnabled = false
         pieChartView.descriptionText = ""
         pieChartView.animate(xAxisDuration: 1.0, yAxisDuration: 1.0, easingOption: .EaseOutSine)
-        
-        
     }
     
     func setLineChart(dataPoints: [String], values: [Double]) {

@@ -18,8 +18,9 @@ class ChangeTicket_Table_Template
     var requestedByGroupBusinessUnit: String
     var requestedByGroupSubBusinessUnit: String
     var closureCode: String
+    var actualEnd: String
     
-    init(id: String, priority: String, startDate: String, icon: UIImage, isWatched: Bool, requestedByGroupBusinessUnit: String, requestedByGroupSubBusinessUnit: String, closureCode: String)
+    init(id: String, priority: String, startDate: String, icon: UIImage, isWatched: Bool, requestedByGroupBusinessUnit: String, requestedByGroupSubBusinessUnit: String, closureCode: String, actualEnd: String)
     {
         self.id = id
         self.priority = priority
@@ -29,6 +30,7 @@ class ChangeTicket_Table_Template
         self.requestedByGroupBusinessUnit = requestedByGroupBusinessUnit
         self.requestedByGroupSubBusinessUnit = requestedByGroupSubBusinessUnit
         self.closureCode = closureCode
+        self.actualEnd = actualEnd
     }
     
     func getId() -> String
@@ -63,6 +65,10 @@ class ChangeTicket_Table_Template
     {
         return self.closureCode
     }
+    func getActualEnd() -> String
+    {
+        return self.actualEnd
+    }
     
     func setId(id: String)
     {
@@ -95,5 +101,9 @@ class ChangeTicket_Table_Template
     func setClosureCode(closureCode: String)
     {
         self.closureCode = closureCode
+    }
+    func setActualEnd(actualEnd: String)
+    {
+        self.actualEnd = actualEnd
     }
 }

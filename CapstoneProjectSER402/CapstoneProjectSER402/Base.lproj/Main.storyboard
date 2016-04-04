@@ -35,7 +35,7 @@
                                         </label>
                                         <button opaque="NO" tag="21" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZHL-oh-Z2C">
                                             <rect key="frame" x="333" y="12" width="19" height="19"/>
-                                            <state key="normal" image="collapse.png"/>
+                                            <state key="normal" image="expand_more.png"/>
                                             <connections>
                                                 <action selector="expandSection:" destination="Miq-kP-hxa" eventType="touchUpInside" id="RWC-nN-eXE"/>
                                             </connections>
@@ -114,7 +114,7 @@
         <scene sceneID="uyC-yW-N5h">
             <objects>
                 <tableViewController id="4l6-UN-Ceb" customClass="ChangeTicketTableViewController" customModule="CapstoneProjectSER402" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="X5O-Yh-qXT">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="X5O-Yh-qXT">
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -151,70 +151,69 @@
                                 <rect key="frame" x="0.0" y="367.5" width="375" height="170"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="IUB-sD-SFQ" id="wOM-9H-rkU">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="170"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="169.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Planned Start Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="usE-7b-hUD">
-                                            <rect key="frame" x="8" y="130" width="145" height="21"/>
+                                            <rect key="frame" x="25" y="136" width="145" height="21"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="14"/>
-                                            <color key="textColor" red="0.92549019610000005" green="0.92549019610000005" blue="0.92549019610000005" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Requested Business Unit" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VAX-Lt-aSL">
-                                            <rect key="frame" x="8" y="46" width="175" height="21"/>
+                                            <rect key="frame" x="25" y="52" width="154" height="21"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="14"/>
-                                            <color key="textColor" red="0.92549019610000005" green="0.92549019610000005" blue="0.92549019610000005" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Requested Sub Business Unit" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5ms-sl-ULW">
-                                            <rect key="frame" x="8" y="72" width="175" height="21"/>
+                                            <rect key="frame" x="25" y="78" width="175" height="21"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="14"/>
-                                            <color key="textColor" red="0.92549019610000005" green="0.92549019610000005" blue="0.92549019610000005" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Risk Level" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R41-aL-y6E">
-                                            <rect key="frame" x="8" y="101" width="87" height="21"/>
+                                            <rect key="frame" x="25" y="107" width="87" height="21"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="14"/>
-                                            <color key="textColor" red="0.92549019610000005" green="0.92549019610000005" blue="0.92549019610000005" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cNk-f2-kDx">
-                                            <rect key="frame" x="8" y="12" width="145" height="21"/>
-                                            <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBlack" family="Helvetica Neue" pointSize="17"/>
-                                            <color key="textColor" red="0.92549019610000005" green="0.92549019610000005" blue="0.92549019610000005" alpha="1" colorSpace="calibratedRGB"/>
+                                            <rect key="frame" x="42" y="11" width="145" height="21"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rdq-Eh-9I9">
-                                            <rect key="frame" x="211" y="46" width="156" height="21"/>
+                                            <rect key="frame" x="194" y="53" width="156" height="21"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="13"/>
-                                            <color key="textColor" red="0.92549019610000005" green="0.92549019610000005" blue="0.92549019610000005" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kEJ-eO-GHk">
-                                            <rect key="frame" x="211" y="72" width="156" height="21"/>
+                                            <rect key="frame" x="217" y="79" width="133" height="21"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="13"/>
-                                            <color key="textColor" red="0.92549019610000005" green="0.92549019610000005" blue="0.92549019610000005" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NH0-VS-kuo">
-                                            <rect key="frame" x="234" y="131" width="133" height="21"/>
+                                            <rect key="frame" x="217" y="138" width="133" height="21"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="13"/>
-                                            <color key="textColor" red="0.92549019610000005" green="0.92549019610000005" blue="0.92549019610000005" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aJm-X0-ych">
-                                            <rect key="frame" x="325" y="101" width="42" height="21"/>
+                                            <rect key="frame" x="308" y="108" width="42" height="21"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="13"/>
-                                            <color key="textColor" red="0.92549019610000005" green="0.92549019610000005" blue="0.92549019610000005" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pwb-ZP-TKI">
+                                            <rect key="frame" x="17" y="0.0" width="12" height="44"/>
+                                        </imageView>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="expand_more.png" translatesAutoresizingMaskIntoConstraints="NO" id="CNn-CR-xC7">
+                                            <rect key="frame" x="331" y="12" width="19" height="19"/>
+                                        </imageView>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="businessUnit" destination="rdq-Eh-9I9" id="jKC-lF-Aus"/>
                                     <outlet property="businessUnitLabel" destination="VAX-Lt-aSL" id="S5g-u5-NHp"/>
+                                    <outlet property="expandIndicator" destination="CNn-CR-xC7" id="Yx9-jl-2jn"/>
                                     <outlet property="plannedStart" destination="NH0-VS-kuo" id="kEK-86-zBt"/>
                                     <outlet property="plannedStartLabel" destination="usE-7b-hUD" id="nB2-An-SbR"/>
+                                    <outlet property="riskIndicator" destination="pwb-ZP-TKI" id="lZr-YA-AIb"/>
                                     <outlet property="riskLevel" destination="aJm-X0-ych" id="664-Vu-mxd"/>
                                     <outlet property="riskLevelLabel" destination="R41-aL-y6E" id="iPE-TJ-VEY"/>
                                     <outlet property="subBusinessUnit" destination="kEJ-eO-GHk" id="XOb-8Q-hXo"/>
@@ -472,10 +471,6 @@
                             <rect key="frame" x="0.0" y="0.0" width="375" height="330"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="r7r-VX-XcC" customClass="PieChartView" customModule="Charts">
-                                    <rect key="frame" x="20" y="0.0" width="335" height="275"/>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </view>
                                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5BO-3L-veJ">
                                     <rect key="frame" x="0.0" y="285" width="375" height="45"/>
                                     <subviews>
@@ -491,6 +486,10 @@
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </view>
+                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="r7r-VX-XcC" customClass="PieChartView" customModule="Charts">
+                                    <rect key="frame" x="8" y="8" width="359" height="220"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </view>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </view>
@@ -503,7 +502,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pZj-Y7-UDi">
-                                            <rect key="frame" x="42" y="11" width="260" height="21"/>
+                                            <rect key="frame" x="42" y="11" width="130" height="21"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
@@ -511,9 +510,16 @@
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="N4o-MO-IBt">
                                             <rect key="frame" x="17" y="0.0" width="12" height="44"/>
                                         </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KUO-FJ-2SQ">
+                                            <rect key="frame" x="232" y="11" width="135" height="21"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-ThinItalic" family="Helvetica Neue" pointSize="12"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="actualEndLabel" destination="KUO-FJ-2SQ" id="txh-mW-G52"/>
                                     <outlet property="ccIndicator" destination="N4o-MO-IBt" id="gQ8-nW-WaF"/>
                                     <outlet property="ticketID" destination="pZj-Y7-UDi" id="ANK-5e-cIl"/>
                                 </connections>
@@ -646,8 +652,8 @@
         <scene sceneID="dnv-CJ-Vq9">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="yLS-8U-Rt6" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Archive" image="binoculars-front-view.png" id="Hto-mW-Cdb">
-                        <inset key="imageInsets" minX="0.0" minY="1" maxX="0.0" maxY="0.0"/>
+                    <tabBarItem key="tabBarItem" title="Archive" image="archive.png" id="Hto-mW-Cdb">
+                        <inset key="imageInsets" minX="1" minY="1" maxX="0.0" maxY="0.0"/>
                     </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="e3x-yU-cOF">
@@ -810,9 +816,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="binoculars-front-view.png" width="32" height="32"/>
+        <image name="archive.png" width="32" height="32"/>
         <image name="circle.png" width="32" height="32"/>
-        <image name="collapse.png" width="24" height="24"/>
+        <image name="expand_more.png" width="128" height="128"/>
         <image name="gear.png" width="24" height="24"/>
         <image name="home-page.png" width="32" height="32"/>
         <image name="infographic-bars.png" width="32" height="32"/>

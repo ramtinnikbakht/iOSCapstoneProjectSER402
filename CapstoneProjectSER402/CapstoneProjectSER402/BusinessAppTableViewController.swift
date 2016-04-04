@@ -221,8 +221,8 @@ class BusinessAppTableViewController: UITableViewController
     
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let  headerCell = tableView.dequeueReusableCellWithIdentifier("HeaderCell") as! CustomHeaderCell
-        let collapse = UIImage(named: "collapse.png")
-        let expand = UIImage(named: "expand.png")
+        let collapse = UIImage(named: "expand_less.png")
+        let expand = UIImage(named: "expand_more.png")
         headerCell.backgroundColor = UIColor(red: (236/255.0), green: (236/255.0), blue: (236/255.0), alpha: 1)
         headerCell.appTierLabel.text = "Tier " + String(tierList[section])
         headerCell.expandSectionButton.tag = (section)
