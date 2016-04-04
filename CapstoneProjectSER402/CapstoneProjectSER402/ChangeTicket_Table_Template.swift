@@ -12,14 +12,18 @@ class ChangeTicket_Table_Template
 {
     var id : String?
     var priority : String
-    var startDate: String
+    var startDate: NSDate
     var icon: UIImage?
     var isWatched: Bool
     var requestedByGroupBusinessUnit: String
     var requestedByGroupSubBusinessUnit: String
+    let DateFormat = NSDateFormatter()
     
-    init(id: String, priority: String, startDate: String, icon: UIImage, isWatched: Bool, requestedByGroupBusinessUnit: String, requestedByGroupSubBusinessUnit: String)
+    init(id: String, priority: String, startDate: NSDate, icon: UIImage, isWatched: Bool, requestedByGroupBusinessUnit: String, requestedByGroupSubBusinessUnit: String)
     {
+        DateFormat.locale = NSLocale(localeIdentifier: "en_US_POSIX")
+        DateFormat.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        
         self.id = id
         self.priority = priority
         self.startDate = startDate
@@ -37,7 +41,7 @@ class ChangeTicket_Table_Template
     {
         return self.priority
     }
-    func getStartDate() -> String
+    func getStartDate() -> NSDate
     {
         return self.startDate
     }
@@ -66,7 +70,7 @@ class ChangeTicket_Table_Template
     {
         self.priority = priority
     }
-    func setStartDate(startDate: String)
+    func setStartDate(startDate: NSDate)
     {
         self.startDate = startDate
     }
