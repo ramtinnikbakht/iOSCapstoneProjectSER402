@@ -17,8 +17,8 @@ class ArchiveTableViewController: UITableViewController, UITextFieldDelegate, Ch
     private var tickets = TicketModel()
     private var tbvc = TicketTabBarController()
     
-    var closureCodes = [String]()
-    var ticketRisks = [Double]()
+    let closureCodes : [String] = ["Implemented as Planned", "Implemented with Effort", "Backed Out No Customer/User Impacts", "Implemented with Issues", "Backed Out Customer/User Impacts", "Failed to report status"]
+    var activeCodes : [String] = []
     var ticketStartDates = [String]()
     var selectedTF = UITextField()
     var releaseWindowLL = ChartLimitLine(limit: 1.0, label: "Release \nDeployment \nWindow")
@@ -29,11 +29,14 @@ class ArchiveTableViewController: UITableViewController, UITextFieldDelegate, Ch
     var selectedApp = String()
     var selectedIndexPath : NSIndexPath?
     var isGraphSelected = false
-    var lowRiskTickets = Array<[ChangeTicket_Table_Template]>()
-    var medRiskTickets = Array<[ChangeTicket_Table_Template]>()
-    var highRiskTickets = Array<[ChangeTicket_Table_Template]>()
+    var cc1Tickets = Array<[ChangeTicket_Table_Template]>()
+    var cc2Tickets = Array<[ChangeTicket_Table_Template]>()
+    var cc3Tickets = Array<[ChangeTicket_Table_Template]>()
+    var cc4Tickets = Array<[ChangeTicket_Table_Template]>()
+    var cc5Tickets = Array<[ChangeTicket_Table_Template]>()
+    var cc6Tickets = Array<[ChangeTicket_Table_Template]>()
+    
     let cellIdentifier = "TicketCell"
-    let riskLevels = ["Low", "Med", "High"]
     let appNames : [String] = []
     
     // Colors
@@ -96,44 +99,55 @@ class ArchiveTableViewController: UITableViewController, UITextFieldDelegate, Ch
         tickets.addChangeTickets(ticket3)
         tickets.addChangeTickets(ticket4)
         
-        var lowIndex = 0
         for ticket in changeTickets {
-            if (Int(ticket.priority) == 4) {
-                lowRiskTickets.append(Array(arrayLiteral: ticket))
+            if (ticket.closureCode == "Implemented as Planned") {
+                cc1Tickets.append(Array(arrayLiteral: ticket))
+                activeCodes += [ticket.closureCode]
+            } else if (ticket.closureCode == "Implemented with Effort") {
+                cc2Tickets.append(Array(arrayLiteral: ticket))
+                activeCodes += [ticket.closureCode]
+            } else if (ticket.closureCode == "Backed Out No Customer/User Impacts") {
+                cc3Tickets.append(Array(arrayLiteral: ticket))
+                activeCodes += [ticket.closureCode]
+            } else if (ticket.closureCode == "Implemented with Issues") {
+                cc4Tickets.append(Array(arrayLiteral: ticket))
+                activeCodes += [ticket.closureCode]
+            } else if (ticket.closureCode == "Backed Out Customer/User Impacts") {
+                cc5Tickets.append(Array(arrayLiteral: ticket))
+                activeCodes += [ticket.closureCode]
+            } else if (ticket.closureCode == "Failed to report status") {
+                cc6Tickets.append(Array(arrayLiteral: ticket))
+                activeCodes += [ticket.closureCode]
             }
-            lowIndex++
-        }
-        var medIndex = 0
-        for ticket in changeTickets {
-            if (Int(ticket.priority) == 3) {
-                changeTickets.removeAtIndex(medIndex)
-                changeTickets.insert(ticket, atIndex: 0)
-                medRiskTickets.append(Array(arrayLiteral: ticket))
-            }
-            medIndex++
-        }
-        var highIndex = 0
-        for ticket in changeTickets {
-            if (Int(ticket.priority) == 2) {
-                changeTickets.removeAtIndex(highIndex)
-                changeTickets.insert(ticket, atIndex: 0)
-                highRiskTickets.append(Array(arrayLiteral: ticket))
-            }
-            highIndex++
         }
     }
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        closureCodes += ["Implemented as Planned", "Implemented with Effort", "Backed Out No Customer/User Impacts", "Implemented with Issues", "Backed Out Customer/User Impacts", "Failed to report status"]
-        let values : [Double] = [30.0, 3.0, 3.0, 5.0, 4.0, 15.0]
+    
         pieChartView.delegate = self
-
-        // Do any additional setup after loading the view.
         loadSampleTickets()
-        setChart(closureCodes, values: values)
+        
+        // Do any additional setup after loading the view.
+        var values : [Double] = []
+        for code in activeCodes {
+            if (code == closureCodes[0]) {
+                values += [Double(cc1Tickets.count)]
+            } else if (code == closureCodes[1]) {
+                values += [Double(cc2Tickets.count)]
+            } else if (code == closureCodes[2]) {
+                values += [Double(cc3Tickets.count)]
+            } else if (code == closureCodes[3]) {
+                values += [Double(cc4Tickets.count)]
+            } else if (code == closureCodes[4]) {
+                values += [Double(cc5Tickets.count)]
+            } else if (code == closureCodes[5]) {
+                values += [Double(cc6Tickets.count)]
+            }
+        }
+    
+        setChart(activeCodes, values: values)
         
     }
     
@@ -148,44 +162,47 @@ class ArchiveTableViewController: UITableViewController, UITextFieldDelegate, Ch
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return changeTickets.count
-        
+        if (isGraphSelected) {
+            return filteredTickets.count
+        } else {
+            return changeTickets.count
+        }
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! ArchiveTableViewCell
-        let ticket = changeTickets[indexPath.row] as ChangeTicket_Table_Template
+        let white = UIColor.whiteColor()
+        var ticket : ChangeTicket_Table_Template
+        
+        if (isGraphSelected) {
+            ticket = filteredTickets[indexPath.row] as ChangeTicket_Table_Template
+        } else {
+            ticket = changeTickets[indexPath.row] as ChangeTicket_Table_Template
+        }
        
-        if ((ticket.closureCode) == "Implemented as Planned") {
+        if (ticket.closureCode == "Implemented as Planned") {
             cell.ccIndicator.backgroundColor = cc1
-            let white = UIColor.whiteColor()
             cell.backgroundColor = white
-        } else if ((ticket.closureCode) == "Implemented with Effort") {
+        } else if (ticket.closureCode == "Implemented with Effort") {
             cell.ccIndicator.backgroundColor = cc2
-            let white = UIColor.whiteColor()
             cell.backgroundColor = white
-        } else if ((ticket.closureCode) == "Backed Out No Customer/User Impacts") {
+        } else if (ticket.closureCode == "Backed Out No Customer/User Impacts") {
             cell.backgroundColor = cc3
-            let white = UIColor.whiteColor()
             cell.backgroundColor = white
-        } else if ((ticket.closureCode) == "Implemented with Issues") {
+        } else if (ticket.closureCode == "Implemented with Issues") {
             cell.ccIndicator.backgroundColor = cc4
-            let white = UIColor.whiteColor()
             cell.backgroundColor = white
-        } else if ((ticket.closureCode) == "Backed Out Customer/User Impacts") {
+        } else if (ticket.closureCode == "Backed Out Customer/User Impacts") {
             cell.ccIndicator.backgroundColor = cc5
-            let white = UIColor.whiteColor()
             cell.backgroundColor = white
-        } else if ((ticket.closureCode) == "Failed to report status") {
+        } else if (ticket.closureCode == "Failed to report status") {
             cell.ccIndicator.backgroundColor = cc6
-            let white = UIColor.whiteColor()
             cell.backgroundColor = white
         } else {
             cell.backgroundColor = navy
             cell.ticketID.textColor = UIColor.whiteColor()
         }
         
-        let white = UIColor.whiteColor()
         cell.layer.shadowColor = white.CGColor
         cell.layer.shadowRadius = 3.5
         cell.layer.shadowOpacity = 0.7
@@ -223,7 +240,7 @@ class ArchiveTableViewController: UITableViewController, UITextFieldDelegate, Ch
     }
     
     
-    func setChart(dataPoints: [String], values: [Double]) {
+    func setChart(var dataPoints: [String], var values: [Double]) {
         pieChartView.clear()
         var dataEntries: [ChartDataEntry] = []
         
@@ -288,6 +305,78 @@ class ArchiveTableViewController: UITableViewController, UITextFieldDelegate, Ch
     }
     
     func chartValueSelected(chartView: ChartViewBase, entry: ChartDataEntry, dataSetIndex: Int, highlight: ChartHighlight) {
+        isGraphSelected = true
+        filteredTickets.removeAll()
+        
+        if (entry.data! as! String == closureCodes[0]) {
+            let paragraphStyle = NSParagraphStyle.defaultParagraphStyle().mutableCopy() as! NSMutableParagraphStyle
+            paragraphStyle.alignment = .Center
+            pieChartView.centerAttributedText = NSAttributedString(string: closureCodes[0], attributes: [
+                NSForegroundColorAttributeName: UIColor.lightGrayColor(),
+                NSFontAttributeName: NSUIFont(name: "Helvetica", size: 12)!])
+            for ticket in changeTickets {
+                if (ticket.closureCode == "Implemented as Planned") {
+                    filteredTickets += [ticket]
+                }
+            }
+        }
+        else if(entry.data! as! String == closureCodes[1]) {
+            pieChartView.centerAttributedText = NSAttributedString(string: closureCodes[1], attributes: [
+                NSForegroundColorAttributeName: UIColor.lightGrayColor(),
+                NSFontAttributeName: NSUIFont(name: "Helvetica", size: 12)! ])
+            for ticket in changeTickets {
+                if (ticket.closureCode == "Implemented with Effort") {
+                    filteredTickets += [ticket]
+                }
+            }
+        }
+        else if(entry.data! as! String == closureCodes[2]) {
+            pieChartView.centerAttributedText = NSAttributedString(string: closureCodes[2], attributes: [
+                NSForegroundColorAttributeName: UIColor.lightGrayColor(),
+                NSFontAttributeName: NSUIFont(name: "Helvetica", size: 12)! ])
+            for ticket in changeTickets {
+                if (ticket.closureCode == "Backed Out No Customer/User Impacts") {
+                    filteredTickets += [ticket]
+                }
+            }
+        }
+        else if(entry.data! as! String == closureCodes[3]) {
+            pieChartView.centerAttributedText = NSAttributedString(string: closureCodes[3], attributes: [
+                NSForegroundColorAttributeName: UIColor.lightGrayColor(),
+                NSFontAttributeName: NSUIFont(name: "Helvetica", size: 12)! ])
+            for ticket in changeTickets {
+                if (ticket.closureCode == "Implemented with Issues") {
+                    filteredTickets += [ticket]
+                }
+            }
+        }
+        else if(entry.data! as! String == closureCodes[4]) {
+            pieChartView.centerAttributedText = NSAttributedString(string: closureCodes[4], attributes: [
+                NSForegroundColorAttributeName: UIColor.lightGrayColor(),
+                NSFontAttributeName: NSUIFont(name: "Helvetica", size: 12)! ])
+            for ticket in changeTickets {
+                if (ticket.closureCode == "Backed Out Customer/User Impacts") {
+                    filteredTickets += [ticket]
+                }
+            }
+        }
+        else if(entry.data! as! String == closureCodes[5]) {
+            pieChartView.centerAttributedText = NSAttributedString(string: closureCodes[5], attributes: [
+                NSForegroundColorAttributeName: UIColor.lightGrayColor(),
+                NSFontAttributeName: NSUIFont(name: "Helvetica", size: 12)! ])
+            for ticket in changeTickets {
+                if (ticket.closureCode == "Failed to report status") {
+                    filteredTickets += [ticket]
+                }
+            }
+        }
+        tableView.reloadData()
+    }
+    
+    func chartValueNothingSelected(chartView: ChartViewBase) {
+        isGraphSelected = false
+        pieChartView.centerText?.removeAll()
+        tableView.reloadData()
     }
     
 }

@@ -396,7 +396,7 @@ class ChangeTicketTableViewController: UITableViewController, ChartViewDelegate 
     func chartValueSelected(chartView: ChartViewBase, entry: ChartDataEntry, dataSetIndex: Int, highlight: ChartHighlight) {
         isGraphSelected = true
         filteredTickets.removeAll()
-        print(entry.data)
+        
         if (entry.data! as! String == "Low") {
             let percent = Int((entry.value / Double(changeTickets.count)) * 100.0)
             pieChartView.centerAttributedText = NSAttributedString(string: (String(percent) + "%"), attributes: [
