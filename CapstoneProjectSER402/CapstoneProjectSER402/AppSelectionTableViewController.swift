@@ -11,6 +11,7 @@ import UIKit
 class AppSelectionTableViewController: UITableViewController {
     
     var usertype: String = ""
+    
     var appsArray: [String] = ["App1", "App2", "App3", "App4", "App5", "App6", "App7"]
     var selectedApps = [String]()
 
@@ -21,11 +22,38 @@ class AppSelectionTableViewController: UITableViewController {
     
     //var sectionsArray = [Sections]()
     
-    @IBAction func selectAllSwitchAction(sender: AnyObject) {
-        print("Switch Pressed")
-            
+  
     
+    
+    @IBOutlet weak var appSelectionSwitch: UISwitch!
+    
+    @IBAction func selectAllAppsSwitchPressed(sender: UISwitch) {
+        
+        let cell = tableView.dequeueReusableCellWithIdentifier("appsoptioncell") as! AppsOptionTableViewCell!
+        if cell.selectAllSwitch.on {
+            print("CHECK1")
+            let section = 1
+            for (var row = 0; row < tableView.numberOfRowsInSection(section); ++row) {
+                tableView.cellForRowAtIndexPath(NSIndexPath(forRow: row, inSection: section))?.accessoryType = UITableViewCellAccessoryType.Checkmark
+            }
+            cell.selectAllSwitch.setOn(false, animated: true)
+            print("CHECK2")
+        } else {
+            cell.selectAllSwitch.setOn(true, animated: true)
+            print("CHECK3")
+            let section = 1
+            for (var row = 0; row < tableView.numberOfRowsInSection(section); ++row) {
+                tableView.cellForRowAtIndexPath(NSIndexPath(forRow: row, inSection: section))?.accessoryType = UITableViewCellAccessoryType.None
+            }
+            
+        }
+
+        /*let cell = tableView.dequeueReusableCellWithIdentifier("appsoptioncell") as! AppsOptionTableViewCell!
+        cell.selectAllSwitch.addTarget(self, action: Selector("selectAllAction"), forControlEvents: UIControlEvents.ValueChanged)
+        selectAllAction(cell.selectAllSwitch)*/
     }
+
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,7 +86,7 @@ class AppSelectionTableViewController: UITableViewController {
         
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCellWithIdentifier("appsoptioncell") as! AppsOptionTableViewCell!
-            cell.selectAllSwitch.setOn(false, animated: true)
+            
             
             return cell
         }

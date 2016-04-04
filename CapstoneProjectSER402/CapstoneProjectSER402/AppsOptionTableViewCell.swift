@@ -10,6 +10,7 @@ import UIKit
 
 class AppsOptionTableViewCell: UITableViewCell {
 
+    
     @IBOutlet weak var selectAllSwitch: UISwitch!
     
     override func awakeFromNib() {
