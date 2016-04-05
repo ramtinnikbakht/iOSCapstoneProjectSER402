@@ -14,10 +14,10 @@ class ChangeTicket
 {
     var number: String = ""
     var approver: String = ""
-    var plannedStart: String
-    var plannedEnd: String
-    var actualStart: String
-    var actualEnd: String
+    var plannedStart: String = ""
+    var plannedEnd: String = ""
+    var actualStart: String = ""
+    var actualEnd: String = ""
     var requestedByGroup: String = ""
     var requestedByGroupBusinessArea: String = ""
     var requestedByGroupBusinessUnit: String = ""
@@ -36,7 +36,6 @@ class ChangeTicket
     var BusinessApplicationCriticalityTier: String = ""
     
     let DateFormat = NSDateFormatter()
-    
     
     init(number: String, approver: String, plannedStart: String, plannedEnd: String, actualStart: String, actualEnd: String, requestedByGroup: String, requestedByGroupBusinessArea:String, requestedByGroupBusinessUnit: String, requestedByGroupSubBusinessUnit: String, causeCompleteServiceAppOutage: String,risk: String, type:String, impactScore:String, shortDescription:String, changeReason: String, closureCode: String, ImpactedEnviroment: String, SecondaryClosureCode: String, PartofRelease: String, BusinessApplication: String, BusinessApplicationCriticalityTier: String)
     {

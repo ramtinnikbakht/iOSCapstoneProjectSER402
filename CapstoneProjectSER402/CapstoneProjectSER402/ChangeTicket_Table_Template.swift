@@ -19,8 +19,9 @@ class ChangeTicket_Table_Template
     var requestedByGroupSubBusinessUnit: String
     var closureCode: String
     var actualEnd: String
+    let DateFormat = NSDateFormatter()
     
-    init(id: String, priority: String, startDate: String, icon: UIImage, isWatched: Bool, requestedByGroupBusinessUnit: String, requestedByGroupSubBusinessUnit: String, closureCode: String, actualEnd: String)
+    init(id: String, priority: String, startDate: NSDate, icon: UIImage, isWatched: Bool, requestedByGroupBusinessUnit: String, requestedByGroupSubBusinessUnit: String, closureCode: String, actualEnd: String)
     {
         DateFormat.locale = NSLocale(localeIdentifier: "en_US_POSIX")
         DateFormat.dateFormat = "yyyy-MM-dd HH:mm:ss"
