@@ -20,6 +20,7 @@
 		46D0586C1CA3B79D005CFB61 /* AEXML.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D0586B1CA3B79D005CFB61 /* AEXML.swift */; };
 		46E832A41C88DD81001C376F /* ChangeTicket_Table_Template.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E832A31C88DD81001C376F /* ChangeTicket_Table_Template.swift */; };
 		46F792B61CA8F6E600F00404 /* ConnectionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F792B51CA8F6E600F00404 /* ConnectionService.swift */; };
+		480D79201CB37A0B00C57410 /* UserTypeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 480D791F1CB37A0B00C57410 /* UserTypeTableViewCell.swift */; };
 		4818FE0D1CA498CF00B7EB47 /* settings-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4818FE0C1CA498CF00B7EB47 /* settings-icon.png */; };
 		4818FE121CA49CFA00B7EB47 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4818FE111CA49CFA00B7EB47 /* SettingsTableViewController.swift */; };
 		4852EEA91CAC6D280060CD3E /* AlertsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4852EEA81CAC6D280060CD3E /* AlertsTableViewCell.swift */; };
@@ -157,6 +158,7 @@
 		46D0586B1CA3B79D005CFB61 /* AEXML.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AEXML.swift; sourceTree = "<group>"; };
 		46E832A31C88DD81001C376F /* ChangeTicket_Table_Template.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeTicket_Table_Template.swift; sourceTree = "<group>"; };
 		46F792B51CA8F6E600F00404 /* ConnectionService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionService.swift; sourceTree = "<group>"; };
+		480D791F1CB37A0B00C57410 /* UserTypeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTypeTableViewCell.swift; sourceTree = "<group>"; };
 		4818FE0C1CA498CF00B7EB47 /* settings-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings-icon.png"; sourceTree = "<group>"; };
 		4818FE111CA49CFA00B7EB47 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		4852EEA81CAC6D280060CD3E /* AlertsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertsTableViewCell.swift; sourceTree = "<group>"; };
@@ -310,6 +312,7 @@
 				489AFBA91C7F8D2900E9DEB9 /* SetupContentViewController.swift */,
 				48CE447B1C8FB73D00BECD12 /* AppSelectionTableViewCell.swift */,
 				462EB8421C990BF00076C28D /* AppSelectionTableViewController.swift */,
+				480D791F1CB37A0B00C57410 /* UserTypeTableViewCell.swift */,
 				489AFBA71C7F6B3000E9DEB9 /* User.swift */,
 				C121B52C1C80075B001F3B16 /* WatchedTicket.swift */,
 				462EB8471C990BF00076C28D /* WatchedTicketTableViewController.swift */,
@@ -562,6 +565,7 @@
 				C19F0DD71C75A28A009BD594 /* ChangeTicketTableViewController.swift in Sources */,
 				48D741A51C5AAE86008D082E /* LoginViewController.swift in Sources */,
 				C108ADEC1CB1B9B500CB60F0 /* ArchiveTableViewCell.swift in Sources */,
+				480D79201CB37A0B00C57410 /* UserTypeTableViewCell.swift in Sources */,
 				46D0586C1CA3B79D005CFB61 /* AEXML.swift in Sources */,
 				46A2AB131CA47C0E00F87C80 /* SWRevealViewController.m in Sources */,
 				48D8FADB1CAB096900753943 /* AppsOptionTableViewCell.swift in Sources */,
