@@ -127,7 +127,10 @@ class AppSelectionTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        
+        if indexPath.section == 0 {
+            let optionscell = tableView.cellForRowAtIndexPath(indexPath) as! AppsOptionTableViewCell!
+            optionscell.selectionStyle = UITableViewCellSelectionStyle.None
+        } else {
         let cell = tableView.cellForRowAtIndexPath(indexPath) as! AppSelectionTableViewCell!
         
         if selectedApps.contains(cell.appsTitleLabel.text!) {
@@ -147,7 +150,7 @@ class AppSelectionTableViewController: UITableViewController {
         
             print(selectedApps)
         }
-
+        }
     }
     
     override func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath)
