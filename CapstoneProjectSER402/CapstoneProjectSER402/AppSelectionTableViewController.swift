@@ -23,48 +23,29 @@ class AppSelectionTableViewController: UITableViewController {
     //var sectionsArray = [Sections]()
     
   
-    
-    
-    @IBOutlet weak var appSelectionSwitch: UISwitch!
-    
-    @IBAction func selectAllAppsSwitchPressed(sender: UISwitch) {
-        
-        let cell = tableView.dequeueReusableCellWithIdentifier("appsoptioncell") as! AppsOptionTableViewCell!
-        
-        if cell.selectAllSwitch.on {
-            cell.selectAllSwitch.setOn(false, animated: true)
-            print("CHECK1")
+    @IBAction func selectAllButtonPressed(sender: UIButton) {
+        let section = 1
+        for (var row = 0; row < tableView.numberOfRowsInSection(section); ++row) {
+            tableView.cellForRowAtIndexPath(NSIndexPath(forRow: row, inSection: section))?.tintColor = UIColor(red: 0/255.0,
+                                                                                                               green: 64/255.0,
+                                                                                                               blue: 128/255.0,
+                                                                                                               alpha: 1.0)
+            tableView.cellForRowAtIndexPath(NSIndexPath(forRow: row, inSection: section))?.accessoryType = UITableViewCellAccessoryType.Checkmark
             
-            let section = 1
-            for (var row = 0; row < tableView.numberOfRowsInSection(section); ++row) {
-                
-                tableView.cellForRowAtIndexPath(NSIndexPath(forRow: row, inSection: section))?.accessoryType = UITableViewCellAccessoryType.None
-                
-                print("CHECK2")
-                cell.selectAllSwitch.setOn(false, animated: true)
-                
-            }
             
-        } else {
-            
-            print("CHECK3")
-            let section = 1
-            for (var row = 0; row < tableView.numberOfRowsInSection(section); ++row) {
-                tableView.cellForRowAtIndexPath(NSIndexPath(forRow: row, inSection: section))?.tintColor = UIColor(red: 0/255.0,
-                                         green: 64/255.0,
-                                         blue: 128/255.0,
-                                         alpha: 1.0)
-                tableView.cellForRowAtIndexPath(NSIndexPath(forRow: row, inSection: section))?.accessoryType = UITableViewCellAccessoryType.Checkmark
-                
-                cell.selectAllSwitch.setOn(true, animated: true)
-            }
-            selectedApps = appsArray
-            print(selectedApps)
         }
-
-        /*let cell = tableView.dequeueReusableCellWithIdentifier("appsoptioncell") as! AppsOptionTableViewCell!
-        cell.selectAllSwitch.addTarget(self, action: Selector("selectAllAction"), forControlEvents: UIControlEvents.ValueChanged)
-        selectAllAction(cell.selectAllSwitch)*/
+        selectedApps = appsArray
+        print(selectedApps)
+    }
+    
+    @IBAction func clearSelectionButtonPressed(sender: UIButton) {
+        let section = 1
+        for (var row = 0; row < tableView.numberOfRowsInSection(section); ++row) {
+            
+            tableView.cellForRowAtIndexPath(NSIndexPath(forRow: row, inSection: section))?.accessoryType = UITableViewCellAccessoryType.None
+        }
+        selectedApps = []
+        print(selectedApps)
     }
 
     

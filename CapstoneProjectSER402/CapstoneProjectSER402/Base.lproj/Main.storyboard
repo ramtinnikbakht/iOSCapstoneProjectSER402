@@ -690,23 +690,31 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="T6z-dC-a1x">
-                                            <rect key="frame" x="318" y="8" width="51" height="31"/>
-                                            <color key="onTintColor" red="0.0" green="0.25098039220000001" blue="0.50196078430000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nFP-Yy-ymY">
+                                            <rect key="frame" x="8" y="7" width="87" height="30"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="15"/>
+                                            <state key="normal" title="Select All">
+                                                <color key="titleColor" red="0.0" green="0.25098039220000001" blue="0.50196078430000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            </state>
                                             <connections>
-                                                <action selector="selectAllAppsSwitchPressed:" destination="Wf9-qM-V6X" eventType="valueChanged" id="cpt-7w-7JS"/>
+                                                <action selector="selectAllButtonPressed:" destination="Wf9-qM-V6X" eventType="touchUpInside" id="5Qv-mW-wgx"/>
                                             </connections>
-                                        </switch>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Select All" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YPK-AA-w1U">
-                                            <rect key="frame" x="8" y="4" width="224" height="35.5"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aac-sw-Q1T">
+                                            <rect key="frame" x="148" y="7" width="107" height="30"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="15"/>
+                                            <state key="normal" title="Clear Selection">
+                                                <color key="titleColor" red="0.0" green="0.25098039220000001" blue="0.50196078430000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="clearSelectionButtonPressed:" destination="Wf9-qM-V6X" eventType="touchUpInside" id="UeM-qO-v3O"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="selectAllSwitch" destination="T6z-dC-a1x" id="hC5-u2-Svv"/>
+                                    <outlet property="clearSelectionButton" destination="aac-sw-Q1T" id="7R2-Ok-vxu"/>
+                                    <outlet property="selectAllButton" destination="nFP-Yy-ymY" id="soq-wf-nWs"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="appscell" id="heU-IV-naE" customClass="AppSelectionTableViewCell" customModule="CapstoneProjectSER402" customModuleProvider="target">

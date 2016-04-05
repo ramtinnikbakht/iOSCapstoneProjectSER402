@@ -10,8 +10,8 @@ import UIKit
 
 class AppsOptionTableViewCell: UITableViewCell {
 
-    
-    @IBOutlet weak var selectAllSwitch: UISwitch!
+    @IBOutlet weak var selectAllButton: UIButton!
+    @IBOutlet weak var clearSelectionButton: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()
