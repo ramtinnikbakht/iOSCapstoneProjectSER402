@@ -40,15 +40,15 @@ class BusinessAppTableViewController: UITableViewController
     {
         let icon = UIImage(named: "circle.png")
         let obj1 = BusinessApp(appId: "ServiceNow Enterprise Edition", businessAppSys: "", businessApp: "ServiceNow Enterprise Edition", appCriticality: "2", owner: "", ownerSys: "", businessArea: "", businessAreaSys: "", businessUnit: "",
-            businessUnitSys: "", businessSubUnitSys: "", businessSubUnit: "", ticketCount: 9, containsEmergencyTicket: true)
+            businessUnitSys: "", businessSubUnitSys: "", businessSubUnit: "", ticketCount: 9)
         let obj2 = BusinessApp(appId: "ServiceNow Enterprise Edition", businessAppSys: "", businessApp: "Allstate Application 2", appCriticality: "2", owner: "", ownerSys: "", businessArea: "", businessAreaSys: "", businessUnit: "",
-            businessUnitSys: "", businessSubUnitSys: "", businessSubUnit: "", ticketCount: 8, containsEmergencyTicket: false)
+            businessUnitSys: "", businessSubUnitSys: "", businessSubUnit: "", ticketCount: 8)
         let obj3 = BusinessApp(appId: "ServiceNow Enterprise Edition", businessAppSys: "", businessApp: "Allstate Application 3", appCriticality: "2", owner: "", ownerSys: "", businessArea: "", businessAreaSys: "", businessUnit: "",
-            businessUnitSys: "", businessSubUnitSys: "", businessSubUnit: "", ticketCount: 10, containsEmergencyTicket: false)
+            businessUnitSys: "", businessSubUnitSys: "", businessSubUnit: "", ticketCount: 10)
         let obj4 = BusinessApp(appId: "ServiceNow Enterprise Edition", businessAppSys: "", businessApp: "Allstate Application 4", appCriticality: "2", owner: "", ownerSys: "", businessArea: "", businessAreaSys: "", businessUnit: "",
-            businessUnitSys: "", businessSubUnitSys: "", businessSubUnit: "", ticketCount: 5, containsEmergencyTicket: false)
+            businessUnitSys: "", businessSubUnitSys: "", businessSubUnit: "", ticketCount: 5)
         let obj5 = BusinessApp(appId: "ServiceNow Enterprise Edition", businessAppSys: "", businessApp: "Allstate Application 5", appCriticality: "2", owner: "", ownerSys: "", businessArea: "", businessAreaSys: "", businessUnit: "",
-            businessUnitSys: "", businessSubUnitSys: "", businessSubUnit: "", ticketCount: 5, containsEmergencyTicket: true)
+            businessUnitSys: "", businessSubUnitSys: "", businessSubUnit: "", ticketCount: 5)
         
         let app1 = BusinessApp_Table_Template(appName: obj1.businessApp, ticketCount: obj1.ticketCount, containsEmergencyTicket: obj1.containsEmergencyTicket, icon: icon!, appCriticality: Int(obj1.appCriticality)!)
         let app2 = BusinessApp_Table_Template(appName: obj2.businessApp, ticketCount: obj2.ticketCount, containsEmergencyTicket: obj2.containsEmergencyTicket, icon: icon!, appCriticality: Int(obj2.appCriticality)!)
