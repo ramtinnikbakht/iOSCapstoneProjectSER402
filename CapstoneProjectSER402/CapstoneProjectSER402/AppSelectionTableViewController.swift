@@ -10,6 +10,8 @@ import UIKit
 
 class AppSelectionTableViewController: UITableViewController {
     
+    
+    
     var usertype: String = ""
     
     var appsArray: [String] = ["App1", "App2", "App3", "App4", "App5", "App6", "App7"]
@@ -24,7 +26,7 @@ class AppSelectionTableViewController: UITableViewController {
     
   
     @IBAction func selectAllButtonPressed(sender: UIButton) {
-        let section = 1
+        let section = 2
         for (var row = 0; row < tableView.numberOfRowsInSection(section); ++row) {
             tableView.cellForRowAtIndexPath(NSIndexPath(forRow: row, inSection: section))?.tintColor = UIColor(red: 0/255.0,
                                                                                                                green: 64/255.0,
@@ -39,7 +41,7 @@ class AppSelectionTableViewController: UITableViewController {
     }
     
     @IBAction func clearSelectionButtonPressed(sender: UIButton) {
-        let section = 1
+        let section = 2
         for (var row = 0; row < tableView.numberOfRowsInSection(section); ++row) {
             
             tableView.cellForRowAtIndexPath(NSIndexPath(forRow: row, inSection: section))?.accessoryType = UITableViewCellAccessoryType.None
@@ -72,16 +74,25 @@ class AppSelectionTableViewController: UITableViewController {
     override func viewDidAppear(animated: Bool)
     {
         super.viewDidAppear(animated)
-        let alert = UIAlertController(title: "Alert", message: "Your User Type: \(usertype)", preferredStyle: UIAlertControllerStyle.Alert)
+        //userTypeLabel.text = usertype
+        /*let alert = UIAlertController(title: "Alert", message: "Your User Type: \(usertype)", preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
-        self.presentViewController(alert, animated: true, completion: nil)
+        self.presentViewController(alert, animated: true, completion: nil)*/
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         if indexPath.section == 0 {
-            let cell = tableView.dequeueReusableCellWithIdentifier("appsoptioncell") as! AppsOptionTableViewCell!
             
+            let cell = tableView.dequeueReusableCellWithIdentifier("usertypecell") as! UserTypeTableViewCell!
+            
+            cell.userTypeLabel.text = usertype
+            
+            return cell!
+            
+        } else if indexPath.section == 1 {
+            
+            let cell = tableView.dequeueReusableCellWithIdentifier("appsoptioncell") as! AppsOptionTableViewCell!
             
             return cell
         }
@@ -98,12 +109,14 @@ class AppSelectionTableViewController: UITableViewController {
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int
     {
 
-        return 2
+        return 3
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         if section == 0 {
+            return 1
+        } else if section == 1 {
             return 1
         }
         return appsArray.count
@@ -114,12 +127,16 @@ class AppSelectionTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String?
     {
         if section == 0 {
+            return "User Type"
+        }
+        if section == 1 {
             return "Options"
         } else {
             return "Apps"
         }
         
     }
+    
     
     /*override func tableView(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
         
@@ -128,8 +145,13 @@ class AppSelectionTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         if indexPath.section == 0 {
+            let usertypecell = tableView.cellForRowAtIndexPath(indexPath) as! UserTypeTableViewCell!
+            usertypecell.selectionStyle = UITableViewCellSelectionStyle.None
+        }
+        else if indexPath.section == 1 {
             let optionscell = tableView.cellForRowAtIndexPath(indexPath) as! AppsOptionTableViewCell!
             optionscell.selectionStyle = UITableViewCellSelectionStyle.None
+            
         } else {
         let cell = tableView.cellForRowAtIndexPath(indexPath) as! AppSelectionTableViewCell!
         
@@ -152,6 +174,8 @@ class AppSelectionTableViewController: UITableViewController {
         }
         }
     }
+    
+    
     
     override func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath)
     {
