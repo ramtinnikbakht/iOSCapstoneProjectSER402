@@ -11,6 +11,7 @@ import UIKit
 class AppSelectionTableViewController: UITableViewController {
     
     var usertype: String = ""
+    
     var appsArray: [String] = ["App1", "App2", "App3", "App4", "App5", "App6", "App7"]
     var selectedApps = [String]()
 
@@ -21,11 +22,33 @@ class AppSelectionTableViewController: UITableViewController {
     
     //var sectionsArray = [Sections]()
     
-    @IBAction func selectAllSwitchAction(sender: AnyObject) {
-        print("Switch Pressed")
+  
+    @IBAction func selectAllButtonPressed(sender: UIButton) {
+        let section = 1
+        for (var row = 0; row < tableView.numberOfRowsInSection(section); ++row) {
+            tableView.cellForRowAtIndexPath(NSIndexPath(forRow: row, inSection: section))?.tintColor = UIColor(red: 0/255.0,
+                                                                                                               green: 64/255.0,
+                                                                                                               blue: 128/255.0,
+                                                                                                               alpha: 1.0)
+            tableView.cellForRowAtIndexPath(NSIndexPath(forRow: row, inSection: section))?.accessoryType = UITableViewCellAccessoryType.Checkmark
             
-    
+            
+        }
+        selectedApps = appsArray
+        print(selectedApps)
     }
+    
+    @IBAction func clearSelectionButtonPressed(sender: UIButton) {
+        let section = 1
+        for (var row = 0; row < tableView.numberOfRowsInSection(section); ++row) {
+            
+            tableView.cellForRowAtIndexPath(NSIndexPath(forRow: row, inSection: section))?.accessoryType = UITableViewCellAccessoryType.None
+        }
+        selectedApps = []
+        print(selectedApps)
+    }
+
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,15 +81,13 @@ class AppSelectionTableViewController: UITableViewController {
         
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCellWithIdentifier("appsoptioncell") as! AppsOptionTableViewCell!
-            cell.selectAllSwitch.setOn(false, animated: true)
+            
             
             return cell
         }
         let cell = tableView.dequeueReusableCellWithIdentifier("appscell") as! AppSelectionTableViewCell!
         
         cell.appsTitleLabel.text = appsArray[indexPath.row]
-        cell.checkboxImage.image = UIImage(named: "unchecked-circle")
-    
         
         return cell
     }
@@ -106,22 +127,30 @@ class AppSelectionTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
+        if indexPath.section == 0 {
+            let optionscell = tableView.cellForRowAtIndexPath(indexPath) as! AppsOptionTableViewCell!
+            optionscell.selectionStyle = UITableViewCellSelectionStyle.None
+        } else {
         let cell = tableView.cellForRowAtIndexPath(indexPath) as! AppSelectionTableViewCell!
         
         if selectedApps.contains(cell.appsTitleLabel.text!) {
-            cell.checkboxImage.image = UIImage(named: "unchecked-circle")
+            
+            cell.accessoryType = UITableViewCellAccessoryType.None
             selectedApps = selectedApps.filter {$0 != cell.appsTitleLabel.text!}
             print("worked")
             print(selectedApps)
         } else {
+            cell.tintColor = UIColor(red: 0/255.0,
+                                     green: 64/255.0,
+                                     blue: 128/255.0,
+                                     alpha: 1.0)
+            cell.accessoryType = UITableViewCellAccessoryType.Checkmark
         
-        cell.checkboxImage.image = UIImage(named: "checked-circle")
+            selectedApps += [cell.appsTitleLabel.text!]
         
-        selectedApps += [cell.appsTitleLabel.text!]
-        
-        print(selectedApps)
+            print(selectedApps)
         }
-
+        }
     }
     
     override func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath)

@@ -12,7 +12,7 @@ class AppSelectionTableViewCell: UITableViewCell
 {
 
 
-    @IBOutlet var checkboxImage: UIImageView!
+    
     @IBOutlet var appsTitleLabel: UILabel!
     
     override func awakeFromNib()
@@ -20,7 +20,6 @@ class AppSelectionTableViewCell: UITableViewCell
         super.awakeFromNib()
         // Initialization code
         
-        //let checkboxImage = UIImage(named: "unchecked-circle")
         
 
 
