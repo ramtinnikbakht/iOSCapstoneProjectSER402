@@ -137,7 +137,14 @@ class AppSelectionTableViewController: UITableViewController {
         
     }
     
-    
+    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 1 {
+            return 17.0
+        } else if section == 2 {
+            return 17.0
+        }
+        return 30.0
+    }
     /*override func tableView(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
         
     }*/
