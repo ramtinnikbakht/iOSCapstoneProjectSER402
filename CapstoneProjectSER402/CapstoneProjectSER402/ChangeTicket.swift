@@ -14,10 +14,10 @@ class ChangeTicket
 {
     var number: String = ""
     var approver: String = ""
-    var plannedStart: NSDate
-    var plannedEnd: NSDate
-    var actualStart: NSDate
-    var actualEnd: NSDate
+    var plannedStart: String
+    var plannedEnd: String
+    var actualStart: String
+    var actualEnd: String
     var requestedByGroup: String = ""
     var requestedByGroupBusinessArea: String = ""
     var requestedByGroupBusinessUnit: String = ""
@@ -45,10 +45,10 @@ class ChangeTicket
         
         self.number = number
         self.approver = approver
-        self.plannedStart = DateFormat.dateFromString(plannedStart)!
-        self.plannedEnd = DateFormat.dateFromString(plannedEnd)!
-        self.actualStart = DateFormat.dateFromString(actualStart)!
-        self.actualEnd = DateFormat.dateFromString(actualEnd)!
+        self.plannedStart = plannedStart
+        self.plannedEnd = plannedEnd
+        self.actualStart = actualStart
+        self.actualEnd = actualEnd
         self.requestedByGroup = requestedByGroup
         self.requestedByGroupBusinessArea = requestedByGroupBusinessArea
         self.requestedByGroupBusinessUnit = requestedByGroupBusinessUnit
@@ -76,19 +76,19 @@ class ChangeTicket
     {
         return self.approver
     }
-    func getPlannedStart() -> NSDate
+    func getPlannedStart() -> String
     {
         return self.plannedStart
     }
-    func getPlannedEnd() -> NSDate
+    func getPlannedEnd() -> String
     {
         return self.plannedEnd
     }
-    func getActualStart() -> NSDate
+    func getActualStart() -> String
     {
         return self.actualStart
     }
-    func getActualEnd()-> NSDate
+    func getActualEnd()-> String
     {
         return self.actualEnd
     }
@@ -165,19 +165,19 @@ class ChangeTicket
     {
         self.approver = approver
     }
-    func setPlannedStart(plannedStart: NSDate)
+    func setPlannedStart(plannedStart: String)
     {
         self.plannedStart = plannedStart
     }
-    func setPlannedEnd(plannedEnd: NSDate)
+    func setPlannedEnd(plannedEnd: String)
     {
         self.plannedEnd = plannedEnd
     }
-    func setActualStart(actualStart: NSDate)
+    func setActualStart(actualStart: String)
     {
         self.actualStart = actualStart
     }
-    func setActualEnd(actualEnd: NSDate)
+    func setActualEnd(actualEnd: String)
     {
         self.actualEnd = actualEnd
     }
