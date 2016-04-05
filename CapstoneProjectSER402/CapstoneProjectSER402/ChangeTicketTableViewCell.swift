@@ -26,6 +26,7 @@ class ChangeTicketTableViewCell: UITableViewCell
     @IBOutlet weak var subBusinessUnit: UILabel!
     @IBOutlet weak var riskLevel: UILabel!
     @IBOutlet weak var plannedStart: UILabel!
+    let DateFormat = NSDateFormatter()
     
     @IBOutlet weak var riskIndicator: UIImageView!
     @IBOutlet weak var expandIndicator: UIImageView!
@@ -72,11 +73,13 @@ class ChangeTicketTableViewCell: UITableViewCell
     var ticket: ChangeTicket_Table_Template!
     {
         didSet {
+            DateFormat.locale = NSLocale(localeIdentifier: "en_US_POSIX")
+            DateFormat.dateFormat = "yyyy-MM-dd HH:mm:ss"
             ticketID.text = ticket.id
             riskLevel.text = String(ticket.priority)
             businessUnit.text = ticket.requestedByGroupBusinessUnit
             subBusinessUnit.text = ticket.requestedByGroupSubBusinessUnit
-            plannedStart.text = ticket.startDate
+            plannedStart.text = DateFormat.stringFromDate(ticket.startDate)
         }
     }
     

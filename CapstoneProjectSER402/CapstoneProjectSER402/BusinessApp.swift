@@ -181,5 +181,4 @@ class BusinessApp
         self.containsEmergencyTicket = containsEmergencyTicket
     }
     
-    
 }
