@@ -92,7 +92,7 @@ class ConnectionService : NSObject, NSURLSessionDelegate {
         
     }
     
-    func getBusiness(appName: String?="", appUnit: String?="", appArea: String?="", appSubUnit: String?="", requestUnits: String?="", requestAreas: String?="") ->([BusinessApp]) {
+    func getBusiness(appName: String?="", appUnit: String?="", appArea: String?="", appSubUnit: String?="", requestUnits: String?="", requestAreas: String?="", requestApprovers: String?="") ->([BusinessApp]) {
         let soapRequest = AEXMLDocument()
         
         let attributes = ["xmlns:soapenv" : "http://schemas.xmlsoap.org/soap/envelope/", "xmlns:u" : "http://www.service-now.com/u_platform_integration"]
@@ -112,6 +112,7 @@ class ConnectionService : NSObject, NSURLSessionDelegate {
         message.addChild(name: "appSubUnit", value: appSubUnit)
         message.addChild(name: "requestUnits", value: requestUnits)
         message.addChild(name: "requestAreas", value: requestAreas)
+        message.addChild(name: "requestApprovers", value: requestApprovers)
         
         insert.addChild(name: "u:u_process", value: "ASU.B.eChangeProject")
         insert.addChild(name: "u:u_product", value: "CHG")
