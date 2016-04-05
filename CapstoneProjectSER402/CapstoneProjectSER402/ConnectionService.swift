@@ -11,7 +11,7 @@ import Foundation
 class ConnectionService : NSObject, NSURLSessionDelegate {
     
     static let sharedInstance = ConnectionService()
-    //private init(){}
+    private override init(){}
     
     let userName = "sys_ws_asu_poly"
     let passWord = "ASU_Test#1"
@@ -38,7 +38,7 @@ class ConnectionService : NSObject, NSURLSessionDelegate {
             for app in apps {
                 let newApp = BusinessApp(appId: app["appID"].value!, businessAppSys: app["businessAppSys"].value!, businessApp: app["businessApp"].value!, appCriticality: app["appCriticality"].value!,
                     owner: app["owner"].value!, ownerSys: app["ownerSys"].value!, businessArea: app["businessArea"].value!, businessAreaSys: app["businessAreaSys"].value!, businessUnit: app["businessUnit"].value!,
-                    businessUnitSys: app["businessUnitSys"].value!, businessSubUnitSys: app["businessSubUnitSys"].value!, businessSubUnit: app["businessSubUnit"].value!, ticketCount: 0, containsEmergencyTicket: false)
+                    businessUnitSys: app["businessUnitSys"].value!, businessSubUnitSys: app["businessSubUnitSys"].value!, businessSubUnit: app["businessSubUnit"].value!, ticketCount: 0)
                 businessApps.append(newApp)
             }
             
@@ -92,7 +92,7 @@ class ConnectionService : NSObject, NSURLSessionDelegate {
         
     }
     
-    func getBusiness(appName: String?="", appUnit: String?="", appArea: String?="", appSubUnit: String?="", requestUnits: String?="", requestAreas: String?="") {
+    func getBusiness(appName: String?="", appUnit: String?="", appArea: String?="", appSubUnit: String?="", requestUnits: String?="", requestAreas: String?="") ->([BusinessApp]) {
         let soapRequest = AEXMLDocument()
         
         let attributes = ["xmlns:soapenv" : "http://schemas.xmlsoap.org/soap/envelope/", "xmlns:u" : "http://www.service-now.com/u_platform_integration"]
@@ -116,6 +116,8 @@ class ConnectionService : NSObject, NSURLSessionDelegate {
         insert.addChild(name: "u:u_process", value: "ASU.B.eChangeProject")
         insert.addChild(name: "u:u_product", value: "CHG")
         let xml = sendData(soapRequest.xmlString)
+        let businessList = parseBusiness(xml)
+        return businessList
         print(xml.xmlString)
         
     }

@@ -24,10 +24,11 @@ class BusinessApp
     var businessSubUnit: String
     var ticketCount: Int
     var containsEmergencyTicket: Bool
+    var changeTicketList: [ChangeTicket]
     
     init(appId: String, businessAppSys: String, businessApp: String, appCriticality: String,
         owner: String, ownerSys: String, businessArea: String, businessAreaSys: String, businessUnit: String,
-        businessUnitSys: String, businessSubUnitSys: String, businessSubUnit: String, ticketCount: Int, containsEmergencyTicket: Bool)
+        businessUnitSys: String, businessSubUnitSys: String, businessSubUnit: String, ticketCount: Int)
     {
         self.appId = appId
         self.businessAppSys = businessAppSys
@@ -42,7 +43,20 @@ class BusinessApp
         self.businessSubUnit = businessSubUnit
         self.businessSubUnitSys = businessSubUnitSys
         self.ticketCount = ticketCount
-        self.containsEmergencyTicket = containsEmergencyTicket
+        self.changeTicketList = ConnectionService.sharedInstance.getChange(application: self.businessApp)
+        containsEmergencyTicket = false
+        containsEmergencyTicketFunc()
+    }
+    
+    func containsEmergencyTicketFunc(){
+        for ticket in changeTicketList {
+            if ticket.type.containsString("Emergency") {
+                containsEmergencyTicket = true
+            }
+            else {
+                containsEmergencyTicket = false
+            }
+        }
     }
     
     // getters
