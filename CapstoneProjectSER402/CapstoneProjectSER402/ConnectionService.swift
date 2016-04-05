@@ -10,8 +10,8 @@ import Foundation
 
 class ConnectionService : NSObject, NSURLSessionDelegate {
     
-    static let sharedInstance = ConnectionService
-    private init(){}
+    static let sharedInstance = ConnectionService()
+    //private init(){}
     
     let userName = "sys_ws_asu_poly"
     let passWord = "ASU_Test#1"
