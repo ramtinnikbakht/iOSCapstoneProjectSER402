@@ -30,22 +30,31 @@ class AppSelectionTableViewController: UITableViewController {
     @IBAction func selectAllAppsSwitchPressed(sender: UISwitch) {
         
         let cell = tableView.dequeueReusableCellWithIdentifier("appsoptioncell") as! AppsOptionTableViewCell!
+        
         if cell.selectAllSwitch.on {
+            cell.selectAllSwitch.setOn(false, animated: true)
             print("CHECK1")
+            
             let section = 1
             for (var row = 0; row < tableView.numberOfRowsInSection(section); ++row) {
-                tableView.cellForRowAtIndexPath(NSIndexPath(forRow: row, inSection: section))?.accessoryType = UITableViewCellAccessoryType.Checkmark
+                
+                tableView.cellForRowAtIndexPath(NSIndexPath(forRow: row, inSection: section))?.accessoryType = UITableViewCellAccessoryType.None
+                
+                print("CHECK2")
+                cell.selectAllSwitch.setOn(false, animated: true)
+                
             }
-            cell.selectAllSwitch.setOn(false, animated: true)
-            print("CHECK2")
+            
         } else {
-            cell.selectAllSwitch.setOn(true, animated: true)
+            
             print("CHECK3")
             let section = 1
             for (var row = 0; row < tableView.numberOfRowsInSection(section); ++row) {
-                tableView.cellForRowAtIndexPath(NSIndexPath(forRow: row, inSection: section))?.accessoryType = UITableViewCellAccessoryType.None
+                tableView.cellForRowAtIndexPath(NSIndexPath(forRow: row, inSection: section))?.accessoryType = UITableViewCellAccessoryType.Checkmark
+                cell.selectAllSwitch.setOn(true, animated: true)
             }
-            
+            selectedApps = appsArray
+            print(selectedApps)
         }
 
         /*let cell = tableView.dequeueReusableCellWithIdentifier("appsoptioncell") as! AppsOptionTableViewCell!
@@ -93,8 +102,6 @@ class AppSelectionTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("appscell") as! AppSelectionTableViewCell!
         
         cell.appsTitleLabel.text = appsArray[indexPath.row]
-        cell.checkboxImage.image = UIImage(named: "unchecked-circle")
-    
         
         return cell
     }
@@ -137,13 +144,14 @@ class AppSelectionTableViewController: UITableViewController {
         let cell = tableView.cellForRowAtIndexPath(indexPath) as! AppSelectionTableViewCell!
         
         if selectedApps.contains(cell.appsTitleLabel.text!) {
-            cell.checkboxImage.image = UIImage(named: "unchecked-circle")
+            
+            cell.accessoryType = UITableViewCellAccessoryType.None
             selectedApps = selectedApps.filter {$0 != cell.appsTitleLabel.text!}
             print("worked")
             print(selectedApps)
         } else {
         
-        cell.checkboxImage.image = UIImage(named: "checked-circle")
+        cell.accessoryType = UITableViewCellAccessoryType.Checkmark
         
         selectedApps += [cell.appsTitleLabel.text!]
         
