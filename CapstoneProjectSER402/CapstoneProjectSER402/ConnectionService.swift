@@ -118,8 +118,6 @@ class ConnectionService : NSObject, NSURLSessionDelegate {
         let xml = sendData(soapRequest.xmlString)
         let businessList = parseBusiness(xml)
         return businessList
-        print(xml.xmlString)
-        
     }
     
     func sendData(soapMessage: String) -> AEXMLDocument {
