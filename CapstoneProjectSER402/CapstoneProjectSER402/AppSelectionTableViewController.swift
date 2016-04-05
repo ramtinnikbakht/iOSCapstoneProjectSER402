@@ -50,7 +50,12 @@ class AppSelectionTableViewController: UITableViewController {
             print("CHECK3")
             let section = 1
             for (var row = 0; row < tableView.numberOfRowsInSection(section); ++row) {
+                tableView.cellForRowAtIndexPath(NSIndexPath(forRow: row, inSection: section))?.tintColor = UIColor(red: 0/255.0,
+                                         green: 64/255.0,
+                                         blue: 128/255.0,
+                                         alpha: 1.0)
                 tableView.cellForRowAtIndexPath(NSIndexPath(forRow: row, inSection: section))?.accessoryType = UITableViewCellAccessoryType.Checkmark
+                
                 cell.selectAllSwitch.setOn(true, animated: true)
             }
             selectedApps = appsArray
@@ -150,12 +155,15 @@ class AppSelectionTableViewController: UITableViewController {
             print("worked")
             print(selectedApps)
         } else {
+            cell.tintColor = UIColor(red: 0/255.0,
+                                     green: 64/255.0,
+                                     blue: 128/255.0,
+                                     alpha: 1.0)
+            cell.accessoryType = UITableViewCellAccessoryType.Checkmark
         
-        cell.accessoryType = UITableViewCellAccessoryType.Checkmark
+            selectedApps += [cell.appsTitleLabel.text!]
         
-        selectedApps += [cell.appsTitleLabel.text!]
-        
-        print(selectedApps)
+            print(selectedApps)
         }
 
     }
