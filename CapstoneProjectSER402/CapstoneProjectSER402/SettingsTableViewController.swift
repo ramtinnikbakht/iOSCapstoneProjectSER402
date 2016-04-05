@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MessageUI
 
 class SettingsTableViewController: UITableViewController {
     
@@ -78,6 +79,30 @@ class SettingsTableViewController: UITableViewController {
         return cell
     }
     
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        if indexPath.section == 2 {
+            let sendfeedbackcell = tableView.dequeueReusableCellWithIdentifier("profilecell") as! ProfileTableViewCell
+            sendEmail()
+            
+        }
+    }
+    func sendEmail() {
+        if MFMailComposeViewController.canSendMail() {
+            let mail = MFMailComposeViewController()
+            //mail.mailComposeDelegate = self
+            mail.setToRecipients(["paul@hackingwithswift.com"])
+            mail.setMessageBody("<p>You're so awesome!</p>", isHTML: true)
+            
+            presentViewController(mail, animated: true, completion: nil)
+        } else {
+            // show failure alert
+        }
+    }
+    
+    func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
+        controller.dismissViewControllerAnimated(true, completion: nil)
+    }
 
     /*
     // Override to support conditional editing of the table view.
