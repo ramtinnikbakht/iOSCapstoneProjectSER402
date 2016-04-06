@@ -34,12 +34,13 @@ class ConnectionService : NSObject, NSURLSessionDelegate {
     
     func parseBusiness(xml: AEXMLDocument) -> ([BusinessApp]) {
         var businessApps = [BusinessApp]()
-        if let apps = xml.root["SOAP-ENV:Body"]["insertResponse"]["status_message"]["ReturnMessage"]["applicationData"].all {
+        if let apps = xml.root["SOAP-ENV:Body"]["insertResponse"]["status_message"]["ReturnMessage"]["applicationData"]["application"].all {
             for app in apps {
                 let newApp = BusinessApp(appId: app["appID"].value!, businessAppSys: app["businessAppSys"].value!, businessApp: app["businessApp"].value!, appCriticality: app["appCriticality"].value!,
                     owner: app["owner"].value!, ownerSys: app["ownerSys"].value!, businessArea: app["businessArea"].value!, businessAreaSys: app["businessAreaSys"].value!, businessUnit: app["businessUnit"].value!,
                     businessUnitSys: app["businessUnitSys"].value!, businessSubUnitSys: app["businessSubUnitSys"].value!, businessSubUnit: app["businessSubUnit"].value!, ticketCount: 0)
                 businessApps.append(newApp)
+                print(newApp.appId)
             }
             
         }
@@ -86,8 +87,15 @@ class ConnectionService : NSObject, NSURLSessionDelegate {
         
         insert.addChild(name: "u:u_process", value: "ASU.B.eChangeProject")
         insert.addChild(name: "u:u_product", value: "CHG")
-        let xml = sendData(soapRequest.xmlString)
-        let ticketList = parseChange(xml)
+        
+        var ticketList = [ChangeTicket]()
+        sendData(soapRequest.xmlString) {xml in
+            if let xml = xml {
+                ticketList = self.parseChange(xml)
+                print (xml.root.xmlString)
+            }
+            
+        }
         return ticketList
         
     }
@@ -116,12 +124,20 @@ class ConnectionService : NSObject, NSURLSessionDelegate {
         
         insert.addChild(name: "u:u_process", value: "ASU.B.eChangeProject")
         insert.addChild(name: "u:u_product", value: "CHG")
-        let xml = sendData(soapRequest.xmlString)
-        let businessList = parseBusiness(xml)
-        return businessList
+        
+        var businessApps = [BusinessApp]()
+        
+        sendData(soapRequest.xmlString) {xml in
+            if let xml = xml {
+                businessApps = self.parseBusiness(xml)
+                print (xml.root.xmlString)
+            }
+            
+        }
+        return businessApps
     }
     
-    func sendData(soapMessage: String) -> AEXMLDocument {
+    func sendData(soapMessage: String, completionHandler: (AEXMLDocument?) -> Void) -> NSURLSessionTask {
         
         // Create login data
         let loginString = "\(userName):\(passWord)"
@@ -130,8 +146,6 @@ class ConnectionService : NSObject, NSURLSessionDelegate {
         // create URL
         let url = NSURL(string: "https://allstatetrain.service-now.com/u_platform_integration.do?SOAP")
         let request = NSMutableURLRequest(URL: url!)
-        
-        var xmlDoc = AEXMLDocument()
         // create message and message length
         let message = soapMessage
         let msgLength = String(message.characters.count)
@@ -158,7 +172,7 @@ class ConnectionService : NSObject, NSURLSessionDelegate {
         request.HTTPBody = message.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
         
         // send request and capture output in completion handler
-        let task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
+        let task = session.dataTaskWithRequest(request) {data, response, error   -> Void in
             // if the data is not nil then convert data into a string
             if (data != nil) {
                 var nData = String(data: data!, encoding: NSUTF8StringEncoding)
@@ -172,9 +186,7 @@ class ConnectionService : NSObject, NSURLSessionDelegate {
                     let returnData = nData!.dataUsingEncoding(NSUTF8StringEncoding)
                     // create AEXMLDocument with returnData
                     let xml = try AEXMLDocument(xmlData: returnData!)
-                    xmlDoc = xml
-                    print(xml.root.xmlString)
-                    
+                    completionHandler(xml)
                 }
                 catch {
                     print("\(error)")
@@ -182,14 +194,10 @@ class ConnectionService : NSObject, NSURLSessionDelegate {
                 
             }
             
-            if (error != nil) {
-                print("\(error)")
-            }
-            
-        })
+        }
         task.resume()
-        
-        return xmlDoc
+        //print(xmlDoc.root.xmlString)
+        return task
     }
     
     func URLSession(session: NSURLSession, task: NSURLSessionTask, didReceiveChallenge challenge: NSURLAuthenticationChallenge, completionHandler: (NSURLSessionAuthChallengeDisposition, NSURLCredential!) -> Void) {
