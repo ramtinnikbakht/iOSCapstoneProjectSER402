@@ -118,7 +118,7 @@ class ChangeTicketTableViewController: UITableViewController, ChartViewDelegate 
         print(selectedApp.businessUnitSys)
         print(selectedApp.businessSubUnitSys)
         //print(ConnectionService.sharedInstance.getChange(reqByGrpBusUnit: "311ab55b95b38980ce51a15d3638639c", reqByGrpSubBusUnit: selectedApp.businessSubUnitSys))
-        print(ConnectionService.sharedInstance.getChange(plannedStart: "2015-11-11 00:00:00", plannedStart2: "2015-11-13 11:30:00", reqByGrpBusUnit: selectedApp.businessUnitSys, reqByGrpSubBusUnit: selectedApp.businessSubUnitSys, psD: "1"))
+        print(ConnectionService.sharedInstance.getChange(plannedStart: "2015-11-11 00:00:00", plannedStart2: "2015-11-12 11:30:00", reqByGrpBusUnit: selectedApp.businessUnitSys, reqByGrpSubBusUnit: selectedApp.businessSubUnitSys, psD: "1"))
         
         
         let eyeIcon = UIImage(named: "eye_unclicked.png")

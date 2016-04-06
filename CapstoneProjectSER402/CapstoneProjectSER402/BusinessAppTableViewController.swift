@@ -27,6 +27,7 @@ class BusinessAppTableViewController: UITableViewController
     var t1Section = [BusinessApp]()
     var t0Section = [BusinessApp]()
     var liveApps = [BusinessApp]()
+    var overlay : UIView?
     
     override func viewDidLoad()
     {
@@ -39,8 +40,18 @@ class BusinessAppTableViewController: UITableViewController
 
     func loadSampleApps()
     {
+//        if (liveApps.count == 0) {
+//            overlay = UIView(frame: view.frame)
+//            overlay!.backgroundColor = UIColor.blackColor()
+//            overlay!.alpha = 0.8
+//            
+//            view.addSubview(overlay!)
+//            ConnectionService.sharedInstance.getBusiness(appUnit: "311ab55b95b38980ce51a15d3638639c")
+//            liveApps = ConnectionService.sharedInstance.businessApps
+//        }
         ConnectionService.sharedInstance.getBusiness(appUnit: "311ab55b95b38980ce51a15d3638639c")
         liveApps = ConnectionService.sharedInstance.businessApps
+        
         let icon = UIImage(named: "circle.png")
         
         for app in liveApps {
