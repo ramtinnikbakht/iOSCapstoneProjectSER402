@@ -39,8 +39,8 @@ class ConnectionService : NSObject, NSURLSessionDelegate {
         if let apps = xml.root["SOAP-ENV:Body"]["insertResponse"]["status_message"]["ReturnMessage"]["applicationData"]["application"].all {
             for app in apps {
                 let newApp = BusinessApp(appId: app["appID"].value!, businessAppSys: app["businessAppSys"].value!, businessApp: app["businessApp"].value!, appCriticality: app["appCriticality"].value!,
-                    owner: app["owner"].value!, ownerSys: app["ownerSys"].value!, businessArea: app["businessArea"].value!, businessAreaSys: app["businessAreaSys"].value!, businessUnit: app["businessUnit"].value!,
-                    businessUnitSys: app["businessUnitSys"].value!, businessSubUnitSys: app["businessSubUnitSys"].value!, businessSubUnit: app["businessSubUnit"].value!, ticketCount: 0)
+                    owner: app["owner"].value!, ownerSys: app["ownerSys"].value!, businessArea: app["appBusinessArea"].value!, businessAreaSys: app["appBusinessAreaSys"].value!, businessUnit: app["appBusinessUnit"].value!,
+                    businessUnitSys: app["appBusinessUnitSys"].value!, businessSubUnitSys: app["appBusinessSubUnitSys"].value!, businessSubUnit: app["appBusinessSubUnit"].value!, ticketCount: 0)
                 businessApp.append(newApp)
                 print(newApp.appId)
             }
