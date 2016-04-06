@@ -81,6 +81,10 @@ class SettingsTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
+        if indexPath.section == 1 {
+            let appSelectionTableViewControllerObj = self.storyboard?.instantiateViewControllerWithIdentifier("myapps") as? AppSelectionTableViewController
+            self.navigationController?.pushViewController(appSelectionTableViewControllerObj!, animated: true)
+        }
         if indexPath.section == 2 {
             let sendfeedbackcell = tableView.dequeueReusableCellWithIdentifier("profilecell") as! ProfileTableViewCell
             sendEmail()
