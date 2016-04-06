@@ -7,12 +7,15 @@
 //
 
 import UIKit
+import Charts
 import QuartzCore
 
-class BusinessAppTableViewController: UITableViewController
+class BusinessAppTableViewController: UITableViewController, ChartViewDelegate
 {
     
     // MARK: Properties
+    
+    @IBOutlet weak var lineChartView: LineChartView!
     
     private var tbvc = TicketTabBarController()
     private var tickets = TicketModel()
@@ -28,12 +31,20 @@ class BusinessAppTableViewController: UITableViewController
     var t0Section = [BusinessApp]()
     var liveApps = [BusinessApp]()
     
+    // Colors
+    let low = UIColor(red: CGFloat(38/255.0), green: CGFloat(166/255.0), blue: CGFloat(91/255.0), alpha: 1)
+    let med = UIColor(red: CGFloat(244/255.0), green: CGFloat(208/255.0), blue: CGFloat(63/255.0), alpha: 1)
+    let high = UIColor(red: CGFloat(207/255.0), green: CGFloat(0), blue: CGFloat(15/255.0), alpha: 1)
+    let navy = UIColor(red: 0/255.0, green: 64/255.0, blue: 128/255.0, alpha: 1.0)
+    let navy_comp = UIColor(red: CGFloat(51/255.0), green: CGFloat(204/255.0), blue: CGFloat(153/255.0), alpha: 1)
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
         
         tbvc = tabBarController as! TicketTabBarController
         
+        setChart(["App1", "App2", "App3", "App4", "App5", "App6", "App7", "App8", "App9", "App10", "App11", "App12", "App13", "App14", "App15", "App16", "App17", "App18", "App19", "App20"], values: [3.0, 2.0, 3.0, 4.0, 2.0, 3.0, 2.0, 3.0, 4.0, 2.0, 3.0, 2.0, 3.0, 4.0, 2.0, 3.0, 2.0, 3.0, 4.0, 2.0])
         loadSampleApps()
     }
 
@@ -264,6 +275,59 @@ class BusinessAppTableViewController: UITableViewController
                     
             })
         }
+        
+    }
+    
+    func setChart(dataPoints: [String], values: [Double]) {
+        lineChartView.clear()
+        var dataEntries: [ChartDataEntry] = []
+        
+        for i in 0..<dataPoints.count {
+            let dataEntry = ChartDataEntry(value: values[i], xIndex: i)
+            dataEntries.append(dataEntry)
+        }
+        
+        let lineChartDataSet = LineChartDataSet(yVals: dataEntries, label: "Change Tickets")
+        let lineChartData = LineChartData(xVals: dataPoints, dataSet: lineChartDataSet)
+        lineChartView.data = lineChartData
+        let numberFormatter = NSNumberFormatter()
+        
+        lineChartDataSet.axisDependency = .Left
+        
+        numberFormatter.generatesDecimalNumbers = false
+        lineChartData.setValueFormatter(numberFormatter)
+        lineChartData.setDrawValues(false)
+        lineChartData.setValueFont(UIFont(name: "Helvetica", size: 12))
+        lineChartDataSet.setColor(navy.colorWithAlphaComponent(0.5))
+        lineChartDataSet.fillAlpha = 62 / 255.0
+        lineChartDataSet.setCircleColor(navy)
+        lineChartDataSet.lineWidth = 2.0
+        lineChartDataSet.circleRadius = 6.0
+        
+        
+        // Legend Data
+        lineChartView.legend.position = .RightOfChartInside
+        lineChartView.legend.font = UIFont(name: "Helvetica", size: 10)!
+        lineChartView.legend.colors = [low, med, high]
+        lineChartView.legend.labels = ["Low","Medium","High"]
+        lineChartView.legend.enabled = true
+        
+        lineChartView.setVisibleXRangeMaximum(5)
+        lineChartView.moveViewToX(15)
+        lineChartView.leftAxis.valueFormatter = numberFormatter
+        lineChartView.leftAxis.drawAxisLineEnabled = false
+        lineChartView.rightAxis.drawGridLinesEnabled = false
+        lineChartView.rightAxis.drawLabelsEnabled = false
+        lineChartView.rightAxis.drawAxisLineEnabled = false
+        lineChartView.xAxis.drawGridLinesEnabled = false
+        lineChartView.xAxis.drawAxisLineEnabled = false
+        lineChartView.xAxis.labelPosition = .Bottom
+        lineChartView.descriptionText = ""
+        lineChartView.extraRightOffset = 20
+        lineChartView.userInteractionEnabled = true
+        lineChartView.animate(yAxisDuration: 1.0, easingOption: .EaseInCubic)
+        
+        
         
     }
     
