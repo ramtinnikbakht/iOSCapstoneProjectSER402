@@ -51,10 +51,30 @@ class AppSelectionTableViewController: UITableViewController {
     }
 
     
+    var apps = [BusinessApp]()
+    
+    func application(application: UIApplication!, performFetchWithCompletionHandler completionHandler: ((UIBackgroundFetchResult) -> Void)!) {
+        loadApps() {
+            completionHandler(UIBackgroundFetchResult.NewData)
+            print(self.apps.count)
+        }
+    }
+    
+    func loadApps(completionHandler: (() -> Void)!) {
+        apps = ConnectionService.sharedInstance.getBusiness(appUnit: "311ab55b95b38980ce51a15d3638639c")
+        completionHandler()
+    }
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        apps = ConnectionService.sharedInstance.getBusiness(appUnit: "311ab55b95b38980ce51a15d3638639c")
+        //let myTimer : NSTimer = NSTimer.scheduledTimerWithTimeInterval(24, target: self, selector: Selector("myPerformeCode:"), userInfo: nil, repeats: false)
+        print(apps)
+        print(apps.count)
+
         /*let alert = UIAlertController(title: "Alert", message: "Your User Type: \(usertype)", preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
         self.presentViewController(alert, animated: true, completion: nil)
