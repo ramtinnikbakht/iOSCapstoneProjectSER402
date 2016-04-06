@@ -26,6 +26,10 @@ class ConnectionService : NSObject, NSURLSessionDelegate {
         var ticketList = [ChangeTicket]()
         if let tickets = xml.root["SOAP-ENV:Body"]["insertResponse"]["status_message"]["ReturnMessage"]["ChangeStatus"]["changeInformation"].all {
             for ticket in tickets {
+                if ticket["Requested_By_Group_Business_Area"].count == 0 {
+                    ticket.addChild(name: "Requested_By_Group_Business_Area", value: " ")
+                }
+                
                 let newTicket = ChangeTicket(number: ticket["Number"].value!, approver: ticket["Approver"].value!, plannedStart: ticket["PlannedStart"].value!, plannedEnd: ticket["PlannedEnd"].value!, actualStart: ticket["ActualStart"].value!, actualEnd: ticket["ActualEnd"].value!, requestedByGroup: ticket["Requested_By_Group"].value!,
                     requestedByGroupBusinessArea:ticket["Requested_By_Group_Business_Area"].value!, requestedByGroupBusinessUnit: ticket["Requested_By_Group_Business_Unit"].value!, requestedByGroupSubBusinessUnit: ticket["Requested_By_GroupSub_Business_Unit"].value!, causeCompleteServiceAppOutage: ticket["Causes_Complete_ServiceApplication_Outage"].value!, risk: ticket["Risk"].value!, type:ticket["Type"].value!, impactScore:ticket["Impact_Score"].value!, shortDescription:ticket["Short_Description"].value!, changeReason: ticket["Change_Reason"].value!, closureCode: ticket["Closure_Code"].value!, ImpactedEnviroment: ticket["Impacted_Environments"].value!, SecondaryClosureCode: ticket["Secondary_Closure_Code"].value!, PartofRelease: ticket["Part_of_a_release"].value!, BusinessApplication: ticket["business_Application"]["businessAppName"].value!, BusinessApplicationCriticalityTier: ticket["business_Application"]["Business_ApplicationSys"].value!)
                 ticketList.append(newTicket)
