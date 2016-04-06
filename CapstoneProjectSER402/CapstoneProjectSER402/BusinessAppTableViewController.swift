@@ -23,9 +23,10 @@ class BusinessAppTableViewController: UITableViewController
     
     var isShifting = false
     var isCollapsed = [false, false, false]
-    var t2Section = [BusinessApp_Table_Template]()
-    var t1Section = [BusinessApp_Table_Template]()
-    var t0Section = [BusinessApp_Table_Template]()
+    var t2Section = [BusinessApp]()
+    var t1Section = [BusinessApp]()
+    var t0Section = [BusinessApp]()
+    var liveApps = [BusinessApp]()
     
     override func viewDidLoad()
     {
@@ -38,39 +39,16 @@ class BusinessAppTableViewController: UITableViewController
 
     func loadSampleApps()
     {
+        ConnectionService.sharedInstance.getBusiness(appUnit: "311ab55b95b38980ce51a15d3638639c")
+        liveApps = ConnectionService.sharedInstance.businessApps
         let icon = UIImage(named: "circle.png")
-        let obj1 = BusinessApp(appId: "ServiceNow Enterprise Edition", businessAppSys: "", businessApp: "ServiceNow Enterprise Edition", appCriticality: "2", owner: "", ownerSys: "", businessArea: "", businessAreaSys: "", businessUnit: "",
-            businessUnitSys: "", businessSubUnitSys: "", businessSubUnit: "", ticketCount: 9)
-        let obj2 = BusinessApp(appId: "ServiceNow Enterprise Edition", businessAppSys: "", businessApp: "Allstate Application 2", appCriticality: "2", owner: "", ownerSys: "", businessArea: "", businessAreaSys: "", businessUnit: "",
-            businessUnitSys: "", businessSubUnitSys: "", businessSubUnit: "", ticketCount: 8)
-        let obj3 = BusinessApp(appId: "ServiceNow Enterprise Edition", businessAppSys: "", businessApp: "Allstate Application 3", appCriticality: "2", owner: "", ownerSys: "", businessArea: "", businessAreaSys: "", businessUnit: "",
-            businessUnitSys: "", businessSubUnitSys: "", businessSubUnit: "", ticketCount: 10)
-        let obj4 = BusinessApp(appId: "ServiceNow Enterprise Edition", businessAppSys: "", businessApp: "Allstate Application 4", appCriticality: "2", owner: "", ownerSys: "", businessArea: "", businessAreaSys: "", businessUnit: "",
-            businessUnitSys: "", businessSubUnitSys: "", businessSubUnit: "", ticketCount: 5)
-        let obj5 = BusinessApp(appId: "ServiceNow Enterprise Edition", businessAppSys: "", businessApp: "Allstate Application 5", appCriticality: "2", owner: "", ownerSys: "", businessArea: "", businessAreaSys: "", businessUnit: "",
-            businessUnitSys: "", businessSubUnitSys: "", businessSubUnit: "", ticketCount: 5)
         
-        let app1 = BusinessApp_Table_Template(appName: obj1.businessApp, ticketCount: obj1.ticketCount, containsEmergencyTicket: obj1.containsEmergencyTicket, icon: icon!, appCriticality: Int(obj1.appCriticality)!)
-        let app2 = BusinessApp_Table_Template(appName: obj2.businessApp, ticketCount: obj2.ticketCount, containsEmergencyTicket: obj2.containsEmergencyTicket, icon: icon!, appCriticality: Int(obj2.appCriticality)!)
-        let app3 = BusinessApp_Table_Template(appName: obj3.businessApp, ticketCount: obj3.ticketCount, containsEmergencyTicket: obj3.containsEmergencyTicket, icon: icon!, appCriticality: Int(obj3.appCriticality)!)
-        let app4 = BusinessApp_Table_Template(appName: obj4.businessApp, ticketCount: obj4.ticketCount, containsEmergencyTicket: obj4.containsEmergencyTicket, icon: icon!, appCriticality: Int(obj4.appCriticality)!)
-        let app5 = BusinessApp_Table_Template(appName: obj5.businessApp, ticketCount: obj5.ticketCount, containsEmergencyTicket: obj5.containsEmergencyTicket, icon: icon!, appCriticality: Int(obj5.appCriticality)!)
-        
-        
-        businessApps += [app1, app2, app3, app4, app5]
-        apps.addBusinessApp(app1)
-        apps.addBusinessApp(app2)
-        apps.addBusinessApp(app3)
-        apps.addBusinessApp(app4)
-        apps.addBusinessApp(app5)
-    
-        
-        for app in businessApps {
-            if (app.appCriticality == 2) {
+        for app in liveApps {
+            if (app.appCriticality == "Tier 2") {
                 t2Section += [app]
-            } else if (app.appCriticality == 1) {
+            } else if (app.appCriticality == "Tier 1") {
                 t1Section += [app]
-            } else if (app.appCriticality == 0) {
+            } else if (app.appCriticality == "Tier 0") {
                 t0Section += [app]
             }
         }
@@ -145,44 +123,43 @@ class BusinessAppTableViewController: UITableViewController
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! BusinessAppTableViewCell
-        let app : BusinessApp_Table_Template
-        var nextApp : BusinessApp_Table_Template
-        let icon = UIImage(named: "circle")
+        let app : BusinessApp
         
         if (indexPath.section == 0) {
-            app = t2Section[indexPath.row] as BusinessApp_Table_Template
-            if ((indexPath.row + 1) >= t2Section.count){
-                nextApp = BusinessApp_Table_Template(appName: "", ticketCount: 0, containsEmergencyTicket: false, icon: icon!, appCriticality: 0)
-            } else {
-                nextApp = (t2Section[indexPath.row + 1]) as BusinessApp_Table_Template
-            }
+            app = t2Section[indexPath.row] as BusinessApp
+
+//            if ((indexPath.row + 1) >= liveApps.count){
+//                nextApp = BusinessApp(appId: "", businessAppSys: "", businessApp: "", appCriticality: "", owner: "", ownerSys: "", businessArea: "", businessAreaSys: "", businessUnit: "", businessUnitSys: "", businessSubUnitSys: "", businessSubUnit: "", ticketCount: 0)
+//            } else {
+//                nextApp = (liveApps[indexPath.row + 1]) as BusinessApp
+//            }
         } else if (indexPath.section == 1) {
-            app = t1Section[indexPath.row] as BusinessApp_Table_Template
-            if ((indexPath.row + 1) >= t1Section.count){
-                nextApp = BusinessApp_Table_Template(appName: "", ticketCount: 0, containsEmergencyTicket: false, icon: icon!, appCriticality: 0)
-            } else {
-                nextApp = (t1Section[indexPath.row + 1]) as BusinessApp_Table_Template
-            }
-            
+            app = t1Section[indexPath.row] as BusinessApp
+//            if ((indexPath.row + 1) >= t1Section.count){
+//                nextApp2 = BusinessApp_Table_Template(appName: "", ticketCount: 0, containsEmergencyTicket: false, icon: icon!, appCriticality: 0)
+//            } else {
+//                nextApp2 = (t1Section[indexPath.row + 1]) as BusinessApp_Table_Template
+//            }
+//            
         } else if (indexPath.section == 2) {
-            app = t0Section[indexPath.row] as BusinessApp_Table_Template
-            if ((indexPath.row + 1) >= t0Section.count){
-                nextApp = BusinessApp_Table_Template(appName: "", ticketCount: 0, containsEmergencyTicket: false, icon: icon!, appCriticality: 0)
-            } else {
-                nextApp = (t0Section[indexPath.row + 1]) as BusinessApp_Table_Template
-            }
-            
-        } else {
-            app = businessApps[indexPath.row] as BusinessApp_Table_Template
-            if ((indexPath.row + 1) >= businessApps.count){
-                nextApp = BusinessApp_Table_Template(appName: "", ticketCount: 0, containsEmergencyTicket: false, icon: icon!, appCriticality: 0)
-            } else {
-                nextApp = (businessApps[indexPath.row + 1]) as BusinessApp_Table_Template
-            }
-            
-        }
+            app = t0Section[indexPath.row] as BusinessApp
+//            if ((indexPath.row + 1) >= t0Section.count){
+//                nextApp2 = BusinessApp_Table_Template(appName: "", ticketCount: 0, containsEmergencyTicket: false, icon: icon!, appCriticality: 0)
+//            } else {
+//                nextApp2 = (t0Section[indexPath.row + 1]) as BusinessApp_Table_Template
+//            }
+//            
+      } else {
+            app = liveApps[indexPath.row] as BusinessApp
+//            if ((indexPath.row + 1) >= businessApps.count){
+//                nextApp2 = BusinessApp_Table_Template(appName: "", ticketCount: 0, containsEmergencyTicket: false, icon: icon!, appCriticality: 0)
+//            } else {
+//                nextApp2 = (businessApps[indexPath.row + 1]) as BusinessApp_Table_Template
+//            }
+//            
+       }
         
-        if (app.containsEmergencyTicket) {
+//        if (app.containsEmergencyTicket) {
             cell.backgroundColor = UIColor(red: CGFloat(217/255.0), green: CGFloat(30/255.0), blue: CGFloat(24/255.0), alpha: 1)
             cell.layer.shadowRadius = 3.5
             cell.layer.shadowOpacity = 0.7
@@ -190,17 +167,16 @@ class BusinessAppTableViewController: UITableViewController
             cell.layer.masksToBounds = false
             cell.ticketCount.textColor = UIColor.whiteColor()
             cell.businessAppName.textColor = UIColor.whiteColor()
-            app.icon = UIImage(named: "circleEmergency.png")!
             
-            if (nextApp.containsEmergencyTicket) {
-                let white = UIColor.whiteColor()
-                cell.layer.shadowColor = white.CGColor
-                
-            } else {
-                let red = UIColor(red: CGFloat(207/255.0), green: CGFloat(0), blue: CGFloat(15/255.0), alpha: 1)
-                cell.layer.shadowColor = red.CGColor
-            }
-        } else {
+//            if (nextApp.containsEmergencyTicket) {
+//                let white = UIColor.whiteColor()
+//                cell.layer.shadowColor = white.CGColor
+//                
+//            } else {
+//                let red = UIColor(red: CGFloat(207/255.0), green: CGFloat(0), blue: CGFloat(15/255.0), alpha: 1)
+//                cell.layer.shadowColor = red.CGColor
+//            }
+//        } else {
             let white = UIColor.whiteColor()
             let charcoal = UIColor(red: (34/255.0), green: (34/255.0), blue: (34/255.0), alpha: 1)
             cell.backgroundColor = white
@@ -211,8 +187,7 @@ class BusinessAppTableViewController: UITableViewController
             cell.layer.masksToBounds = false
             cell.ticketCount.textColor = charcoal
             cell.businessAppName.textColor = charcoal
-            app.icon = UIImage(named: "circle")!
-        }
+//        }
         cell.app = app
         return cell
         
@@ -297,19 +272,18 @@ class BusinessAppTableViewController: UITableViewController
             if (sender.tag == 20) {
                 let indexPath:NSIndexPath = self.tableView.indexPathForSelectedRow!
                 let detailVC:ChangeTicketTableViewController = segue.destinationViewController as! ChangeTicketTableViewController
-                let app:BusinessApp_Table_Template
-                let icon = UIImage(named: "circle.png")
+                let app:BusinessApp
                 if (indexPath.section == 0) {
-                    app = t2Section[indexPath.row] as BusinessApp_Table_Template
+                    app = t2Section[indexPath.row] as BusinessApp
                 } else if (indexPath.section == 1) {
-                    app = t1Section[indexPath.row] as BusinessApp_Table_Template
+                    app = t1Section[indexPath.row] as BusinessApp
                 } else if (indexPath.section == 2) {
-                    app = t0Section[indexPath.row] as BusinessApp_Table_Template
+                    app = t0Section[indexPath.row] as BusinessApp
                 } else {
-                    app = BusinessApp_Table_Template(appName: "", ticketCount: 0, containsEmergencyTicket: false, icon: icon!, appCriticality: 0)
+                    app = BusinessApp(appId: "", businessAppSys: "", businessApp: "", appCriticality: "", owner: "", ownerSys: "", businessArea: "", businessAreaSys: "", businessUnit: "", businessUnitSys: "", businessSubUnitSys: "", businessSubUnit: "", ticketCount: 0)
                 }
                 
-                detailVC.selectedApp = app.appName!
+                detailVC.selectedApp = app.businessApp
             }
         }
     }

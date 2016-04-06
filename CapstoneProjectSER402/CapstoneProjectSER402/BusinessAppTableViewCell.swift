@@ -18,14 +18,15 @@ class BusinessAppTableViewCell: UITableViewCell
     @IBOutlet weak var ticketCount: UILabel!
     @IBOutlet weak var businessAppName: UILabel!
     @IBOutlet weak var circle: UIImageView!
+    let icon = UIImage(named: "circle")
     
-    var app: BusinessApp_Table_Template!
+    var app: BusinessApp!
         {
         didSet
         {
-            businessAppName.text = app.appName
+            businessAppName.text = app.businessApp
             ticketCount.text = String(app.ticketCount)
-            circle.image = app.icon
+            circle.image = icon
         }
     }
     

@@ -61,7 +61,7 @@ class AppSelectionTableViewController: UITableViewController {
     }
     
     func loadApps(completionHandler: (() -> Void)!) {
-        apps = ConnectionService.sharedInstance.getBusiness(appUnit: "311ab55b95b38980ce51a15d3638639c")
+//        apps = ConnectionService.sharedInstance.getBusiness(appUnit: "311ab55b95b38980ce51a15d3638639c")
         completionHandler()
     }
     
@@ -70,7 +70,7 @@ class AppSelectionTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        apps = ConnectionService.sharedInstance.getBusiness(appUnit: "311ab55b95b38980ce51a15d3638639c")
+//        apps = ConnectionService.sharedInstance.getBusiness(appUnit: "311ab55b95b38980ce51a15d3638639c")
         //let myTimer : NSTimer = NSTimer.scheduledTimerWithTimeInterval(24, target: self, selector: Selector("myPerformeCode:"), userInfo: nil, repeats: false)
         print(apps)
         print(apps.count)
