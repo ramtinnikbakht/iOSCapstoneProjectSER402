@@ -24,7 +24,6 @@ class ChangeTicketTableViewController: UITableViewController, ChartViewDelegate 
     var fullTickets = [ChangeTicket]()
     var changeTickets = [ChangeTicket_Table_Template]()
     var filteredTickets = [ChangeTicket_Table_Template]()
-    var selectedApp = String()
     var selectedIndexPath : NSIndexPath?
     var isGraphSelected = false
     var shouldAnimate = true
@@ -35,6 +34,7 @@ class ChangeTicketTableViewController: UITableViewController, ChartViewDelegate 
     let riskLevels = ["Low", "Med", "High"]
     let appNames : [String] = []
     let DateFormat = NSDateFormatter()
+    var selectedApp = BusinessApp(appId: "", businessAppSys: "", businessApp: "", appCriticality: "", owner: "", ownerSys: "", businessArea: "", businessAreaSys: "", businessUnit: "", businessUnitSys: "", businessSubUnitSys: "", businessSubUnit: "", ticketCount: 0)
     
     // Colors
     let low = UIColor(red: CGFloat(38/255.0), green: CGFloat(166/255.0), blue: CGFloat(91/255.0), alpha: 1)
@@ -48,7 +48,7 @@ class ChangeTicketTableViewController: UITableViewController, ChartViewDelegate 
         
         pieChartView.delegate = self
         lineChartView.delegate = self
-        selectedAppLabel.text = selectedApp
+        selectedAppLabel.text = selectedApp.businessApp
         configurePageControl()
         loadSampleTickets()
         
@@ -115,6 +115,11 @@ class ChangeTicketTableViewController: UITableViewController, ChartViewDelegate 
     func loadSampleTickets() {
         DateFormat.locale = NSLocale(localeIdentifier: "en_US_POSIX")
         DateFormat.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        print(selectedApp.businessUnitSys)
+        print(selectedApp.businessSubUnitSys)
+        //print(ConnectionService.sharedInstance.getChange(reqByGrpBusUnit: "311ab55b95b38980ce51a15d3638639c", reqByGrpSubBusUnit: selectedApp.businessSubUnitSys))
+        print(ConnectionService.sharedInstance.getChange(plannedStart: "2015-11-11 00:00:00", plannedStart2: "2015-11-13 11:30:00", reqByGrpBusUnit: selectedApp.businessUnitSys, reqByGrpSubBusUnit: selectedApp.businessSubUnitSys, psD: "1"))
+        
         
         let eyeIcon = UIImage(named: "eye_unclicked.png")
         let obj1 = ChangeTicket(number: "CHG00313717", approver: "", plannedStart: "2016-02-11 03:30:00", plannedEnd: "2016-02-11 08:00:00", actualStart: "2016-02-11 03:30:00", actualEnd: "2016-02-11 08:00:00", requestedByGroup: "ServiceNow_DEV", requestedByGroupBusinessArea: "Infrastructure Services", requestedByGroupBusinessUnit: "IS – Infrastructure Services", requestedByGroupSubBusinessUnit: "IS - Production Process", causeCompleteServiceAppOutage: "No", risk: "Low", type: "Normal", impactScore: "", shortDescription: "Servicenow 02/10 Release", changeReason: "New Capability", closureCode: "", ImpactedEnviroment: "Production", SecondaryClosureCode: "", PartofRelease: "", BusinessApplication: "ServiceNow Enterprise Edition", BusinessApplicationCriticalityTier: "Tier 2")

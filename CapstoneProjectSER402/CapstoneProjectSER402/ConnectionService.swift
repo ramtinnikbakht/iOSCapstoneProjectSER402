@@ -93,7 +93,7 @@ class ConnectionService : NSObject, NSURLSessionDelegate {
         sendData(soapRequest.xmlString) {xml in
             if let xml = xml {
                 ticketList = self.parseChange(xml)
-                //print (xml.root.xmlString)
+                print (xml.root.xmlString)
             }
             
         }

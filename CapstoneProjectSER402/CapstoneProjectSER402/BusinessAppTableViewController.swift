@@ -283,7 +283,7 @@ class BusinessAppTableViewController: UITableViewController
                     app = BusinessApp(appId: "", businessAppSys: "", businessApp: "", appCriticality: "", owner: "", ownerSys: "", businessArea: "", businessAreaSys: "", businessUnit: "", businessUnitSys: "", businessSubUnitSys: "", businessSubUnit: "", ticketCount: 0)
                 }
                 
-                detailVC.selectedApp = app.businessApp
+                detailVC.selectedApp = app
             }
         }
     }

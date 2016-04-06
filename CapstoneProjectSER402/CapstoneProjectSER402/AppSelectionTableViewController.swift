@@ -61,7 +61,7 @@ class AppSelectionTableViewController: UITableViewController {
     }
     
     func loadApps(completionHandler: (() -> Void)!) {
-//        apps = ConnectionService.sharedInstance.getBusiness(appUnit: "311ab55b95b38980ce51a15d3638639c")
+        
         completionHandler()
     }
     
@@ -69,7 +69,8 @@ class AppSelectionTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        ConnectionService.sharedInstance.getBusiness(appUnit: "311ab55b95b38980ce51a15d3638639c")
+        apps = ConnectionService.sharedInstance.businessApps
 //        apps = ConnectionService.sharedInstance.getBusiness(appUnit: "311ab55b95b38980ce51a15d3638639c")
         //let myTimer : NSTimer = NSTimer.scheduledTimerWithTimeInterval(24, target: self, selector: Selector("myPerformeCode:"), userInfo: nil, repeats: false)
         print(apps)
@@ -118,7 +119,7 @@ class AppSelectionTableViewController: UITableViewController {
         }
         let cell = tableView.dequeueReusableCellWithIdentifier("appscell") as! AppSelectionTableViewCell!
         
-        cell.appsTitleLabel.text = appsArray[indexPath.row]
+        cell.appsTitleLabel.text = apps[indexPath.row].businessApp
         
         return cell
     }
@@ -139,7 +140,7 @@ class AppSelectionTableViewController: UITableViewController {
         } else if section == 1 {
             return 1
         }
-        return appsArray.count
+        return apps.count
 
         //return sectionsArray[section].sectionContents.count
     }
