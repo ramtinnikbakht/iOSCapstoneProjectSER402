@@ -20,6 +20,8 @@ class ConnectionService : NSObject, NSURLSessionDelegate {
     let proxyPort : CFNumber = NSNumber(int: 8080) as CFNumber
     let proxyEnable : CFNumber = NSNumber(int: 1) as CFNumber
     
+    var businessApps = [BusinessApp]()
+    
     func parseChange(xml: AEXMLDocument) -> ([ChangeTicket]) {
         var ticketList = [ChangeTicket]()
         if let tickets = xml.root["SOAP-ENV:Body"]["insertResponse"]["status_message"]["ReturnMessage"]["ChangeStatus"]["changeInformation"].all {
@@ -33,19 +35,18 @@ class ConnectionService : NSObject, NSURLSessionDelegate {
     }
     
     func parseBusiness(xml: AEXMLDocument) -> ([BusinessApp]) {
-        var businessApps = [BusinessApp]()
+        var businessApp = [BusinessApp]()
         if let apps = xml.root["SOAP-ENV:Body"]["insertResponse"]["status_message"]["ReturnMessage"]["applicationData"]["application"].all {
             for app in apps {
                 let newApp = BusinessApp(appId: app["appID"].value!, businessAppSys: app["businessAppSys"].value!, businessApp: app["businessApp"].value!, appCriticality: app["appCriticality"].value!,
                     owner: app["owner"].value!, ownerSys: app["ownerSys"].value!, businessArea: app["businessArea"].value!, businessAreaSys: app["businessAreaSys"].value!, businessUnit: app["businessUnit"].value!,
                     businessUnitSys: app["businessUnitSys"].value!, businessSubUnitSys: app["businessSubUnitSys"].value!, businessSubUnit: app["businessSubUnit"].value!, ticketCount: 0)
-                businessApps.append(newApp)
+                businessApp.append(newApp)
                 print(newApp.appId)
             }
             
         }
-        
-        return businessApps
+        return businessApp
     }
     
     func getChange(number: String?="", approver: String?="", plannedStart: String?="", plannedEnd: String?="", actualStart: String?="", actualEnd: String?="", plannedStart2: String?="", plannedEnd2: String?="", actualStart2: String?="", actualEnd2: String?="", reqByGroup: String?="", reqByGrp_BusArea: String?="", reqByGrpBusUnit: String?="", reqByGrpSubBusUnit: String?="", risk: String?="", psD: String?="", peD: String?="", asD: String?="", aeD: String?="", application: String?="") -> ([ChangeTicket]) {
@@ -92,7 +93,7 @@ class ConnectionService : NSObject, NSURLSessionDelegate {
         sendData(soapRequest.xmlString) {xml in
             if let xml = xml {
                 ticketList = self.parseChange(xml)
-                print (xml.root.xmlString)
+                //print (xml.root.xmlString)
             }
             
         }
@@ -100,7 +101,7 @@ class ConnectionService : NSObject, NSURLSessionDelegate {
         
     }
     
-    func getBusiness(appName: String?="", appUnit: String?="", appArea: String?="", appSubUnit: String?="", requestUnits: String?="", requestAreas: String?="", requestApprovers: String?="") ->([BusinessApp]) {
+    func getBusiness(appName: String?="", appUnit: String?="", appArea: String?="", appSubUnit: String?="", requestUnits: String?="", requestAreas: String?="", requestApprovers: String?="") {
         let soapRequest = AEXMLDocument()
         
         let attributes = ["xmlns:soapenv" : "http://schemas.xmlsoap.org/soap/envelope/", "xmlns:u" : "http://www.service-now.com/u_platform_integration"]
@@ -125,16 +126,16 @@ class ConnectionService : NSObject, NSURLSessionDelegate {
         insert.addChild(name: "u:u_process", value: "ASU.B.eChangeProject")
         insert.addChild(name: "u:u_product", value: "CHG")
         
-        var businessApps = [BusinessApp]()
-        
         sendData(soapRequest.xmlString) {xml in
             if let xml = xml {
-                businessApps = self.parseBusiness(xml)
-                print (xml.root.xmlString)
+                self.businessApps = self.parseBusiness(xml)
+                //print (xml.root.xmlString)
+                for app in self.businessApps {
+                    print(app.businessApp)
+                }
             }
             
         }
-        return businessApps
     }
     
     func sendData(soapMessage: String, completionHandler: (AEXMLDocument?) -> Void) -> NSURLSessionTask {
