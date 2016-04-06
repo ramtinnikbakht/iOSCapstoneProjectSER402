@@ -134,13 +134,14 @@ class ConnectionService : NSObject, NSURLSessionDelegate {
                     print(app.businessApp)
                 }
             }
-            
         }
     }
     
     func sendData(soapMessage: String, completionHandler: (AEXMLDocument?) -> Void) -> NSURLSessionTask {
         
         // Create login data
+        let semaphore = dispatch_semaphore_create(0)
+        
         let loginString = "\(userName):\(passWord)"
         let loginData: NSData = loginString.dataUsingEncoding(NSUTF8StringEncoding)!
         let base64LoginString = loginData.base64EncodedStringWithOptions(NSDataBase64EncodingOptions.Encoding64CharacterLineLength)
@@ -188,6 +189,7 @@ class ConnectionService : NSObject, NSURLSessionDelegate {
                     // create AEXMLDocument with returnData
                     let xml = try AEXMLDocument(xmlData: returnData!)
                     completionHandler(xml)
+                    dispatch_semaphore_signal(semaphore)
                 }
                 catch {
                     print("\(error)")
@@ -198,6 +200,7 @@ class ConnectionService : NSObject, NSURLSessionDelegate {
         }
         task.resume()
         //print(xmlDoc.root.xmlString)
+        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER)
         return task
     }
     
