@@ -7,12 +7,16 @@
 //
 
 import UIKit
+import Charts
 import QuartzCore
 
-class BusinessAppTableViewController: UITableViewController
+class BusinessAppTableViewController: UITableViewController, ChartViewDelegate
 {
     
     // MARK: Properties
+    
+    @IBOutlet weak var lineChartView: LineChartView!
+    @IBOutlet weak var currentDateLabel: UILabel!
     
     private var tbvc = TicketTabBarController()
     private var tickets = TicketModel()
@@ -28,12 +32,20 @@ class BusinessAppTableViewController: UITableViewController
     var t0Section = [BusinessApp]()
     var liveApps = [BusinessApp]()
     
+    // Colors
+    let low = UIColor(red: CGFloat(38/255.0), green: CGFloat(166/255.0), blue: CGFloat(91/255.0), alpha: 1)
+    let med = UIColor(red: CGFloat(244/255.0), green: CGFloat(208/255.0), blue: CGFloat(63/255.0), alpha: 1)
+    let high = UIColor(red: CGFloat(207/255.0), green: CGFloat(0), blue: CGFloat(15/255.0), alpha: 1)
+    let navy = UIColor(red: 0/255.0, green: 64/255.0, blue: 128/255.0, alpha: 1.0)
+    let navy_comp = UIColor(red: CGFloat(51/255.0), green: CGFloat(204/255.0), blue: CGFloat(153/255.0), alpha: 1)
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
         
         tbvc = tabBarController as! TicketTabBarController
-        
+        getTimeWindow()
+        setChart(getTimeWindow(), values: [3.0, 2.0, 3.0, 4.0, 2.0, 3.0, 2.0, 3.0, 4.0, 2.0, 3.0, 2.0, 3.0, 4.0, 2.0, 3.0, 2.0, 3.0, 4.0, 2.0, 3.0])
         loadSampleApps()
     }
 
@@ -264,6 +276,93 @@ class BusinessAppTableViewController: UITableViewController
                     
             })
         }
+        
+    }
+
+    func getTimeWindow() -> [String] {
+        var timeWindow : [String] = []
+        let date = NSDate()
+        let totalSegments = 19
+        
+        let formatter = NSDateFormatter()
+        formatter.locale = NSLocale(localeIdentifier: "US_en")
+        formatter.dateFormat = "HH:mm:ss"
+        let firstHour = String(date.hour) + ":00:00"
+        let time1 = formatter.dateFromString(firstHour)
+        //timeWindow += [firstHour]
+        for i in 0..<totalSegments {
+            let interval = i * 15
+            let currentTime = time1?.plusMinutes(UInt(interval))
+            let cTimeStr = formatter.stringFromDate(currentTime!)
+            timeWindow += [cTimeStr]
+        }
+        print(time)
+        return timeWindow
+    }
+    
+    func setChart(dataPoints: [String], values: [Double]) {
+        lineChartView.clear()
+        var dataEntries: [ChartDataEntry] = []
+        
+        for i in 0..<dataPoints.count {
+            let dataEntry = ChartDataEntry(value: values[i], xIndex: i)
+            dataEntries.append(dataEntry)
+        }
+        
+        let currentDate = NSDate()
+        let formatter = NSDateFormatter()
+        formatter.locale = NSLocale(localeIdentifier: "US_en")
+        formatter.dateFormat = "MMMM dd, yyyy"
+        let date = formatter.stringFromDate(currentDate)
+        currentDateLabel.text = date
+        
+        let lineChartDataSet = LineChartDataSet(yVals: dataEntries, label: "Change Tickets")
+        let lineChartData = LineChartData(xVals: dataPoints, dataSet: lineChartDataSet)
+        lineChartView.data = lineChartData
+        let numberFormatter = NSNumberFormatter()
+        
+        lineChartDataSet.axisDependency = .Left
+        
+        numberFormatter.generatesDecimalNumbers = false
+        lineChartData.setValueFormatter(numberFormatter)
+        lineChartData.setDrawValues(false)
+        lineChartData.setValueFont(UIFont(name: "Helvetica", size: 12))
+        lineChartDataSet.setColor(navy.colorWithAlphaComponent(0.5))
+        lineChartDataSet.fillAlpha = 62 / 255.0
+        lineChartDataSet.setCircleColor(navy)
+        lineChartDataSet.lineWidth = 2.0
+        lineChartDataSet.circleRadius = 6.0
+        
+        
+        // Legend Data
+        lineChartView.legend.position = .RightOfChartInside
+        lineChartView.legend.font = UIFont(name: "Helvetica", size: 10)!
+        lineChartView.legend.colors = [low, med, high]
+        lineChartView.legend.labels = ["Low","Medium","High"]
+        lineChartView.legend.enabled = false
+        
+        lineChartView.setVisibleXRangeMaximum(4)
+        lineChartView.moveViewToX(16)
+        lineChartView.leftAxis.valueFormatter = numberFormatter
+        lineChartView.leftAxis.drawLabelsEnabled = false
+        lineChartView.leftAxis.drawAxisLineEnabled = false
+        lineChartView.rightAxis.drawGridLinesEnabled = false
+        lineChartView.rightAxis.drawLabelsEnabled = false
+        lineChartView.rightAxis.drawAxisLineEnabled = false
+        lineChartView.xAxis.drawGridLinesEnabled = false
+        lineChartView.xAxis.drawAxisLineEnabled = false
+        lineChartView.xAxis.labelPosition = .BottomInside
+        lineChartView.xAxis.labelRotationAngle = -10
+        lineChartView.xAxis.yOffset = -10
+        lineChartView.descriptionText = ""
+        lineChartView.extraLeftOffset = 5
+        lineChartView.extraTopOffset = 25
+        lineChartView.extraBottomOffset = 35
+        
+        lineChartView.userInteractionEnabled = true
+        lineChartView.animate(yAxisDuration: 1.0, easingOption: .EaseInCubic)
+        
+        
         
     }
     
