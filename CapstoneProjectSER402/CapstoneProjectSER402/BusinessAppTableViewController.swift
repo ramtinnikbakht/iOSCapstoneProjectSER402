@@ -16,6 +16,7 @@ class BusinessAppTableViewController: UITableViewController, ChartViewDelegate
     // MARK: Properties
     
     @IBOutlet weak var lineChartView: LineChartView!
+    @IBOutlet weak var currentDateLabel: UILabel!
     
     private var tbvc = TicketTabBarController()
     private var tickets = TicketModel()
@@ -43,8 +44,8 @@ class BusinessAppTableViewController: UITableViewController, ChartViewDelegate
         super.viewDidLoad()
         
         tbvc = tabBarController as! TicketTabBarController
-        
-        setChart(["App1", "App2", "App3", "App4", "App5", "App6", "App7", "App8", "App9", "App10", "App11", "App12", "App13", "App14", "App15", "App16", "App17", "App18", "App19", "App20"], values: [3.0, 2.0, 3.0, 4.0, 2.0, 3.0, 2.0, 3.0, 4.0, 2.0, 3.0, 2.0, 3.0, 4.0, 2.0, 3.0, 2.0, 3.0, 4.0, 2.0])
+        getTimeWindow()
+        setChart(getTimeWindow(), values: [3.0, 2.0, 3.0, 4.0, 2.0, 3.0, 2.0, 3.0, 4.0, 2.0, 3.0, 2.0, 3.0, 4.0, 2.0, 3.0, 2.0, 3.0, 4.0, 2.0, 3.0])
         loadSampleApps()
     }
 
@@ -277,6 +278,27 @@ class BusinessAppTableViewController: UITableViewController, ChartViewDelegate
         }
         
     }
+
+    func getTimeWindow() -> [String] {
+        var timeWindow : [String] = []
+        let date = NSDate()
+        let totalSegments = 19
+        
+        let formatter = NSDateFormatter()
+        formatter.locale = NSLocale(localeIdentifier: "US_en")
+        formatter.dateFormat = "HH:mm:ss"
+        let firstHour = String(date.hour) + ":00:00"
+        let time1 = formatter.dateFromString(firstHour)
+        //timeWindow += [firstHour]
+        for i in 0..<totalSegments {
+            let interval = i * 15
+            let currentTime = time1?.plusMinutes(UInt(interval))
+            let cTimeStr = formatter.stringFromDate(currentTime!)
+            timeWindow += [cTimeStr]
+        }
+        print(time)
+        return timeWindow
+    }
     
     func setChart(dataPoints: [String], values: [Double]) {
         lineChartView.clear()
@@ -286,6 +308,13 @@ class BusinessAppTableViewController: UITableViewController, ChartViewDelegate
             let dataEntry = ChartDataEntry(value: values[i], xIndex: i)
             dataEntries.append(dataEntry)
         }
+        
+        let currentDate = NSDate()
+        let formatter = NSDateFormatter()
+        formatter.locale = NSLocale(localeIdentifier: "US_en")
+        formatter.dateFormat = "MMMM dd, yyyy"
+        let date = formatter.stringFromDate(currentDate)
+        currentDateLabel.text = date
         
         let lineChartDataSet = LineChartDataSet(yVals: dataEntries, label: "Change Tickets")
         let lineChartData = LineChartData(xVals: dataPoints, dataSet: lineChartDataSet)
@@ -310,20 +339,26 @@ class BusinessAppTableViewController: UITableViewController, ChartViewDelegate
         lineChartView.legend.font = UIFont(name: "Helvetica", size: 10)!
         lineChartView.legend.colors = [low, med, high]
         lineChartView.legend.labels = ["Low","Medium","High"]
-        lineChartView.legend.enabled = true
+        lineChartView.legend.enabled = false
         
-        lineChartView.setVisibleXRangeMaximum(5)
-        lineChartView.moveViewToX(15)
+        lineChartView.setVisibleXRangeMaximum(4)
+        lineChartView.moveViewToX(16)
         lineChartView.leftAxis.valueFormatter = numberFormatter
+        lineChartView.leftAxis.drawLabelsEnabled = false
         lineChartView.leftAxis.drawAxisLineEnabled = false
         lineChartView.rightAxis.drawGridLinesEnabled = false
         lineChartView.rightAxis.drawLabelsEnabled = false
         lineChartView.rightAxis.drawAxisLineEnabled = false
         lineChartView.xAxis.drawGridLinesEnabled = false
         lineChartView.xAxis.drawAxisLineEnabled = false
-        lineChartView.xAxis.labelPosition = .Bottom
+        lineChartView.xAxis.labelPosition = .BottomInside
+        lineChartView.xAxis.labelRotationAngle = -10
+        lineChartView.xAxis.yOffset = -10
         lineChartView.descriptionText = ""
-        lineChartView.extraRightOffset = 20
+        lineChartView.extraLeftOffset = 5
+        lineChartView.extraTopOffset = 25
+        lineChartView.extraBottomOffset = 35
+        
         lineChartView.userInteractionEnabled = true
         lineChartView.animate(yAxisDuration: 1.0, easingOption: .EaseInCubic)
         
