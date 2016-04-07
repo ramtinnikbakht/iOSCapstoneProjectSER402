@@ -30,8 +30,8 @@ class ConnectionService : NSObject, NSURLSessionDelegate {
                     ticket.addChild(name: "Requested_By_Group_Business_Area", value: " ")
                 }
                 
-                let newTicket = ChangeTicket(number: ticket["Number"].value!, approver: ticket["Approver"].value!, plannedStart: ticket["Planned_Start"].value!, plannedEnd: ticket["Planned_End"].value!, actualStart: ticket["Actual_Start"].value!, actualEnd: ticket["Actual_End"].value!, requestedByGroup: ticket["Requested_By_Group"].value!,
-                    requestedByGroupBusinessArea: "Requested_By_Group_Business_Area", requestedByGroupBusinessUnit: ticket["Requested_By_Group_Business_Unit"].value!, requestedByGroupSubBusinessUnit: ticket["Requested_By_GroupSub_Business_Unit"].value!, causeCompleteServiceAppOutage: ticket["Causes_Complete_ServiceApplication_Outage"].value!, risk: ticket["Risk"].value!, type:ticket["Type"].value!, impactScore:ticket["Impact_Score"].value!, shortDescription:ticket["Short_Description"].value!, changeReason: ticket["Change_Reason"].value!, closureCode: ticket["Closure_Code"].value!, ImpactedEnviroment: ticket["Impacted_Environments"].value!, SecondaryClosureCode: ticket["Secondary_Closure_Code"].value!, PartofRelease: ticket["Part_of_a_release"].value!, BusinessApplication: " ", BusinessApplicationCriticalityTier: " ")
+                let newTicket = ChangeTicket(number: ticket["Number"].stringValue, approver: ticket["Approver"].stringValue, plannedStart: ticket["Planned_Start"].stringValue, plannedEnd: ticket["Planned_End"].stringValue, actualStart: ticket["Actual_Start"].stringValue, actualEnd: ticket["Actual_End"].stringValue, requestedByGroup: ticket["Requested_By_Group"].stringValue,
+                    requestedByGroupBusinessArea: ticket["Requested_By_Group_Business_Area"].stringValue, requestedByGroupBusinessUnit: ticket["Requested_By_Group_Business_Unit"].stringValue, requestedByGroupSubBusinessUnit: ticket["Requested_By_GroupSub_Business_Unit"].stringValue, causeCompleteServiceAppOutage: ticket["Causes_Complete_ServiceApplication_Outage"].stringValue, risk: ticket["Risk"].stringValue, type:ticket["Type"].stringValue, impactScore:ticket["Impact_Score"].stringValue, shortDescription:ticket["Short_Description"].stringValue, changeReason: ticket["Change_Reason"].stringValue, closureCode: ticket["Closure_Code"].stringValue, ImpactedEnviroment: ticket["Impacted_Environments"].value!, SecondaryClosureCode: ticket["Secondary_Closure_Code"].stringValue, PartofRelease: ticket["Part_of_a_release"].stringValue, BusinessApplication: " ", BusinessApplicationCriticalityTier: " ")
                 ticketList.append(newTicket)
             }
         }
@@ -97,7 +97,7 @@ class ConnectionService : NSObject, NSURLSessionDelegate {
         sendData(soapRequest.xmlString) {xml in
             if let xml = xml {
                 print (xml.root.xmlString)
-                ticketList = self.parseChange(xml)
+                //ticketList = self.parseChange(xml)
             }
             
         }
