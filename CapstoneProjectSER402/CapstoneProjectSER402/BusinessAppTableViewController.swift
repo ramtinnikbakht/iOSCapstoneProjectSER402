@@ -36,9 +36,12 @@ class BusinessAppTableViewController: UITableViewController, ChartViewDelegate
     let low = UIColor(red: CGFloat(38/255.0), green: CGFloat(166/255.0), blue: CGFloat(91/255.0), alpha: 1)
     let med = UIColor(red: CGFloat(244/255.0), green: CGFloat(208/255.0), blue: CGFloat(63/255.0), alpha: 1)
     let high = UIColor(red: CGFloat(207/255.0), green: CGFloat(0), blue: CGFloat(15/255.0), alpha: 1)
-    let navy = UIColor(red: 0/255.0, green: 64/255.0, blue: 128/255.0, alpha: 1.0)
+    let navy = UIColor(red: (68/255.0), green: (108/255.0), blue: (179/255.0), alpha: 1)
     let navy_comp = UIColor(red: CGFloat(51/255.0), green: CGFloat(204/255.0), blue: CGFloat(153/255.0), alpha: 1)
-    
+    let silver = UIColor(red: CGFloat(218/255.0), green: CGFloat(223/255.0), blue: CGFloat(225/255.0), alpha: 1)
+    let light_blue = UIColor(red: (228/255.0), green: (241/255.0), blue: (254/255.0), alpha: 1)
+    let highlight_green = UIColor(red: CGFloat(46/255.0), green: CGFloat(204/255.0), blue: CGFloat(113/255.0), alpha: 1)
+    let aqua = UIColor(red: CGFloat(129/255.0), green: CGFloat(207/255.0), blue: CGFloat(224/255.0), alpha: 1)
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -210,8 +213,9 @@ class BusinessAppTableViewController: UITableViewController, ChartViewDelegate
         let  headerCell = tableView.dequeueReusableCellWithIdentifier("HeaderCell") as! CustomHeaderCell
         let collapse = UIImage(named: "expand_less.png")
         let expand = UIImage(named: "expand_more.png")
-        headerCell.backgroundColor = UIColor(red: (236/255.0), green: (236/255.0), blue: (236/255.0), alpha: 1)
+        headerCell.backgroundColor = UIColor(red: (68/255.0), green: (108/255.0), blue: (179/255.0), alpha: 1)
         headerCell.appTierLabel.text = "Tier " + String(tierList[section])
+        headerCell.appTierLabel.textColor = UIColor(red: (228/255.0), green: (241/255.0), blue: (254/255.0), alpha: 1)
         headerCell.expandSectionButton.tag = (section)
         
         if (isCollapsed[section]) {
@@ -283,20 +287,19 @@ class BusinessAppTableViewController: UITableViewController, ChartViewDelegate
         var timeWindow : [String] = []
         let date = NSDate()
         let totalSegments = 19
-        
         let formatter = NSDateFormatter()
         formatter.locale = NSLocale(localeIdentifier: "US_en")
-        formatter.dateFormat = "HH:mm:ss"
-        let firstHour = String(date.hour) + ":00:00"
+        formatter.timeStyle = NSDateFormatterStyle.ShortStyle
+
+        let firstHour = formatter.stringFromDate(date.minusMinutes(date.minute))
         let time1 = formatter.dateFromString(firstHour)
-        //timeWindow += [firstHour]
         for i in 0..<totalSegments {
             let interval = i * 15
             let currentTime = time1?.plusMinutes(UInt(interval))
             let cTimeStr = formatter.stringFromDate(currentTime!)
             timeWindow += [cTimeStr]
         }
-        print(time)
+
         return timeWindow
     }
     
@@ -315,6 +318,7 @@ class BusinessAppTableViewController: UITableViewController, ChartViewDelegate
         formatter.dateFormat = "MMMM dd, yyyy"
         let date = formatter.stringFromDate(currentDate)
         currentDateLabel.text = date
+        currentDateLabel.textColor = UIColor.blackColor()
         
         let lineChartDataSet = LineChartDataSet(yVals: dataEntries, label: "Change Tickets")
         let lineChartData = LineChartData(xVals: dataPoints, dataSet: lineChartDataSet)
@@ -322,7 +326,7 @@ class BusinessAppTableViewController: UITableViewController, ChartViewDelegate
         let numberFormatter = NSNumberFormatter()
         
         lineChartDataSet.axisDependency = .Left
-        
+        lineChartDataSet.highlightColor = navy_comp
         numberFormatter.generatesDecimalNumbers = false
         lineChartData.setValueFormatter(numberFormatter)
         lineChartData.setDrawValues(false)
@@ -341,19 +345,28 @@ class BusinessAppTableViewController: UITableViewController, ChartViewDelegate
         lineChartView.legend.labels = ["Low","Medium","High"]
         lineChartView.legend.enabled = false
         
+        lineChartView.backgroundColor = light_blue
         lineChartView.setVisibleXRangeMaximum(4)
         lineChartView.moveViewToX(16)
+        
+        // Y-Axis (Left) Attributes
         lineChartView.leftAxis.valueFormatter = numberFormatter
         lineChartView.leftAxis.drawLabelsEnabled = false
         lineChartView.leftAxis.drawAxisLineEnabled = false
+        lineChartView.leftAxis.gridColor = UIColor.whiteColor()
+
+        // Y-Axis (Right) Attributes
         lineChartView.rightAxis.drawGridLinesEnabled = false
         lineChartView.rightAxis.drawLabelsEnabled = false
         lineChartView.rightAxis.drawAxisLineEnabled = false
+        
+        // X-Axis Attributes
         lineChartView.xAxis.drawGridLinesEnabled = false
         lineChartView.xAxis.drawAxisLineEnabled = false
         lineChartView.xAxis.labelPosition = .BottomInside
-        lineChartView.xAxis.labelRotationAngle = -10
+        lineChartView.xAxis.labelTextColor = UIColor.blackColor()
         lineChartView.xAxis.yOffset = -10
+        
         lineChartView.descriptionText = ""
         lineChartView.extraLeftOffset = 5
         lineChartView.extraTopOffset = 25

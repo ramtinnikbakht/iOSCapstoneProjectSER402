@@ -444,7 +444,7 @@ class ChangeTicketTableViewController: UITableViewController, ChartViewDelegate 
     }
     
     func configurePageControl() {
-        profilePageControl.backgroundColor = navy
+        profilePageControl.backgroundColor = UIColor(red: (68/255.0), green: (108/255.0), blue: (179/255.0), alpha: 1)
         profilePageControl.pageIndicatorTintColor = UIColor.lightGrayColor()
         profilePageControl.currentPageIndicatorTintColor = UIColor.whiteColor()
     }
