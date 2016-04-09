@@ -22,16 +22,17 @@ class ChangeTicketTableViewController: UITableViewController, ChartViewDelegate 
     private var tbvc = TicketTabBarController()
     private var tickets = TicketModel()
     var fullTickets = [ChangeTicket]()
+    var liveTickets = [ChangeTicket]()
     var changeTickets = [ChangeTicket_Table_Template]()
-    var filteredTickets = [ChangeTicket_Table_Template]()
+    var filteredTickets = [ChangeTicket]()
     var selectedIndexPath : NSIndexPath?
     var isGraphSelected = false
     var shouldAnimate = true
-    var lowRiskTickets = Array<[ChangeTicket_Table_Template]>()
-    var medRiskTickets = Array<[ChangeTicket_Table_Template]>()
-    var highRiskTickets = Array<[ChangeTicket_Table_Template]>()
+    var lowRiskTickets = Array<[ChangeTicket]>()
+    var medRiskTickets = Array<[ChangeTicket]>()
+    var highRiskTickets = Array<[ChangeTicket]>()
     let cellIdentifier = "TicketCell"
-    let riskLevels = ["Low", "Med", "High"]
+    let riskLevels = ["Low", "High"]
     let appNames : [String] = []
     let DateFormat = NSDateFormatter()
     var selectedApp = BusinessApp(appId: "", businessAppSys: "", businessApp: "", appCriticality: "", owner: "", ownerSys: "", businessArea: "", businessAreaSys: "", businessUnit: "", businessUnitSys: "", businessSubUnitSys: "", businessSubUnit: "", ticketCount: 0)
@@ -52,14 +53,14 @@ class ChangeTicketTableViewController: UITableViewController, ChartViewDelegate 
         configurePageControl()
         loadSampleTickets()
         
-        let ticketCount = [Double(lowRiskTickets.count), Double(medRiskTickets.count), Double(highRiskTickets.count)]
+        let ticketCount = [Double(lowRiskTickets.count), Double(highRiskTickets.count)]
         
         setPieChart(riskLevels, values: ticketCount)
     }
     
     @IBAction func pageControlUpdated(sender: AnyObject) {
         if (sender.currentPage! == 0) {
-            let ticketCount = [Double(lowRiskTickets.count), Double(medRiskTickets.count), Double(highRiskTickets.count)]
+            let ticketCount = [Double(lowRiskTickets.count), Double(highRiskTickets.count)]
             lineChartView.hidden = true
             pieChartView.hidden = false
             setPieChart(riskLevels, values: ticketCount)
@@ -115,58 +116,21 @@ class ChangeTicketTableViewController: UITableViewController, ChartViewDelegate 
     func loadSampleTickets() {
         DateFormat.locale = NSLocale(localeIdentifier: "en_US_POSIX")
         DateFormat.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        print(selectedApp.businessUnitSys)
-        print(selectedApp.businessSubUnitSys)
-        //print(ConnectionService.sharedInstance.getChange(reqByGrpBusUnit: "311ab55b95b38980ce51a15d3638639c", reqByGrpSubBusUnit: selectedApp.businessSubUnitSys))
-        print(ConnectionService.sharedInstance.getChange(plannedStart: "2015-11-11 00:00:00", plannedStart2: "2015-11-12 11:30:00", reqByGrpBusUnit: "311ab55b95b38980ce51a15d3638639c", reqByGrpSubBusUnit: "7817e6556fa88dc0df488a20af3ee499", psD: "1"))
-        
-        
-        let eyeIcon = UIImage(named: "eye_unclicked.png")
-        let obj1 = ChangeTicket(number: "CHG00313717", approver: "", plannedStart: "2016-02-11 03:30:00", plannedEnd: "2016-02-11 08:00:00", actualStart: "2016-02-11 03:30:00", actualEnd: "2016-02-11 08:00:00", requestedByGroup: "ServiceNow_DEV", requestedByGroupBusinessArea: "Infrastructure Services", requestedByGroupBusinessUnit: "IS – Infrastructure Services", requestedByGroupSubBusinessUnit: "IS - Production Process", causeCompleteServiceAppOutage: "No", risk: "Low", type: "Normal", impactScore: "", shortDescription: "Servicenow 02/10 Release", changeReason: "New Capability", closureCode: "", ImpactedEnviroment: "Production", SecondaryClosureCode: "", PartofRelease: "", BusinessApplication: "ServiceNow Enterprise Edition", BusinessApplicationCriticalityTier: "Tier 2")
-        
-        let obj2 = ChangeTicket(number: "CHG00314757", approver: "", plannedStart: "2016-04-25 15:05:00", plannedEnd: "2016-02-11 08:00:00", actualStart: "2016-04-25 15:05:00", actualEnd: "2016-02-11 08:00:00", requestedByGroup: "ServiceNow_DEV", requestedByGroupBusinessArea: "Infrastructure Services", requestedByGroupBusinessUnit: "IS – Infrastructure Services", requestedByGroupSubBusinessUnit: "IS - Production Process", causeCompleteServiceAppOutage: "No", risk: "Med", type: "Normal", impactScore: "", shortDescription: "Servicenow 02/10 Release", changeReason: "New Capability", closureCode: "", ImpactedEnviroment: "Production", SecondaryClosureCode: "", PartofRelease: "", BusinessApplication: "ServiceNow Enterprise Edition", BusinessApplicationCriticalityTier: "Tier 2")
-        
-        let obj3 = ChangeTicket(number: "CHG00318797", approver: "", plannedStart: "2016-03-18 06:15:00", plannedEnd: "2016-03-19 08:00:00", actualStart: "2016-03-18 06:15:00", actualEnd: "2016-03-19 08:00:00", requestedByGroup: "ServiceNow_DEV", requestedByGroupBusinessArea: "Infrastructure Services", requestedByGroupBusinessUnit: "IS – Infrastructure Services", requestedByGroupSubBusinessUnit: "IS - Production Process", causeCompleteServiceAppOutage: "No", risk: "High", type: "Normal", impactScore: "", shortDescription: "Servicenow 02/10 Release", changeReason: "New Capability", closureCode: "", ImpactedEnviroment: "Production", SecondaryClosureCode: "", PartofRelease: "", BusinessApplication: "ServiceNow Enterprise Edition", BusinessApplicationCriticalityTier: "Tier 2")
-        
-        let obj4 = ChangeTicket(number: "CHG00318345", approver: "", plannedStart: "2016-01-18 12:15:00", plannedEnd: "2016-02-11 08:00:00", actualStart: "2016-01-18 12:15:00", actualEnd: "2016-02-11 08:00:00", requestedByGroup: "ServiceNow_DEV", requestedByGroupBusinessArea: "Infrastructure Services", requestedByGroupBusinessUnit: "IS – Infrastructure Services", requestedByGroupSubBusinessUnit: "IS - Production Process", causeCompleteServiceAppOutage: "No", risk: "Low", type: "Emergency", impactScore: "", shortDescription: "Servicenow 02/10 Release", changeReason: "New Capability", closureCode: "", ImpactedEnviroment: "Production", SecondaryClosureCode: "", PartofRelease: "", BusinessApplication: "MMA - Master Membership Application", BusinessApplicationCriticalityTier: "Tier 2")
-        
-        let ticket1 = ChangeTicket_Table_Template(id: obj1.getNumber(), priority: "4", startDate: DateFormat.dateFromString(obj1.getPlannedStart())!, icon: eyeIcon!, isWatched: false, requestedByGroupBusinessUnit: obj1.getRequestedByGroupBusinessUnit(), requestedByGroupSubBusinessUnit: obj1.getRequestedByGroupSubBusinessUnit(), closureCode: obj1.closureCode, actualEnd: obj1.actualEnd)
-        let ticket2 = ChangeTicket_Table_Template(id: obj2.getNumber(), priority: "4",startDate: DateFormat.dateFromString(obj2.getPlannedStart())!, icon: eyeIcon!, isWatched: false, requestedByGroupBusinessUnit: obj2.getRequestedByGroupBusinessUnit(), requestedByGroupSubBusinessUnit: obj2.getRequestedByGroupSubBusinessUnit(), closureCode: obj2.closureCode, actualEnd: obj2.actualEnd)
-        let ticket3 = ChangeTicket_Table_Template(id: obj3.getNumber(), priority: "3",startDate: DateFormat.dateFromString(obj3.getPlannedStart())!, icon: eyeIcon!, isWatched: false, requestedByGroupBusinessUnit: obj3.getRequestedByGroupBusinessUnit(), requestedByGroupSubBusinessUnit: obj3.getRequestedByGroupSubBusinessUnit(), closureCode: obj3.closureCode, actualEnd: obj3.actualEnd)
-        let ticket4 = ChangeTicket_Table_Template(id: obj4.getNumber(), priority: "2",startDate: DateFormat.dateFromString(obj4.getPlannedStart())!, icon: eyeIcon!, isWatched: false, requestedByGroupBusinessUnit: obj4.getRequestedByGroupBusinessUnit(), requestedByGroupSubBusinessUnit: obj4.getRequestedByGroupSubBusinessUnit(), closureCode: obj4.closureCode, actualEnd: obj4.actualEnd)
-        
-        fullTickets = ConnectionService.sharedInstance.getChange(plannedStart: "2015-11-11 00:00:00", plannedStart2: "2015-11-12 11:30:00", reqByGrpBusUnit: "311ab55b95b38980ce51a15d3638639c", reqByGrpSubBusUnit: "7817e6556fa88dc0df488a20af3ee499", psD: "1")
-        print(fullTickets.count)
-        changeTickets += [ticket1, ticket2, ticket3, ticket4]
-        tickets.addChangeTickets(ticket1)
-        tickets.addChangeTickets(ticket2)
-        tickets.addChangeTickets(ticket3)
-        tickets.addChangeTickets(ticket4)
 
-        var lowIndex = 0
-        for ticket in changeTickets {
-            if (Int(ticket.priority) == 4) {
+        print(selectedApp.businessSubUnitSys)
+        ConnectionService.sharedInstance.getChange(plannedStart: "2015-11-11 00:00:00", plannedStart2: "2015-11-14 11:30:00", reqByGrpBusUnit: selectedApp.businessUnitSys, reqByGrpSubBusUnit: selectedApp.businessSubUnitSys, psD: "1")
+        liveTickets = ConnectionService.sharedInstance.ticketList
+
+        for ticket in liveTickets {
+            if (ticket.risk == "Low") {
                 lowRiskTickets.append(Array(arrayLiteral: ticket))
             }
-            lowIndex++
         }
-        var medIndex = 0
-        for ticket in changeTickets {
-            if (Int(ticket.priority) == 3) {
-                changeTickets.removeAtIndex(medIndex)
-                changeTickets.insert(ticket, atIndex: 0)
-                medRiskTickets.append(Array(arrayLiteral: ticket))
-            }
-            medIndex++
-        }
-        var highIndex = 0
-        for ticket in changeTickets {
-            if (Int(ticket.priority) == 2) {
-                changeTickets.removeAtIndex(highIndex)
-                changeTickets.insert(ticket, atIndex: 0)
+
+        for ticket in liveTickets {
+            if (ticket.risk == "High") {
                 highRiskTickets.append(Array(arrayLiteral: ticket))
             }
-            highIndex++
         }
     }
     
@@ -185,24 +149,22 @@ class ChangeTicketTableViewController: UITableViewController, ChartViewDelegate 
         if (isGraphSelected) {
             return filteredTickets.count
         } else {
-            return changeTickets.count
+            return liveTickets.count
         }
         
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! ChangeTicketTableViewCell
-        var ticket : ChangeTicket_Table_Template
+        var ticket : ChangeTicket
         if (isGraphSelected) {
-            ticket = filteredTickets[indexPath.row] as ChangeTicket_Table_Template
+            ticket = filteredTickets[indexPath.row] as ChangeTicket
         } else {
-            ticket = changeTickets[indexPath.row] as ChangeTicket_Table_Template
+            ticket = liveTickets[indexPath.row] as ChangeTicket
         }
-        if (Int(ticket.priority) == 4) {
+        if (ticket.risk == "Low") {
             cell.riskIndicator.backgroundColor = low
-        } else if (Int(ticket.priority) == 3) {
-            cell.riskIndicator.backgroundColor = med
-        } else if (Int(ticket.priority) == 2) {
+        } else if (ticket.risk == "High") {
             cell.riskIndicator.backgroundColor = high
         }
         let white = UIColor.whiteColor()
@@ -310,9 +272,6 @@ class ChangeTicketTableViewController: UITableViewController, ChartViewDelegate 
             if (dataPoints[i] == "Low") {
                 let color = low
                 colors.append(color)
-            } else if (dataPoints[i] == "Med") {
-                let color = med
-                colors.append(color)
             } else if (dataPoints[i] == "High"){
                 let color = high
                 colors.append(color)
@@ -323,8 +282,8 @@ class ChangeTicketTableViewController: UITableViewController, ChartViewDelegate 
         // Legend Data
         pieChartView.legend.position = .RightOfChartInside
         pieChartView.legend.font = UIFont(name: "Helvetica", size: 10)!
-        pieChartView.legend.colors = [low, med, high]
-        pieChartView.legend.labels = ["Low","Medium","High"]
+        pieChartView.legend.colors = [low, high]
+        pieChartView.legend.labels = ["Low", "High"]
         pieChartView.legend.enabled = true
         
         pieChartView.drawCenterTextEnabled = true
@@ -403,34 +362,23 @@ class ChangeTicketTableViewController: UITableViewController, ChartViewDelegate 
         filteredTickets.removeAll()
         
         if (entry.data! as! String == "Low") {
-            let percent = Int((entry.value / Double(changeTickets.count)) * 100.0)
+            let percent = Int((entry.value / Double(liveTickets.count)) * 100.0)
             pieChartView.centerAttributedText = NSAttributedString(string: (String(percent) + "%"), attributes: [
                 NSForegroundColorAttributeName: NSUIColor(red: CGFloat(38/255.0), green: CGFloat(166/255.0), blue: CGFloat(91/255.0), alpha: 1),
                 NSFontAttributeName: NSUIFont(name: "Helvetica", size: 25)! ])
-            for ticket in changeTickets {
-                if (Int(ticket.priority) == 4) {
-                    filteredTickets += [ticket]
-                }
-            }
-        }
-        else if(entry.data! as! String == "Med") {
-            let percent = Int((entry.value / Double(changeTickets.count)) * 100.0)
-            pieChartView.centerAttributedText = NSAttributedString(string: (String(percent) + "%"), attributes: [
-                NSForegroundColorAttributeName: NSUIColor(red: CGFloat(244/255.0), green: CGFloat(208/255.0), blue: CGFloat(63/255.0), alpha: 1),
-                NSFontAttributeName: NSUIFont(name: "Helvetica", size: 25)! ])
-            for ticket in changeTickets {
-                if (Int(ticket.priority) == 3) {
+            for ticket in liveTickets {
+                if (ticket.risk == "Low") {
                     filteredTickets += [ticket]
                 }
             }
         }
         else if(entry.data! as! String == "High") {
-            let percent = Int((entry.value / Double(changeTickets.count)) * 100.0)
+            let percent = Int((entry.value / Double(liveTickets.count)) * 100.0)
             pieChartView.centerAttributedText = NSAttributedString(string: (String(percent) + "%"), attributes: [
                 NSForegroundColorAttributeName: NSUIColor(red: CGFloat(207/255.0), green: CGFloat(0), blue: CGFloat(15/255.0), alpha: 1),
                 NSFontAttributeName: NSUIFont(name: "Helvetica", size: 25)! ])
-            for ticket in changeTickets {
-                if (Int(ticket.priority) == 2) {
+            for ticket in liveTickets {
+                if (ticket.risk == "High") {
                     filteredTickets += [ticket]
                 }
             }

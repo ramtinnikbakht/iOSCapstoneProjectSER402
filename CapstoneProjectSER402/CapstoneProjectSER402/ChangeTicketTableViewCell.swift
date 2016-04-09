@@ -70,16 +70,16 @@ class ChangeTicketTableViewCell: UITableViewCell
         }
     }
     
-    var ticket: ChangeTicket_Table_Template!
+    var ticket: ChangeTicket!
     {
         didSet {
             DateFormat.locale = NSLocale(localeIdentifier: "en_US_POSIX")
             DateFormat.dateFormat = "yyyy-MM-dd HH:mm:ss"
-            ticketID.text = ticket.id
-            riskLevel.text = String(ticket.priority)
+            ticketID.text = ticket.number
+            riskLevel.text = ticket.risk
             businessUnit.text = ticket.requestedByGroupBusinessUnit
             subBusinessUnit.text = ticket.requestedByGroupSubBusinessUnit
-            plannedStart.text = DateFormat.stringFromDate(ticket.startDate)
+            plannedStart.text = ticket.plannedStart
         }
     }
     
