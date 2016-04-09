@@ -21,6 +21,7 @@ class ConnectionService : NSObject, NSURLSessionDelegate {
     let proxyEnable : CFNumber = NSNumber(int: 1) as CFNumber
     
     var businessApps = [BusinessApp]()
+    var ticketList = [ChangeTicket]()
     
     func parseChange(xml: AEXMLDocument) -> ([ChangeTicket]) {
         var ticketList = [ChangeTicket]()
@@ -93,11 +94,12 @@ class ConnectionService : NSObject, NSURLSessionDelegate {
         insert.addChild(name: "u:u_process", value: "ASU.B.eChangeProject")
         insert.addChild(name: "u:u_product", value: "CHG")
         
-        var ticketList = [ChangeTicket]()
+        
         sendData(soapRequest.xmlString) {xml in
             if let xml = xml {
+                self.ticketList = []
                 print (xml.root.xmlString)
-                //ticketList = self.parseChange(xml)
+                self.ticketList = self.parseChange(xml)
             }
             
         }
