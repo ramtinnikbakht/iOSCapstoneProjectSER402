@@ -14,6 +14,8 @@ class AppSelectionTableViewController: UITableViewController {
     
     var usertype: String = ""
     
+    var apps = [BusinessApp]()
+    var appsTitleArray = [String]()
     var appsArray: [String] = ["App1", "App2", "App3", "App4", "App5", "App6", "App7"]
     var selectedApps = [String]()
 
@@ -51,8 +53,6 @@ class AppSelectionTableViewController: UITableViewController {
     }
 
     
-    var apps = [BusinessApp]()
-    
     func application(application: UIApplication!, performFetchWithCompletionHandler completionHandler: ((UIBackgroundFetchResult) -> Void)!) {
         loadApps() {
             completionHandler(UIBackgroundFetchResult.NewData)
@@ -65,14 +65,25 @@ class AppSelectionTableViewController: UITableViewController {
         completionHandler()
     }
     
-    
+    var areas = [BusinessApp]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //ConnectionService.sharedInstance.getBusiness(appUnit: "311ab55b95b38980ce51a15d3638639c")
-        //apps = ConnectionService.sharedInstance.businessApps
-//        apps = ConnectionService.sharedInstance.getBusiness(appUnit: "311ab55b95b38980ce51a15d3638639c")
+        ConnectionService.sharedInstance.getBusiness(appUnit: "311ab55b95b38980ce51a15d3638639c")
+        apps = ConnectionService.sharedInstance.businessApps
+        ConnectionService.sharedInstance.getBusiness(appArea: "29f0acd82b56b000b44bd4b419da1503")
+        areas = ConnectionService.sharedInstance.businessApps
+        //apps = ConnectionService.sharedInstance.getBusiness(appUnit: "311ab55b95b38980ce51a15d3638639c")
         //let myTimer : NSTimer = NSTimer.scheduledTimerWithTimeInterval(24, target: self, selector: Selector("myPerformeCode:"), userInfo: nil, repeats: false)
+        for area in areas {
+            print("app Area \(area.businessApp)")
+        }
+        /*for app in apps {
+            appsTitleArray.append(app.businessSubUnit)
+            print("app title: \(appsTitleArray)")
+            
+        }*/
+
         print(apps)
         print(apps.count)
 
