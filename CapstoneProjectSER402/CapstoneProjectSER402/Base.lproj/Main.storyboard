@@ -14,12 +14,12 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="separatorColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                        <view key="tableHeaderView" contentMode="scaleToFill" id="KZl-a5-a6Q" customClass="LineChartView" customModule="Charts">
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="KZl-a5-a6Q" customClass="BarChartView" customModule="Charts">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="270"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gle-Rg-crr">
-                                    <rect key="frame" x="8" y="8" width="160" height="21"/>
+                                    <rect key="frame" x="8" y="8" width="260" height="21"/>
                                     <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
@@ -63,27 +63,28 @@
                                     <rect key="frame" x="0.0" y="0.0" width="342" height="50"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="circle.png" translatesAutoresizingMaskIntoConstraints="NO" id="CUr-sQ-YyO">
-                                            <rect key="frame" x="18" y="9" width="30" height="30"/>
-                                        </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7BA-3E-gjN">
-                                            <rect key="frame" x="18" y="9" width="30" height="30"/>
-                                            <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="11"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dfv-LO-gR7">
+                                            <rect key="frame" x="39" y="14" width="130" height="21"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="117-xn-hG8">
-                                            <rect key="frame" x="64" y="14" width="250" height="20"/>
-                                            <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="16"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hNv-W4-ChR">
+                                            <rect key="frame" x="14" y="0.0" width="12" height="50"/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Vv-Nf-fFo">
+                                            <rect key="frame" x="199" y="14" width="135" height="21"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-ThinItalic" family="Helvetica Neue" pointSize="12"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
-                                    <outlet property="businessAppName" destination="117-xn-hG8" id="A62-5n-L0h"/>
-                                    <outlet property="circle" destination="CUr-sQ-YyO" id="ojt-sd-f34"/>
-                                    <outlet property="ticketCount" destination="7BA-3E-gjN" id="eVL-8V-Zkh"/>
+                                    <outlet property="plannedStartLabel" destination="5Vv-Nf-fFo" id="nYb-Ce-nSL"/>
+                                    <outlet property="riskIndicator" destination="hNv-W4-ChR" id="KgV-r0-Ffe"/>
+                                    <outlet property="ticketID" destination="Dfv-LO-gR7" id="iEn-9s-KoJ"/>
                                     <segue destination="4l6-UN-Ceb" kind="show" identifier="showAppDetail" id="8ao-Nx-gX4"/>
                                 </connections>
                             </tableViewCell>
@@ -103,8 +104,8 @@
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
+                        <outlet property="barChartView" destination="KZl-a5-a6Q" id="RRs-57-5PR"/>
                         <outlet property="currentDateLabel" destination="gle-Rg-crr" id="7Oj-LJ-pbB"/>
-                        <outlet property="lineChartView" destination="KZl-a5-a6Q" id="B4i-RL-PyI"/>
                         <outlet property="searchDisplayController" destination="ARc-dw-TYO" id="hxE-o8-Ypf"/>
                     </connections>
                 </tableViewController>
@@ -864,7 +865,6 @@
     </scenes>
     <resources>
         <image name="archive.png" width="32" height="32"/>
-        <image name="circle.png" width="32" height="32"/>
         <image name="expand_more.png" width="128" height="128"/>
         <image name="gear.png" width="24" height="24"/>
         <image name="home-page.png" width="32" height="32"/>

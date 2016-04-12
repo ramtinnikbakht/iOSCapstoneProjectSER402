@@ -15,18 +15,16 @@ class BusinessAppTableViewCell: UITableViewCell
     
     // MARK: Properties
     
-    @IBOutlet weak var ticketCount: UILabel!
-    @IBOutlet weak var businessAppName: UILabel!
-    @IBOutlet weak var circle: UIImageView!
-    let icon = UIImage(named: "circle")
+    @IBOutlet weak var ticketID: UILabel!
+
+    @IBOutlet weak var plannedStartLabel: UILabel!
+    @IBOutlet weak var riskIndicator: UIImageView!
     
-    var app: BusinessApp!
+    var ticket: ChangeTicket!
         {
-        didSet
-        {
-            businessAppName.text = app.businessApp
-            ticketCount.text = String(app.ticketCount)
-            circle.image = icon
+        didSet {
+            ticketID.text = ticket.number
+            plannedStartLabel.text = ticket.plannedStart
         }
     }
     
@@ -42,6 +40,4 @@ class BusinessAppTableViewCell: UITableViewCell
         
         // Configure the view for the selected state
     }
-    
-    
 }

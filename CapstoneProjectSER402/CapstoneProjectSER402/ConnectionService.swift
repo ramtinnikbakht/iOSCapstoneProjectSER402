@@ -47,7 +47,7 @@ class ConnectionService : NSObject, NSURLSessionDelegate {
                     owner: app["owner"].value!, ownerSys: app["ownerSys"].value!, businessArea: app["appBusinessArea"].value!, businessAreaSys: app["appBusinessAreaSys"].value!, businessUnit: app["appBusinessUnit"].value!,
                     businessUnitSys: app["appBusinessUnitSys"].value!, businessSubUnitSys: app["appBusinessSubUnitSys"].value!, businessSubUnit: app["appBusinessSubUnit"].value!, ticketCount: 0)
                 businessApp.append(newApp)
-                print(newApp.appId)
+                //print(newApp.appId)
             }
             
         }
@@ -98,7 +98,7 @@ class ConnectionService : NSObject, NSURLSessionDelegate {
         sendData(soapRequest.xmlString) {xml in
             if let xml = xml {
                 self.ticketList = []
-                print (xml.root.xmlString)
+                //print (xml.root.xmlString)
                 self.ticketList = self.parseChange(xml)
             }
             
@@ -137,7 +137,7 @@ class ConnectionService : NSObject, NSURLSessionDelegate {
                 self.businessApps = self.parseBusiness(xml)
                 //print (xml.root.xmlString)
                 for app in self.businessApps {
-                    print(app.businessApp)
+                    //print(app.businessApp)
                 }
             }
         }

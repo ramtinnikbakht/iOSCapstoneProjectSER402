@@ -51,7 +51,7 @@ class ChangeTicketTableViewController: UITableViewController, ChartViewDelegate 
         lineChartView.delegate = self
         selectedAppLabel.text = selectedApp.businessApp
         configurePageControl()
-        loadSampleTickets()
+        loadTickets()
         
         let ticketCount = [Double(lowRiskTickets.count), Double(highRiskTickets.count)]
         
@@ -113,12 +113,12 @@ class ChangeTicketTableViewController: UITableViewController, ChartViewDelegate 
         }
     }
     
-    func loadSampleTickets() {
+    func loadTickets() {
         DateFormat.locale = NSLocale(localeIdentifier: "en_US_POSIX")
         DateFormat.dateFormat = "yyyy-MM-dd HH:mm:ss"
 
         print(selectedApp.businessSubUnitSys)
-        ConnectionService.sharedInstance.getChange(plannedStart: "2015-11-11 00:00:00", plannedStart2: "2015-11-14 11:30:00", reqByGrpBusUnit: selectedApp.businessUnitSys, reqByGrpSubBusUnit: selectedApp.businessSubUnitSys, psD: "1")
+        ConnectionService.sharedInstance.getChange(plannedStart: "2016-04-09 23:00:00", plannedStart2: "2016-04-10 4:00:00", psD: "1")
         liveTickets = ConnectionService.sharedInstance.ticketList
 
         for ticket in liveTickets {
@@ -180,7 +180,7 @@ class ChangeTicketTableViewController: UITableViewController, ChartViewDelegate 
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        shouldAnimate = !shouldAnimate
+        shouldAnimate = false
         let previousIndexPath = selectedIndexPath
         if indexPath == selectedIndexPath {
             selectedIndexPath = nil
@@ -358,6 +358,7 @@ class ChangeTicketTableViewController: UITableViewController, ChartViewDelegate 
     }
     
     func chartValueSelected(chartView: ChartViewBase, entry: ChartDataEntry, dataSetIndex: Int, highlight: ChartHighlight) {
+        shouldAnimate = true
         isGraphSelected = true
         filteredTickets.removeAll()
         
@@ -387,6 +388,7 @@ class ChangeTicketTableViewController: UITableViewController, ChartViewDelegate 
     }
     
     func chartValueNothingSelected(chartView: ChartViewBase) {
+        shouldAnimate = true
         isGraphSelected = false
         pieChartView.centerText?.removeAll()
         tableView.reloadData()
