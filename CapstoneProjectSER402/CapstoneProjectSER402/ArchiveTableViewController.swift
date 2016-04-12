@@ -22,19 +22,21 @@ class ArchiveTableViewController: UITableViewController, UITextFieldDelegate, Ch
     var ticketStartDates = [String]()
     var selectedTF = UITextField()
     var releaseWindowLL = ChartLimitLine(limit: 1.0, label: "Release \nDeployment \nWindow")
+    var liveTickets = [ChangeTicket]()
     var fullTickets = [ChangeTicket]()
-    var changeTickets = [ChangeTicket_Table_Template]()
-    var filteredTickets = [ChangeTicket_Table_Template]()
-    var sortedTickets_Time = [ChangeTicket_Table_Template]()
+    var changeTickets = [ChangeTicket]()
+    var filteredTickets = [ChangeTicket]()
+    var sortedTickets_Time = [ChangeTicket]()
     var selectedApp = String()
     var selectedIndexPath : NSIndexPath?
+    var isShifting = false
     var isGraphSelected = false
-    var cc1Tickets = Array<[ChangeTicket_Table_Template]>()
-    var cc2Tickets = Array<[ChangeTicket_Table_Template]>()
-    var cc3Tickets = Array<[ChangeTicket_Table_Template]>()
-    var cc4Tickets = Array<[ChangeTicket_Table_Template]>()
-    var cc5Tickets = Array<[ChangeTicket_Table_Template]>()
-    var cc6Tickets = Array<[ChangeTicket_Table_Template]>()
+    var cc1Tickets = Array<[ChangeTicket]>()
+    var cc2Tickets = Array<[ChangeTicket]>()
+    var cc3Tickets = Array<[ChangeTicket]>()
+    var cc4Tickets = Array<[ChangeTicket]>()
+    var cc5Tickets = Array<[ChangeTicket]>()
+    var cc6Tickets = Array<[ChangeTicket]>()
     
     
     let cellIdentifier = "TicketCell"
@@ -82,48 +84,40 @@ class ArchiveTableViewController: UITableViewController, UITextFieldDelegate, Ch
     }
     
     func loadSampleTickets() {
-        DateFormat.locale = NSLocale(localeIdentifier: "en_US_POSIX")
+        DateFormat.locale = NSLocale(localeIdentifier: "US_en")
         DateFormat.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        let now = NSDate()
+        let time1 = DateFormat.stringFromDate(now)
+        let time2 = DateFormat.stringFromDate(now.plusHours(6))
         
-        let eyeIcon = UIImage(named: "eye_unclicked.png")
-        let obj1 = ChangeTicket(number: "CHG00313717", approver: "", plannedStart: "2016-02-11 03:30:00", plannedEnd: "2016-02-11 08:00:00", actualStart: "2016-02-11 03:30:00", actualEnd: "2016-02-11 08:00:00", requestedByGroup: "ServiceNow_DEV", requestedByGroupBusinessArea: "Infrastructure Services", requestedByGroupBusinessUnit: "IS – Infrastructure Services", requestedByGroupSubBusinessUnit: "IS - Production Process", causeCompleteServiceAppOutage: "No", risk: "Low", type: "Normal", impactScore: "", shortDescription: "Servicenow 02/10 Release", changeReason: "New Capability", closureCode: "Implemented as Planned", ImpactedEnviroment: "Production", SecondaryClosureCode: "", PartofRelease: "", BusinessApplication: "ServiceNow Enterprise Edition", BusinessApplicationCriticalityTier: "Tier 2")
+        ConnectionService.sharedInstance.getChange(plannedStart: "2016-03-09 06:00:00", plannedStart2: "2016-03-10 20:30:00", psD: "1")
+        liveTickets = ConnectionService.sharedInstance.ticketList
         
-        let obj2 = ChangeTicket(number: "CHG00314757", approver: "", plannedStart: "2016-04-25 15:05:00", plannedEnd: "2016-02-11 08:00:00", actualStart: "2016-04-25 15:05:00", actualEnd: "2016-02-11 08:00:00", requestedByGroup: "ServiceNow_DEV", requestedByGroupBusinessArea: "Infrastructure Services", requestedByGroupBusinessUnit: "IS – Infrastructure Services", requestedByGroupSubBusinessUnit: "IS - Production Process", causeCompleteServiceAppOutage: "No", risk: "Med", type: "Normal", impactScore: "", shortDescription: "Servicenow 02/10 Release", changeReason: "New Capability", closureCode: "Implemented with Effort", ImpactedEnviroment: "Production", SecondaryClosureCode: "", PartofRelease: "", BusinessApplication: "ServiceNow Enterprise Edition", BusinessApplicationCriticalityTier: "Tier 2")
-        
-        let obj3 = ChangeTicket(number: "CHG00318797", approver: "", plannedStart: "2016-03-18 06:15:00", plannedEnd: "2016-03-19 08:00:00", actualStart: "2016-03-18 06:15:00", actualEnd: "2016-03-19 08:00:00", requestedByGroup: "ServiceNow_DEV", requestedByGroupBusinessArea: "Infrastructure Services", requestedByGroupBusinessUnit: "IS – Infrastructure Services", requestedByGroupSubBusinessUnit: "IS - Production Process", causeCompleteServiceAppOutage: "No", risk: "High", type: "Normal", impactScore: "", shortDescription: "Servicenow 02/10 Release", changeReason: "New Capability", closureCode: "Implemented with Issues", ImpactedEnviroment: "Production", SecondaryClosureCode: "", PartofRelease: "", BusinessApplication: "ServiceNow Enterprise Edition", BusinessApplicationCriticalityTier: "Tier 2")
-        
-        let obj4 = ChangeTicket(number: "CHG00318345", approver: "", plannedStart: "2016-01-18 12:15:00", plannedEnd: "2016-02-11 08:00:00", actualStart: "2016-01-18 12:15:00", actualEnd: "2016-02-11 08:00:00", requestedByGroup: "ServiceNow_DEV", requestedByGroupBusinessArea: "Infrastructure Services", requestedByGroupBusinessUnit: "IS – Infrastructure Services", requestedByGroupSubBusinessUnit: "IS - Production Process", causeCompleteServiceAppOutage: "No", risk: "Low", type: "Emergency", impactScore: "", shortDescription: "Servicenow 02/10 Release", changeReason: "New Capability", closureCode: "Failed to report status", ImpactedEnviroment: "Production", SecondaryClosureCode: "", PartofRelease: "", BusinessApplication: "MMA - Master Membership Application", BusinessApplicationCriticalityTier: "Tier 2")
-        
-        let ticket1 = ChangeTicket_Table_Template(id: obj1.getNumber(), priority: "4", startDate: DateFormat.dateFromString(obj1.getPlannedStart())!, icon: eyeIcon!, isWatched: false, requestedByGroupBusinessUnit: obj1.getRequestedByGroupBusinessUnit(), requestedByGroupSubBusinessUnit: obj1.getRequestedByGroupSubBusinessUnit(), closureCode: obj1.closureCode, actualEnd: obj1.actualEnd)
-        let ticket2 = ChangeTicket_Table_Template(id: obj2.getNumber(), priority: "7",startDate: DateFormat.dateFromString(obj2.getPlannedStart())!, icon: eyeIcon!, isWatched: false, requestedByGroupBusinessUnit: obj2.getRequestedByGroupBusinessUnit(), requestedByGroupSubBusinessUnit: obj2.getRequestedByGroupSubBusinessUnit(), closureCode: obj2.closureCode, actualEnd: obj2.actualEnd)
-        let ticket3 = ChangeTicket_Table_Template(id: obj3.getNumber(), priority: "1",startDate: DateFormat.dateFromString(obj3.getPlannedStart())!, icon: eyeIcon!, isWatched: false, requestedByGroupBusinessUnit: obj3.getRequestedByGroupBusinessUnit(), requestedByGroupSubBusinessUnit: obj3.getRequestedByGroupSubBusinessUnit(), closureCode: obj3.closureCode, actualEnd: obj3.actualEnd)
-        let ticket4 = ChangeTicket_Table_Template(id: obj4.getNumber(), priority: "5",startDate: DateFormat.dateFromString(obj4.getPlannedStart())!, icon: eyeIcon!, isWatched: false, requestedByGroupBusinessUnit: obj4.getRequestedByGroupBusinessUnit(), requestedByGroupSubBusinessUnit: obj4.getRequestedByGroupSubBusinessUnit(), closureCode: obj4.closureCode, actualEnd: obj4.actualEnd)
-        
-        fullTickets += [obj1, obj2, obj3, obj4]
-        changeTickets += [ticket1, ticket2, ticket3, ticket4]
-        tickets.addChangeTickets(ticket1)
-        tickets.addChangeTickets(ticket2)
-        tickets.addChangeTickets(ticket3)
-        tickets.addChangeTickets(ticket4)
-        
-        for ticket in changeTickets {
+        for ticket in liveTickets {
+            print(ticket.closureCode)
             if (ticket.closureCode == "Implemented as Planned") {
                 cc1Tickets.append(Array(arrayLiteral: ticket))
-                activeCodes += [ticket.closureCode]
+
             } else if (ticket.closureCode == "Implemented with Effort") {
                 cc2Tickets.append(Array(arrayLiteral: ticket))
-                activeCodes += [ticket.closureCode]
+
             } else if (ticket.closureCode == "Backed Out No Customer/User Impacts") {
                 cc3Tickets.append(Array(arrayLiteral: ticket))
-                activeCodes += [ticket.closureCode]
+
             } else if (ticket.closureCode == "Implemented with Issues") {
                 cc4Tickets.append(Array(arrayLiteral: ticket))
-                activeCodes += [ticket.closureCode]
+
             } else if (ticket.closureCode == "Backed Out Customer/User Impacts") {
                 cc5Tickets.append(Array(arrayLiteral: ticket))
-                activeCodes += [ticket.closureCode]
-            } else if (ticket.closureCode == "Failed to report status") {
+
+            } else if (ticket.closureCode == "") {
                 cc6Tickets.append(Array(arrayLiteral: ticket))
+
+            }
+            
+            if (activeCodes.contains(ticket.closureCode)) {
+                
+            } else {
                 activeCodes += [ticket.closureCode]
             }
         }
@@ -135,7 +129,7 @@ class ArchiveTableViewController: UITableViewController, UITextFieldDelegate, Ch
     
         pieChartView.delegate = self
         loadSampleTickets()
-        sortTimeRange()
+
         // Do any additional setup after loading the view.
         var values : [Double] = []
         for code in activeCodes {
@@ -150,6 +144,8 @@ class ArchiveTableViewController: UITableViewController, UITextFieldDelegate, Ch
             } else if (code == closureCodes[4]) {
                 values += [Double(cc5Tickets.count)]
             } else if (code == closureCodes[5]) {
+                values += [Double(cc6Tickets.count)]
+            } else {
                 values += [Double(cc6Tickets.count)]
             }
         }
@@ -172,19 +168,19 @@ class ArchiveTableViewController: UITableViewController, UITextFieldDelegate, Ch
         if (isGraphSelected) {
             return filteredTickets.count
         } else {
-            return changeTickets.count
+            return liveTickets.count
         }
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! ArchiveTableViewCell
         let white = UIColor.whiteColor()
-        var ticket : ChangeTicket_Table_Template
+        var ticket : ChangeTicket
         
         if (isGraphSelected) {
-            ticket = filteredTickets[indexPath.row] as ChangeTicket_Table_Template
+            ticket = filteredTickets[indexPath.row] as ChangeTicket
         } else {
-            ticket = sortedTickets_Time[indexPath.row] as ChangeTicket_Table_Template
+            ticket = liveTickets[indexPath.row] as ChangeTicket
         }
        
         // Cell Color - Based on Closure Code
@@ -195,7 +191,7 @@ class ArchiveTableViewController: UITableViewController, UITextFieldDelegate, Ch
             cell.ccIndicator.backgroundColor = cc2
             cell.backgroundColor = white
         } else if (ticket.closureCode == "Backed Out No Customer/User Impacts") {
-            cell.backgroundColor = cc3
+            cell.ccIndicator.backgroundColor = cc3
             cell.backgroundColor = white
         } else if (ticket.closureCode == "Implemented with Issues") {
             cell.ccIndicator.backgroundColor = cc4
@@ -203,13 +199,10 @@ class ArchiveTableViewController: UITableViewController, UITextFieldDelegate, Ch
         } else if (ticket.closureCode == "Backed Out Customer/User Impacts") {
             cell.ccIndicator.backgroundColor = cc5
             cell.backgroundColor = white
-        } else if (ticket.closureCode == "Failed to report status") {
+        } else if (ticket.closureCode == "") {
             cell.ccIndicator.backgroundColor = cc6
             cell.backgroundColor = white
             cell.ticketID.textColor = UIColor.blackColor()
-        } else {
-            cell.backgroundColor = navy
-            cell.ticketID.textColor = UIColor.whiteColor()
         }
         
         // Cell Shadow Attributes
@@ -249,18 +242,25 @@ class ArchiveTableViewController: UITableViewController, UITextFieldDelegate, Ch
     // MARK: - Animate Table View Cell
     
     // Row Animation
+    var animateIndex = 0
     override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-        let cellPosition = indexPath.indexAtPosition(1)
-        let delay : Double = Double(cellPosition) * 0.1
+
+        if (isShifting) {
+            
+        } else {
+            let cellPosition = indexPath.indexAtPosition(1)
+            let delay : Double = Double(cellPosition) * 0.1
+            
+            let rotationTransform = CATransform3DTranslate(CATransform3DIdentity, -1000, 0, 0)
+            cell.layer.transform = rotationTransform
+            
+            UIView.animateWithDuration(1.0, delay: delay, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.3, options: UIViewAnimationOptions.BeginFromCurrentState, animations: {
+                cell.layer.transform = CATransform3DIdentity
+                }, completion: { finished in
+                    
+            })
+        }
         
-        let rotationTransform = CATransform3DTranslate(CATransform3DIdentity, -1000, 0, 0)
-        cell.layer.transform = rotationTransform
-        
-        UIView.animateWithDuration(1.0, delay: delay, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.3, options: UIViewAnimationOptions.BeginFromCurrentState, animations: {
-            cell.layer.transform = CATransform3DIdentity
-            }, completion: { finished in
-                
-        })
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -280,35 +280,34 @@ class ArchiveTableViewController: UITableViewController, UITextFieldDelegate, Ch
         return range
     }
     
-    func sortTimeRange() {
-        var timeRange : [NSDate] = getTimeRange()
+    func sortTimeRange(var range: [NSDate]) {
         var stringRange : [String] = []
         let formatter = NSDateFormatter()
-        let total = timeRange.count
+        let total = range.count
         var sortIndex = 0
         formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         
         while ((sortIndex+1) < total) {
-            let time = timeRange[sortIndex]
-            let nextTime = timeRange[sortIndex + 1]
+            let time = range[sortIndex]
+            let nextTime = range[sortIndex + 1]
             
             if nextTime.isGreaterThan(time) {
-                timeRange.removeAtIndex(sortIndex+1)
-                timeRange.removeAtIndex(sortIndex)
-                timeRange.insert(nextTime, atIndex: sortIndex)
-                timeRange.insert(time, atIndex: sortIndex+1)
+                range.removeAtIndex(sortIndex+1)
+                range.removeAtIndex(sortIndex)
+                range.insert(nextTime, atIndex: sortIndex)
+                range.insert(time, atIndex: sortIndex+1)
                 sortIndex=0
             } else {
                 sortIndex++
             }
         }
         var sortIndex2 = 0
-        for time in timeRange {
+        for time in range {
             let formattedTime = formatter.stringFromDate(time)
-            for ticket in changeTickets {
-                if (ticket.actualEnd == formattedTime) {
+            for ticket in liveTickets {
+                if (ticket.plannedStart == formattedTime) {
                     sortedTickets_Time += [ticket]
-                    print(sortedTickets_Time[sortIndex2].actualEnd)
+                    print(sortedTickets_Time[sortIndex2].plannedStart)
                     sortIndex2++
                 }
             }
@@ -352,7 +351,7 @@ class ArchiveTableViewController: UITableViewController, UITextFieldDelegate, Ch
             } else if (dataPoints[i] == "Backed Out Customer/User Impacts"){
                 let color = cc5
                 colors.append(color)
-            } else if (dataPoints[i] == "Failed to report status"){
+            } else if (dataPoints[i] == ""){
                 let color = cc6
                 colors.append(color)
             }
@@ -385,6 +384,7 @@ class ArchiveTableViewController: UITableViewController, UITextFieldDelegate, Ch
     
     func chartValueSelected(chartView: ChartViewBase, entry: ChartDataEntry, dataSetIndex: Int, highlight: ChartHighlight) {
         isGraphSelected = true
+        isShifting = true
         filteredTickets.removeAll()
         
         if (entry.data! as! String == closureCodes[0]) {
@@ -393,7 +393,7 @@ class ArchiveTableViewController: UITableViewController, UITextFieldDelegate, Ch
             pieChartView.centerAttributedText = NSAttributedString(string: closureCodes[0], attributes: [
                 NSForegroundColorAttributeName: UIColor.lightGrayColor(),
                 NSFontAttributeName: NSUIFont(name: "Helvetica", size: 10)!])
-            for ticket in changeTickets {
+            for ticket in liveTickets {
                 if (ticket.closureCode == "Implemented as Planned") {
                     filteredTickets += [ticket]
                 }
@@ -403,7 +403,7 @@ class ArchiveTableViewController: UITableViewController, UITextFieldDelegate, Ch
             pieChartView.centerAttributedText = NSAttributedString(string: closureCodes[1], attributes: [
                 NSForegroundColorAttributeName: UIColor.lightGrayColor(),
                 NSFontAttributeName: NSUIFont(name: "Helvetica", size: 10)! ])
-            for ticket in changeTickets {
+            for ticket in liveTickets {
                 if (ticket.closureCode == "Implemented with Effort") {
                     filteredTickets += [ticket]
                 }
@@ -413,7 +413,7 @@ class ArchiveTableViewController: UITableViewController, UITextFieldDelegate, Ch
             pieChartView.centerAttributedText = NSAttributedString(string: closureCodes[2], attributes: [
                 NSForegroundColorAttributeName: UIColor.lightGrayColor(),
                 NSFontAttributeName: NSUIFont(name: "Helvetica", size: 10)! ])
-            for ticket in changeTickets {
+            for ticket in liveTickets {
                 if (ticket.closureCode == "Backed Out No Customer/User Impacts") {
                     filteredTickets += [ticket]
                 }
@@ -433,18 +433,18 @@ class ArchiveTableViewController: UITableViewController, UITextFieldDelegate, Ch
             pieChartView.centerAttributedText = NSAttributedString(string: closureCodes[4], attributes: [
                 NSForegroundColorAttributeName: UIColor.lightGrayColor(),
                 NSFontAttributeName: NSUIFont(name: "Helvetica", size: 10)! ])
-            for ticket in changeTickets {
+            for ticket in liveTickets {
                 if (ticket.closureCode == "Backed Out Customer/User Impacts") {
                     filteredTickets += [ticket]
                 }
             }
         }
-        else if(entry.data! as! String == closureCodes[5]) {
+        else {
             pieChartView.centerAttributedText = NSAttributedString(string: closureCodes[5], attributes: [
                 NSForegroundColorAttributeName: UIColor.lightGrayColor(),
                 NSFontAttributeName: NSUIFont(name: "Helvetica", size: 10)! ])
-            for ticket in changeTickets {
-                if (ticket.closureCode == "Failed to report status") {
+            for ticket in liveTickets {
+                if (ticket.closureCode == "") {
                     filteredTickets += [ticket]
                 }
             }

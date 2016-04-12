@@ -14,10 +14,10 @@ class ArchiveTableViewCell: UITableViewCell {
     @IBOutlet weak var ccIndicator: UIImageView!
     @IBOutlet weak var actualEndLabel: UILabel!
     
-    var ticket: ChangeTicket_Table_Template!
+    var ticket: ChangeTicket!
         {
         didSet {
-            ticketID.text = ticket.id
+            ticketID.text = ticket.number
             actualEndLabel.text = ticket.actualEnd
         }
     }

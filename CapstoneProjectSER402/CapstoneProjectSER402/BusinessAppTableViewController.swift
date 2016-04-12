@@ -60,7 +60,6 @@ class BusinessAppTableViewController: UITableViewController, ChartViewDelegate
         super.viewDidLoad()
         
         barChartView.delegate = self
-        //tbvc = tabBarController as! TicketTabBarController
 
         var lowRisk : [Double] = []
         var highRisk : [Double] = []
@@ -87,10 +86,10 @@ class BusinessAppTableViewController: UITableViewController, ChartViewDelegate
             lowRisk += [Double(lowCount)]
             highRisk += [Double(highCount)]
         }
-        print(lowRisk)
-        print(highRisk)
+
         barChartView.clear()
         setChart(timeFrame, values: lowRisk, values2: highRisk)
+        isShifting = false
     }
 
     func loadSampleApps()
@@ -101,7 +100,7 @@ class BusinessAppTableViewController: UITableViewController, ChartViewDelegate
         let time1 = DateFormat.stringFromDate(now)
         let time2 = DateFormat.stringFromDate(now.plusHours(6))
         
-        ConnectionService.sharedInstance.getChange(plannedStart: time1, plannedStart2: time2, psD: "1")
+        ConnectionService.sharedInstance.getChange(plannedStart: "2016-02-23 17:00:00", plannedStart2: "2016-02-23 21:30:00", psD: "1")
         liveTickets = ConnectionService.sharedInstance.ticketList
 
         for ticket in liveTickets {
@@ -137,7 +136,6 @@ class BusinessAppTableViewController: UITableViewController, ChartViewDelegate
             
             if (ticketDate.hour >= 12) {
                 hourString = String(ticketDate.hour - 12)
-                print(hourString)
             }
             if (ticketDate.minute == 0) {
                 ticketTime = hourString + ":" + minuteString
@@ -241,7 +239,7 @@ class BusinessAppTableViewController: UITableViewController, ChartViewDelegate
         let formatter = NSDateFormatter()
         let currentDate = NSDate()
         formatter.dateFormat = "MMMM dd, yyyy"
-        headerCell.backgroundColor = navy
+        headerCell.backgroundColor = UIColor(red: 0/255.0, green: 64/255.0, blue: 128/255.0, alpha: 1.0)
         headerCell.appTierLabel.text = "Change Tickets"
         headerCell.appTierLabel.textColor = UIColor.whiteColor()
         headerCell.currentDateHeader.text = formatter.stringFromDate(currentDate)
@@ -275,15 +273,15 @@ class BusinessAppTableViewController: UITableViewController, ChartViewDelegate
             })
         }
          else {
-            let rotationTransform = CATransform3DTranslate(CATransform3DIdentity, 1000, 0, 0)
-            cell.layer.transform = rotationTransform
-            cell.tag = 20
-            
-            UIView.animateWithDuration(1.0, delay: delay, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.3, options: UIViewAnimationOptions.BeginFromCurrentState, animations: {
-                cell.layer.transform = CATransform3DIdentity
-                }, completion: { finished in
-                    
-            })
+//            let rotationTransform = CATransform3DTranslate(CATransform3DIdentity, 1000, 0, 0)
+//            cell.layer.transform = rotationTransform
+//            cell.tag = 20
+//            
+//            UIView.animateWithDuration(1.0, delay: delay, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.3, options: UIViewAnimationOptions.BeginFromCurrentState, animations: {
+//                cell.layer.transform = CATransform3DIdentity
+//                }, completion: { finished in
+//                    
+//            })
         }
         
     }
@@ -412,14 +410,14 @@ class BusinessAppTableViewController: UITableViewController, ChartViewDelegate
         chartData.setValueFont(UIFont(name: "Helvetica", size: 12))
         
         
-        barChartView.leftAxis.drawLabelsEnabled = false
-        barChartView.leftAxis.drawAxisLineEnabled = false
+        barChartView.rightAxis.drawLabelsEnabled = false
+        barChartView.rightAxis.drawAxisLineEnabled = false
         barChartView.leftAxis.gridColor = UIColor.lightGrayColor()
         barChartView.leftAxis.startAtZeroEnabled = true
         barChartView.leftAxis.drawGridLinesEnabled = true
         barChartView.rightAxis.drawGridLinesEnabled = false
-        barChartView.rightAxis.valueFormatter = numberFormatter
-        barChartView.rightAxis.axisLineColor = UIColor.blackColor()
+        barChartView.leftAxis.valueFormatter = numberFormatter
+        barChartView.leftAxis.axisLineColor = UIColor.blackColor()
         barChartView.xAxis.drawGridLinesEnabled = false
         barChartView.descriptionText = ""
         barChartView.data = chartData
@@ -437,7 +435,7 @@ class BusinessAppTableViewController: UITableViewController, ChartViewDelegate
         barChartView.setVisibleXRangeMaximum(6)
         barChartView.moveViewToX(14)
         barChartView.setVisibleYRangeMaximum(20, axis: .Right)
-        barChartView.backgroundColor = UIColor(red: CGFloat(228/255.0), green: CGFloat(241/255.0), blue: CGFloat(254/255.0), alpha: 1)
+        barChartView.backgroundColor = UIColor.whiteColor()
         barChartView.drawBordersEnabled = false
         barChartView.userInteractionEnabled = true
         barChartView.animate(xAxisDuration: 1.0, yAxisDuration: 1.0, easingOption: .Linear)
@@ -446,8 +444,10 @@ class BusinessAppTableViewController: UITableViewController, ChartViewDelegate
     
     func chartValueSelected(chartView: ChartViewBase, entry: ChartDataEntry, dataSetIndex: Int, highlight: ChartHighlight) {
         isGraphSelected = true
+        isShifting = true
         filteredTickets.removeAll()
         filteredNumbers.removeAll()
+        
         if (entry.data != nil) {
             currentDateLabel.text = String(entry.data!)
             currentDateLabel.textColor = UIColor.blackColor()
