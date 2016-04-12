@@ -12,13 +12,11 @@ class CustomHeaderCell: UITableViewCell {
     
 
     @IBOutlet weak var appTierLabel: UILabel!
-    @IBOutlet weak var expandSectionButton: UIButton!
+    @IBOutlet weak var currentDateHeader: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         self.tag = 200
-        expandSectionButton.userInteractionEnabled = true
-        // Initialization code
     }
 
     override func setSelected(selected: Bool, animated: Bool) {

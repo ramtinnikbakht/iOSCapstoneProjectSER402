@@ -40,11 +40,8 @@ class BusinessAppTableViewController: UITableViewController, ChartViewDelegate
     var sortedTickets_Time = [ChangeTicket]()
     var plannedStartDates = [NSDate]()
     var liveTickets = [ChangeTicket]()
-    var isShifting = false
+    var isShifting = true
     var isCollapsed = [false, false, false]
-    var t2Section = [BusinessApp]()
-    var t1Section = [BusinessApp]()
-    var t0Section = [BusinessApp]()
     var liveApps = [BusinessApp]()
     
     // Colors
@@ -57,12 +54,13 @@ class BusinessAppTableViewController: UITableViewController, ChartViewDelegate
     let light_blue = UIColor(red: (228/255.0), green: (241/255.0), blue: (254/255.0), alpha: 1)
     let highlight_green = UIColor(red: CGFloat(46/255.0), green: CGFloat(204/255.0), blue: CGFloat(113/255.0), alpha: 1)
     let aqua = UIColor(red: CGFloat(129/255.0), green: CGFloat(207/255.0), blue: CGFloat(224/255.0), alpha: 1)
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
         
         barChartView.delegate = self
-        tbvc = tabBarController as! TicketTabBarController
+        //tbvc = tabBarController as! TicketTabBarController
 
         var lowRisk : [Double] = []
         var highRisk : [Double] = []
@@ -73,15 +71,15 @@ class BusinessAppTableViewController: UITableViewController, ChartViewDelegate
             let span = time.characters.split{$0 == " "}.map(String.init)
             compare_window += [span[0]]
         }
+
         for time in compare_window {
             var lowCount = 0
             var highCount = 0
-            print(compare_distinct)
             for set in compare_distinct {
                 if (set[0] == time) {
                     if (set[1] == "Low") {
                         lowCount++
-                    } else {
+                    } else if (set[1] == "High") {
                         highCount++
                     }
                 }
@@ -89,7 +87,8 @@ class BusinessAppTableViewController: UITableViewController, ChartViewDelegate
             lowRisk += [Double(lowCount)]
             highRisk += [Double(highCount)]
         }
-        
+        print(lowRisk)
+        print(highRisk)
         barChartView.clear()
         setChart(timeFrame, values: lowRisk, values2: highRisk)
     }
@@ -98,22 +97,21 @@ class BusinessAppTableViewController: UITableViewController, ChartViewDelegate
     {
         DateFormat.locale = NSLocale(localeIdentifier: "US_en")
         DateFormat.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        let now = NSDate()
+        let time1 = DateFormat.stringFromDate(now)
+        let time2 = DateFormat.stringFromDate(now.plusHours(6))
         
-        ConnectionService.sharedInstance.getChange(plannedStart: "2016-03-13 10:00:00", plannedStart2: "2016-03-13 14:00:00", psD: "1")
+        ConnectionService.sharedInstance.getChange(plannedStart: time1, plannedStart2: time2, psD: "1")
         liveTickets = ConnectionService.sharedInstance.ticketList
-//        ConnectionService.sharedInstance.getBusiness(appUnit: "311ab55b95b38980ce51a15d3638639c")
-//        liveApps = ConnectionService.sharedInstance.businessApps
-        print(liveTickets.count)
+
         for ticket in liveTickets {
             let currentTime = DateFormat.dateFromString(ticket.plannedStart)
             plannedStartDates += [currentTime!]
             
         }
         
-        let formatter = NSDateFormatter()
         let total = plannedStartDates.count
         var sortIndex = 0
-        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         while ((sortIndex+1) < total) {
             let time = plannedStartDates[sortIndex]
             let nextTime = plannedStartDates[sortIndex + 1]
@@ -128,25 +126,27 @@ class BusinessAppTableViewController: UITableViewController, ChartViewDelegate
                 sortIndex++
             }
         }
-        var appNames = [String]()
         
         var ticketIndex = 0
         for ticket in liveTickets {
-            let ticketDate = formatter.dateFromString(ticket.plannedStart)!
-            let formatter = NSDateFormatter()
+            let ticketDate = DateFormat.dateFromString(ticket.plannedStart)!
             let minuteString = "00"
+            var hourString = String(ticketDate.hour)
             var ticketTime : String = ""
-            formatter.locale = NSLocale(localeIdentifier: "US_en")
-            formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+
             
+            if (ticketDate.hour >= 12) {
+                hourString = String(ticketDate.hour - 12)
+                print(hourString)
+            }
             if (ticketDate.minute == 0) {
-                ticketTime = String(ticketDate.hour) + ":" + minuteString
+                ticketTime = hourString + ":" + minuteString
             } else if (ticketDate.minute > 0 && ticketDate.minute <= 15){
-                ticketTime = String(ticketDate.hour) + ":" + "15"
+                ticketTime = hourString + ":" + "15"
             } else if (ticketDate.minute > 15 && ticketDate.minute <= 30){
-                ticketTime = String(ticketDate.hour) + ":" + "30"
+                ticketTime = hourString + ":" + "30"
             } else if (ticketDate.minute > 30 && ticketDate.minute <= 45){
-                ticketTime = String(ticketDate.hour) + ":" + "45"
+                ticketTime = hourString + ":" + "45"
             } else {
                 ticketTime = String(ticketDate.plusHours(1)) + minuteString
             }
@@ -186,51 +186,9 @@ class BusinessAppTableViewController: UITableViewController, ChartViewDelegate
         }
         
         testCounts = testCounts.sort({ $0 > $1 })
-        print(compare_distinct)
         
         for i in 0..<compare_distinct.count {
             compare_distinct[i] += [String(totTicketForUnit[i])]
-        }
-
-
-        for app in liveApps {
-            appNames += [app.businessApp]
-            if (app.appCriticality == "Tier 2") {
-                t2Section += [app]
-            } else if (app.appCriticality == "Tier 1") {
-                t1Section += [app]
-            } else if (app.appCriticality == "Tier 0") {
-                t0Section += [app]
-            }
-        }
-        for tier in tierList {
-            var sortIndex = 0
-            if (tier == 2) {
-                for app in t2Section {
-                    if (app.containsEmergencyTicket) {
-                        t2Section.removeAtIndex(sortIndex)
-                        t2Section.insert(app, atIndex: 0)
-                    }
-                    sortIndex++
-                }
-            } else if (tier == 1) {
-                for app in t1Section {
-                    if (app.containsEmergencyTicket) {
-                        t1Section.removeAtIndex(sortIndex)
-                        t1Section.insert(app, atIndex: 0)
-                    }
-                    sortIndex++
-                }
-            } else {
-                for app in t0Section {
-                    if (app.containsEmergencyTicket) {
-                        t0Section.removeAtIndex(sortIndex)
-                        t0Section.insert(app, atIndex: 0)
-                    }
-                    sortIndex++
-                }
-            }
-            
         }
     }
     
@@ -280,18 +238,14 @@ class BusinessAppTableViewController: UITableViewController, ChartViewDelegate
     
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let  headerCell = tableView.dequeueReusableCellWithIdentifier("HeaderCell") as! CustomHeaderCell
-        let collapse = UIImage(named: "expand_less.png")
-        let expand = UIImage(named: "expand_more.png")
-        headerCell.backgroundColor = UIColor(red: (68/255.0), green: (108/255.0), blue: (179/255.0), alpha: 1)
-        headerCell.appTierLabel.text = "Tier " + String(tierList[section])
-        headerCell.appTierLabel.textColor = UIColor(red: (228/255.0), green: (241/255.0), blue: (254/255.0), alpha: 1)
-        headerCell.expandSectionButton.tag = (section)
-        
-        if (isCollapsed[section]) {
-            headerCell.expandSectionButton.setImage(expand!, forState: .Normal)
-        } else {
-            headerCell.expandSectionButton.setImage(collapse!, forState: .Normal)
-        }
+        let formatter = NSDateFormatter()
+        let currentDate = NSDate()
+        formatter.dateFormat = "MMMM dd, yyyy"
+        headerCell.backgroundColor = navy
+        headerCell.appTierLabel.text = "Change Tickets"
+        headerCell.appTierLabel.textColor = UIColor.whiteColor()
+        headerCell.currentDateHeader.text = formatter.stringFromDate(currentDate)
+        headerCell.currentDateHeader.textColor = UIColor.whiteColor()
         
         return headerCell
     }
@@ -416,23 +370,23 @@ class BusinessAppTableViewController: UITableViewController, ChartViewDelegate
         var dataEntry = BarChartDataEntry()
         for i in 0..<dataPoints.count {
             if (values[i] > 0) {
-                dataEntry = BarChartDataEntry(value: values[index], xIndex: i, data: dataPoints[i])
+                dataEntry = BarChartDataEntry(value: values[i], xIndex: i, data: dataPoints[i])
                 dataEntries.append(dataEntry)
                 index++
             } else {
-                dataEntry = BarChartDataEntry(value: values[index], xIndex: i, data: dataPoints[i])
+                dataEntry = BarChartDataEntry(value: values[i], xIndex: i, data: dataPoints[i])
                 dataEntries.append(dataEntry)
             }
         }
         var index2 = 0
         var dataEntry2 = BarChartDataEntry()
         for i in 0..<dataPoints.count {
-            if (values[i] > 0) {
-                dataEntry2 = BarChartDataEntry(value: values2[index2], xIndex: i, data: dataPoints[i])
+            if (values2[i] > 0) {
+                dataEntry2 = BarChartDataEntry(value: values2[i], xIndex: i, data: dataPoints[i])
                 dataEntries2.append(dataEntry2)
                 index2++
             } else {
-                dataEntry2 = BarChartDataEntry(value: values2[index2], xIndex: i)
+                dataEntry2 = BarChartDataEntry(value: values2[i], xIndex: i)
                 dataEntries2.append(dataEntry2)
             }
         }
@@ -444,6 +398,7 @@ class BusinessAppTableViewController: UITableViewController, ChartViewDelegate
         chartDataSet2.colors = [high]
         
         let dataSets: [BarChartDataSet] = [chartDataSet,chartDataSet2]
+        
         let numberFormatter = NSNumberFormatter()
 
         let chartData = BarChartData(xVals: dataPoints, dataSets: dataSets)
@@ -461,16 +416,16 @@ class BusinessAppTableViewController: UITableViewController, ChartViewDelegate
         barChartView.leftAxis.drawAxisLineEnabled = false
         barChartView.leftAxis.gridColor = UIColor.lightGrayColor()
         barChartView.leftAxis.startAtZeroEnabled = true
-        barChartView.descriptionText = ""
-        barChartView.rightAxis.drawGridLinesEnabled = false
-        barChartView.xAxis.drawGridLinesEnabled = false
-        barChartView.xAxis.axisLineColor = UIColor.lightGrayColor()
         barChartView.leftAxis.drawGridLinesEnabled = true
-        barChartView.rightAxis.enabled = false
+        barChartView.rightAxis.drawGridLinesEnabled = false
+        barChartView.rightAxis.valueFormatter = numberFormatter
+        barChartView.rightAxis.axisLineColor = UIColor.blackColor()
+        barChartView.xAxis.drawGridLinesEnabled = false
+        barChartView.descriptionText = ""
         barChartView.data = chartData
-        barChartView.leftAxis.customAxisMin = max(0.0, barChartView.data!.yMin)
-        barChartView.leftAxis.customAxisMax = min(10.0, barChartView.data!.yMax + 1.0)
-        
+        barChartView.setExtraOffsets(left: 0, top: 0, right: 0, bottom: 7)
+        barChartView.xAxis.axisLineColor = UIColor.blackColor()
+        barChartView.xAxis.xOffset = 10
         
         // Legend Data
         barChartView.legend.position = .RightOfChartInside
@@ -481,6 +436,7 @@ class BusinessAppTableViewController: UITableViewController, ChartViewDelegate
         
         barChartView.setVisibleXRangeMaximum(6)
         barChartView.moveViewToX(14)
+        barChartView.setVisibleYRangeMaximum(20, axis: .Right)
         barChartView.backgroundColor = UIColor(red: CGFloat(228/255.0), green: CGFloat(241/255.0), blue: CGFloat(254/255.0), alpha: 1)
         barChartView.drawBordersEnabled = false
         barChartView.userInteractionEnabled = true
