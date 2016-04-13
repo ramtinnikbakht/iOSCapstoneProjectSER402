@@ -460,15 +460,25 @@ class BusinessAppTableViewController: UITableViewController, ChartViewDelegate
                     filteredNumbers += [set[2]]
                 }
             }
-            for ticket in liveTickets {
-                for number in filteredNumbers {
-                    if (ticket.number == number) {
-                        filteredTickets += [ticket]
+            if (dataSetIndex == 0) {
+                for ticket in liveTickets {
+                    for number in filteredNumbers {
+                        if (ticket.number == number && ticket.risk == "Low") {
+                            filteredTickets += [ticket]
+                        }
                     }
                 }
+                tableView.reloadData()
+            } else {
+                for ticket in liveTickets {
+                    for number in filteredNumbers {
+                        if (ticket.number == number && ticket.risk == "High") {
+                            filteredTickets += [ticket]
+                        }
+                    }
+                }
+                tableView.reloadData()
             }
-            
-            tableView.reloadData()
         }
     }
     
