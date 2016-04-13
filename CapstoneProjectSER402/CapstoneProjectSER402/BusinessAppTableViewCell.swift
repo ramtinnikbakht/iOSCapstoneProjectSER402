@@ -16,9 +16,9 @@ class BusinessAppTableViewCell: UITableViewCell
     // MARK: Properties
     
     @IBOutlet weak var ticketID: UILabel!
-
     @IBOutlet weak var plannedStartLabel: UILabel!
     @IBOutlet weak var riskIndicator: UIImageView!
+    @IBOutlet weak var emergencyIndicator: UIImageView!
     
     var ticket: ChangeTicket!
         {

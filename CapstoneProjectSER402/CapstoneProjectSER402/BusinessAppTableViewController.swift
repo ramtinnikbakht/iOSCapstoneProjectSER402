@@ -100,7 +100,7 @@ class BusinessAppTableViewController: UITableViewController, ChartViewDelegate
         let time1 = DateFormat.stringFromDate(now)
         let time2 = DateFormat.stringFromDate(now.plusHours(6))
         
-        ConnectionService.sharedInstance.getChange(plannedStart: "2016-02-23 17:00:00", plannedStart2: "2016-02-23 21:30:00", psD: "1")
+        ConnectionService.sharedInstance.getChange(plannedStart: "2016-01-25 05:00:00", plannedStart2: "2016-01-25 10:30:00", psD: "1")
         liveTickets = ConnectionService.sharedInstance.ticketList
 
         for ticket in liveTickets {
@@ -221,6 +221,9 @@ class BusinessAppTableViewController: UITableViewController, ChartViewDelegate
             cell.riskIndicator.backgroundColor = low
         } else if (ticket.risk == "High") {
             cell.riskIndicator.backgroundColor = high
+        }
+        if (ticket.type == "Emergency") {
+            cell.emergencyIndicator.image = UIImage(named: "emergency.png")
         }
         let white = UIColor.whiteColor()
         cell.layer.shadowColor = white.CGColor
@@ -389,14 +392,13 @@ class BusinessAppTableViewController: UITableViewController, ChartViewDelegate
             }
         }
         
-        let chartDataSet = BarChartDataSet(yVals: dataEntries, label: " ")
-        let chartDataSet2 = BarChartDataSet(yVals: dataEntries2, label: " ")
+        let chartDataSet = BarChartDataSet(yVals: dataEntries, label: "Low Risk")
+        let chartDataSet2 = BarChartDataSet(yVals: dataEntries2, label: "High Risk")
         chartDataSet2.drawValuesEnabled = false
-        chartDataSet.colors =  [low]
+        chartDataSet.colors = [low]
         chartDataSet2.colors = [high]
-        
+        chartDataSet.highlightColor = navy_comp
         let dataSets: [BarChartDataSet] = [chartDataSet,chartDataSet2]
-        
         let numberFormatter = NSNumberFormatter()
 
         let chartData = BarChartData(xVals: dataPoints, dataSets: dataSets)
@@ -408,7 +410,6 @@ class BusinessAppTableViewController: UITableViewController, ChartViewDelegate
         barChartView.noDataTextDescription = "Data has not been selected"
         
         chartData.setValueFont(UIFont(name: "Helvetica", size: 12))
-        
         
         barChartView.rightAxis.drawLabelsEnabled = false
         barChartView.rightAxis.drawAxisLineEnabled = false
@@ -479,24 +480,18 @@ class BusinessAppTableViewController: UITableViewController, ChartViewDelegate
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
-//        if segue.identifier == "showAppDetail" {
-//            if (sender.tag == 20) {
-//                let indexPath:NSIndexPath = self.tableView.indexPathForSelectedRow!
-//                let detailVC:ChangeTicketTableViewController = segue.destinationViewController as! ChangeTicketTableViewController
-//                let app:BusinessApp
-//                if (indexPath.section == 0) {
-//                    app = t2Section[indexPath.row] as BusinessApp
-//                } else if (indexPath.section == 1) {
-//                    app = t1Section[indexPath.row] as BusinessApp
-//                } else if (indexPath.section == 2) {
-//                    app = t0Section[indexPath.row] as BusinessApp
-//                } else {
-//                    app = BusinessApp(appId: "", businessAppSys: "", businessApp: "", appCriticality: "", owner: "", ownerSys: "", businessArea: "", businessAreaSys: "", businessUnit: "", businessUnitSys: "", businessSubUnitSys: "", businessSubUnit: "", ticketCount: 0)
-//                }
-//                
-//                detailVC.selectedApp = app
-//            }
-//        }
+        if segue.identifier == "showAppDetail" {
+            let indexPath:NSIndexPath = self.tableView.indexPathForSelectedRow!
+            let detailVC:ChangeTicketTableViewController = segue.destinationViewController as! ChangeTicketTableViewController
+            let ticket:ChangeTicket
+            
+            if (isGraphSelected) {
+                ticket = filteredTickets[indexPath.row]
+            } else {
+                ticket = liveTickets[indexPath.row]
+            }
+            detailVC.selectedTicket = ticket
+        }
    }
         
 }

@@ -14,10 +14,16 @@ import QuartzCore
 class ChangeTicketTableViewController: UITableViewController, ChartViewDelegate {
     
     // MARK: Properties
-    @IBOutlet weak var selectedAppLabel: UILabel!
-    @IBOutlet weak var pieChartView: PieChartView!
-    @IBOutlet weak var lineChartView: LineChartView!
+    @IBOutlet weak var selectedTicketNumber: UILabel!
     @IBOutlet weak var profilePageControl: UIPageControl!
+    @IBOutlet weak var plannedStartLabel: UILabel!
+    @IBOutlet weak var plannedEndLabel: UILabel!
+    @IBOutlet weak var changeTypeLabel: UILabel!
+    @IBOutlet weak var riskLabel: UILabel!
+    @IBOutlet weak var businessUnitLabel: UILabel!
+    @IBOutlet weak var businessAreaLabel: UILabel!
+    @IBOutlet weak var businessSectionView: UIView!
+    @IBOutlet weak var subBusinessUnitLabel: UILabel!
     
     private var tbvc = TicketTabBarController()
     private var tickets = TicketModel()
@@ -35,7 +41,7 @@ class ChangeTicketTableViewController: UITableViewController, ChartViewDelegate 
     let riskLevels = ["Low", "High"]
     let appNames : [String] = []
     let DateFormat = NSDateFormatter()
-    var selectedApp = BusinessApp(appId: "", businessAppSys: "", businessApp: "", appCriticality: "", owner: "", ownerSys: "", businessArea: "", businessAreaSys: "", businessUnit: "", businessUnitSys: "", businessSubUnitSys: "", businessSubUnit: "", ticketCount: 0)
+    var selectedTicket = ChangeTicket(number: "", approver: "", plannedStart: "", plannedEnd: "", actualStart: "", actualEnd: "", requestedByGroup: "", requestedByGroupBusinessArea: "", requestedByGroupBusinessUnit: "", requestedByGroupSubBusinessUnit: "", causeCompleteServiceAppOutage: "", risk: "", type: "", impactScore: "", shortDescription: "", changeReason: "", closureCode: "", ImpactedEnviroment: "", SecondaryClosureCode: "", PartofRelease: "", BusinessApplication: "", BusinessApplicationCriticalityTier: "")
     
     // Colors
     let low = UIColor(red: CGFloat(38/255.0), green: CGFloat(166/255.0), blue: CGFloat(91/255.0), alpha: 1)
@@ -43,30 +49,40 @@ class ChangeTicketTableViewController: UITableViewController, ChartViewDelegate 
     let high = UIColor(red: CGFloat(207/255.0), green: CGFloat(0), blue: CGFloat(15/255.0), alpha: 1)
     let navy = UIColor(red: 0/255.0, green: 64/255.0, blue: 128/255.0, alpha: 1.0)
     let navy_comp = UIColor(red: CGFloat(51/255.0), green: CGFloat(204/255.0), blue: CGFloat(153/255.0), alpha: 1)
+    let silver = UIColor(red: CGFloat(218/255.0), green: CGFloat(223/255.0), blue: CGFloat(225/255.0), alpha: 1)
+    let light_blue = UIColor(red: (228/255.0), green: (241/255.0), blue: (254/255.0), alpha: 1)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        pieChartView.delegate = self
-        lineChartView.delegate = self
-        selectedAppLabel.text = selectedApp.businessApp
+        //pieChartView.delegate = self
+        //lineChartView.delegate = self
+        selectedTicketNumber.text = selectedTicket.number
+        plannedStartLabel.text = selectedTicket.plannedStart
+        plannedEndLabel.text = selectedTicket.plannedEnd
+        changeTypeLabel.text = selectedTicket.type + " / " + selectedTicket.risk
+        businessUnitLabel.text = selectedTicket.requestedByGroupBusinessUnit
+        subBusinessUnitLabel.text = selectedTicket.requestedByGroupSubBusinessUnit
+        businessAreaLabel.text = selectedTicket.requestedByGroupBusinessArea
+        businessSectionView.backgroundColor = light_blue
+        print(selectedTicket.PartofRelease)
         configurePageControl()
         loadTickets()
         
-        let ticketCount = [Double(lowRiskTickets.count), Double(highRiskTickets.count)]
+        //let ticketCount = [Double(lowRiskTickets.count), Double(highRiskTickets.count)]
         
-        setPieChart(riskLevels, values: ticketCount)
+        //setPieChart(riskLevels, values: ticketCount)
     }
     
     @IBAction func pageControlUpdated(sender: AnyObject) {
         if (sender.currentPage! == 0) {
             let ticketCount = [Double(lowRiskTickets.count), Double(highRiskTickets.count)]
-            lineChartView.hidden = true
-            pieChartView.hidden = false
-            setPieChart(riskLevels, values: ticketCount)
+            //lineChartView.hidden = true
+            //pieChartView.hidden = false
+            //setPieChart(riskLevels, values: ticketCount)
         } else {
-            lineChartView.hidden = false
-            pieChartView.hidden = true
+            //lineChartView.hidden = false
+            //pieChartView.hidden = true
             
             // X Value (Time) Setup
             var timeRange : [NSDate] = getTimeRange()
@@ -109,7 +125,7 @@ class ChangeTicketTableViewController: UITableViewController, ChartViewDelegate 
                 }
             }
             
-            setLineChart(stringRange, values: values)
+            //setLineChart(stringRange, values: values)
         }
     }
     
@@ -117,7 +133,6 @@ class ChangeTicketTableViewController: UITableViewController, ChartViewDelegate 
         DateFormat.locale = NSLocale(localeIdentifier: "en_US_POSIX")
         DateFormat.dateFormat = "yyyy-MM-dd HH:mm:ss"
 
-        print(selectedApp.businessSubUnitSys)
         ConnectionService.sharedInstance.getChange(plannedStart: "2016-04-09 23:00:00", plannedStart2: "2016-04-10 4:00:00", psD: "1")
         liveTickets = ConnectionService.sharedInstance.ticketList
 
@@ -246,102 +261,102 @@ class ChangeTicketTableViewController: UITableViewController, ChartViewDelegate 
         }
     }
     
-    func setPieChart(dataPoints: [String], values: [Double]) {
-        pieChartView.clear()
-        var dataEntries: [ChartDataEntry] = []
-        
-        for i in 0..<dataPoints.count {
-            let dataEntry = ChartDataEntry(value: values[i], xIndex: i, data: dataPoints[i])
-            dataEntries.append(dataEntry)
-        }
-        
-        let pieChartDataSet = PieChartDataSet(yVals: dataEntries, label: "Risk Level")
-        let pieChartData = PieChartData(xVals: dataPoints, dataSet: pieChartDataSet)
-        let numberFormatter = NSNumberFormatter()
-        
-        
-        numberFormatter.generatesDecimalNumbers = false
-        pieChartData.setValueFormatter(numberFormatter)
-        pieChartData.setValueFont(UIFont(name: "Helvetica", size: 17))
-        pieChartView.data = pieChartData
-        
-        
-        var colors: [UIColor] = []
-    
-        for i in 0..<dataPoints.count {
-            if (dataPoints[i] == "Low") {
-                let color = low
-                colors.append(color)
-            } else if (dataPoints[i] == "High"){
-                let color = high
-                colors.append(color)
-            }
-            pieChartDataSet.colors = colors
-        }
-        
-        // Legend Data
-        pieChartView.legend.position = .RightOfChartInside
-        pieChartView.legend.font = UIFont(name: "Helvetica", size: 10)!
-        pieChartView.legend.colors = [low, high]
-        pieChartView.legend.labels = ["Low", "High"]
-        pieChartView.legend.enabled = true
-        
-        pieChartView.drawCenterTextEnabled = true
-        pieChartView.drawSliceTextEnabled = false
-        pieChartView.rotationEnabled = false
-        pieChartView.descriptionText = ""
-        pieChartView.animate(xAxisDuration: 1.0, yAxisDuration: 1.0, easingOption: .EaseOutSine)
-    }
-    
-    func setLineChart(dataPoints: [String], values: [Double]) {
-        lineChartView.clear()
-        var dataEntries: [ChartDataEntry] = []
-        
-        for i in 0..<dataPoints.count {
-            let dataEntry = ChartDataEntry(value: values[i], xIndex: i)
-            dataEntries.append(dataEntry)
-        }
-        
-        let lineChartDataSet = LineChartDataSet(yVals: dataEntries, label: "Change Tickets")
-        let lineChartData = LineChartData(xVals: dataPoints, dataSet: lineChartDataSet)
-        let numberFormatter = NSNumberFormatter()
-        
-        lineChartDataSet.axisDependency = .Left
-        
-        numberFormatter.generatesDecimalNumbers = false
-        lineChartData.setValueFormatter(numberFormatter)
-        lineChartData.setDrawValues(false)
-        lineChartData.setValueFont(UIFont(name: "Helvetica", size: 12))
-        lineChartDataSet.setColor(navy.colorWithAlphaComponent(0.5))
-        lineChartDataSet.fillAlpha = 62 / 255.0
-        lineChartDataSet.setCircleColor(navy) // our circle will be dark red
-        lineChartDataSet.lineWidth = 2.0
-        lineChartDataSet.circleRadius = 6.0
-        
-
-        // Legend Data
-        lineChartView.legend.position = .RightOfChartInside
-        lineChartView.legend.font = UIFont(name: "Helvetica", size: 10)!
-        lineChartView.legend.colors = [low, med, high]
-        lineChartView.legend.labels = ["Low","Medium","High"]
-        lineChartView.legend.enabled = true
-        
-        lineChartView.leftAxis.valueFormatter = numberFormatter
-        lineChartView.leftAxis.drawAxisLineEnabled = false
-        lineChartView.rightAxis.drawGridLinesEnabled = false
-        lineChartView.rightAxis.drawLabelsEnabled = false
-        lineChartView.rightAxis.drawAxisLineEnabled = false
-        lineChartView.xAxis.drawGridLinesEnabled = false
-        lineChartView.xAxis.drawAxisLineEnabled = false
-        lineChartView.xAxis.labelPosition = .Bottom
-        lineChartView.descriptionText = ""
-        lineChartView.extraRightOffset = 20
-        lineChartView.userInteractionEnabled = false
-        lineChartView.animate(yAxisDuration: 1.0, easingOption: .EaseInCubic)
-        
-        lineChartView.data = lineChartData
-        
-    }
+//    func setPieChart(dataPoints: [String], values: [Double]) {
+//        pieChartView.clear()
+//        var dataEntries: [ChartDataEntry] = []
+//        
+//        for i in 0..<dataPoints.count {
+//            let dataEntry = ChartDataEntry(value: values[i], xIndex: i, data: dataPoints[i])
+//            dataEntries.append(dataEntry)
+//        }
+//        
+//        let pieChartDataSet = PieChartDataSet(yVals: dataEntries, label: "Risk Level")
+//        let pieChartData = PieChartData(xVals: dataPoints, dataSet: pieChartDataSet)
+//        let numberFormatter = NSNumberFormatter()
+//        
+//        
+//        numberFormatter.generatesDecimalNumbers = false
+//        pieChartData.setValueFormatter(numberFormatter)
+//        pieChartData.setValueFont(UIFont(name: "Helvetica", size: 17))
+//        pieChartView.data = pieChartData
+//        
+//        
+//        var colors: [UIColor] = []
+//    
+//        for i in 0..<dataPoints.count {
+//            if (dataPoints[i] == "Low") {
+//                let color = low
+//                colors.append(color)
+//            } else if (dataPoints[i] == "High"){
+//                let color = high
+//                colors.append(color)
+//            }
+//            pieChartDataSet.colors = colors
+//        }
+//        
+//        // Legend Data
+//        pieChartView.legend.position = .RightOfChartInside
+//        pieChartView.legend.font = UIFont(name: "Helvetica", size: 10)!
+//        pieChartView.legend.colors = [low, high]
+//        pieChartView.legend.labels = ["Low", "High"]
+//        pieChartView.legend.enabled = true
+//        
+//        pieChartView.drawCenterTextEnabled = true
+//        pieChartView.drawSliceTextEnabled = false
+//        pieChartView.rotationEnabled = false
+//        pieChartView.descriptionText = ""
+//        pieChartView.animate(xAxisDuration: 1.0, yAxisDuration: 1.0, easingOption: .EaseOutSine)
+//    }
+//    
+//    func setLineChart(dataPoints: [String], values: [Double]) {
+//        lineChartView.clear()
+//        var dataEntries: [ChartDataEntry] = []
+//        
+//        for i in 0..<dataPoints.count {
+//            let dataEntry = ChartDataEntry(value: values[i], xIndex: i)
+//            dataEntries.append(dataEntry)
+//        }
+//        
+//        let lineChartDataSet = LineChartDataSet(yVals: dataEntries, label: "Change Tickets")
+//        let lineChartData = LineChartData(xVals: dataPoints, dataSet: lineChartDataSet)
+//        let numberFormatter = NSNumberFormatter()
+//        
+//        lineChartDataSet.axisDependency = .Left
+//        
+//        numberFormatter.generatesDecimalNumbers = false
+//        lineChartData.setValueFormatter(numberFormatter)
+//        lineChartData.setDrawValues(false)
+//        lineChartData.setValueFont(UIFont(name: "Helvetica", size: 12))
+//        lineChartDataSet.setColor(navy.colorWithAlphaComponent(0.5))
+//        lineChartDataSet.fillAlpha = 62 / 255.0
+//        lineChartDataSet.setCircleColor(navy) // our circle will be dark red
+//        lineChartDataSet.lineWidth = 2.0
+//        lineChartDataSet.circleRadius = 6.0
+//        
+//
+//        // Legend Data
+//        lineChartView.legend.position = .RightOfChartInside
+//        lineChartView.legend.font = UIFont(name: "Helvetica", size: 10)!
+//        lineChartView.legend.colors = [low, med, high]
+//        lineChartView.legend.labels = ["Low","Medium","High"]
+//        lineChartView.legend.enabled = true
+//        
+//        lineChartView.leftAxis.valueFormatter = numberFormatter
+//        lineChartView.leftAxis.drawAxisLineEnabled = false
+//        lineChartView.rightAxis.drawGridLinesEnabled = false
+//        lineChartView.rightAxis.drawLabelsEnabled = false
+//        lineChartView.rightAxis.drawAxisLineEnabled = false
+//        lineChartView.xAxis.drawGridLinesEnabled = false
+//        lineChartView.xAxis.drawAxisLineEnabled = false
+//        lineChartView.xAxis.labelPosition = .Bottom
+//        lineChartView.descriptionText = ""
+//        lineChartView.extraRightOffset = 20
+//        lineChartView.userInteractionEnabled = false
+//        lineChartView.animate(yAxisDuration: 1.0, easingOption: .EaseInCubic)
+//        
+//        lineChartView.data = lineChartData
+//        
+//    }
     
     func getTimeRange() -> [NSDate] {
         var range : [NSDate] = []
@@ -357,45 +372,45 @@ class ChangeTicketTableViewController: UITableViewController, ChartViewDelegate 
         return range
     }
     
-    func chartValueSelected(chartView: ChartViewBase, entry: ChartDataEntry, dataSetIndex: Int, highlight: ChartHighlight) {
-        shouldAnimate = true
-        isGraphSelected = true
-        filteredTickets.removeAll()
-        
-        if (entry.data! as! String == "Low") {
-            let percent = Int((entry.value / Double(liveTickets.count)) * 100.0)
-            pieChartView.centerAttributedText = NSAttributedString(string: (String(percent) + "%"), attributes: [
-                NSForegroundColorAttributeName: NSUIColor(red: CGFloat(38/255.0), green: CGFloat(166/255.0), blue: CGFloat(91/255.0), alpha: 1),
-                NSFontAttributeName: NSUIFont(name: "Helvetica", size: 25)! ])
-            for ticket in liveTickets {
-                if (ticket.risk == "Low") {
-                    filteredTickets += [ticket]
-                }
-            }
-        }
-        else if(entry.data! as! String == "High") {
-            let percent = Int((entry.value / Double(liveTickets.count)) * 100.0)
-            pieChartView.centerAttributedText = NSAttributedString(string: (String(percent) + "%"), attributes: [
-                NSForegroundColorAttributeName: NSUIColor(red: CGFloat(207/255.0), green: CGFloat(0), blue: CGFloat(15/255.0), alpha: 1),
-                NSFontAttributeName: NSUIFont(name: "Helvetica", size: 25)! ])
-            for ticket in liveTickets {
-                if (ticket.risk == "High") {
-                    filteredTickets += [ticket]
-                }
-            }
-        }
-        tableView.reloadData()
-    }
-    
-    func chartValueNothingSelected(chartView: ChartViewBase) {
-        shouldAnimate = true
-        isGraphSelected = false
-        pieChartView.centerText?.removeAll()
-        tableView.reloadData()
-    }
+//    func chartValueSelected(chartView: ChartViewBase, entry: ChartDataEntry, dataSetIndex: Int, highlight: ChartHighlight) {
+//        shouldAnimate = true
+//        isGraphSelected = true
+//        filteredTickets.removeAll()
+//        
+//        if (entry.data! as! String == "Low") {
+//            let percent = Int((entry.value / Double(liveTickets.count)) * 100.0)
+//            //pieChartView.centerAttributedText = NSAttributedString(string: (String(percent) + "%"), attributes: [
+//                NSForegroundColorAttributeName: NSUIColor(red: CGFloat(38/255.0), green: CGFloat(166/255.0), blue: CGFloat(91/255.0), alpha: 1),
+//                NSFontAttributeName: NSUIFont(name: "Helvetica", size: 25)! ])
+//            for ticket in liveTickets {
+//                if (ticket.risk == "Low") {
+//                    filteredTickets += [ticket]
+//                }
+//            }
+//        }
+//        else if(entry.data! as! String == "High") {
+//            let percent = Int((entry.value / Double(liveTickets.count)) * 100.0)
+//            //pieChartView.centerAttributedText = NSAttributedString(string: (String(percent) + "%"), attributes: [
+//                NSForegroundColorAttributeName: NSUIColor(red: CGFloat(207/255.0), green: CGFloat(0), blue: CGFloat(15/255.0), alpha: 1),
+//                NSFontAttributeName: NSUIFont(name: "Helvetica", size: 25)! ])
+//            for ticket in liveTickets {
+//                if (ticket.risk == "High") {
+//                    filteredTickets += [ticket]
+//                }
+//            }
+//        }
+//        tableView.reloadData()
+//    }
+//    
+//    func chartValueNothingSelected(chartView: ChartViewBase) {
+//        shouldAnimate = true
+//        isGraphSelected = false
+//        //pieChartView.centerText?.removeAll()
+//        tableView.reloadData()
+//    }
     
     func configurePageControl() {
-        profilePageControl.backgroundColor = UIColor(red: (68/255.0), green: (108/255.0), blue: (179/255.0), alpha: 1)
+        profilePageControl.backgroundColor = navy
         profilePageControl.pageIndicatorTintColor = UIColor.lightGrayColor()
         profilePageControl.currentPageIndicatorTintColor = UIColor.whiteColor()
     }

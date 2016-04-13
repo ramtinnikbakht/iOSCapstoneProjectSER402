@@ -13,6 +13,7 @@ import Foundation
 class ArchiveTableViewController: UITableViewController, UITextFieldDelegate, ChartViewDelegate {
     
     @IBOutlet weak var pieChartView: PieChartView!
+    @IBOutlet weak var timeSegmentControl: UISegmentedControl!
     
     private var tickets = TicketModel()
     private var tbvc = TicketTabBarController()
@@ -26,7 +27,6 @@ class ArchiveTableViewController: UITableViewController, UITextFieldDelegate, Ch
     var fullTickets = [ChangeTicket]()
     var changeTickets = [ChangeTicket]()
     var filteredTickets = [ChangeTicket]()
-    var sortedTickets_Time = [ChangeTicket]()
     var selectedApp = String()
     var selectedIndexPath : NSIndexPath?
     var isShifting = false
@@ -37,7 +37,6 @@ class ArchiveTableViewController: UITableViewController, UITextFieldDelegate, Ch
     var cc4Tickets = Array<[ChangeTicket]>()
     var cc5Tickets = Array<[ChangeTicket]>()
     var cc6Tickets = Array<[ChangeTicket]>()
-    
     
     let cellIdentifier = "TicketCell"
     let appNames : [String] = []
@@ -83,36 +82,80 @@ class ArchiveTableViewController: UITableViewController, UITextFieldDelegate, Ch
         closeKeyboard()
     }
     
-    func loadSampleTickets() {
+    @IBAction func timeIndexChanged(sender: AnyObject) {
+        switch timeSegmentControl.selectedSegmentIndex
+        {
+        case 0:
+            pieChartView.resignFirstResponder()
+            tableView.resignFirstResponder()
+            liveTickets.removeAll()
+            ConnectionService.sharedInstance.getChange(actualEnd: "2016-03-10 00:00:00", actualEnd2: "2016-03-10 24:00:00", aeD: "1")
+            liveTickets = ConnectionService.sharedInstance.ticketList
+            sortClosureCodes()
+            setValuesForGraph()
+            tableView.reloadData()
+        case 1:
+            pieChartView.resignFirstResponder()
+            tableView.resignFirstResponder()
+            liveTickets.removeAll()
+            ConnectionService.sharedInstance.getChange(actualEnd: "2016-03-07 00:00:00", actualEnd2: "2016-03-07 24:00:00", aeD: "1")
+            liveTickets = ConnectionService.sharedInstance.ticketList
+            sortClosureCodes()
+            setValuesForGraph()
+            tableView.reloadData()
+        case 2:
+            pieChartView.resignFirstResponder()
+            tableView.resignFirstResponder()
+            liveTickets.removeAll()
+            ConnectionService.sharedInstance.getChange(actualEnd: "2016-03-08 00:00:00", actualEnd2: "2016-03-08 24:00:00", aeD: "1")
+            liveTickets = ConnectionService.sharedInstance.ticketList
+            sortClosureCodes()
+            setValuesForGraph()
+            tableView.reloadData()
+        default:
+            break;
+        }
+    }
+    
+    func loadTickets() {
         DateFormat.locale = NSLocale(localeIdentifier: "US_en")
         DateFormat.dateFormat = "yyyy-MM-dd HH:mm:ss"
         let now = NSDate()
         let time1 = DateFormat.stringFromDate(now)
-        let time2 = DateFormat.stringFromDate(now.plusHours(6))
+        let time2 = DateFormat.stringFromDate(now.minusDays(2))
         
-        ConnectionService.sharedInstance.getChange(plannedStart: "2016-03-09 06:00:00", plannedStart2: "2016-03-10 20:30:00", psD: "1")
+        ConnectionService.sharedInstance.getChange(actualEnd: "2016-03-10 00:00:00", actualEnd2: "2016-03-10 24:00:00", aeD: "1")
         liveTickets = ConnectionService.sharedInstance.ticketList
         
+        sortClosureCodes()
+    }
+    
+    func sortClosureCodes() {
+        cc1Tickets.removeAll()
+        cc2Tickets.removeAll()
+        cc3Tickets.removeAll()
+        cc4Tickets.removeAll()
+        cc5Tickets.removeAll()
+        cc6Tickets.removeAll()
+        activeCodes.removeAll()
         for ticket in liveTickets {
-            print(ticket.closureCode)
             if (ticket.closureCode == "Implemented as Planned") {
                 cc1Tickets.append(Array(arrayLiteral: ticket))
-
+                
             } else if (ticket.closureCode == "Implemented with Effort") {
                 cc2Tickets.append(Array(arrayLiteral: ticket))
-
+                
             } else if (ticket.closureCode == "Backed Out No Customer/User Impacts") {
                 cc3Tickets.append(Array(arrayLiteral: ticket))
-
+                
             } else if (ticket.closureCode == "Implemented with Issues") {
                 cc4Tickets.append(Array(arrayLiteral: ticket))
-
+                
             } else if (ticket.closureCode == "Backed Out Customer/User Impacts") {
                 cc5Tickets.append(Array(arrayLiteral: ticket))
-
+                
             } else if (ticket.closureCode == "") {
                 cc6Tickets.append(Array(arrayLiteral: ticket))
-
             }
             
             if (activeCodes.contains(ticket.closureCode)) {
@@ -123,14 +166,7 @@ class ArchiveTableViewController: UITableViewController, UITextFieldDelegate, Ch
         }
     }
     
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    
-        pieChartView.delegate = self
-        loadSampleTickets()
-
-        // Do any additional setup after loading the view.
+    func setValuesForGraph() {
         var values : [Double] = []
         for code in activeCodes {
             if (code == closureCodes[0]) {
@@ -143,14 +179,21 @@ class ArchiveTableViewController: UITableViewController, UITextFieldDelegate, Ch
                 values += [Double(cc4Tickets.count)]
             } else if (code == closureCodes[4]) {
                 values += [Double(cc5Tickets.count)]
-            } else if (code == closureCodes[5]) {
-                values += [Double(cc6Tickets.count)]
             } else {
                 values += [Double(cc6Tickets.count)]
             }
         }
-    
         setChart(activeCodes, values: values)
+    }
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    
+        pieChartView.delegate = self
+        loadTickets()
+        sortClosureCodes()
+        setValuesForGraph()
         
     }
     
@@ -280,42 +323,6 @@ class ArchiveTableViewController: UITableViewController, UITextFieldDelegate, Ch
         return range
     }
     
-    func sortTimeRange(var range: [NSDate]) {
-        var stringRange : [String] = []
-        let formatter = NSDateFormatter()
-        let total = range.count
-        var sortIndex = 0
-        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        
-        while ((sortIndex+1) < total) {
-            let time = range[sortIndex]
-            let nextTime = range[sortIndex + 1]
-            
-            if nextTime.isGreaterThan(time) {
-                range.removeAtIndex(sortIndex+1)
-                range.removeAtIndex(sortIndex)
-                range.insert(nextTime, atIndex: sortIndex)
-                range.insert(time, atIndex: sortIndex+1)
-                sortIndex=0
-            } else {
-                sortIndex++
-            }
-        }
-        var sortIndex2 = 0
-        for time in range {
-            let formattedTime = formatter.stringFromDate(time)
-            for ticket in liveTickets {
-                if (ticket.plannedStart == formattedTime) {
-                    sortedTickets_Time += [ticket]
-                    print(sortedTickets_Time[sortIndex2].plannedStart)
-                    sortIndex2++
-                }
-            }
-            stringRange += [formattedTime]
-        }
-        print(stringRange)
-    }
-    
     func setChart(var dataPoints: [String], var values: [Double]) {
         pieChartView.clear()
         var dataEntries: [ChartDataEntry] = []
@@ -423,7 +430,7 @@ class ArchiveTableViewController: UITableViewController, UITextFieldDelegate, Ch
             pieChartView.centerAttributedText = NSAttributedString(string: closureCodes[3], attributes: [
                 NSForegroundColorAttributeName: UIColor.lightGrayColor(),
                 NSFontAttributeName: NSUIFont(name: "Helvetica", size: 10)! ])
-            for ticket in changeTickets {
+            for ticket in liveTickets {
                 if (ticket.closureCode == "Implemented with Issues") {
                     filteredTickets += [ticket]
                 }

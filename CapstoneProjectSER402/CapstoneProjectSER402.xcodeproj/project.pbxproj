@@ -48,6 +48,7 @@
 		C108ADF41CB219A900CB60F0 /* archive.png in Resources */ = {isa = PBXBuildFile; fileRef = C108ADF31CB219A900CB60F0 /* archive.png */; };
 		C121B52D1C80075B001F3B16 /* WatchedTicket.swift in Sources */ = {isa = PBXBuildFile; fileRef = C121B52C1C80075B001F3B16 /* WatchedTicket.swift */; };
 		C121B52F1C8008CC001F3B16 /* WatchedTicketTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C121B52E1C8008CC001F3B16 /* WatchedTicketTableViewCell.swift */; };
+		C12E73AC1CBE5D360091ECE9 /* emergency.png in Resources */ = {isa = PBXBuildFile; fileRef = C12E73AB1CBE5D360091ECE9 /* emergency.png */; };
 		C142E6551C9BEC5A005F1DEC /* TicketModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C142E6541C9BEC5A005F1DEC /* TicketModel.swift */; };
 		C14333831CA0E9540083CA88 /* Charts in Resources */ = {isa = PBXBuildFile; fileRef = C14333821CA0E9540083CA88 /* Charts */; };
 		C14333931CA0E9CF0083CA88 /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C143338C1CA0E99B0083CA88 /* Charts.framework */; };
@@ -192,6 +193,7 @@
 		C108ADF31CB219A900CB60F0 /* archive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = archive.png; sourceTree = "<group>"; };
 		C121B52C1C80075B001F3B16 /* WatchedTicket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchedTicket.swift; sourceTree = "<group>"; };
 		C121B52E1C8008CC001F3B16 /* WatchedTicketTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchedTicketTableViewCell.swift; sourceTree = "<group>"; };
+		C12E73AB1CBE5D360091ECE9 /* emergency.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = emergency.png; sourceTree = "<group>"; };
 		C142E6541C9BEC5A005F1DEC /* TicketModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TicketModel.swift; sourceTree = "<group>"; };
 		C14333821CA0E9540083CA88 /* Charts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Charts; sourceTree = "<group>"; };
 		C14333841CA0E99B0083CA88 /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = Charts/Charts.xcodeproj; sourceTree = "<group>"; };
@@ -299,6 +301,7 @@
 				C108ADED1CB204BC00CB60F0 /* expand_more.png */,
 				C108ADEE1CB204BC00CB60F0 /* expand_less.png */,
 				C108ADF31CB219A900CB60F0 /* archive.png */,
+				C12E73AB1CBE5D360091ECE9 /* emergency.png */,
 				48D741A21C5AAE86008D082E /* AppDelegate.swift */,
 				462EB83D1C990BF00076C28D /* AppSelectionViewController.swift */,
 				462EB83F1C990BF00076C28D /* BusinessApp.swift */,
@@ -518,6 +521,7 @@
 				48D741AD1C5AAE86008D082E /* LaunchScreen.storyboard in Resources */,
 				C19F0DC51C73E2C3009BD594 /* home-page.png in Resources */,
 				48CFA2D31C73C02E0081A8E1 /* menuoptions.png in Resources */,
+				C12E73AC1CBE5D360091ECE9 /* emergency.png in Resources */,
 				C19F0DC91C7455C6009BD594 /* man-user.png in Resources */,
 				C108ADF41CB219A900CB60F0 /* archive.png in Resources */,
 				C108ADF01CB204BC00CB60F0 /* expand_less.png in Resources */,
