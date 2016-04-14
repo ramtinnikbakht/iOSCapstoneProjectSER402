@@ -19,13 +19,30 @@ class BusinessAppTableViewCell: UITableViewCell
     @IBOutlet weak var plannedStartLabel: UILabel!
     @IBOutlet weak var riskIndicator: UIImageView!
     @IBOutlet weak var emergencyIndicator: UIImageView!
+    @IBOutlet weak var businessAppLabel: UILabel!
     
     var ticket: ChangeTicket!
         {
         didSet {
+            
+
             ticketID.text = ticket.number
-            plannedStartLabel.text = ticket.plannedStart
+            plannedStartLabel.text = convertDate(ticket.plannedStart)
         }
+    }
+    
+    func convertDate(var longDate: String) -> String {
+        var dateArr = longDate.characters.split{$0 == " "}.map(String.init)
+        let time = dateArr[1]
+        var components = time.characters.split{$0 == ":"}.map(String.init)
+        let hour = components[0]
+        if (Int(hour) > 12) {
+            let convertedHour = Int(hour)! - 12
+            longDate = String(convertedHour) + ":" + components[1] + ":" + components[2] + " PM"
+        } else {
+            longDate = components[0] + ":" + components[1] + ":" + components[2] + " AM"
+        }
+        return longDate
     }
     
     override func awakeFromNib()

@@ -24,6 +24,8 @@ class ChangeTicketTableViewController: UITableViewController, ChartViewDelegate 
     @IBOutlet weak var businessAreaLabel: UILabel!
     @IBOutlet weak var businessSectionView: UIView!
     @IBOutlet weak var subBusinessUnitLabel: UILabel!
+    @IBOutlet weak var businessAppLabel: UILabel!
+    @IBOutlet weak var shortDescriptionLabel: UILabel!
     
     private var tbvc = TicketTabBarController()
     private var tickets = TicketModel()
@@ -34,13 +36,15 @@ class ChangeTicketTableViewController: UITableViewController, ChartViewDelegate 
     var selectedIndexPath : NSIndexPath?
     var isGraphSelected = false
     var shouldAnimate = true
-    var lowRiskTickets = Array<[ChangeTicket]>()
-    var medRiskTickets = Array<[ChangeTicket]>()
-    var highRiskTickets = Array<[ChangeTicket]>()
+    var lowRiskTickets = [ChangeTicket]()
+    var highRiskTickets = [ChangeTicket]()
+    var emergencyTickets = [ChangeTicket]()
     let cellIdentifier = "TicketCell"
     let riskLevels = ["Low", "High"]
     let appNames : [String] = []
+    let sectionTitles = ["Emergency", "High Risk", "Low Risk"]
     let DateFormat = NSDateFormatter()
+    let infoBackgroundCount = 6
     var selectedTicket = ChangeTicket(number: "", approver: "", plannedStart: "", plannedEnd: "", actualStart: "", actualEnd: "", requestedByGroup: "", requestedByGroupBusinessArea: "", requestedByGroupBusinessUnit: "", requestedByGroupSubBusinessUnit: "", causeCompleteServiceAppOutage: "", risk: "", type: "", impactScore: "", shortDescription: "", changeReason: "", closureCode: "", ImpactedEnviroment: "", SecondaryClosureCode: "", PartofRelease: "", BusinessApplication: "", BusinessApplicationCriticalityTier: "")
     
     // Colors
@@ -54,32 +58,35 @@ class ChangeTicketTableViewController: UITableViewController, ChartViewDelegate 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
+        print(selectedTicket.shortDescription)
         //pieChartView.delegate = self
         //lineChartView.delegate = self
         selectedTicketNumber.text = selectedTicket.number
+        businessAppLabel.text = selectedTicket.BusinessApplication
+        businessAppLabel.textColor = UIColor.blackColor()
         plannedStartLabel.text = selectedTicket.plannedStart
         plannedEndLabel.text = selectedTicket.plannedEnd
         changeTypeLabel.text = selectedTicket.type + " / " + selectedTicket.risk
         businessUnitLabel.text = selectedTicket.requestedByGroupBusinessUnit
         subBusinessUnitLabel.text = selectedTicket.requestedByGroupSubBusinessUnit
         businessAreaLabel.text = selectedTicket.requestedByGroupBusinessArea
-        businessSectionView.backgroundColor = light_blue
+        shortDescriptionLabel.text = selectedTicket.shortDescription
+        
+        for i in 0..<infoBackgroundCount {
+            let currentBackground = self.view.viewWithTag(50+i)
+            currentBackground?.backgroundColor = light_blue
+        }
+        
+        
         print(selectedTicket.PartofRelease)
         configurePageControl()
         loadTickets()
-        
-        //let ticketCount = [Double(lowRiskTickets.count), Double(highRiskTickets.count)]
-        
-        //setPieChart(riskLevels, values: ticketCount)
     }
     
     @IBAction func pageControlUpdated(sender: AnyObject) {
         if (sender.currentPage! == 0) {
-            let ticketCount = [Double(lowRiskTickets.count), Double(highRiskTickets.count)]
-            //lineChartView.hidden = true
-            //pieChartView.hidden = false
-            //setPieChart(riskLevels, values: ticketCount)
+
         } else {
             //lineChartView.hidden = false
             //pieChartView.hidden = true
@@ -137,16 +144,23 @@ class ChangeTicketTableViewController: UITableViewController, ChartViewDelegate 
         liveTickets = ConnectionService.sharedInstance.ticketList
 
         for ticket in liveTickets {
-            if (ticket.risk == "Low") {
-                lowRiskTickets.append(Array(arrayLiteral: ticket))
+            if (ticket.risk == "Low" && ticket.type != "Emergency") {
+                lowRiskTickets += [ticket]
             }
         }
 
         for ticket in liveTickets {
-            if (ticket.risk == "High") {
-                highRiskTickets.append(Array(arrayLiteral: ticket))
+            if (ticket.risk == "High" && ticket.type != "Emergency") {
+                highRiskTickets += [ticket]
             }
         }
+        
+        for ticket in liveTickets {
+            if (ticket.type == "Emergency") {
+                emergencyTickets += [ticket]
+            }
+        }
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -157,14 +171,23 @@ class ChangeTicketTableViewController: UITableViewController, ChartViewDelegate 
     // MARK: - Table view data source
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
+        return sectionTitles.count
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if (isGraphSelected) {
             return filteredTickets.count
         } else {
-            return liveTickets.count
+            switch (section) {
+            case 0:
+                return emergencyTickets.count
+            case 1:
+                return highRiskTickets.count
+            case 2:
+                return lowRiskTickets.count
+            default:
+                return liveTickets.count
+            }
         }
         
     }
@@ -175,7 +198,15 @@ class ChangeTicketTableViewController: UITableViewController, ChartViewDelegate 
         if (isGraphSelected) {
             ticket = filteredTickets[indexPath.row] as ChangeTicket
         } else {
-            ticket = liveTickets[indexPath.row] as ChangeTicket
+            if (indexPath.section == 0) {
+                ticket = emergencyTickets[indexPath.row] as ChangeTicket
+            } else if (indexPath.section == 1) {
+                ticket = highRiskTickets[indexPath.row] as ChangeTicket
+            } else if (indexPath.section == 2) {
+                ticket = lowRiskTickets[indexPath.row] as ChangeTicket
+            } else {
+                ticket = liveTickets[indexPath.row] as ChangeTicket
+            }
         }
         if (ticket.risk == "Low") {
             cell.riskIndicator.backgroundColor = low

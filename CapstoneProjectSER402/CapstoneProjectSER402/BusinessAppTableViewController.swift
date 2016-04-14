@@ -31,6 +31,9 @@ class BusinessAppTableViewController: UITableViewController, ChartViewDelegate
     var totTicketForUnit = [Int]()
     var filteredNumbers = [String]()
     var filteredTickets = [ChangeTicket]()
+    var lowRiskTickets = [ChangeTicket]()
+    var highRiskTickets = [ChangeTicket]()
+    var emergencyTickets = [ChangeTicket]()
     var lowTickets = [String]()
     var highTickets = [String]()
     var compare_window = [String]()
@@ -42,6 +45,7 @@ class BusinessAppTableViewController: UITableViewController, ChartViewDelegate
     var liveTickets = [ChangeTicket]()
     var isShifting = true
     var isCollapsed = [false, false, false]
+    let sectionTitles = ["Emergency", "High Risk", "Low Risk"]
     var liveApps = [BusinessApp]()
     
     // Colors
@@ -100,12 +104,20 @@ class BusinessAppTableViewController: UITableViewController, ChartViewDelegate
         let time1 = DateFormat.stringFromDate(now)
         let time2 = DateFormat.stringFromDate(now.plusHours(6))
         
-        ConnectionService.sharedInstance.getChange(plannedStart: "2016-01-25 05:00:00", plannedStart2: "2016-01-25 10:30:00", psD: "1")
+        ConnectionService.sharedInstance.getChange(plannedStart: "2016-01-25 22:00:00", plannedStart2: "2016-01-26 04:30:00", psD: "1")
         liveTickets = ConnectionService.sharedInstance.ticketList
 
         for ticket in liveTickets {
             let currentTime = DateFormat.dateFromString(ticket.plannedStart)
             plannedStartDates += [currentTime!]
+            
+            if (ticket.risk == "Low" && ticket.type != "Emergency") {
+                lowRiskTickets += [ticket]
+            } else if (ticket.risk == "High" && ticket.type != "Emergency") {
+                highRiskTickets += [ticket]
+            } else if (ticket.type == "Emergency") {
+                emergencyTickets += [ticket]
+            }
             
         }
         
@@ -198,14 +210,50 @@ class BusinessAppTableViewController: UITableViewController, ChartViewDelegate
     // MARK: - Table view data source
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
+        return sectionTitles.count
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if (isGraphSelected) {
-            return filteredTickets.count
+            switch (section) {
+            case 0:
+                var emergencyCount = 0
+                for ticket in filteredTickets {
+                    if (ticket.type == "Emergency") {
+                        emergencyCount++
+                    }
+                }
+                return emergencyCount
+            case 1:
+                var highRiskCount = 0
+                for ticket in filteredTickets {
+                    if (ticket.risk == "High" && ticket.type != "Emergency") {
+                        highRiskCount++
+                    }
+                }
+                return highRiskCount
+            case 2:
+                var lowRiskCount = 0
+                for ticket in filteredTickets {
+                    if (ticket.risk == "Low" && ticket.type != "Emergency") {
+                        lowRiskCount++
+                    }
+                }
+                return lowRiskCount
+            default:
+                return filteredTickets.count
+            }
         } else {
-            return liveTickets.count
+            switch (section) {
+            case 0:
+                return emergencyTickets.count
+            case 1:
+                return highRiskTickets.count
+            case 2:
+                return lowRiskTickets.count
+            default:
+                return liveTickets.count
+            }
         }
     }
     
@@ -215,22 +263,35 @@ class BusinessAppTableViewController: UITableViewController, ChartViewDelegate
         if (isGraphSelected) {
             ticket = filteredTickets[indexPath.row] as ChangeTicket
         } else {
-            ticket = liveTickets[indexPath.row] as ChangeTicket
+            if (indexPath.section == 0) {
+                ticket = emergencyTickets[indexPath.row] as ChangeTicket
+                cell.emergencyIndicator.hidden = false
+                cell.emergencyIndicator.image = UIImage(named: "emergency.png")
+            } else if (indexPath.section == 1) {
+                ticket = highRiskTickets[indexPath.row] as ChangeTicket
+                cell.emergencyIndicator.hidden = true
+            } else if (indexPath.section == 2) {
+                ticket = lowRiskTickets[indexPath.row] as ChangeTicket
+                cell.emergencyIndicator.hidden = true
+            } else {
+                ticket = liveTickets[indexPath.row] as ChangeTicket
+                cell.emergencyIndicator.hidden = true
+            }
         }
+        
         if (ticket.risk == "Low") {
             cell.riskIndicator.backgroundColor = low
         } else if (ticket.risk == "High") {
             cell.riskIndicator.backgroundColor = high
         }
-        if (ticket.type == "Emergency") {
-            cell.emergencyIndicator.image = UIImage(named: "emergency.png")
-        }
+        
         let white = UIColor.whiteColor()
         cell.layer.shadowColor = white.CGColor
         cell.layer.shadowRadius = 3.5
         cell.layer.shadowOpacity = 0.7
         cell.layer.shadowOffset = CGSizeZero
         cell.layer.masksToBounds = false
+        cell.businessAppLabel.text = ticket.requestedByGroupBusinessArea
         cell.ticket = ticket
         
         return cell
@@ -243,7 +304,7 @@ class BusinessAppTableViewController: UITableViewController, ChartViewDelegate
         let currentDate = NSDate()
         formatter.dateFormat = "MMMM dd, yyyy"
         headerCell.backgroundColor = UIColor(red: 0/255.0, green: 64/255.0, blue: 128/255.0, alpha: 1.0)
-        headerCell.appTierLabel.text = "Change Tickets"
+        headerCell.appTierLabel.text = sectionTitles[section]
         headerCell.appTierLabel.textColor = UIColor.whiteColor()
         headerCell.currentDateHeader.text = formatter.stringFromDate(currentDate)
         headerCell.currentDateHeader.textColor = UIColor.whiteColor()
@@ -498,7 +559,15 @@ class BusinessAppTableViewController: UITableViewController, ChartViewDelegate
             if (isGraphSelected) {
                 ticket = filteredTickets[indexPath.row]
             } else {
-                ticket = liveTickets[indexPath.row]
+                if (indexPath.section == 0) {
+                    ticket = emergencyTickets[indexPath.row]
+                } else if (indexPath.section == 1) {
+                    ticket = highRiskTickets[indexPath.row]
+                } else if (indexPath.section == 2) {
+                    ticket = lowRiskTickets[indexPath.row]
+                } else {
+                    ticket = liveTickets[indexPath.row]
+                }
             }
             detailVC.selectedTicket = ticket
         }
