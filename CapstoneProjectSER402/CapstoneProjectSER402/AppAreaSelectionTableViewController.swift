@@ -10,12 +10,30 @@ import UIKit
 
 class AppAreaSelectionTableViewController: UITableViewController {
 
+    var areas = [BusinessApp]()
+    
+    func application(application: UIApplication!, performFetchWithCompletionHandler completionHandler: ((UIBackgroundFetchResult) -> Void)!) {
+        loadApps() {
+            completionHandler(UIBackgroundFetchResult.NewData)
+            print(self.areas.count)
+        }
+    }
+    
+    func loadApps(completionHandler: (() -> Void)!) {
+        
+        completionHandler()
+    }
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        ConnectionService.sharedInstance.getBusiness(appUnit: "311ab55b95b38980ce51a15d3638639c")
+        areas = ConnectionService.sharedInstance.businessApps
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
+        print(areas)
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
@@ -26,6 +44,13 @@ class AppAreaSelectionTableViewController: UITableViewController {
     }
 
     // MARK: - Table view data source
+    
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String?
+    {
+        return "App Areas"
+        
+    }
+
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
@@ -34,18 +59,21 @@ class AppAreaSelectionTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return 1
     }
+    
+    
 
-    /*
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
-
-        // Configure the cell...
-
+        
+            
+        let cell = tableView.dequeueReusableCellWithIdentifier("apparea") as! AppAreaTableViewCell
+        cell.appAreaTitleLabel.text = "TITLE"
+        
         return cell
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.
