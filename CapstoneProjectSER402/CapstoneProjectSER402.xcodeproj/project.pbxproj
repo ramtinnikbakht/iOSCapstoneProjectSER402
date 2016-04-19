@@ -31,6 +31,8 @@
 		489AFBAC1C7F8F5B00E9DEB9 /* WizardSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489AFBAB1C7F8F5B00E9DEB9 /* WizardSetupViewController.swift */; };
 		48CE447C1C8FB73D00BECD12 /* AppSelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48CE447B1C8FB73D00BECD12 /* AppSelectionTableViewCell.swift */; };
 		48CFA2D31C73C02E0081A8E1 /* menuoptions.png in Resources */ = {isa = PBXBuildFile; fileRef = 48CFA2D21C73C02E0081A8E1 /* menuoptions.png */; };
+		48D12C401CC6D57200857986 /* AppAreaSelectionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D12C3F1CC6D57200857986 /* AppAreaSelectionTableViewController.swift */; };
+		48D12C451CC6D5D100857986 /* AppAreaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D12C441CC6D5D100857986 /* AppAreaTableViewCell.swift */; };
 		48D741A31C5AAE86008D082E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D741A21C5AAE86008D082E /* AppDelegate.swift */; };
 		48D741A51C5AAE86008D082E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D741A41C5AAE86008D082E /* LoginViewController.swift */; };
 		48D741A81C5AAE86008D082E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48D741A61C5AAE86008D082E /* Main.storyboard */; };
@@ -170,6 +172,8 @@
 		489AFBAB1C7F8F5B00E9DEB9 /* WizardSetupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WizardSetupViewController.swift; sourceTree = "<group>"; };
 		48CE447B1C8FB73D00BECD12 /* AppSelectionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppSelectionTableViewCell.swift; sourceTree = "<group>"; };
 		48CFA2D21C73C02E0081A8E1 /* menuoptions.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menuoptions.png; sourceTree = "<group>"; };
+		48D12C3F1CC6D57200857986 /* AppAreaSelectionTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppAreaSelectionTableViewController.swift; sourceTree = "<group>"; };
+		48D12C441CC6D5D100857986 /* AppAreaTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppAreaTableViewCell.swift; sourceTree = "<group>"; };
 		48D7419F1C5AAE86008D082E /* CapstoneProjectSER402.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CapstoneProjectSER402.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		48D741A21C5AAE86008D082E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		48D741A41C5AAE86008D082E /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -323,6 +327,8 @@
 				48D741A91C5AAE86008D082E /* Assets.xcassets */,
 				48D741AB1C5AAE86008D082E /* LaunchScreen.storyboard */,
 				48D741A61C5AAE86008D082E /* Main.storyboard */,
+				48D12C441CC6D5D100857986 /* AppAreaTableViewCell.swift */,
+				48D12C3F1CC6D57200857986 /* AppAreaSelectionTableViewController.swift */,
 				C108ADEB1CB1B9B500CB60F0 /* ArchiveTableViewCell.swift */,
 				4852EEAD1CAC71D80060CD3E /* ProfileTableViewCell.swift */,
 				48D8FADA1CAB096900753943 /* AppsOptionTableViewCell.swift */,
@@ -581,6 +587,7 @@
 				C142E6551C9BEC5A005F1DEC /* TicketModel.swift in Sources */,
 				46A2AB141CA47C0E00F87C80 /* UserTypeSelectionViewController.swift in Sources */,
 				489AFBA81C7F6B3000E9DEB9 /* User.swift in Sources */,
+				48D12C401CC6D57200857986 /* AppAreaSelectionTableViewController.swift in Sources */,
 				48CE447C1C8FB73D00BECD12 /* AppSelectionTableViewCell.swift in Sources */,
 				489AFBAC1C7F8F5B00E9DEB9 /* WizardSetupViewController.swift in Sources */,
 				C14333D41CA6E9920083CA88 /* BusinessAppTableViewCell.swift in Sources */,
@@ -598,6 +605,7 @@
 				4818FE121CA49CFA00B7EB47 /* SettingsTableViewController.swift in Sources */,
 				C19F0DD51C759DB1009BD594 /* ChangeTicketTableViewCell.swift in Sources */,
 				48D741A31C5AAE86008D082E /* AppDelegate.swift in Sources */,
+				48D12C451CC6D5D100857986 /* AppAreaTableViewCell.swift in Sources */,
 				C19F0DCD1C745DB6009BD594 /* ChangeTicket.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
