@@ -55,6 +55,7 @@ class ChangeTicketTableViewController: UITableViewController, ChartViewDelegate 
     let navy_comp = UIColor(red: CGFloat(51/255.0), green: CGFloat(204/255.0), blue: CGFloat(153/255.0), alpha: 1)
     let silver = UIColor(red: CGFloat(218/255.0), green: CGFloat(223/255.0), blue: CGFloat(225/255.0), alpha: 1)
     let light_blue = UIColor(red: (228/255.0), green: (241/255.0), blue: (254/255.0), alpha: 1)
+    let charcoal = UIColor(red: CGFloat(54/255.0), green: CGFloat(69/255.0), blue: CGFloat(79/255.0), alpha: 1)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,7 +76,7 @@ class ChangeTicketTableViewController: UITableViewController, ChartViewDelegate 
         
         for i in 0..<infoBackgroundCount {
             let currentBackground = self.view.viewWithTag(50+i)
-            currentBackground?.backgroundColor = light_blue
+            currentBackground?.backgroundColor = silver
         }
         
         
@@ -139,7 +140,7 @@ class ChangeTicketTableViewController: UITableViewController, ChartViewDelegate 
     func loadTickets() {
         DateFormat.locale = NSLocale(localeIdentifier: "en_US_POSIX")
         DateFormat.dateFormat = "yyyy-MM-dd HH:mm:ss"
-
+        
         ConnectionService.sharedInstance.getChange(selectedTicket.number)
         liveTickets = ConnectionService.sharedInstance.ticketList
 
@@ -307,7 +308,7 @@ class ChangeTicketTableViewController: UITableViewController, ChartViewDelegate 
     }
     
     func configurePageControl() {
-        profilePageControl.backgroundColor = navy
+        profilePageControl.backgroundColor = charcoal
         profilePageControl.pageIndicatorTintColor = UIColor.lightGrayColor()
         profilePageControl.currentPageIndicatorTintColor = UIColor.whiteColor()
     }

@@ -26,15 +26,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let navigationBarAppearence = UINavigationBar.appearance()
         
         navigationBarAppearence.tintColor = UIColor.whiteColor()
-        navigationBarAppearence.barTintColor = UIColor(red: 0/255.0,
-                                                      green: 64/255.0,
-                                                      blue: 128/255.0,
-                                                      alpha: 1.0)
+        navigationBarAppearence.barTintColor = UIColor(red: CGFloat(54/255.0), green: CGFloat(69/255.0), blue: CGFloat(79/255.0), alpha: 1)
         navigationBarAppearence.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor(),
                                                        NSFontAttributeName: UIFont(name: "Helvetica", size: 17)!]
         let tabBarAppearence = UITabBar.appearance()
         tabBarAppearence.barTintColor = UIColor(red: (236/255.0), green: (236/255.0), blue: (236/255.0), alpha: 1)
-        tabBarAppearence.tintColor = UIColor(red: (68/255.0), green: (108/255.0), blue: (179/255.0), alpha: 1)
+        tabBarAppearence.tintColor = UIColor(red: CGFloat(54/255.0), green: CGFloat(69/255.0), blue: CGFloat(79/255.0), alpha: 1)
         
         return true
     }
