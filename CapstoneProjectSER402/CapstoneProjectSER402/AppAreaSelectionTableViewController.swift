@@ -11,29 +11,24 @@ import UIKit
 class AppAreaSelectionTableViewController: UITableViewController {
 
     var areas = [BusinessApp]()
-    
-    func application(application: UIApplication!, performFetchWithCompletionHandler completionHandler: ((UIBackgroundFetchResult) -> Void)!) {
-        loadApps() {
-            completionHandler(UIBackgroundFetchResult.NewData)
-            print(self.areas.count)
-        }
-    }
-    
-    func loadApps(completionHandler: (() -> Void)!) {
-        
-        completionHandler()
-    }
-
+    var appsTitleArray = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         ConnectionService.sharedInstance.getBusiness(appUnit: "311ab55b95b38980ce51a15d3638639c")
         areas = ConnectionService.sharedInstance.businessApps
+        //ConnectionService.sharedInstance.getBusiness("3df0acd82b56b000b44bd4b419da1549")
+        //areas = ConnectionService.sharedInstance.businessApps
+        print(areas)
+        /*for area in areas {
+            appsTitleArray.append(area.businessAppSys)
+        }*/
+        print(appsTitleArray)
+        //areas = ConnectionService.sharedInstance.getBusiness(appUnit: "311ab55b95b38980ce51a15d3638639c")
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
-        print(areas)
+        //print(areas)
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
@@ -59,7 +54,7 @@ class AppAreaSelectionTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 1
+        return areas.count
     }
     
     
@@ -69,7 +64,7 @@ class AppAreaSelectionTableViewController: UITableViewController {
         
             
         let cell = tableView.dequeueReusableCellWithIdentifier("apparea") as! AppAreaTableViewCell
-        cell.appAreaTitleLabel.text = "TITLE"
+        cell.appAreaTitleLabel.text = areas[indexPath.row].businessApp
         
         return cell
     }
