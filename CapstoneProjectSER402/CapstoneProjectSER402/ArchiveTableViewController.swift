@@ -51,6 +51,7 @@ class ArchiveTableViewController: UITableViewController, UITextFieldDelegate, Ch
     let cc6 = UIColor(red: CGFloat(244/255.0), green: CGFloat(208/255.0), blue: CGFloat(63/255.0), alpha: 1)
     let navy = UIColor(red: 0/255.0, green: 64/255.0, blue: 128/255.0, alpha: 1.0)
     let navy_comp = UIColor(red: CGFloat(51/255.0), green: CGFloat(204/255.0), blue: CGFloat(153/255.0), alpha: 1)
+    let charcoal = UIColor(red: CGFloat(54/255.0), green: CGFloat(69/255.0), blue: CGFloat(79/255.0), alpha: 1)
     
     // MARK: TextField Delegate
     func textFieldDidBeginEditing(textField: UITextField) {
@@ -366,14 +367,15 @@ class ArchiveTableViewController: UITableViewController, UITextFieldDelegate, Ch
         }
         
         // Legend Data
-        pieChartView.legend.enabled = false
+        pieChartView.legend.enabled = true
         pieChartView.legend.yOffset = 40
-        pieChartView.legend.xOffset = 60
+        pieChartView.legend.xOffset = 25
         pieChartView.legend.position = .RightOfChart
         pieChartView.legend.form = .Circle
         pieChartView.legend.font = UIFont(name: "Helvetica", size: 9)!
         pieChartView.legend.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
         pieChartView.legend.colors = [cc1, cc2, cc3, cc4, cc5, cc6]
+
         pieChartView.legend.labels = ["Implemented as Planned", "Implemented with Effort", "Backed Out No Customer/User Impacts", "Implemented with Issues", "Backed Out Customer/User Impacts", "Failed to report status"]
         
 //        pieChartView.extraBottomOffset = 40

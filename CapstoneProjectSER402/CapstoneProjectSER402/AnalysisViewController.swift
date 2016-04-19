@@ -16,21 +16,33 @@ class AnalysisViewController: UIViewController, UITextFieldDelegate, ChartViewDe
     
     var ticketRisks = [Double]()
     var ticketStartDates = [String]()
+    var daySegments = [String]()
+    var timeSegments = [String]()
+    var lowRiskCount = [Double]()
+    var highRiskCount = [Double]()
+    var selectedHours = [UInt]()
+    var selectedHourLabels = [String]()
     var selectedTF = UITextField()
+    var liveTickets = [ChangeTicket]()
     var releaseWindowLL = ChartLimitLine(limit: 1.0, label: "Release \nDeployment \nWindow")
+    var selectedDay = String()
     
-    @IBOutlet weak var dateSlider: UISlider!
-    @IBOutlet weak var dailyLabel: UILabel!
-    @IBOutlet weak var weeklyLabel: UILabel!
-    @IBOutlet weak var monthlyLabel: UILabel!
-    @IBOutlet weak var initialDate: UITextField!
-    @IBOutlet weak var endDate: UITextField!
-    @IBOutlet weak var selectedTicketCount: UILabel!
-    @IBOutlet weak var horizontalBarChartView: HorizontalBarChartView!
-    @IBOutlet weak var graphRepresentationControl: UISegmentedControl!
+    let DateFormat = NSDateFormatter()
+    
+    // Colors
+    let low = UIColor(red: CGFloat(38/255.0), green: CGFloat(166/255.0), blue: CGFloat(91/255.0), alpha: 0.4)
+    let med = UIColor(red: CGFloat(244/255.0), green: CGFloat(208/255.0), blue: CGFloat(63/255.0), alpha: 0.6)
+    let high = UIColor(red: CGFloat(207/255.0), green: CGFloat(0), blue: CGFloat(15/255.0), alpha: 0.6)
+    let charcoal = UIColor(red: CGFloat(54/255.0), green: CGFloat(69/255.0), blue: CGFloat(79/255.0), alpha: 1)
+    
+    
+    @IBOutlet weak var currentTimeFrameTF: UITextField!
+    @IBOutlet weak var currentDateLabel: UILabel!
+    @IBOutlet weak var radarChartView: RadarChartView!
+
     @IBOutlet weak var timeSegmentedControl: UISegmentedControl!
-    @IBOutlet weak var releaseWindowSwitch: UISwitch!
-    @IBOutlet weak var releaseWindowLabel: UILabel!
+    @IBOutlet weak var timeFrameStepper: UIStepper!
+    
     
     // MARK: TextField Delegate
     
@@ -65,226 +77,288 @@ class AnalysisViewController: UIViewController, UITextFieldDelegate, ChartViewDe
         closeKeyboard()
     }
     
-    @IBAction func repIndexChanged(sender: AnyObject) {
-        switch graphRepresentationControl.selectedSegmentIndex
-        {
-        case 0:
-            releaseWindowLabel.hidden = true
-            releaseWindowSwitch.hidden = true
-            releaseWindowSwitch.setOn(false, animated: true)
-            let historicalDates = ["Jan '14", "Feb '14", "Mar '14", "Apr '14", "May '14", "Jun '14", "Jul '14", "Aug '14", "Sep '14", "Oct '14", "Nov '14", "Dec '14"]
-            let historicalTickets = [3.0, 4.0, 8.0, 6.0, 7.0, 12.0, 5.0, 9.0, 10.0, 2.0, 3.0, 11.0]
-            horizontalBarChartView.clear()
-            setChart(historicalDates, values: historicalTickets)
-            horizontalBarChartView.xAxis.removeLimitLine(releaseWindowLL)
-        case 1:
-            releaseWindowLabel.hidden = false
-            releaseWindowSwitch.hidden = false
-            let forwardDates = ["5-10-16", "5-11-16", "5-12-16", "5-13-16", "5-14-16", "5-15-16", "5-16-16"]
-            let forwardTickets = [1.0, 4.0, 2.0, 1.0, 5.0, 3.0, 7.0]
-            horizontalBarChartView.clear()
-            setChart(forwardDates, values: forwardTickets)
-        default:
-            break;
-        }
-    }
-    
     @IBAction func timeIndexChanged(sender: AnyObject) {
-        let now = NSDate()
         switch timeSegmentedControl.selectedSegmentIndex
         {
         case 0:
-            dailyLabel.textColor = UIColor.blueColor()
-            weeklyLabel.textColor = UIColor.blackColor()
-            monthlyLabel.textColor = UIColor.blackColor()
-            let formatter = NSDateFormatter()
-            formatter.timeStyle = .ShortStyle
-            let daily = [formatter.stringFromDate(now), formatter.stringFromDate(now.plusHours(2)), formatter.stringFromDate(now.plusHours(4)), formatter.stringFromDate(now.plusHours(6)), formatter.stringFromDate(now.plusHours(8)), formatter.stringFromDate(now.plusHours(10)), formatter.stringFromDate(now.plusHours(12))]
-            let historicalTickets = [3.0, 4.0, 8.0, 6.0, 7.0, 12.0, 5.0]
-            horizontalBarChartView.clear()
-            setChart(daily, values: historicalTickets)
+            liveTickets.removeAll()
+            calculateDaySegment()
+            selectedDay = daySegments[0]
+            calculateTimeFrame(daySegments[0], counterValue: 0)
+            let currentDate = daySegments[0].characters.split{$0 == " "}.map(String.init)
+            currentDateLabel.text = currentDate[0]
+            ConnectionService.sharedInstance.getChange(plannedStart: timeSegments[0], plannedStart2: timeSegments[5], psD: "1")
+            liveTickets = ConnectionService.sharedInstance.ticketList
+            calculateGraphValues()
+            radarChartView.clear()
+            timeFrameStepper.value = 0
+            setChart(selectedHourLabels, values: lowRiskCount, values2: highRiskCount)
         case 1:
-            dailyLabel.textColor = UIColor.blackColor()
-            weeklyLabel.textColor = UIColor.blueColor()
-            monthlyLabel.textColor = UIColor.blackColor()
-            let weeklyFormatter = NSDateFormatter()
-            weeklyFormatter.dateStyle = .ShortStyle
-            let weekly = [weeklyFormatter.stringFromDate(now), weeklyFormatter.stringFromDate(now.plusDays(1)), weeklyFormatter.stringFromDate(now.plusDays(2)), weeklyFormatter.stringFromDate(now.plusDays(3)), weeklyFormatter.stringFromDate(now.plusDays(4)), weeklyFormatter.stringFromDate(now.plusDays(5)), weeklyFormatter.stringFromDate(now.plusDays(6))]
-            let historicalTickets = [3.0, 4.0, 8.0, 6.0, 7.0, 12.0, 5.0]
-            horizontalBarChartView.clear()
-            setChart(weekly, values: historicalTickets)
+            liveTickets.removeAll()
+            calculateDaySegment()
+            selectedDay = daySegments[1]
+            calculateTimeFrame(daySegments[1], counterValue: 0)
+            let currentDate = daySegments[1].characters.split{$0 == " "}.map(String.init)
+            currentDateLabel.text = currentDate[0]
+            ConnectionService.sharedInstance.getChange(plannedStart: timeSegments[0], plannedStart2: timeSegments[5], psD: "1")
+            liveTickets = ConnectionService.sharedInstance.ticketList
+            print(liveTickets)
+            calculateGraphValues()
+            radarChartView.clear()
+            timeFrameStepper.value = 0
+            setChart(selectedHourLabels, values: lowRiskCount, values2: highRiskCount)
         case 2:
-            dailyLabel.textColor = UIColor.blackColor()
-            weeklyLabel.textColor = UIColor.blackColor()
-            monthlyLabel.textColor = UIColor.blueColor()
-            let monthlyFormatter = NSDateFormatter()
-            monthlyFormatter.dateFormat = "MM/dd"
-            let monthly = [monthlyFormatter.stringFromDate(now) + "-" + monthlyFormatter.stringFromDate(now.plusDays(7)), monthlyFormatter.stringFromDate(now.plusDays(7)) + "-" + monthlyFormatter.stringFromDate(now.plusDays(14)), monthlyFormatter.stringFromDate(now.plusDays(14)) + "-" + monthlyFormatter.stringFromDate(now.plusDays(21)), monthlyFormatter.stringFromDate(now.plusDays(21)) + "-" + monthlyFormatter.stringFromDate(now.plusDays(28))]
-            let historicalTickets = [3.0, 4.0, 8.0, 6.0]
-            horizontalBarChartView.clear()
-            setChart(monthly, values: historicalTickets)
+            liveTickets.removeAll()
+            calculateDaySegment()
+            selectedDay = daySegments[2]
+            calculateTimeFrame(daySegments[2], counterValue: 0)
+            let currentDate = daySegments[2].characters.split{$0 == " "}.map(String.init)
+            currentDateLabel.text = currentDate[0]
+            ConnectionService.sharedInstance.getChange(plannedStart: timeSegments[0], plannedStart2: timeSegments[5], psD: "1")
+            liveTickets = ConnectionService.sharedInstance.ticketList
+            calculateGraphValues()
+            radarChartView.clear()
+            timeFrameStepper.value = 0
+            setChart(selectedHourLabels, values: lowRiskCount, values2: highRiskCount)
+        case 3:
+            liveTickets.removeAll()
+            calculateDaySegment()
+            selectedDay = daySegments[3]
+            calculateTimeFrame(daySegments[3], counterValue: 0)
+            let currentDate = daySegments[3].characters.split{$0 == " "}.map(String.init)
+            currentDateLabel.text = currentDate[0]
+            ConnectionService.sharedInstance.getChange(plannedStart: timeSegments[0], plannedStart2: timeSegments[5], psD: "1")
+            liveTickets = ConnectionService.sharedInstance.ticketList
+            calculateGraphValues()
+            radarChartView.clear()
+            timeFrameStepper.value = 0
+            setChart(selectedHourLabels, values: lowRiskCount, values2: highRiskCount)
         default:
             break;
         }
     }
     
-    @IBAction func sliderValueChanged(sender: UISlider) {
-        let currentValue = Int(sender.value)
-        let now = NSDate()
-
-        // Daily View
-        if (currentValue < 1) {
-            dailyLabel.textColor = UIColor.blueColor()
-            weeklyLabel.textColor = UIColor.blackColor()
-            monthlyLabel.textColor = UIColor.blackColor()
-            let formatter = NSDateFormatter()
-            formatter.timeStyle = .ShortStyle
-            let daily = [formatter.stringFromDate(now), formatter.stringFromDate(now.plusHours(2)), formatter.stringFromDate(now.plusHours(4)), formatter.stringFromDate(now.plusHours(6)), formatter.stringFromDate(now.plusHours(8)), formatter.stringFromDate(now.plusHours(10)), formatter.stringFromDate(now.plusHours(12))]
-            let historicalTickets = [3.0, 4.0, 8.0, 6.0, 7.0, 12.0, 5.0]
-            horizontalBarChartView.clear()
-            setChart(daily, values: historicalTickets)
-        }
-        // Weekly View
-        else if (currentValue >= 1 && currentValue < 2) {
-            dailyLabel.textColor = UIColor.blackColor()
-            weeklyLabel.textColor = UIColor.blueColor()
-            monthlyLabel.textColor = UIColor.blackColor()
-            let weeklyFormatter = NSDateFormatter()
-            weeklyFormatter.dateStyle = .ShortStyle
-            let weekly = [weeklyFormatter.stringFromDate(now), weeklyFormatter.stringFromDate(now.plusDays(1)), weeklyFormatter.stringFromDate(now.plusDays(2)), weeklyFormatter.stringFromDate(now.plusDays(3)), weeklyFormatter.stringFromDate(now.plusDays(4)), weeklyFormatter.stringFromDate(now.plusDays(5)), weeklyFormatter.stringFromDate(now.plusDays(6))]
-            let historicalTickets = [3.0, 4.0, 8.0, 6.0, 7.0, 12.0, 5.0]
-            horizontalBarChartView.clear()
-            setChart(weekly, values: historicalTickets)
-        }
-        // Monthly View
-        else {
-            dailyLabel.textColor = UIColor.blackColor()
-            weeklyLabel.textColor = UIColor.blackColor()
-            monthlyLabel.textColor = UIColor.blueColor()
-            let monthlyFormatter = NSDateFormatter()
-            monthlyFormatter.dateFormat = "MM/dd"
-            let monthly = [monthlyFormatter.stringFromDate(now) + "-" + monthlyFormatter.stringFromDate(now.plusDays(7)), monthlyFormatter.stringFromDate(now.plusDays(7)) + "-" + monthlyFormatter.stringFromDate(now.plusDays(14)), monthlyFormatter.stringFromDate(now.plusDays(14)) + "-" + monthlyFormatter.stringFromDate(now.plusDays(21)), monthlyFormatter.stringFromDate(now.plusDays(21)) + "-" + monthlyFormatter.stringFromDate(now.plusDays(28))]
-            let historicalTickets = [3.0, 4.0, 8.0, 6.0]
-            horizontalBarChartView.clear()
-            setChart(monthly, values: historicalTickets)
-        }
+    @IBAction func stepperValueChanged(sender: UIStepper) {
+        let timeFrameIndex = Int(sender.value)
+        liveTickets.removeAll()
+        calculateDaySegment()
+        calculateTimeFrame(selectedDay, counterValue: timeFrameIndex)
         
+        ConnectionService.sharedInstance.getChange(plannedStart: timeSegments[0], plannedStart2: timeSegments[5], psD: "1")
+        liveTickets = ConnectionService.sharedInstance.ticketList
+        calculateGraphValues()
+        radarChartView.clear()
+        setChart(selectedHourLabels, values: lowRiskCount, values2: highRiskCount)
     }
+    
     
     func stateChanged(switchState: UISwitch) {
         if switchState.on {
-            horizontalBarChartView.xAxis.removeLimitLine(releaseWindowLL)
+            radarChartView.xAxis.removeLimitLine(releaseWindowLL)
             releaseWindowLL.valueTextColor = UIColor(red: (255/255.0), green: 0, blue: 0, alpha: 0.3)
             releaseWindowLL.lineColor = UIColor(red: (255/255.0), green: 0, blue: 0, alpha: 0.3)
             releaseWindowLL.valueFont = UIFont(name: "Helvetica", size: 10)!
             releaseWindowLL.labelPosition = .RightBottom
-            horizontalBarChartView.xAxis.addLimitLine(releaseWindowLL)
-            horizontalBarChartView.xAxis.drawLimitLinesBehindDataEnabled = true
-            horizontalBarChartView.setNeedsDisplay()
+            radarChartView.xAxis.addLimitLine(releaseWindowLL)
+            radarChartView.xAxis.drawLimitLinesBehindDataEnabled = true
+            radarChartView.setNeedsDisplay()
         } else {
-            horizontalBarChartView.xAxis.removeLimitLine(releaseWindowLL)
-            horizontalBarChartView.setNeedsDisplay()
+            radarChartView.xAxis.removeLimitLine(releaseWindowLL)
+            radarChartView.setNeedsDisplay()
         }
+    }
+    
+    func calculateDaySegment() {
+        daySegments.removeAll()
+        //let now = NSDate()
+        DateFormat.locale = NSLocale(localeIdentifier: "US_en")
+        DateFormat.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        
+        //let dateArr = DateFormat.stringFromDate(now)
+        //let currentDate = dateArr.characters.split{$0 == " "}.map(String.init)
+        let currentDate = "2016-03-10 00:00:00"
+        //let dateBeginning_Now = currentDate[0] + " 00:00:00"
+        let dateBeginning_Now = currentDate //+ " 00:00:00"
+        let dateZero = DateFormat.dateFromString(dateBeginning_Now)
+        
+        let dateBeginning_24 = dateZero?.plusDays(1)
+        let dateBeginning_48 = dateZero?.plusDays(2)
+        let dateBeginning_72 = dateZero?.plusDays(3)
+        
+        daySegments += [dateBeginning_Now, DateFormat.stringFromDate(dateBeginning_24!), DateFormat.stringFromDate(dateBeginning_48!), DateFormat.stringFromDate(dateBeginning_72!)]
+    }
+    
+    func calculateTimeFrame(dateForFrame: String, counterValue: Int) {
+        timeSegments.removeAll()
+        selectedHours.removeAll()
+        selectedHourLabels.removeAll()
+        let date = DateFormat.dateFromString(dateForFrame)
+        let timeMultiple = 6 * counterValue
+
+        let time1 = UInt(timeMultiple + 1)
+        let time2 = UInt(timeMultiple + 2)
+        let time3 = UInt(timeMultiple + 3)
+        let time4 = UInt(timeMultiple + 4)
+        let time5 = UInt(timeMultiple + 5)
+        let time6 = UInt(timeMultiple + 6)
+        print(time6)
+        
+        let timeFrame1 = date?.plusHours(time1)
+        let timeFrame2 = date?.plusHours(time2)
+        let timeFrame3 = date?.plusHours(time3)
+        let timeFrame4 = date?.plusHours(time4)
+        let timeFrame5 = date?.plusHours(time5)
+        let timeFrame6 = date?.plusHours(time6)
+
+        timeSegments += [DateFormat.stringFromDate(timeFrame1!), DateFormat.stringFromDate(timeFrame2!), DateFormat.stringFromDate(timeFrame3!), DateFormat.stringFromDate(timeFrame4!), DateFormat.stringFromDate(timeFrame5!), DateFormat.stringFromDate(timeFrame6!)]
+        selectedHours += [time1, time2, time3, time4, time5, time6]
+        selectedHourLabels += [(String(time1) + ":00:00"), (String(time2) + ":00:00"), (String(time3) + ":00:00"), (String(time4) + ":00:00"), (String(time5) + ":00:00"), (String(time6) + ":00:00")]
+        currentTimeFrameTF.text = (String(time1) + ":00:00") + " - " + (String(time6) + ":00:00")
+    }
+    
+    func calculateGraphValues() {
+        lowRiskCount.removeAll()
+        highRiskCount.removeAll()
+        DateFormat.locale = NSLocale(localeIdentifier: "US_en")
+        DateFormat.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        
+        // Low Ticket Count for Time Range
+        var hour1CountLow : Int = 0
+        var hour2CountLow : Int = 0
+        var hour3CountLow : Int = 0
+        var hour4CountLow : Int = 0
+        var hour5CountLow : Int = 0
+        var hour6CountLow : Int = 0
+        
+        // High Ticket Count for Time Range
+        var hour1CountHigh : Int = 0
+        var hour2CountHigh : Int = 0
+        var hour3CountHigh : Int = 0
+        var hour4CountHigh : Int = 0
+        var hour5CountHigh : Int = 0
+        var hour6CountHigh : Int = 0
+        
+        if (liveTickets.count > 0) {
+            for ticket in liveTickets {
+                let ticketPS = DateFormat.dateFromString(ticket.plannedStart)
+                if (ticketPS!.hour == selectedHours[0]) {
+                    if (ticket.risk == "Low") {
+                        hour1CountLow++
+                    } else {
+                        hour1CountHigh++
+                    }
+                } else if (ticketPS!.hour == selectedHours[1]) {
+                    if (ticket.risk == "Low") {
+                        hour2CountLow++
+                    } else {
+                        hour2CountHigh++
+                    }
+                } else if (ticketPS!.hour == selectedHours[2]) {
+                    if (ticket.risk == "Low") {
+                        hour3CountLow++
+                    } else {
+                        hour3CountHigh++
+                    }
+                } else if (ticketPS!.hour == selectedHours[3]) {
+                    if (ticket.risk == "Low") {
+                        hour4CountLow++
+                    } else {
+                        hour4CountHigh++
+                    }
+                } else if (ticketPS!.hour == selectedHours[4]) {
+                    if (ticket.risk == "Low") {
+                        hour5CountLow++
+                    } else {
+                        hour5CountHigh++
+                    }
+                } else if (ticketPS!.hour == selectedHours[5]) {
+                    if (ticket.risk == "Low") {
+                        hour6CountLow++
+                    } else {
+                        hour6CountHigh++
+                    }
+                }
+            }
+        }
+        
+        lowRiskCount += [Double(hour1CountLow), Double(hour2CountLow), Double(hour3CountLow), Double(hour4CountLow), Double(hour5CountLow), Double(hour6CountLow)]
+        highRiskCount += [Double(hour1CountHigh), Double(hour2CountHigh), Double(hour3CountHigh), Double(hour4CountHigh), Double(hour5CountHigh), Double(hour6CountHigh)]
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        horizontalBarChartView.delegate = self
-        initialDate.delegate = self
-        endDate.delegate = self
-        releaseWindowSwitch.addTarget(self, action: Selector("stateChanged:"), forControlEvents: .ValueChanged)
-        print(wTickets.changeTickets.count)
+        radarChartView.delegate = self
+        timeFrameStepper.wraps = true
+        timeFrameStepper.autorepeat = false
+        timeFrameStepper.maximumValue = 3
+
         // Do any additional setup after loading the view.
         
-        tbvc = tabBarController as! TicketTabBarController
-        wTickets = tbvc.wTickets
-        if (wTickets.watchedTickets.count > 0) {
-            for i in 0..<wTickets.watchedTickets.count {
-                ticketRisks.append(Double(wTickets.watchedTickets[i].priority)!)
-                ticketStartDates.append(wTickets.watchedTickets[i].startDate)
-            }
-            setChart(ticketStartDates, values: ticketRisks)
-        } else {
-            repIndexChanged(0)
-        }
+        calculateDaySegment()
+        selectedDay = daySegments[0]
+        calculateTimeFrame(daySegments[0], counterValue: 0)
+        let currentDate = daySegments[0].characters.split{$0 == " "}.map(String.init)
+        currentDateLabel.text = currentDate[0]
+        ConnectionService.sharedInstance.getChange(plannedStart: timeSegments[0], plannedStart2: timeSegments[5], psD: "1")
+        liveTickets = ConnectionService.sharedInstance.ticketList
+        calculateGraphValues()
+        setChart(selectedHourLabels, values: lowRiskCount, values2: highRiskCount)
     }
+    
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        if (ticketRisks.count != wTickets.watchedTickets.count) {
-            ticketRisks.removeAll()
-            ticketStartDates.removeAll()
-            for i in 0..<wTickets.watchedTickets.count {
-                ticketRisks.append(Double(wTickets.watchedTickets[i].priority)!)
-                ticketStartDates.append(wTickets.watchedTickets[i].startDate)
-            }
-            horizontalBarChartView.clear()
-            setChart(ticketStartDates, values: ticketRisks)
-        }
+        
     }
     
-    func setChart(dataPoints: [String], values: [Double]) {
-        horizontalBarChartView.clear()
-        var dataEntries: [BarChartDataEntry] = []
-        for i in 0..<values.count {
-            let dataEntry = BarChartDataEntry(value: values[i], xIndex: i)
+    func setChart(dataPoints: [String], values: [Double], values2: [Double]) {
+        radarChartView.clear()
+        var dataEntries: [ChartDataEntry] = []
+        var dataEntries2: [ChartDataEntry] = []
+        for i in 0..<dataPoints.count {
+            let dataEntry = ChartDataEntry(value: values[i], xIndex: i, data: dataPoints[i])
             dataEntries.append(dataEntry)
         }
-        
-        let chartDataSet = BarChartDataSet(yVals: dataEntries, label: "Change Tickets Entered")
-        let numberFormatter = NSNumberFormatter()
-        let chartData = BarChartData(xVals: dataPoints, dataSet: chartDataSet)
-        
-        
-        numberFormatter.generatesDecimalNumbers = false
-        chartDataSet.valueFormatter = numberFormatter
-        
-        horizontalBarChartView.xAxis.labelPosition = .Bottom
-        horizontalBarChartView.noDataTextDescription = "Data has not been selected"
-        
-        chartData.setValueFont(UIFont(name: "Helvetica", size: 12))
-        
-        var colors: [UIColor] = []
-        let low = UIColor(red: CGFloat(38/255.0), green: CGFloat(166/255.0), blue: CGFloat(91/255.0), alpha: 1)
-        let med = UIColor(red: CGFloat(244/255.0), green: CGFloat(208/255.0), blue: CGFloat(63/255.0), alpha: 1)
-        let high = UIColor(red: CGFloat(207/255.0), green: CGFloat(0), blue: CGFloat(15/255.0), alpha: 1)
-        
-        for i in 0..<values.count {
-            var color : UIColor
-            if (values[i] <= 3) {
-                color = low
-            } else if (values[i] > 3 && values[i] <= 7) {
-                color = med
-            } else {
-                color = high
-            }
-            colors.append(color)
+        for i in 0..<dataPoints.count {
+            let dataEntry2 = ChartDataEntry(value: values2[i], xIndex: i, data: dataPoints[i])
+            dataEntries2.append(dataEntry2)
         }
         
-        chartDataSet.colors = colors
-        horizontalBarChartView.leftAxis.enabled = false
-        horizontalBarChartView.descriptionText = ""
-        horizontalBarChartView.rightAxis.drawGridLinesEnabled = false
-        horizontalBarChartView.xAxis.drawGridLinesEnabled = false
-        horizontalBarChartView.rightAxis.valueFormatter = numberFormatter
-        horizontalBarChartView.data = chartData
+        let radarChartDataSet = RadarChartDataSet(yVals: dataEntries, label: "Low Risk")
+        radarChartDataSet.drawFilledEnabled = true
+        radarChartDataSet.colors = [low]
+        radarChartDataSet.fillColor = low
+        radarChartDataSet.drawFilledEnabled = true
+        radarChartDataSet.drawValuesEnabled = false
+        let radarChartDataSet2 = RadarChartDataSet(yVals: dataEntries2, label: "High Risk")
+        radarChartDataSet2.drawFilledEnabled = true
+        radarChartDataSet2.colors = [high]
+        radarChartDataSet2.fillColor = high
+        radarChartDataSet2.drawValuesEnabled = false
+        let dataSets: [RadarChartDataSet] = [radarChartDataSet, radarChartDataSet2]
+        let radarChartData = RadarChartData(xVals: dataPoints, dataSets: dataSets)
+        let numberFormatter = NSNumberFormatter()
         
-        // Legend Data
-        horizontalBarChartView.legend.position = .RightOfChartInside
-        horizontalBarChartView.legend.font = UIFont(name: "Helvetica", size: 10)!
-        horizontalBarChartView.legend.colors = [low, med, high]
-        horizontalBarChartView.legend.labels = ["Low Volume","Medium Volume","High Volume"]
-        horizontalBarChartView.legend.enabled = true
+        numberFormatter.generatesDecimalNumbers = false
+        radarChartData.setValueFormatter(numberFormatter)
+        radarChartData.setValueFont(UIFont(name: "Helvetica", size: 12))
         
-        horizontalBarChartView.backgroundColor = UIColor(red: CGFloat(228/255.0), green: CGFloat(241/255.0), blue: CGFloat(254/255.0), alpha: 1)
-        horizontalBarChartView.drawBordersEnabled = false
-        horizontalBarChartView.animate(xAxisDuration: 1.0, yAxisDuration: 1.0, easingOption: .Linear)
+        radarChartView.descriptionText = ""
+        radarChartView.innerWebColor = charcoal
+        radarChartView.xAxis.labelPosition = .Bottom
+        radarChartView.noDataTextDescription = "Data has not been selected"
+        radarChartView.yAxis.enabled = false
+        radarChartData.setValueFont(UIFont(name: "Helvetica", size: 12))
+        
+        
+        
+        radarChartView.data = radarChartData
         
     }
     
     func chartValueSelected(chartView: ChartViewBase, entry: ChartDataEntry, dataSetIndex: Int, highlight: ChartHighlight) {
-        selectedTicketCount.text = String(entry.value)
+
     }
     
 }
