@@ -47,6 +47,7 @@ class BusinessAppTableViewController: UITableViewController, ChartViewDelegate
     var isCollapsed = [false, false, false]
     let sectionTitles = ["Emergency", "High Risk", "Low Risk"]
     var liveApps = [BusinessApp]()
+    var liveTicketsShown : [Bool] = []
     
     // Colors
     let low = UIColor(red: CGFloat(38/255.0), green: CGFloat(166/255.0), blue: CGFloat(91/255.0), alpha: 1)
@@ -58,6 +59,8 @@ class BusinessAppTableViewController: UITableViewController, ChartViewDelegate
     let light_blue = UIColor(red: (228/255.0), green: (241/255.0), blue: (254/255.0), alpha: 1)
     let highlight_green = UIColor(red: CGFloat(46/255.0), green: CGFloat(204/255.0), blue: CGFloat(113/255.0), alpha: 1)
     let aqua = UIColor(red: CGFloat(129/255.0), green: CGFloat(207/255.0), blue: CGFloat(224/255.0), alpha: 1)
+    let charcoal = UIColor(red: CGFloat(54/255.0), green: CGFloat(69/255.0), blue: CGFloat(79/255.0), alpha: 1)
+    let white = UIColor.whiteColor()
     
     override func viewDidLoad()
     {
@@ -70,6 +73,8 @@ class BusinessAppTableViewController: UITableViewController, ChartViewDelegate
         let timeFrame = getTimeWindow()
         loadSampleApps()
 
+        let ticketShown = [Bool](count: liveTickets.count, repeatedValue: false)
+        liveTicketsShown = ticketShown
         for time in timeFrame {
             let span = time.characters.split{$0 == " "}.map(String.init)
             compare_window += [span[0]]
@@ -104,7 +109,7 @@ class BusinessAppTableViewController: UITableViewController, ChartViewDelegate
         let time1 = DateFormat.stringFromDate(now)
         let time2 = DateFormat.stringFromDate(now.plusHours(6))
         
-        ConnectionService.sharedInstance.getChange(plannedStart: "2016-01-25 22:00:00", plannedStart2: "2016-01-26 04:30:00", psD: "1")
+        ConnectionService.sharedInstance.getChange(plannedStart: "2016-01-25 02:00:00", plannedStart2: "2016-01-25 08:30:00", psD: "1")
         liveTickets = ConnectionService.sharedInstance.ticketList
 
         for ticket in liveTickets {
@@ -262,6 +267,12 @@ class BusinessAppTableViewController: UITableViewController, ChartViewDelegate
         var ticket : ChangeTicket
         if (isGraphSelected) {
             ticket = filteredTickets[indexPath.row] as ChangeTicket
+            if (ticket.type == "Emergency") {
+                cell.emergencyIndicator.hidden = false
+                cell.emergencyIndicator.image = UIImage(named: "emergency.png")
+            } else {
+                cell.emergencyIndicator.hidden = true
+            }
         } else {
             if (indexPath.section == 0) {
                 ticket = emergencyTickets[indexPath.row] as ChangeTicket
@@ -285,9 +296,15 @@ class BusinessAppTableViewController: UITableViewController, ChartViewDelegate
             cell.riskIndicator.backgroundColor = high
         }
         
-        let white = UIColor.whiteColor()
-        cell.layer.shadowColor = white.CGColor
-        cell.layer.shadowRadius = 3.5
+        let lightGrey = UIColor.lightGrayColor()
+        cell.riskIndicator.layer.shadowColor = white.CGColor
+        cell.riskIndicator.layer.shadowRadius = 1.5
+        cell.riskIndicator.layer.shadowOpacity = 0.7
+        cell.riskIndicator.layer.shadowOffset = CGSizeZero
+        cell.riskIndicator.layer.masksToBounds = false
+        cell.backgroundColor = UIColor.whiteColor()
+        cell.layer.shadowColor = lightGrey.CGColor
+        cell.layer.shadowRadius = 1.5
         cell.layer.shadowOpacity = 0.7
         cell.layer.shadowOffset = CGSizeZero
         cell.layer.masksToBounds = false
@@ -300,14 +317,36 @@ class BusinessAppTableViewController: UITableViewController, ChartViewDelegate
     
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let  headerCell = tableView.dequeueReusableCellWithIdentifier("HeaderCell") as! CustomHeaderCell
-        let formatter = NSDateFormatter()
-        let currentDate = NSDate()
-        formatter.dateFormat = "MMMM dd, yyyy"
-        headerCell.backgroundColor = UIColor(red: 0/255.0, green: 64/255.0, blue: 128/255.0, alpha: 1.0)
+        let white = UIColor.whiteColor()
+        var suffix = " Tickets"
+
+        headerCell.backgroundColor = UIColor(red: CGFloat(54/255.0), green: CGFloat(69/255.0), blue: CGFloat(79/255.0), alpha: 1)
         headerCell.appTierLabel.text = sectionTitles[section]
-        headerCell.appTierLabel.textColor = UIColor.whiteColor()
-        headerCell.currentDateHeader.text = formatter.stringFromDate(currentDate)
-        headerCell.currentDateHeader.textColor = UIColor.whiteColor()
+        headerCell.appTierLabel.textColor = white
+        if (section == 0) {
+            if (emergencyTickets.count == 1) {
+                suffix = " Ticket"
+            }
+            headerCell.currentDateHeader.text = String(emergencyTickets.count) + suffix
+        } else if (section == 1) {
+            if (highRiskTickets.count == 1) {
+                suffix = " Ticket"
+            }
+            headerCell.currentDateHeader.text = String(highRiskTickets.count) + suffix
+        } else {
+            if (lowRiskTickets.count == 1) {
+                suffix = " Ticket"
+            }
+            headerCell.currentDateHeader.text = String(lowRiskTickets.count) + suffix
+        }
+        
+        headerCell.currentDateHeader.textColor = white
+        
+        headerCell.layer.shadowColor = white.CGColor
+        headerCell.layer.shadowRadius = 1.5
+        headerCell.layer.shadowOpacity = 0.7
+        headerCell.layer.shadowOffset = CGSizeZero
+        headerCell.layer.masksToBounds = false
         
         return headerCell
     }
@@ -324,30 +363,18 @@ class BusinessAppTableViewController: UITableViewController, ChartViewDelegate
     // Row Animation
     override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
         let cellPosition = indexPath.indexAtPosition(1)
-        let delay : Double = Double(cellPosition) * 0.1
         
-        if (isShifting) {
-            let rotationTransform = CATransform3DTranslate(CATransform3DIdentity, -1000, 0, 0)
+        if (liveTicketsShown[indexPath.row] == false) {
+            let rotationTransform = CATransform3DTranslate(CATransform3DIdentity, -500, 0, 0)
             cell.layer.transform = rotationTransform
             
-            UIView.animateWithDuration(1.0, delay: delay, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.3, options: UIViewAnimationOptions.BeginFromCurrentState, animations: {
+            UIView.animateWithDuration(1.0, animations: {
                 cell.layer.transform = CATransform3DIdentity
                 }, completion: { finished in
                     
             })
+            liveTicketsShown[indexPath.row] = true
         }
-         else {
-//            let rotationTransform = CATransform3DTranslate(CATransform3DIdentity, 1000, 0, 0)
-//            cell.layer.transform = rotationTransform
-//            cell.tag = 20
-//            
-//            UIView.animateWithDuration(1.0, delay: delay, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.3, options: UIViewAnimationOptions.BeginFromCurrentState, animations: {
-//                cell.layer.transform = CATransform3DIdentity
-//                }, completion: { finished in
-//                    
-//            })
-        }
-        
     }
     
     // Header Animation
@@ -355,15 +382,15 @@ class BusinessAppTableViewController: UITableViewController, ChartViewDelegate
         if (isShifting) {
 
         } else {
-            let rotationTransform = CATransform3DTranslate(CATransform3DIdentity, -500, 0, 0)
-            view.layer.transform = rotationTransform
-            view.tag = 21
-            
-            UIView.animateWithDuration(1.0, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.3, options: UIViewAnimationOptions.BeginFromCurrentState, animations: {
-                view.layer.transform = CATransform3DIdentity
-                }, completion: { finished in
-                    
-            })
+//            let rotationTransform = CATransform3DTranslate(CATransform3DIdentity, -500, 0, 0)
+//            view.layer.transform = rotationTransform
+//            view.tag = 21
+//            
+//            UIView.animateWithDuration(1.0, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.3, options: UIViewAnimationOptions.BeginFromCurrentState, animations: {
+//                view.layer.transform = CATransform3DIdentity
+//                }, completion: { finished in
+//                    
+//            })
         }
         
     }
@@ -415,13 +442,11 @@ class BusinessAppTableViewController: UITableViewController, ChartViewDelegate
             for ticket in liveTickets {
                 if (ticket.plannedStart == formattedTime) {
                     sortedTickets_Time += [ticket]
-                    print(sortedTickets_Time[sortIndex2].plannedStart)
                     sortIndex2++
                 }
             }
             stringRange += [formattedTime]
         }
-        print(stringRange)
     }
     
     func setChart(dataPoints: [String], values: [Double], values2: [Double]) {
@@ -459,6 +484,7 @@ class BusinessAppTableViewController: UITableViewController, ChartViewDelegate
         chartDataSet.colors = [low]
         chartDataSet2.colors = [high]
         chartDataSet.highlightColor = navy_comp
+        chartDataSet2.highlightColor = UIColor(red: CGFloat(255/255.0), green: CGFloat(0), blue: CGFloat(35/255.0), alpha: 1)
         let dataSets: [BarChartDataSet] = [chartDataSet,chartDataSet2]
         let numberFormatter = NSNumberFormatter()
 
@@ -509,6 +535,7 @@ class BusinessAppTableViewController: UITableViewController, ChartViewDelegate
         isShifting = true
         filteredTickets.removeAll()
         filteredNumbers.removeAll()
+        liveTicketsShown.removeAll()
         
         if (entry.data != nil) {
             currentDateLabel.text = String(entry.data!)
@@ -529,6 +556,8 @@ class BusinessAppTableViewController: UITableViewController, ChartViewDelegate
                         }
                     }
                 }
+                let ticketShown = [Bool](count: filteredTickets.count, repeatedValue: false)
+                liveTicketsShown = ticketShown
                 tableView.reloadData()
             } else {
                 for ticket in liveTickets {
@@ -538,6 +567,8 @@ class BusinessAppTableViewController: UITableViewController, ChartViewDelegate
                         }
                     }
                 }
+                let ticketShown = [Bool](count: filteredTickets.count, repeatedValue: false)
+                liveTicketsShown = ticketShown
                 tableView.reloadData()
             }
         }
@@ -546,6 +577,9 @@ class BusinessAppTableViewController: UITableViewController, ChartViewDelegate
     func chartValueNothingSelected(chartView: ChartViewBase) {
         isGraphSelected = false
         currentDateLabel.text = ""
+        liveTicketsShown.removeAll()
+        let ticketShown = [Bool](count: liveTickets.count, repeatedValue: false)
+        liveTicketsShown = ticketShown
         tableView.reloadData()
        
     }
