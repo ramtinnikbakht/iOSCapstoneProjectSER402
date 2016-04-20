@@ -72,7 +72,7 @@ class SelectUserTypeViewController: UIViewController, UIPickerViewDataSource, UI
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        let destViewController : AppSelectionTableViewController = segue.destinationViewController as! AppSelectionTableViewController
+        let destViewController : AppAreaSelectionTableViewController = segue.destinationViewController as! AppAreaSelectionTableViewController
             destViewController.usertype = selectedUserType
         
         

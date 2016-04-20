@@ -9,6 +9,8 @@
 import UIKit
 
 class AppAreaSelectionTableViewController: UITableViewController {
+    
+    var usertype: String = ""
 
     var area3 = [BusinessApp]()
     
@@ -106,6 +108,14 @@ class AppAreaSelectionTableViewController: UITableViewController {
         }
 
     }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        let destViewController : AppSelectionTableViewController = segue.destinationViewController as! AppSelectionTableViewController
+        destViewController.usertype = usertype
+        
+        
+    }
+
     /*
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
