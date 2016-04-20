@@ -46,6 +46,10 @@ class ChangeTicketTableViewController: UITableViewController, ChartViewDelegate 
     let DateFormat = NSDateFormatter()
     let infoBackgroundCount = 6
     var selectedTicket = ChangeTicket(number: "", approver: "", plannedStart: "", plannedEnd: "", actualStart: "", actualEnd: "", requestedByGroup: "", requestedByGroupBusinessArea: "", requestedByGroupBusinessUnit: "", requestedByGroupSubBusinessUnit: "", causeCompleteServiceAppOutage: "", risk: "", type: "", impactScore: "", shortDescription: "", changeReason: "", closureCode: "", ImpactedEnviroment: "", SecondaryClosureCode: "", PartofRelease: "", BusinessApplication: "", BusinessApplicationCriticalityTier: "")
+    let generalAttributeLabels = ["Planned Start", "Planned End", "Type", "Risk"]
+    var generalAttributeValues : [String] = []
+    let businessAttributeLabels = ["Application", "Area", "Unit", "Sub-Unit"]
+    var businessAttributeValues : [String] = []
     
     // Colors
     let low = UIColor(red: CGFloat(38/255.0), green: CGFloat(166/255.0), blue: CGFloat(91/255.0), alpha: 1)
@@ -60,28 +64,14 @@ class ChangeTicketTableViewController: UITableViewController, ChartViewDelegate 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        print(selectedTicket.shortDescription)
-        //pieChartView.delegate = self
-        //lineChartView.delegate = self
         selectedTicketNumber.text = selectedTicket.number
-        businessAppLabel.text = selectedTicket.BusinessApplication
-        businessAppLabel.textColor = UIColor.blackColor()
-        plannedStartLabel.text = selectedTicket.plannedStart
-        plannedEndLabel.text = selectedTicket.plannedEnd
-        changeTypeLabel.text = selectedTicket.type + " / " + selectedTicket.risk
-        businessUnitLabel.text = selectedTicket.requestedByGroupBusinessUnit
-        subBusinessUnitLabel.text = selectedTicket.requestedByGroupSubBusinessUnit
-        businessAreaLabel.text = selectedTicket.requestedByGroupBusinessArea
-        shortDescriptionLabel.text = selectedTicket.shortDescription
-        
-        for i in 0..<infoBackgroundCount {
-            let currentBackground = self.view.viewWithTag(50+i)
-            currentBackground?.backgroundColor = silver
+        if (selectedTicket.BusinessApplication == "element <business_Application> not found") {
+            businessAppLabel.text = ""
+        } else {
+            businessAppLabel.text = selectedTicket.BusinessApplication
         }
+        businessAppLabel.textColor = UIColor.blackColor()
         
-        
-        print(selectedTicket.PartofRelease)
-        configurePageControl()
         loadTickets()
     }
     
@@ -144,6 +134,20 @@ class ChangeTicketTableViewController: UITableViewController, ChartViewDelegate 
         ConnectionService.sharedInstance.getChange(selectedTicket.number)
         liveTickets = ConnectionService.sharedInstance.ticketList
 
+        generalAttributeValues += [liveTickets[0].plannedStart]
+        generalAttributeValues += [liveTickets[0].plannedEnd]
+        generalAttributeValues += [liveTickets[0].type]
+        generalAttributeValues += [liveTickets[0].risk]
+        
+        if (liveTickets[0].BusinessApplication == "element <business_Application> not found") {
+            businessAttributeValues += ["Not Applicable"]
+        } else {
+            businessAttributeValues += [liveTickets[0].BusinessApplication]
+        }
+        businessAttributeValues += [liveTickets[0].requestedByGroupBusinessArea]
+        businessAttributeValues += [liveTickets[0].requestedByGroupBusinessUnit]
+        businessAttributeValues += [liveTickets[0].requestedByGroupSubBusinessUnit]
+        
         for ticket in liveTickets {
             if (ticket.risk == "Low" && ticket.type != "Emergency") {
                 lowRiskTickets += [ticket]
@@ -172,58 +176,64 @@ class ChangeTicketTableViewController: UITableViewController, ChartViewDelegate 
     // MARK: - Table view data source
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return sectionTitles.count
+        return 2
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if (isGraphSelected) {
-            return filteredTickets.count
+        if (section == 0) {
+            return generalAttributeValues.count
         } else {
-            switch (section) {
-            case 0:
-                return emergencyTickets.count
-            case 1:
-                return highRiskTickets.count
-            case 2:
-                return lowRiskTickets.count
-            default:
-                return liveTickets.count
-            }
+            return businessAttributeValues.count
         }
         
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! ChangeTicketTableViewCell
-        var ticket : ChangeTicket
-        if (isGraphSelected) {
-            ticket = filteredTickets[indexPath.row] as ChangeTicket
-        } else {
-            if (indexPath.section == 0) {
-                ticket = emergencyTickets[indexPath.row] as ChangeTicket
-            } else if (indexPath.section == 1) {
-                ticket = highRiskTickets[indexPath.row] as ChangeTicket
-            } else if (indexPath.section == 2) {
-                ticket = lowRiskTickets[indexPath.row] as ChangeTicket
-            } else {
-                ticket = liveTickets[indexPath.row] as ChangeTicket
-            }
-        }
-        if (ticket.risk == "Low") {
-            cell.riskIndicator.backgroundColor = low
-        } else if (ticket.risk == "High") {
-            cell.riskIndicator.backgroundColor = high
-        }
+        
         let white = UIColor.whiteColor()
         cell.layer.shadowColor = white.CGColor
         cell.layer.shadowRadius = 3.5
         cell.layer.shadowOpacity = 0.7
         cell.layer.shadowOffset = CGSizeZero
         cell.layer.masksToBounds = false
-        cell.ticket = ticket
+        
+        if (indexPath.row % 2 == 1) {
+            cell.backgroundColor = white
+        } else {
+            cell.backgroundColor = silver
+        }
+        
+        if (indexPath.section == 0) {
+            cell.attributeLabel.text = generalAttributeLabels[indexPath.row]
+            cell.attributeValue.text = generalAttributeValues[indexPath.row]
+        } else {
+            cell.attributeLabel.text = businessAttributeLabels[indexPath.row]
+            cell.attributeValue.text = businessAttributeValues[indexPath.row]
+        }
         
         return cell
         
+    }
+    
+    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let  headerCell = tableView.dequeueReusableCellWithIdentifier("TicketHeaderCell") as! ChangeTicketHeaderCell
+        let white = UIColor.whiteColor()
+        
+        headerCell.backgroundColor = UIColor(red: CGFloat(54/255.0), green: CGFloat(69/255.0), blue: CGFloat(79/255.0), alpha: 1)
+        if (section == 0) {
+           headerCell.attributeTypeLabel.text = "General"
+        } else {
+            headerCell.attributeTypeLabel.text = "Business"
+        }
+        
+        headerCell.layer.shadowColor = white.CGColor
+        headerCell.layer.shadowRadius = 1.5
+        headerCell.layer.shadowOpacity = 0.7
+        headerCell.layer.shadowOffset = CGSizeZero
+        headerCell.layer.masksToBounds = false
+        
+        return headerCell
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -253,12 +263,7 @@ class ChangeTicketTableViewController: UITableViewController, ChartViewDelegate 
     
     // Row Animation
     override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-        (cell as! ChangeTicketTableViewCell).watchFrameChanges()
-        if (cell.frame.height > 50) {
-            (cell as! ChangeTicketTableViewCell).expandIndicator.image = UIImage(named: "expand_less")
-        } else if (cell.frame.height < 50) {
-            (cell as! ChangeTicketTableViewCell).expandIndicator.image = UIImage(named: "expand_more")
-        }
+        (cell as! ChangeTicketTableViewCell)
         if (shouldAnimate) {
             let cellPosition = indexPath.indexAtPosition(1)
             let delay : Double = Double(cellPosition) * 0.1
@@ -274,25 +279,6 @@ class ChangeTicketTableViewController: UITableViewController, ChartViewDelegate 
         }
     }
     
-    override func tableView(tableView: UITableView, didEndDisplayingCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-        (cell as! ChangeTicketTableViewCell).ignoreFrameChanges()
-    }
-    
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(animated)
-        for cell in tableView.visibleCells as! [ChangeTicketTableViewCell] {
-            cell.ignoreFrameChanges()
-        }
-    }
-    
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        if indexPath == selectedIndexPath {
-            return ChangeTicketTableViewCell.expandedHeight
-        } else {
-            return ChangeTicketTableViewCell.defaultHeight
-        }
-    }
-    
     func getTimeRange() -> [NSDate] {
         var range : [NSDate] = []
         
@@ -305,12 +291,6 @@ class ChangeTicketTableViewController: UITableViewController, ChartViewDelegate 
         }
         
         return range
-    }
-    
-    func configurePageControl() {
-        profilePageControl.backgroundColor = charcoal
-        profilePageControl.pageIndicatorTintColor = UIColor.lightGrayColor()
-        profilePageControl.currentPageIndicatorTintColor = UIColor.whiteColor()
     }
     
 }

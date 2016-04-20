@@ -34,6 +34,7 @@ class BusinessAppTableViewController: UITableViewController, ChartViewDelegate
     var lowRiskTickets = [ChangeTicket]()
     var highRiskTickets = [ChangeTicket]()
     var emergencyTickets = [ChangeTicket]()
+    var filteredEmergencyTickets = [ChangeTicket]()
     var lowTickets = [String]()
     var highTickets = [String]()
     var compare_window = [String]()
@@ -106,8 +107,8 @@ class BusinessAppTableViewController: UITableViewController, ChartViewDelegate
         DateFormat.locale = NSLocale(localeIdentifier: "US_en")
         DateFormat.dateFormat = "yyyy-MM-dd HH:mm:ss"
         let now = NSDate()
-        let time1 = DateFormat.stringFromDate(now)
-        let time2 = DateFormat.stringFromDate(now.plusHours(6))
+        //let time1 = DateFormat.stringFromDate(now)
+        //let time2 = DateFormat.stringFromDate(now.plusHours(6))
         
         ConnectionService.sharedInstance.getChange(plannedStart: "2016-01-25 02:00:00", plannedStart2: "2016-01-25 08:30:00", psD: "1")
         liveTickets = ConnectionService.sharedInstance.ticketList
@@ -222,13 +223,7 @@ class BusinessAppTableViewController: UITableViewController, ChartViewDelegate
         if (isGraphSelected) {
             switch (section) {
             case 0:
-                var emergencyCount = 0
-                for ticket in filteredTickets {
-                    if (ticket.type == "Emergency") {
-                        emergencyCount++
-                    }
-                }
-                return emergencyCount
+                return filteredEmergencyTickets.count
             case 1:
                 var highRiskCount = 0
                 for ticket in filteredTickets {
@@ -265,12 +260,14 @@ class BusinessAppTableViewController: UITableViewController, ChartViewDelegate
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! BusinessAppTableViewCell
         var ticket : ChangeTicket
+        
         if (isGraphSelected) {
-            ticket = filteredTickets[indexPath.row] as ChangeTicket
-            if (ticket.type == "Emergency") {
+            if (indexPath.section == 0) {
+                ticket = filteredEmergencyTickets[indexPath.row] as ChangeTicket
                 cell.emergencyIndicator.hidden = false
                 cell.emergencyIndicator.image = UIImage(named: "emergency.png")
             } else {
+                ticket = filteredTickets[indexPath.row] as ChangeTicket
                 cell.emergencyIndicator.hidden = true
             }
         } else {
@@ -362,8 +359,6 @@ class BusinessAppTableViewController: UITableViewController, ChartViewDelegate
     
     // Row Animation
     override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-        let cellPosition = indexPath.indexAtPosition(1)
-        
         if (liveTicketsShown[indexPath.row] == false) {
             let rotationTransform = CATransform3DTranslate(CATransform3DIdentity, -500, 0, 0)
             cell.layer.transform = rotationTransform
@@ -532,8 +527,9 @@ class BusinessAppTableViewController: UITableViewController, ChartViewDelegate
     
     func chartValueSelected(chartView: ChartViewBase, entry: ChartDataEntry, dataSetIndex: Int, highlight: ChartHighlight) {
         isGraphSelected = true
-        isShifting = true
+        //isShifting = true
         filteredTickets.removeAll()
+        filteredEmergencyTickets.removeAll()
         filteredNumbers.removeAll()
         liveTicketsShown.removeAll()
         
@@ -551,23 +547,27 @@ class BusinessAppTableViewController: UITableViewController, ChartViewDelegate
             if (dataSetIndex == 0) {
                 for ticket in liveTickets {
                     for number in filteredNumbers {
-                        if (ticket.number == number && ticket.risk == "Low") {
+                        if (ticket.number == number && ticket.risk == "Low" && ticket.type != "Emergency") {
                             filteredTickets += [ticket]
+                        } else if (ticket.number == number && ticket.risk == "Low" && ticket.type == "Emergency") {
+                            filteredEmergencyTickets += [ticket]
                         }
                     }
                 }
                 let ticketShown = [Bool](count: filteredTickets.count, repeatedValue: false)
                 liveTicketsShown = ticketShown
                 tableView.reloadData()
-            } else {
+            } else if (dataSetIndex == 1) {
                 for ticket in liveTickets {
                     for number in filteredNumbers {
-                        if (ticket.number == number && ticket.risk == "High") {
+                        if (ticket.number == number && ticket.risk == "High" && ticket.type != "Emergency") {
                             filteredTickets += [ticket]
+                        } else if (ticket.number == number && ticket.risk == "High" && ticket.type == "Emergency") {
+                            filteredEmergencyTickets += [ticket]
                         }
                     }
                 }
-                let ticketShown = [Bool](count: filteredTickets.count, repeatedValue: false)
+                let ticketShown = [Bool](count: filteredTickets.count + filteredEmergencyTickets.count, repeatedValue: false)
                 liveTicketsShown = ticketShown
                 tableView.reloadData()
             }
@@ -591,7 +591,12 @@ class BusinessAppTableViewController: UITableViewController, ChartViewDelegate
             let ticket:ChangeTicket
             
             if (isGraphSelected) {
-                ticket = filteredTickets[indexPath.row]
+                if (indexPath.section == 0) {
+                    ticket = filteredEmergencyTickets[indexPath.row]
+                } else {
+                    ticket = filteredTickets[indexPath.row]
+                }
+
             } else {
                 if (indexPath.section == 0) {
                     ticket = emergencyTickets[indexPath.row]

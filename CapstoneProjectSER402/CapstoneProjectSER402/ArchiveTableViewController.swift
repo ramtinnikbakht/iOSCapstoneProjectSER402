@@ -14,6 +14,7 @@ class ArchiveTableViewController: UITableViewController, UITextFieldDelegate, Ch
     
     @IBOutlet weak var pieChartView: PieChartView!
     @IBOutlet weak var timeSegmentControl: UISegmentedControl!
+    //@IBOutlet weak var legendDisplay: UIImageView!
     
     private var tickets = TicketModel()
     private var tbvc = TicketTabBarController()
@@ -118,12 +119,17 @@ class ArchiveTableViewController: UITableViewController, UITextFieldDelegate, Ch
         }
     }
     
+    func displayLegendDetails() {
+        let aRectangle = CGRectMake(246, 28, 130, 30)
+        let largerRect = CGRectInset(aRectangle, -30, 0)
+    }
+    
     func loadTickets() {
         DateFormat.locale = NSLocale(localeIdentifier: "US_en")
         DateFormat.dateFormat = "yyyy-MM-dd HH:mm:ss"
         let now = NSDate()
-        let time1 = DateFormat.stringFromDate(now)
-        let time2 = DateFormat.stringFromDate(now.minusDays(2))
+        //let time1 = DateFormat.stringFromDate(now)
+        //let time2 = DateFormat.stringFromDate(now.minusDays(2))
         
         ConnectionService.sharedInstance.getChange(actualEnd: "2016-03-10 00:00:00", actualEnd2: "2016-03-10 24:00:00", aeD: "1")
         liveTickets = ConnectionService.sharedInstance.ticketList
@@ -367,7 +373,7 @@ class ArchiveTableViewController: UITableViewController, UITextFieldDelegate, Ch
         }
         
         // Legend Data
-        pieChartView.legend.enabled = true
+        pieChartView.legend.enabled = false
         pieChartView.legend.yOffset = 40
         pieChartView.legend.xOffset = 25
         pieChartView.legend.position = .RightOfChart
