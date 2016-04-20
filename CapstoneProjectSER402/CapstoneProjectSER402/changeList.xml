@@ -15696,7 +15696,7 @@
                             <Causes_Complete_ServiceApplication_OutageSYS>No</Causes_Complete_ServiceApplication_OutageSYS>
                             <Planned_Start_Of_Outage/>
                             <Planned_End_Of_Outage/>
-                            <Risk>Low</Risk>
+                            <Risk>Emergency</Risk>
                             <RiskSys>4</RiskSys>
                             <Type>Normal</Type>
                             <TypeSys>Normal</TypeSys>
@@ -16002,7 +16002,7 @@
                             <Number>CHG00307573</Number>
                             <Approver>Daniel Carter</Approver>
                             <ApproverSys>809d963c2b0c34002093d4b419da150a</ApproverSys>
-                            <Planned_Start>2016-04-20 07:30:42</Planned_Start>
+                            <Planned_Start>2016-04-20 08:30:42</Planned_Start>
                             <Planned_End>2016-04-20 10:00:00</Planned_End>
                             <Actual_Start>2016-04-17 04:00:42</Actual_Start>
                             <Actual_End/>
@@ -16018,7 +16018,7 @@
                             <Causes_Complete_ServiceApplication_OutageSYS>No</Causes_Complete_ServiceApplication_OutageSYS>
                             <Planned_Start_Of_Outage/>
                             <Planned_End_Of_Outage/>
-                            <Risk>High</Risk>
+                            <Risk>Emergency</Risk>
                             <RiskSys>2</RiskSys>
                             <Type>Normal</Type>
                             <TypeSys>Normal</TypeSys>
