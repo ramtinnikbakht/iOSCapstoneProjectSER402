@@ -49,6 +49,7 @@ class BusinessAppTableViewController: UITableViewController, ChartViewDelegate
     let sectionTitles = ["Emergency", "High Risk", "Low Risk"]
     var liveApps = [BusinessApp]()
     var liveTicketsShown : [Bool] = []
+    var mockData = MockData()
     
     // Colors
     let low = UIColor(red: CGFloat(38/255.0), green: CGFloat(166/255.0), blue: CGFloat(91/255.0), alpha: 1)
@@ -110,8 +111,9 @@ class BusinessAppTableViewController: UITableViewController, ChartViewDelegate
         //let time1 = DateFormat.stringFromDate(now)
         //let time2 = DateFormat.stringFromDate(now.plusHours(6))
         
-        ConnectionService.sharedInstance.getChange(plannedStart: "2016-01-25 02:00:00", plannedStart2: "2016-01-25 08:30:00", psD: "1")
-        liveTickets = ConnectionService.sharedInstance.ticketList
+        liveTickets = mockData.parseExampleXMLFile()
+//        ConnectionService.sharedInstance.getChange(plannedStart: "2016-01-25 02:00:00", plannedStart2: "2016-01-25 08:30:00", psD: "1")
+//        liveTickets = ConnectionService.sharedInstance.ticketList
 
         for ticket in liveTickets {
             let currentTime = DateFormat.dateFromString(ticket.plannedStart)
@@ -305,7 +307,6 @@ class BusinessAppTableViewController: UITableViewController, ChartViewDelegate
         cell.layer.shadowOpacity = 0.7
         cell.layer.shadowOffset = CGSizeZero
         cell.layer.masksToBounds = false
-        cell.businessAppLabel.text = ticket.requestedByGroupBusinessArea
         cell.ticket = ticket
         
         return cell
@@ -594,6 +595,7 @@ class BusinessAppTableViewController: UITableViewController, ChartViewDelegate
                 if (indexPath.section == 0) {
                     ticket = filteredEmergencyTickets[indexPath.row]
                 } else {
+                    print(filteredTickets)
                     ticket = filteredTickets[indexPath.row]
                 }
 

@@ -145,6 +145,9 @@ class AnalysisViewController: UIViewController, UITextFieldDelegate, ChartViewDe
         liveTickets = ConnectionService.sharedInstance.ticketList
         calculateGraphValues()
         radarChartView.clear()
+        print(selectedHourLabels)
+        print(lowRiskCount)
+        print(highRiskCount)
         setChart(selectedHourLabels, values: lowRiskCount, values2: highRiskCount)
     }
     

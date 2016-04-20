@@ -87,7 +87,7 @@
                             <Short_Description>November Patch Fix Release- EzPay Website- Hudson</Short_Description>
                             <Change_Reason>Break/Fix</Change_Reason>
                             <Change_ReasonSys>Break/Fix</Change_ReasonSys>
-                            <Closure_Code>Implemented as Planned</Closure_Code>
+                            <Closure_Code>Backed Out No Customer/User Impacts</Closure_Code>
                             <Closure_CodeSys>Implemented as Planned</Closure_CodeSys>
                             <Impacted_Environments>Production</Impacted_Environments>
                             <Impacted_EnvironmentsSys>Production</Impacted_EnvironmentsSys>
@@ -133,7 +133,7 @@
                             <Short_Description>New Print Q for Hauppauge NY</Short_Description>
                             <Change_Reason/>
                             <Change_ReasonSys/>
-                            <Closure_Code>Implemented as Planned</Closure_Code>
+                            <Closure_Code>Backed Out No Customer/User Impacts</Closure_Code>
                             <Closure_CodeSys>Implemented as Planned</Closure_CodeSys>
                             <Impacted_Environments>Production</Impacted_Environments>
                             <Impacted_EnvironmentsSys>Production</Impacted_EnvironmentsSys>
@@ -172,7 +172,7 @@
                             <Short_Description>Drivewise Mobile Application iOS September Maintenance release deployment to the Apple iTunes store</Short_Description>
                             <Change_Reason>Maintenance</Change_Reason>
                             <Change_ReasonSys>Maintenance</Change_ReasonSys>
-                            <Closure_Code>Implemented as Planned</Closure_Code>
+                            <Closure_Code>Backed Out No Customer/User Impacts</Closure_Code>
                             <Closure_CodeSys>Implemented as Planned</Closure_CodeSys>
                             <Impacted_Environments>Production</Impacted_Environments>
                             <Impacted_EnvironmentsSys>Production</Impacted_EnvironmentsSys>
@@ -250,7 +250,7 @@
                             <Short_Description>RALIE Mainframe Change - AFT 2016 December Major Release</Short_Description>
                             <Change_Reason>Maintenance</Change_Reason>
                             <Change_ReasonSys>Maintenance</Change_ReasonSys>
-                            <Closure_Code>Implemented as Planned</Closure_Code>
+                            <Closure_Code>Implemented with Effort</Closure_Code>
                             <Closure_CodeSys>Implemented as Planned</Closure_CodeSys>
                             <Impacted_Environments>Production</Impacted_Environments>
                             <Impacted_EnvironmentsSys>Production</Impacted_EnvironmentsSys>
@@ -296,7 +296,7 @@
                             <Short_Description>CACOE: CACOE_Z_Transaction_Audits_and_Refunds_Coordination</Short_Description>
                             <Change_Reason/>
                             <Change_ReasonSys/>
-                            <Closure_Code>Implemented as Planned</Closure_Code>
+                            <Closure_Code>Backed Out No Customer/User Impacts</Closure_Code>
                             <Closure_CodeSys>Implemented as Planned</Closure_CodeSys>
                             <Impacted_Environments>Production</Impacted_Environments>
                             <Impacted_EnvironmentsSys>Production</Impacted_EnvironmentsSys>
@@ -335,7 +335,7 @@
                             <Short_Description>Production Zoning Updates - Hudson - A0185-SMD0015-S/A0185-SMD0016-S - RITM00440724 &amp;amp; RITM00447942</Short_Description>
                             <Change_Reason/>
                             <Change_ReasonSys/>
-                            <Closure_Code>Implemented as Planned</Closure_Code>
+                            <Closure_Code>Backed Out No Customer/User Impacts</Closure_Code>
                             <Closure_CodeSys>Implemented as Planned</Closure_CodeSys>
                             <Impacted_Environments>Production</Impacted_Environments>
                             <Impacted_EnvironmentsSys>Production</Impacted_EnvironmentsSys>
@@ -374,7 +374,7 @@
                             <Short_Description>ADW Entitlements Changes - Nov 30 2016</Short_Description>
                             <Change_Reason>New Capability</Change_Reason>
                             <Change_ReasonSys>New Capability</Change_ReasonSys>
-                            <Closure_Code>Implemented as Planned</Closure_Code>
+                            <Closure_Code>Backed Out No Customer/User Impacts</Closure_Code>
                             <Closure_CodeSys>Implemented as Planned</Closure_CodeSys>
                             <Impacted_Environments>Production</Impacted_Environments>
                             <Impacted_EnvironmentsSys>Production</Impacted_EnvironmentsSys>
@@ -452,7 +452,7 @@
                             <Short_Description>Windows Server Patching - 2016-PMR2 - Citrix - Prod Week 1 - Saturday night</Short_Description>
                             <Change_Reason>Maintenance</Change_Reason>
                             <Change_ReasonSys>Maintenance</Change_ReasonSys>
-                            <Closure_Code>Implemented as Planned</Closure_Code>
+                            <Closure_Code>Implemented with Effort</Closure_Code>
                             <Closure_CodeSys>Implemented as Planned</Closure_CodeSys>
                             <Impacted_Environments>Production</Impacted_Environments>
                             <Impacted_EnvironmentsSys>Production</Impacted_EnvironmentsSys>
@@ -530,7 +530,7 @@
                             <Short_Description>OPODS 2.0 PRD -ENV  :Clone Binaries and Build oracle database opp327a on cluster gl-opp-dbl-220, servers lxm0068, lxm0069.</Short_Description>
                             <Change_Reason>New Capability</Change_Reason>
                             <Change_ReasonSys>New Capability</Change_ReasonSys>
-                            <Closure_Code>Implemented as Planned</Closure_Code>
+                            <Closure_Code>Backed Out No Customer/User Impacts</Closure_Code>
                             <Closure_CodeSys>Implemented as Planned</Closure_CodeSys>
                             <Impacted_Environments>Production</Impacted_Environments>
                             <Impacted_EnvironmentsSys>Production</Impacted_EnvironmentsSys>
@@ -569,7 +569,7 @@
                             <Short_Description>Windows Server Patching - 2016-PMR2 - Agency Distribution - Prod Week 1 - Saturday night</Short_Description>
                             <Change_Reason>Maintenance</Change_Reason>
                             <Change_ReasonSys>Maintenance</Change_ReasonSys>
-                            <Closure_Code>Implemented as Planned</Closure_Code>
+                            <Closure_Code>Backed Out No Customer/User Impacts</Closure_Code>
                             <Closure_CodeSys>Implemented as Planned</Closure_CodeSys>
                             <Impacted_Environments>Production</Impacted_Environments>
                             <Impacted_EnvironmentsSys>Production</Impacted_EnvironmentsSys>
@@ -668,7 +668,7 @@
                             <Short_Description>Vulnerability Scan - AD Servers - GLDC</Short_Description>
                             <Change_Reason/>
                             <Change_ReasonSys/>
-                            <Closure_Code>Implemented as Planned</Closure_Code>
+                            <Closure_Code>Backed Out No Customer/User Impacts</Closure_Code>
                             <Closure_CodeSys>Implemented as Planned</Closure_CodeSys>
                             <Impacted_Environments>Production</Impacted_Environments>
                             <Impacted_EnvironmentsSys>Production</Impacted_EnvironmentsSys>
@@ -824,8 +824,8 @@
                             <Short_Description>SVD Production Installation of Microsoft Office 2013 SP1</Short_Description>
                             <Change_Reason>New Capability</Change_Reason>
                             <Change_ReasonSys>New Capability</Change_ReasonSys>
-                            <Closure_Code>Implemented as Planned</Closure_Code>
-                            <Closure_CodeSys>Implemented as Planned</Closure_CodeSys>
+                            <Closure_Code>Implemented with Effort</Closure_Code>
+                            <Closure_CodeSys>Backed Out Customer/User Impacts</Closure_CodeSys>
                             <Impacted_Environments>Production &amp; Non-Production</Impacted_Environments>
                             <Impacted_EnvironmentsSys>Production &amp; Non-Production</Impacted_EnvironmentsSys>
                             <Secondary_Closure_Code/>
@@ -870,7 +870,7 @@
                             <Short_Description>Update Stored Prodcure from calllogdetail record removal</Short_Description>
                             <Change_Reason>Break/Fix</Change_Reason>
                             <Change_ReasonSys>Break/Fix</Change_ReasonSys>
-                            <Closure_Code>Implemented as Planned</Closure_Code>
+                            <Closure_Code>Implemented with Effort</Closure_Code>
                             <Closure_CodeSys>Implemented as Planned</Closure_CodeSys>
                             <Impacted_Environments>Production</Impacted_Environments>
                             <Impacted_EnvironmentsSys>Production</Impacted_EnvironmentsSys>
@@ -948,7 +948,7 @@
                             <Short_Description>MCL (Micro Code Load) upgrade on the Hudson mainframe processors &amp;amp; coupling facilities.  This includes CEC&amp;apos;s and Coupling Facilities</Short_Description>
                             <Change_Reason>Maintenance</Change_Reason>
                             <Change_ReasonSys>Maintenance</Change_ReasonSys>
-                            <Closure_Code>Implemented as Planned</Closure_Code>
+                            <Closure_Code>Backed Out Customer/User Impacts</Closure_Code>
                             <Closure_CodeSys>Implemented as Planned</Closure_CodeSys>
                             <Impacted_Environments>Production</Impacted_Environments>
                             <Impacted_EnvironmentsSys>Production</Impacted_EnvironmentsSys>
@@ -987,7 +987,7 @@
                             <Short_Description>SE&amp;amp;EM_SAP_DAILY_MONITORING</Short_Description>
                             <Change_Reason/>
                             <Change_ReasonSys/>
-                            <Closure_Code>Implemented as Planned</Closure_Code>
+                            <Closure_Code>Implemented with Effort</Closure_Code>
                             <Closure_CodeSys>Implemented as Planned</Closure_CodeSys>
                             <Impacted_Environments>Production</Impacted_Environments>
                             <Impacted_EnvironmentsSys>Production</Impacted_EnvironmentsSys>
@@ -1026,7 +1026,7 @@
                             <Short_Description>SQL: Standard SQL RFC for IM resolution &amp;amp;lt;11/04/2016 8:25 am GMT&amp;amp;gt; &amp;amp;lt;5s run-time/2 expected updates&amp;amp;gt; &amp;amp;lt;Duplicated payment being deleted&amp;amp;gt;</Short_Description>
                             <Change_Reason/>
                             <Change_ReasonSys/>
-                            <Closure_Code>Implemented as Planned</Closure_Code>
+                            <Closure_Code>Implemented with Effort</Closure_Code>
                             <Closure_CodeSys>Implemented as Planned</Closure_CodeSys>
                             <Impacted_Environments>Production</Impacted_Environments>
                             <Impacted_EnvironmentsSys>Production</Impacted_EnvironmentsSys>
@@ -1065,7 +1065,7 @@
                             <Short_Description>Production - Storage Provisioning for Ab Initio Dash</Short_Description>
                             <Change_Reason/>
                             <Change_ReasonSys/>
-                            <Closure_Code>Implemented as Planned</Closure_Code>
+                            <Closure_Code>Implemented with Effort</Closure_Code>
                             <Closure_CodeSys>Implemented as Planned</Closure_CodeSys>
                             <Impacted_Environments>Production</Impacted_Environments>
                             <Impacted_EnvironmentsSys>Production</Impacted_EnvironmentsSys>
@@ -1104,7 +1104,7 @@
                             <Short_Description>Vulnerability Scan - Charlotte/Chubbuck/San Antonio Group 4</Short_Description>
                             <Change_Reason/>
                             <Change_ReasonSys/>
-                            <Closure_Code>Implemented as Planned</Closure_Code>
+                            <Closure_Code>Backed Out Customer/User Impacts</Closure_Code>
                             <Closure_CodeSys>Implemented as Planned</Closure_CodeSys>
                             <Impacted_Environments>Production</Impacted_Environments>
                             <Impacted_EnvironmentsSys>Production</Impacted_EnvironmentsSys>
@@ -1143,7 +1143,7 @@
                             <Short_Description>Modify Remote office Network Equipment Firmware Knoxville</Short_Description>
                             <Change_Reason/>
                             <Change_ReasonSys/>
-                            <Closure_Code>Implemented as Planned</Closure_Code>
+                            <Closure_Code>Backed Out Customer/User Impacts</Closure_Code>
                             <Closure_CodeSys>Implemented as Planned</Closure_CodeSys>
                             <Impacted_Environments>Production</Impacted_Environments>
                             <Impacted_EnvironmentsSys>Production</Impacted_EnvironmentsSys>
@@ -1221,7 +1221,7 @@
                             <Short_Description>SQL 2012 Migration - SMCE - RIO - Tier 3</Short_Description>
                             <Change_Reason>Maintenance</Change_Reason>
                             <Change_ReasonSys>Maintenance</Change_ReasonSys>
-                            <Closure_Code>Implemented as Planned</Closure_Code>
+                            <Closure_Code>Implemented with Effort</Closure_Code>
                             <Closure_CodeSys>Implemented as Planned</Closure_CodeSys>
                             <Impacted_Environments>Production</Impacted_Environments>
                             <Impacted_EnvironmentsSys>Production</Impacted_EnvironmentsSys>
@@ -1260,7 +1260,7 @@
                             <Short_Description>AWS - Hudson- Oct Release</Short_Description>
                             <Change_Reason>Break/Fix</Change_Reason>
                             <Change_ReasonSys>Break/Fix</Change_ReasonSys>
-                            <Closure_Code>Cancelled</Closure_Code>
+                            <Closure_Code>Backed Out Customer/User Impacts</Closure_Code>
                             <Closure_CodeSys>Cancelled</Closure_CodeSys>
                             <Impacted_Environments>Production</Impacted_Environments>
                             <Impacted_EnvironmentsSys>Production</Impacted_EnvironmentsSys>
@@ -1327,7 +1327,7 @@
                             <Short_Description>IS_Windows_Minor_ServerDeploy  Final Acceptance</Short_Description>
                             <Change_Reason/>
                             <Change_ReasonSys/>
-                            <Closure_Code>Implemented as Planned</Closure_Code>
+                            <Closure_Code>Implemented with Effort</Closure_Code>
                             <Closure_CodeSys>Implemented as Planned</Closure_CodeSys>
                             <Impacted_Environments>Production</Impacted_Environments>
                             <Impacted_EnvironmentsSys>Production</Impacted_EnvironmentsSys>
@@ -1366,7 +1366,7 @@
                             <Short_Description>HL00175 For PID 3332, CMS EDMS, deploy new xmls, schedules and queues.  ECCOE Deploy Corrected EDMS Scripts.</Short_Description>
                             <Change_Reason>New Capability</Change_Reason>
                             <Change_ReasonSys>New Capability</Change_ReasonSys>
-                            <Closure_Code>Implemented as Planned</Closure_Code>
+                            <Closure_Code>Implemented with Issues</Closure_Code>
                             <Closure_CodeSys>Implemented as Planned</Closure_CodeSys>
                             <Impacted_Environments>Production</Impacted_Environments>
                             <Impacted_EnvironmentsSys>Production</Impacted_EnvironmentsSys>
@@ -1444,7 +1444,7 @@
                             <Short_Description>The below Queue is experiencing a high pending message size on EMS server tcp://lxe0868:12587</Short_Description>
                             <Change_Reason/>
                             <Change_ReasonSys/>
-                            <Closure_Code>Implemented as Planned</Closure_Code>
+                            <Closure_Code>Implemented with Effort</Closure_Code>
                             <Closure_CodeSys>Implemented as Planned</Closure_CodeSys>
                             <Impacted_Environments>Production</Impacted_Environments>
                             <Impacted_EnvironmentsSys>Production</Impacted_EnvironmentsSys>
@@ -1522,7 +1522,7 @@
                             <Short_Description>Standard Change for Non-disruptive Virtual Server Storage Migration - Prod - A0775-VMW0073-V</Short_Description>
                             <Change_Reason/>
                             <Change_ReasonSys/>
-                            <Closure_Code>Implemented as Planned</Closure_Code>
+                            <Closure_Code>Implemented with Issues</Closure_Code>
                             <Closure_CodeSys>Implemented as Planned</Closure_CodeSys>
                             <Impacted_Environments>Production</Impacted_Environments>
                             <Impacted_EnvironmentsSys>Production</Impacted_EnvironmentsSys>
@@ -1712,7 +1712,7 @@
                             <Short_Description>Port Disable - Disabling ports as part of decommissioning ssm0125 and ssm0126, RITM00368665, RITM00368668</Short_Description>
                             <Change_Reason/>
                             <Change_ReasonSys/>
-                            <Closure_Code>Implemented as Planned</Closure_Code>
+                            <Closure_Code>Backed Out Customer/User Impacts</Closure_Code>
                             <Closure_CodeSys>Implemented as Planned</Closure_CodeSys>
                             <Impacted_Environments>Production</Impacted_Environments>
                             <Impacted_EnvironmentsSys>Production</Impacted_EnvironmentsSys>
@@ -1811,7 +1811,7 @@
                             <Short_Description>Empty the remaining IMS BMC libraries on the Encompass environments.</Short_Description>
                             <Change_Reason>Maintenance</Change_Reason>
                             <Change_ReasonSys>Maintenance</Change_ReasonSys>
-                            <Closure_Code>Implemented as Planned</Closure_Code>
+                            <Closure_Code>Implemented with Issues</Closure_Code>
                             <Closure_CodeSys>Implemented as Planned</Closure_CodeSys>
                             <Impacted_Environments>Production</Impacted_Environments>
                             <Impacted_EnvironmentsSys>Production</Impacted_EnvironmentsSys>
@@ -1889,7 +1889,7 @@
                             <Short_Description>SQL: Standard SQL RFC for Bus Req &amp;amp;lt;11-20-2016 /11:39 AM&amp;amp;gt; &amp;amp;lt;5 seconds/23 updates&amp;amp;gt; &amp;amp;lt;Inserting into POL_FORM_ACTIVITY table&amp;amp;gt;</Short_Description>
                             <Change_Reason/>
                             <Change_ReasonSys/>
-                            <Closure_Code>Implemented as Planned</Closure_Code>
+                            <Closure_Code>Backed Out Customer/User Impacts</Closure_Code>
                             <Closure_CodeSys>Implemented as Planned</Closure_CodeSys>
                             <Impacted_Environments>Production</Impacted_Environments>
                             <Impacted_EnvironmentsSys>Production</Impacted_EnvironmentsSys>
@@ -1928,7 +1928,7 @@
                             <Short_Description>Enable Web Service Request web site to use new SQL Server 2012 DB</Short_Description>
                             <Change_Reason>Maintenance</Change_Reason>
                             <Change_ReasonSys>Maintenance</Change_ReasonSys>
-                            <Closure_Code>Implemented as Planned</Closure_Code>
+                            <Closure_Code>Backed Out Customer/User Impacts</Closure_Code>
                             <Closure_CodeSys>Implemented as Planned</Closure_CodeSys>
                             <Impacted_Environments>Production</Impacted_Environments>
                             <Impacted_EnvironmentsSys>Production</Impacted_EnvironmentsSys>

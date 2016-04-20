@@ -38,6 +38,8 @@ class ArchiveTableViewController: UITableViewController, UITextFieldDelegate, Ch
     var cc4Tickets = Array<[ChangeTicket]>()
     var cc5Tickets = Array<[ChangeTicket]>()
     var cc6Tickets = Array<[ChangeTicket]>()
+    var mockData = MockData()
+    var liveTicketsShown : [Bool] = []
     
     let cellIdentifier = "TicketCell"
     let appNames : [String] = []
@@ -91,8 +93,9 @@ class ArchiveTableViewController: UITableViewController, UITextFieldDelegate, Ch
             pieChartView.resignFirstResponder()
             tableView.resignFirstResponder()
             liveTickets.removeAll()
-            ConnectionService.sharedInstance.getChange(actualEnd: "2016-03-10 00:00:00", actualEnd2: "2016-03-10 24:00:00", aeD: "1")
-            liveTickets = ConnectionService.sharedInstance.ticketList
+            liveTickets = mockData.MOCK_DATA_ARRAY
+//            ConnectionService.sharedInstance.getChange(actualEnd: "2016-03-10 00:00:00", actualEnd2: "2016-03-10 24:00:00", aeD: "1")
+//            liveTickets = ConnectionService.sharedInstance.ticketList
             sortClosureCodes()
             setValuesForGraph()
             tableView.reloadData()
@@ -119,11 +122,6 @@ class ArchiveTableViewController: UITableViewController, UITextFieldDelegate, Ch
         }
     }
     
-    func displayLegendDetails() {
-        let aRectangle = CGRectMake(246, 28, 130, 30)
-        let largerRect = CGRectInset(aRectangle, -30, 0)
-    }
-    
     func loadTickets() {
         DateFormat.locale = NSLocale(localeIdentifier: "US_en")
         DateFormat.dateFormat = "yyyy-MM-dd HH:mm:ss"
@@ -131,8 +129,11 @@ class ArchiveTableViewController: UITableViewController, UITextFieldDelegate, Ch
         //let time1 = DateFormat.stringFromDate(now)
         //let time2 = DateFormat.stringFromDate(now.minusDays(2))
         
-        ConnectionService.sharedInstance.getChange(actualEnd: "2016-03-10 00:00:00", actualEnd2: "2016-03-10 24:00:00", aeD: "1")
-        liveTickets = ConnectionService.sharedInstance.ticketList
+        liveTickets = mockData.parseExampleXMLFile()
+        let ticketShown = [Bool](count: liveTickets.count, repeatedValue: false)
+        liveTicketsShown = ticketShown
+//        ConnectionService.sharedInstance.getChange(actualEnd: "2016-03-10 00:00:00", actualEnd2: "2016-03-10 24:00:00", aeD: "1")
+//        liveTickets = ConnectionService.sharedInstance.ticketList
         
         sortClosureCodes()
     }
@@ -161,7 +162,7 @@ class ArchiveTableViewController: UITableViewController, UITextFieldDelegate, Ch
             } else if (ticket.closureCode == "Backed Out Customer/User Impacts") {
                 cc5Tickets.append(Array(arrayLiteral: ticket))
                 
-            } else if (ticket.closureCode == "") {
+            } else {
                 cc6Tickets.append(Array(arrayLiteral: ticket))
             }
             
@@ -249,7 +250,7 @@ class ArchiveTableViewController: UITableViewController, UITextFieldDelegate, Ch
         } else if (ticket.closureCode == "Backed Out Customer/User Impacts") {
             cell.ccIndicator.backgroundColor = cc5
             cell.backgroundColor = white
-        } else if (ticket.closureCode == "") {
+        } else {
             cell.ccIndicator.backgroundColor = cc6
             cell.backgroundColor = white
             cell.ticketID.textColor = UIColor.blackColor()
@@ -292,25 +293,18 @@ class ArchiveTableViewController: UITableViewController, UITextFieldDelegate, Ch
     // MARK: - Animate Table View Cell
     
     // Row Animation
-    var animateIndex = 0
     override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-
-        if (isShifting) {
-            
-        } else {
-            let cellPosition = indexPath.indexAtPosition(1)
-            let delay : Double = Double(cellPosition) * 0.1
-            
-            let rotationTransform = CATransform3DTranslate(CATransform3DIdentity, -1000, 0, 0)
+        if (liveTicketsShown[indexPath.row] == false) {
+            let rotationTransform = CATransform3DTranslate(CATransform3DIdentity, -500, 0, 0)
             cell.layer.transform = rotationTransform
             
-            UIView.animateWithDuration(1.0, delay: delay, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.3, options: UIViewAnimationOptions.BeginFromCurrentState, animations: {
+            UIView.animateWithDuration(1.0, animations: {
                 cell.layer.transform = CATransform3DIdentity
                 }, completion: { finished in
                     
             })
+            liveTicketsShown[indexPath.row] = true
         }
-        
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -365,7 +359,7 @@ class ArchiveTableViewController: UITableViewController, UITextFieldDelegate, Ch
             } else if (dataPoints[i] == "Backed Out Customer/User Impacts"){
                 let color = cc5
                 colors.append(color)
-            } else if (dataPoints[i] == ""){
+            } else {
                 let color = cc6
                 colors.append(color)
             }
@@ -401,6 +395,7 @@ class ArchiveTableViewController: UITableViewController, UITextFieldDelegate, Ch
         isGraphSelected = true
         isShifting = true
         filteredTickets.removeAll()
+        liveTicketsShown.removeAll()
         
         if (entry.data! as! String == closureCodes[0]) {
             let paragraphStyle = NSParagraphStyle.defaultParagraphStyle().mutableCopy() as! NSMutableParagraphStyle
@@ -413,6 +408,8 @@ class ArchiveTableViewController: UITableViewController, UITextFieldDelegate, Ch
                     filteredTickets += [ticket]
                 }
             }
+            let ticketShown = [Bool](count: filteredTickets.count, repeatedValue: false)
+            liveTicketsShown = ticketShown
         }
         else if(entry.data! as! String == closureCodes[1]) {
             pieChartView.centerAttributedText = NSAttributedString(string: closureCodes[1], attributes: [
@@ -423,6 +420,8 @@ class ArchiveTableViewController: UITableViewController, UITextFieldDelegate, Ch
                     filteredTickets += [ticket]
                 }
             }
+            let ticketShown = [Bool](count: filteredTickets.count, repeatedValue: false)
+            liveTicketsShown = ticketShown
         }
         else if(entry.data! as! String == closureCodes[2]) {
             pieChartView.centerAttributedText = NSAttributedString(string: closureCodes[2], attributes: [
@@ -433,6 +432,8 @@ class ArchiveTableViewController: UITableViewController, UITextFieldDelegate, Ch
                     filteredTickets += [ticket]
                 }
             }
+            let ticketShown = [Bool](count: filteredTickets.count, repeatedValue: false)
+            liveTicketsShown = ticketShown
         }
         else if(entry.data! as! String == closureCodes[3]) {
             pieChartView.centerAttributedText = NSAttributedString(string: closureCodes[3], attributes: [
@@ -443,6 +444,8 @@ class ArchiveTableViewController: UITableViewController, UITextFieldDelegate, Ch
                     filteredTickets += [ticket]
                 }
             }
+            let ticketShown = [Bool](count: filteredTickets.count, repeatedValue: false)
+            liveTicketsShown = ticketShown
         }
         else if(entry.data! as! String == closureCodes[4]) {
             pieChartView.centerAttributedText = NSAttributedString(string: closureCodes[4], attributes: [
@@ -453,16 +456,20 @@ class ArchiveTableViewController: UITableViewController, UITextFieldDelegate, Ch
                     filteredTickets += [ticket]
                 }
             }
+            let ticketShown = [Bool](count: filteredTickets.count, repeatedValue: false)
+            liveTicketsShown = ticketShown
         }
         else {
             pieChartView.centerAttributedText = NSAttributedString(string: closureCodes[5], attributes: [
                 NSForegroundColorAttributeName: UIColor.lightGrayColor(),
                 NSFontAttributeName: NSUIFont(name: "Helvetica", size: 10)! ])
             for ticket in liveTickets {
-                if (ticket.closureCode == "") {
+                if (ticket.closureCode != closureCodes[0] && ticket.closureCode != closureCodes[1] && ticket.closureCode != closureCodes[2] && ticket.closureCode != closureCodes[3] && ticket.closureCode != closureCodes[4]) {
                     filteredTickets += [ticket]
                 }
             }
+            let ticketShown = [Bool](count: filteredTickets.count, repeatedValue: false)
+            liveTicketsShown = ticketShown
         }
         tableView.reloadData()
     }
@@ -470,6 +477,9 @@ class ArchiveTableViewController: UITableViewController, UITextFieldDelegate, Ch
     func chartValueNothingSelected(chartView: ChartViewBase) {
         isGraphSelected = false
         pieChartView.centerText?.removeAll()
+        liveTicketsShown.removeAll()
+        let ticketShown = [Bool](count: liveTickets.count, repeatedValue: false)
+        liveTicketsShown = ticketShown
         tableView.reloadData()
     }
     

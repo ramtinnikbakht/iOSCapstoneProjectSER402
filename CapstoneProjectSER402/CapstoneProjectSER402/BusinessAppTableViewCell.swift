@@ -28,6 +28,7 @@ class BusinessAppTableViewCell: UITableViewCell
 
             ticketID.text = ticket.number
             plannedStartLabel.text = convertDate(ticket.plannedStart)
+            businessAppLabel.text = ticket.BusinessApplication
         }
     }
     

@@ -134,19 +134,21 @@ class ChangeTicketTableViewController: UITableViewController, ChartViewDelegate 
         ConnectionService.sharedInstance.getChange(selectedTicket.number)
         liveTickets = ConnectionService.sharedInstance.ticketList
 
-        generalAttributeValues += [liveTickets[0].plannedStart]
-        generalAttributeValues += [liveTickets[0].plannedEnd]
-        generalAttributeValues += [liveTickets[0].type]
-        generalAttributeValues += [liveTickets[0].risk]
-        
-        if (liveTickets[0].BusinessApplication == "element <business_Application> not found") {
-            businessAttributeValues += ["Not Applicable"]
-        } else {
-            businessAttributeValues += [liveTickets[0].BusinessApplication]
+        if (liveTickets.count > 0) {
+            generalAttributeValues += [liveTickets[0].plannedStart]
+            generalAttributeValues += [liveTickets[0].plannedEnd]
+            generalAttributeValues += [liveTickets[0].type]
+            generalAttributeValues += [liveTickets[0].risk]
+            
+            if (liveTickets[0].BusinessApplication == "element <business_Application> not found") {
+                businessAttributeValues += ["Not Applicable"]
+            } else {
+                businessAttributeValues += [liveTickets[0].BusinessApplication]
+            }
+            businessAttributeValues += [liveTickets[0].requestedByGroupBusinessArea]
+            businessAttributeValues += [liveTickets[0].requestedByGroupBusinessUnit]
+            businessAttributeValues += [liveTickets[0].requestedByGroupSubBusinessUnit]
         }
-        businessAttributeValues += [liveTickets[0].requestedByGroupBusinessArea]
-        businessAttributeValues += [liveTickets[0].requestedByGroupBusinessUnit]
-        businessAttributeValues += [liveTickets[0].requestedByGroupSubBusinessUnit]
         
         for ticket in liveTickets {
             if (ticket.risk == "Low" && ticket.type != "Emergency") {

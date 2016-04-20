@@ -13,12 +13,14 @@ class ArchiveTableViewCell: UITableViewCell {
     @IBOutlet weak var ticketID: UILabel!
     @IBOutlet weak var ccIndicator: UIImageView!
     @IBOutlet weak var actualEndLabel: UILabel!
+    @IBOutlet weak var businessAppLabel: UILabel!
     
     var ticket: ChangeTicket!
         {
         didSet {
             ticketID.text = ticket.number
             actualEndLabel.text = ticket.actualEnd
+            businessAppLabel.text = ticket.BusinessApplication
         }
     }
     
