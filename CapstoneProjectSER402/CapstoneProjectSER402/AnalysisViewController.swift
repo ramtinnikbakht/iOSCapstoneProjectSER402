@@ -39,6 +39,9 @@ class AnalysisViewController: UIViewController, UITextFieldDelegate, ChartViewDe
 
     @IBOutlet weak var timeSegmentedControl: UISegmentedControl!
     @IBOutlet weak var timeFrameStepper: UIStepper!
+    @IBOutlet weak var highRiskCountLabel: UILabel!
+    @IBOutlet weak var lowRiskCountLabel: UILabel!
+    @IBOutlet weak var ticketTotalBackground: UIImageView!
     
     
     // MARK: TextField Delegate
@@ -271,43 +274,60 @@ class AnalysisViewController: UIViewController, UITextFieldDelegate, ChartViewDe
         var hour5CountHigh : Int = 0
         var hour6CountHigh : Int = 0
         
+        // Totals
+        var lowTicketTotal = 0
+        var highTicketTotal = 0
+        
         if (liveTickets.count > 0) {
+            
             for ticket in liveTickets {
                 let ticketPS = DateFormat.dateFromString(ticket.plannedStart)
                 if (ticketPS!.hour == selectedHours[0]) {
                     if (ticket.risk == "Low") {
+                        lowTicketTotal++
                         hour1CountLow++
                     } else {
+                        highTicketTotal++
                         hour1CountHigh++
                     }
                 } else if (ticketPS!.hour == selectedHours[1]) {
                     if (ticket.risk == "Low") {
+                        lowTicketTotal++
                         hour2CountLow++
                     } else {
+                        highTicketTotal++
                         hour2CountHigh++
                     }
                 } else if (ticketPS!.hour == selectedHours[2]) {
                     if (ticket.risk == "Low") {
+                        lowTicketTotal++
                         hour3CountLow++
                     } else {
+                        highTicketTotal++
                         hour3CountHigh++
                     }
                 } else if (ticketPS!.hour == selectedHours[3]) {
                     if (ticket.risk == "Low") {
+                        lowTicketTotal++
                         hour4CountLow++
                     } else {
+                        highTicketTotal++
                         hour4CountHigh++
                     }
                 } else if (ticketPS!.hour == selectedHours[4]) {
                     if (ticket.risk == "Low") {
+                        lowTicketTotal++
                         hour5CountLow++
                     } else {
+                        highTicketTotal++
                         hour5CountHigh++
                     }
                 } else if (ticketPS!.hour == selectedHours[5]) {
                     if (ticket.risk == "Low") {
+                        lowTicketTotal++
                         hour6CountLow++
                     } else {
+                        highTicketTotal++
                         hour6CountHigh++
                     }
                 }
@@ -316,6 +336,8 @@ class AnalysisViewController: UIViewController, UITextFieldDelegate, ChartViewDe
         
         lowRiskCount += [Double(hour1CountLow), Double(hour2CountLow), Double(hour3CountLow), Double(hour4CountLow), Double(hour5CountLow), Double(hour6CountLow)]
         highRiskCount += [Double(hour1CountHigh), Double(hour2CountHigh), Double(hour3CountHigh), Double(hour4CountHigh), Double(hour5CountHigh), Double(hour6CountHigh)]
+        lowRiskCountLabel.text = lowTicketTotal.description
+        highRiskCountLabel.text = highTicketTotal.description
     }
     
     override func viewDidLoad() {
@@ -325,6 +347,7 @@ class AnalysisViewController: UIViewController, UITextFieldDelegate, ChartViewDe
         timeFrameStepper.wraps = true
         timeFrameStepper.autorepeat = false
         timeFrameStepper.maximumValue = 3
+        ticketTotalBackground.backgroundColor = charcoal
 
         // Do any additional setup after loading the view.
         

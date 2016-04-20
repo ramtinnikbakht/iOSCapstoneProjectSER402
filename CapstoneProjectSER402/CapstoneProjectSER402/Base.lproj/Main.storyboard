@@ -346,6 +346,33 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="u1t-aF-Gl9">
+                                        <rect key="frame" x="0.0" y="157" width="375" height="128"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Low Risk Total" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gVM-kV-A6U">
+                                        <rect key="frame" x="241" y="185" width="75" height="50"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.75461409395973156" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aLG-aM-WHb">
+                                        <rect key="frame" x="78" y="243" width="42" height="21"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7IU-LK-axJ">
+                                        <rect key="frame" x="257" y="243" width="42" height="21"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="High Risk Total" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zCE-fG-DYt">
+                                        <rect key="frame" x="62" y="185" width="75" height="50"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="17"/>
+                                        <color key="textColor" red="0.82919987416107388" green="0.15040373322147652" blue="0.11543099832214765" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
@@ -377,7 +404,10 @@
                     <connections>
                         <outlet property="currentDateLabel" destination="oL3-Ub-z6g" id="cbf-lr-p1U"/>
                         <outlet property="currentTimeFrameTF" destination="kbI-Fb-UxV" id="8OT-zo-JxY"/>
+                        <outlet property="highRiskCountLabel" destination="aLG-aM-WHb" id="QHi-NP-a5U"/>
+                        <outlet property="lowRiskCountLabel" destination="7IU-LK-axJ" id="Ftd-jG-37k"/>
                         <outlet property="radarChartView" destination="mPR-xq-cbf" id="2g4-Qi-bZQ"/>
+                        <outlet property="ticketTotalBackground" destination="u1t-aF-Gl9" id="tOl-V9-VY5"/>
                         <outlet property="timeFrameStepper" destination="YDE-xE-aVh" id="SM1-th-kgb"/>
                         <outlet property="timeSegmentedControl" destination="XYJ-1b-1u6" id="Zdh-wK-PaN"/>
                     </connections>
@@ -828,6 +858,6 @@
         <image name="infographic-bars.png" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="QgG-3O-c3k"/>
+        <segue reference="RvY-rT-1hV"/>
     </inferredMetricsTieBreakers>
 </document>
