@@ -11,9 +11,6 @@ import Foundation
 
 class AnalysisViewController: UIViewController, UITextFieldDelegate, ChartViewDelegate {
     
-    private var wTickets = TicketModel()
-    private var tbvc = TicketTabBarController()
-    
     var ticketRisks = [Double]()
     var ticketStartDates = [String]()
     var daySegments = [String]()
@@ -151,6 +148,19 @@ class AnalysisViewController: UIViewController, UITextFieldDelegate, ChartViewDe
         setChart(selectedHourLabels, values: lowRiskCount, values2: highRiskCount)
     }
     
+    func setupSegmentControl() {
+        let firstDay = DateFormat.dateFromString(daySegments[1])
+        let firstDayLabel = String(firstDay!.month) + "-" + String(firstDay!.day) + "-" + String(firstDay!.year)
+        let secondDay = DateFormat.dateFromString(daySegments[2])
+        let secondDayLabel = String(secondDay!.month) + "-" + String(secondDay!.day) + "-" + String(secondDay!.year)
+        let thirdDay = DateFormat.dateFromString(daySegments[3])
+        let thirdDayLabel = String(thirdDay!.month) + "-" + String(thirdDay!.day) + "-" + String(thirdDay!.year)
+        
+        timeSegmentedControl.setTitle(firstDayLabel, forSegmentAtIndex: 1)
+        timeSegmentedControl.setTitle(secondDayLabel, forSegmentAtIndex: 2)
+        timeSegmentedControl.setTitle(thirdDayLabel, forSegmentAtIndex: 3)
+    }
+    
     
     func stateChanged(switchState: UISwitch) {
         if switchState.on {
@@ -192,6 +202,7 @@ class AnalysisViewController: UIViewController, UITextFieldDelegate, ChartViewDe
         timeSegments.removeAll()
         selectedHours.removeAll()
         selectedHourLabels.removeAll()
+        var label : String = ""
         let date = DateFormat.dateFromString(dateForFrame)
         let timeMultiple = 6 * counterValue
 
@@ -201,7 +212,6 @@ class AnalysisViewController: UIViewController, UITextFieldDelegate, ChartViewDe
         let time4 = UInt(timeMultiple + 4)
         let time5 = UInt(timeMultiple + 5)
         let time6 = UInt(timeMultiple + 6)
-        print(time6)
         
         let timeFrame1 = date?.plusHours(time1)
         let timeFrame2 = date?.plusHours(time2)
@@ -212,7 +222,27 @@ class AnalysisViewController: UIViewController, UITextFieldDelegate, ChartViewDe
 
         timeSegments += [DateFormat.stringFromDate(timeFrame1!), DateFormat.stringFromDate(timeFrame2!), DateFormat.stringFromDate(timeFrame3!), DateFormat.stringFromDate(timeFrame4!), DateFormat.stringFromDate(timeFrame5!), DateFormat.stringFromDate(timeFrame6!)]
         selectedHours += [time1, time2, time3, time4, time5, time6]
-        selectedHourLabels += [(String(time1) + ":00:00"), (String(time2) + ":00:00"), (String(time3) + ":00:00"), (String(time4) + ":00:00"), (String(time5) + ":00:00"), (String(time6) + ":00:00")]
+        
+        for hour in selectedHours {
+            if (Int(hour) <= 12) {
+                if (Int(hour) == 12) {
+                    label = String(hour) + ":00 PM"
+                } else {
+                    label = String(hour) + ":00 AM"
+                }
+                selectedHourLabels += [label]
+            } else if (Int(hour) > 12) {
+                let convertedTime = Int(hour) - 12
+                if (convertedTime == 12) {
+                    label = String(convertedTime) + ":00 AM"
+                } else {
+                    label = String(convertedTime) + ":00 PM"
+                }
+                
+                selectedHourLabels += [label]
+            }
+        }
+        
         currentTimeFrameTF.text = (String(time1) + ":00:00") + " - " + (String(time6) + ":00:00")
     }
     
@@ -303,6 +333,7 @@ class AnalysisViewController: UIViewController, UITextFieldDelegate, ChartViewDe
         ConnectionService.sharedInstance.getChange(plannedStart: timeSegments[0], plannedStart2: timeSegments[5], psD: "1")
         liveTickets = ConnectionService.sharedInstance.ticketList
         calculateGraphValues()
+        setupSegmentControl()
         setChart(selectedHourLabels, values: lowRiskCount, values2: highRiskCount)
     }
     
@@ -349,9 +380,8 @@ class AnalysisViewController: UIViewController, UITextFieldDelegate, ChartViewDe
         radarChartView.xAxis.labelPosition = .Bottom
         radarChartView.noDataTextDescription = "Data has not been selected"
         radarChartView.yAxis.enabled = false
+        radarChartView.animate(xAxisDuration: 1.0, yAxisDuration: 1.0, easingOption: .EaseOutSine)
         radarChartData.setValueFont(UIFont(name: "Helvetica", size: 12))
-        
-        
         
         radarChartView.data = radarChartData
         
