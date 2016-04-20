@@ -11,8 +11,8 @@ import UIKit
 class AppSelectionTableViewController: UITableViewController {
     
     
-    
     var usertype: String = ""
+    var appAreasSelection = [String]()
     
     var apps = [BusinessApp]()
     var appsTitleArray = [String]()

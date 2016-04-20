@@ -112,6 +112,7 @@ class AppAreaSelectionTableViewController: UITableViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         let destViewController : AppSelectionTableViewController = segue.destinationViewController as! AppSelectionTableViewController
         destViewController.usertype = usertype
+        destViewController.appAreasSelection = selectedAppAreas
         
         
     }
