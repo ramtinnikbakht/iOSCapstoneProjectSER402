@@ -53,7 +53,16 @@ class MockData
                     }
                     else
                     {
-                        print(ticket["business_Application"]["businessAppName"].stringValue)
+                        ticket["Requested_By_Group_Business_Area"].removeFromParent()
+                        ticket.addChild(name: "Requested_By_Group_Business_Area", value: "Lorem ipsum")
+                        
+                        ticket["Requested_By_Group_Business_Unit"].removeFromParent()
+                        ticket.addChild(name: "Requested_By_Group_Business_Unit", value: "Lorem ipsum")
+                        
+                        ticket["Requested_By_GroupSub_Business_Unit"].removeFromParent()
+                        ticket.addChild(name: "Requested_By_GroupSub_Business_Unit", value: "Lorem ipsum")
+                        
+                        //ticket.addChild(name: "Requested_By_GroupSub_Business_Unit", value: "Lorem ipsum")
                         
                         let newTicket = ChangeTicket(number: ticket["Number"].stringValue, approver: ticket["Approver"].stringValue, plannedStart: ticket["Planned_Start"].stringValue, plannedEnd: ticket["Planned_End"].stringValue, actualStart: ticket["Actual_Start"].stringValue, actualEnd: ticket["Actual_End"].stringValue, requestedByGroup: ticket["Requested_By_Group"].stringValue,
                                                      requestedByGroupBusinessArea: ticket["Requested_By_Group_Business_Area"].stringValue, requestedByGroupBusinessUnit: ticket["Requested_By_Group_Business_Unit"].stringValue, requestedByGroupSubBusinessUnit: ticket["Requested_By_GroupSub_Business_Unit"].stringValue, causeCompleteServiceAppOutage: ticket["Causes_Complete_ServiceApplication_Outage"].stringValue, risk: ticket["Risk"].stringValue, type:ticket["Type"].stringValue, impactScore:ticket["Impact_Score"].stringValue, shortDescription:ticket["Short_Description"].stringValue, changeReason: ticket["Change_Reason"].stringValue, closureCode: ticket["Closure_Code"].stringValue, ImpactedEnviroment: ticket["Impacted_Environments"].value!, SecondaryClosureCode: ticket["Secondary_Closure_Code"].stringValue, PartofRelease: ticket["Part_of_a_release"].stringValue, BusinessApplication: ticket["business_Application"]["businessAppName"].stringValue, BusinessApplicationCriticalityTier: ticket["business_Application"]["Business_Application_CriticalityTier"].stringValue)

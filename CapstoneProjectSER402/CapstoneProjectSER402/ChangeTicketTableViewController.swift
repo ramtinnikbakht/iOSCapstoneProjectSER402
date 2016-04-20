@@ -132,7 +132,9 @@ class ChangeTicketTableViewController: UITableViewController, ChartViewDelegate 
         DateFormat.dateFormat = "yyyy-MM-dd HH:mm:ss"
         
         ConnectionService.sharedInstance.getChange(selectedTicket.number)
-        liveTickets = ConnectionService.sharedInstance.ticketList
+        var mockD = MockData()
+        liveTickets = mockD.parseExampleXMLFileForPublic()
+        //liveTickets = ConnectionService.sharedInstance.ticketList
 
         if (liveTickets.count > 0) {
             generalAttributeValues += [liveTickets[0].plannedStart]
