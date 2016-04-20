@@ -24,7 +24,7 @@ class AppAreaSelectionTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        ConnectionService.sharedInstance.getBusiness(appArea: "06f0acd82b56b000b44bd4b419da1574")
+        /*ConnectionService.sharedInstance.getBusiness(appArea: "06f0acd82b56b000b44bd4b419da1574")
         area3 = ConnectionService.sharedInstance.businessApps
         ConnectionService.sharedInstance.getBusiness(appArea: "adf0acd82b56b000b44bd4b419da1504")
         area21 = ConnectionService.sharedInstance.businessApps
@@ -35,7 +35,10 @@ class AppAreaSelectionTableViewController: UITableViewController {
         //areas = ConnectionService.sharedInstance.businessApps
         appsAreaArray.append((area3.first?.businessArea)!)
         appsAreaArray.append((area21.first?.businessArea)!)
-        appsAreaArray.append((area22.first?.businessArea)!)
+        appsAreaArray.append((area22.first?.businessArea)!)*/
+        for area in mockAppsAreaArray {
+            appsAreaArray.append(area)
+        }
         /*for area in areas {
             appsAreaArray.append(area.businessArea)
         }

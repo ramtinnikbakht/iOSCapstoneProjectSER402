@@ -19,6 +19,7 @@ class AppSelectionTableViewController: UITableViewController {
     var appsArray: [String] = ["Area1App1", "Area1App2", "Area1App3", "Area2App1", "Area2App2", "Area3App1", "Area3App2", "Area3App3", "Area3App4"]
     var selectedApps = [String]()
 
+    var mockApps = [String]()
     /*struct Sections {
         var sectionName: String!
         var sectionContents: [String]!
@@ -38,7 +39,9 @@ class AppSelectionTableViewController: UITableViewController {
             
             
         }
-        selectedApps = appsArray
+        //selectedApps = appsArray
+        //print(selectedApps)
+        selectedApps = mockApps
         print(selectedApps)
     }
     
@@ -53,7 +56,7 @@ class AppSelectionTableViewController: UITableViewController {
     }
 
     
-    func application(application: UIApplication!, performFetchWithCompletionHandler completionHandler: ((UIBackgroundFetchResult) -> Void)!) {
+    /*func application(application: UIApplication!, performFetchWithCompletionHandler completionHandler: ((UIBackgroundFetchResult) -> Void)!) {
         loadApps() {
             completionHandler(UIBackgroundFetchResult.NewData)
             print(self.apps.count)
@@ -63,7 +66,7 @@ class AppSelectionTableViewController: UITableViewController {
     func loadApps(completionHandler: (() -> Void)!) {
         
         completionHandler()
-    }
+    }*/
     
     var areas = [BusinessApp]()
     
@@ -72,7 +75,7 @@ class AppSelectionTableViewController: UITableViewController {
         
         // TODO: Add if statement and logic to check for the app areas selected and grabbing apps only based on those selections
         
-        ConnectionService.sharedInstance.getBusiness(appUnit: "311ab55b95b38980ce51a15d3638639c")
+        /*ConnectionService.sharedInstance.getBusiness(appUnit: "311ab55b95b38980ce51a15d3638639c")
         apps = ConnectionService.sharedInstance.businessApps
         ConnectionService.sharedInstance.getBusiness(appArea: "29f0acd82b56b000b44bd4b419da1503")
         areas = ConnectionService.sharedInstance.businessApps
@@ -81,14 +84,35 @@ class AppSelectionTableViewController: UITableViewController {
         for area in areas {
             print("app Area \(area.businessApp)")
         }
+        */
+        if appAreasSelection.contains("Area1") {
+            mockApps.append(appsArray[0])
+            mockApps.append(appsArray[1])
+            mockApps.append(appsArray[2])
+            
+        }
+        if appAreasSelection.contains("Area2") {
+            mockApps.append(appsArray[3])
+            mockApps.append(appsArray[4])
+            
+        }
+        if appAreasSelection.contains("Area3") {
+            mockApps.append(appsArray[5])
+            mockApps.append(appsArray[6])
+            mockApps.append(appsArray[7])
+            mockApps.append(appsArray[8])
+            
+        }
+        
         /*for app in apps {
             appsTitleArray.append(app.businessSubUnit)
             print("app title: \(appsTitleArray)")
             
         }*/
 
-        print(apps)
-        print(apps.count)
+        /*print(apps)
+        print(apps.count)*/
+        print(mockApps)
 
         /*let alert = UIAlertController(title: "Alert", message: "Your User Type: \(usertype)", preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
@@ -133,8 +157,8 @@ class AppSelectionTableViewController: UITableViewController {
         }
         let cell = tableView.dequeueReusableCellWithIdentifier("appscell") as! AppSelectionTableViewCell!
         
-        cell.appsTitleLabel.text = apps[indexPath.row].businessApp
-        
+        //cell.appsTitleLabel.text = apps[indexPath.row].businessApp
+        cell.appsTitleLabel.text = mockApps[indexPath.row]
         return cell
     }
     
@@ -154,8 +178,9 @@ class AppSelectionTableViewController: UITableViewController {
         } else if section == 1 {
             return 1
         }
-        return apps.count
-
+        //return apps.count
+        return mockApps.count
+        
         //return sectionsArray[section].sectionContents.count
     }
 
@@ -213,7 +238,8 @@ class AppSelectionTableViewController: UITableViewController {
             selectedApps += [cell.appsTitleLabel.text!]
         
             print(selectedApps)
-        }
+            }
+            
         }
     }
     
