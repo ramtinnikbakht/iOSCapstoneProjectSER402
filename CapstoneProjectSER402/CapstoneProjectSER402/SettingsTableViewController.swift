@@ -40,7 +40,7 @@ class SettingsTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String?
     {
         if section == 0 {
-            return "Alerts"
+            return "Version"
         } else if section == 1 {
             return "Profile"
         } else {
@@ -63,7 +63,7 @@ class SettingsTableViewController: UITableViewController {
         
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCellWithIdentifier("alertscell") as! AlertsTableViewCell!
-            cell.pushNotificationSwitch.setOn(false, animated: true)
+            
             
             return cell
         }
