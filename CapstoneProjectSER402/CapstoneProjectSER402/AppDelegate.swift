@@ -1,3 +1,4 @@
+
 //
 //  AppDelegate.swift
 //  CapstoneProjectSER402
@@ -16,6 +17,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+        let pageController = UIPageControl.appearance()
+        pageController.pageIndicatorTintColor = UIColor.lightGrayColor()
+        pageController.currentPageIndicatorTintColor = UIColor.blackColor()
+        pageController.backgroundColor = UIColor.whiteColor()
+        
+        let navigationBarAppearence = UINavigationBar.appearance()
+        
+        navigationBarAppearence.tintColor = UIColor.whiteColor()
+        navigationBarAppearence.barTintColor = UIColor(red: CGFloat(54/255.0), green: CGFloat(69/255.0), blue: CGFloat(79/255.0), alpha: 1)
+        navigationBarAppearence.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor(),
+                                                       NSFontAttributeName: UIFont(name: "Helvetica", size: 17)!]
+        let tabBarAppearence = UITabBar.appearance()
+        tabBarAppearence.barTintColor = UIColor(red: (236/255.0), green: (236/255.0), blue: (236/255.0), alpha: 1)
+        tabBarAppearence.tintColor = UIColor(red: CGFloat(54/255.0), green: CGFloat(69/255.0), blue: CGFloat(79/255.0), alpha: 1)
+        
         return true
     }
 
@@ -43,4 +60,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
 }
-
