@@ -13,10 +13,11 @@
 		462EB84B1C990BF00076C28D /* BusinessApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462EB83F1C990BF00076C28D /* BusinessApp.swift */; };
 		462EB84D1C990BF00076C28D /* AppSelectionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462EB8421C990BF00076C28D /* AppSelectionTableViewController.swift */; };
 		462EB8511C990BF00076C28D /* WatchedTicketTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462EB8471C990BF00076C28D /* WatchedTicketTableViewController.swift */; };
-		469E77251C9A1E620028D422 /* DataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469E77241C9A1E620028D422 /* DataHandler.swift */; };
 		46A2AB121CA47C0E00F87C80 /* AnalysisViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A2AB0D1CA47C0E00F87C80 /* AnalysisViewController.swift */; };
 		46A2AB131CA47C0E00F87C80 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46A2AB101CA47C0E00F87C80 /* SWRevealViewController.m */; };
 		46A2AB141CA47C0E00F87C80 /* UserTypeSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A2AB111CA47C0E00F87C80 /* UserTypeSelectionViewController.swift */; };
+		46C1CF3D1CC70D0600969A0C /* changeList.xml in Resources */ = {isa = PBXBuildFile; fileRef = 46C1CF3C1CC70D0600969A0C /* changeList.xml */; };
+		46C2F4351CC592CD00F256C5 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C2F4341CC592CD00F256C5 /* MockData.swift */; };
 		46D0586C1CA3B79D005CFB61 /* AEXML.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D0586B1CA3B79D005CFB61 /* AEXML.swift */; };
 		46E832A41C88DD81001C376F /* ChangeTicket_Table_Template.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E832A31C88DD81001C376F /* ChangeTicket_Table_Template.swift */; };
 		46F792B61CA8F6E600F00404 /* ConnectionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F792B51CA8F6E600F00404 /* ConnectionService.swift */; };
@@ -152,12 +153,13 @@
 		462EB8431C990BF00076C28D /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		462EB8441C990BF00076C28D /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		462EB8471C990BF00076C28D /* WatchedTicketTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchedTicketTableViewController.swift; sourceTree = "<group>"; };
-		469E77241C9A1E620028D422 /* DataHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataHandler.swift; sourceTree = "<group>"; };
 		46A2AB0D1CA47C0E00F87C80 /* AnalysisViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalysisViewController.swift; sourceTree = "<group>"; };
 		46A2AB0E1CA47C0E00F87C80 /* CapstoneProjectSER402-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CapstoneProjectSER402-Bridging-Header.h"; sourceTree = "<group>"; };
 		46A2AB0F1CA47C0E00F87C80 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		46A2AB101CA47C0E00F87C80 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		46A2AB111CA47C0E00F87C80 /* UserTypeSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTypeSelectionViewController.swift; sourceTree = "<group>"; };
+		46C1CF3C1CC70D0600969A0C /* changeList.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = changeList.xml; sourceTree = "<group>"; };
+		46C2F4341CC592CD00F256C5 /* MockData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
 		46D0586B1CA3B79D005CFB61 /* AEXML.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AEXML.swift; sourceTree = "<group>"; };
 		46E832A31C88DD81001C376F /* ChangeTicket_Table_Template.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeTicket_Table_Template.swift; sourceTree = "<group>"; };
 		46F792B51CA8F6E600F00404 /* ConnectionService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionService.swift; sourceTree = "<group>"; };
@@ -273,6 +275,7 @@
 		48D741A11C5AAE86008D082E /* CapstoneProjectSER402 */ = {
 			isa = PBXGroup;
 			children = (
+				46C1CF3C1CC70D0600969A0C /* changeList.xml */,
 				46F792B51CA8F6E600F00404 /* ConnectionService.swift */,
 				46D0586B1CA3B79D005CFB61 /* AEXML.swift */,
 				462EB8401C990BF00076C28D /* CapstoneProjectSER402-Bridging-Header.h */,
@@ -314,7 +317,6 @@
 				C19F0DCC1C745DB6009BD594 /* ChangeTicket.swift */,
 				C19F0DD61C75A28A009BD594 /* ChangeTicketTableViewController.swift */,
 				C14333D11CA6D8300083CA88 /* BusinessAppTableViewController.swift */,
-				469E77241C9A1E620028D422 /* DataHandler.swift */,
 				48D741A41C5AAE86008D082E /* LoginViewController.swift */,
 				489AFBA91C7F8D2900E9DEB9 /* SetupContentViewController.swift */,
 				48CE447B1C8FB73D00BECD12 /* AppSelectionTableViewCell.swift */,
@@ -341,6 +343,7 @@
 				4818FE111CA49CFA00B7EB47 /* SettingsTableViewController.swift */,
 				4852EEA81CAC6D280060CD3E /* AlertsTableViewCell.swift */,
 				C108ADE91CAFB1DF00CB60F0 /* ArchiveTableViewController.swift */,
+				46C2F4341CC592CD00F256C5 /* MockData.swift */,
 			);
 			path = CapstoneProjectSER402;
 			sourceTree = "<group>";
@@ -530,6 +533,7 @@
 				C12E73AC1CBE5D360091ECE9 /* emergency.png in Resources */,
 				C19F0DC91C7455C6009BD594 /* man-user.png in Resources */,
 				C108ADF41CB219A900CB60F0 /* archive.png in Resources */,
+				46C1CF3D1CC70D0600969A0C /* changeList.xml in Resources */,
 				C108ADF01CB204BC00CB60F0 /* expand_less.png in Resources */,
 				48D741D31C5AB57C008D082E /* lock.png in Resources */,
 				462EB8481C990BF00076C28D /* AllstateLoginHeader.png in Resources */,
@@ -591,7 +595,6 @@
 				48CE447C1C8FB73D00BECD12 /* AppSelectionTableViewCell.swift in Sources */,
 				489AFBAC1C7F8F5B00E9DEB9 /* WizardSetupViewController.swift in Sources */,
 				C14333D41CA6E9920083CA88 /* BusinessAppTableViewCell.swift in Sources */,
-				469E77251C9A1E620028D422 /* DataHandler.swift in Sources */,
 				462EB84D1C990BF00076C28D /* AppSelectionTableViewController.swift in Sources */,
 				C14333C71CA5B25E0083CA88 /* BusinessApp_Table_Template.swift in Sources */,
 				C14333BE1CA5ADFF0083CA88 /* BusinessModel.swift in Sources */,
@@ -604,6 +607,7 @@
 				C121B52D1C80075B001F3B16 /* WatchedTicket.swift in Sources */,
 				4818FE121CA49CFA00B7EB47 /* SettingsTableViewController.swift in Sources */,
 				C19F0DD51C759DB1009BD594 /* ChangeTicketTableViewCell.swift in Sources */,
+				46C2F4351CC592CD00F256C5 /* MockData.swift in Sources */,
 				48D741A31C5AAE86008D082E /* AppDelegate.swift in Sources */,
 				48D12C451CC6D5D100857986 /* AppAreaTableViewCell.swift in Sources */,
 				C19F0DCD1C745DB6009BD594 /* ChangeTicket.swift in Sources */,
