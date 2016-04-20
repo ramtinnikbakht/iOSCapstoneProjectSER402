@@ -16,7 +16,7 @@ class AppSelectionTableViewController: UITableViewController {
     
     var apps = [BusinessApp]()
     var appsTitleArray = [String]()
-    var appsArray: [String] = ["App1", "App2", "App3", "App4", "App5", "App6", "App7"]
+    var appsArray: [String] = ["Area1App1", "Area1App2", "Area1App3", "Area2App1", "Area2App2", "Area3App1", "Area3App2", "Area3App3", "Area3App4"]
     var selectedApps = [String]()
 
     /*struct Sections {
@@ -69,6 +69,9 @@ class AppSelectionTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // TODO: Add if statement and logic to check for the app areas selected and grabbing apps only based on those selections
+        
         ConnectionService.sharedInstance.getBusiness(appUnit: "311ab55b95b38980ce51a15d3638639c")
         apps = ConnectionService.sharedInstance.businessApps
         ConnectionService.sharedInstance.getBusiness(appArea: "29f0acd82b56b000b44bd4b419da1503")

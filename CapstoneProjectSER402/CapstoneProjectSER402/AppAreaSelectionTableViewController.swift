@@ -20,6 +20,8 @@ class AppAreaSelectionTableViewController: UITableViewController {
     var appsAreaArray = [String]()
     var selectedAppAreas = [String]()
     
+    var mockAppsAreaArray = ["Area1", "Area2", "Area3"]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         ConnectionService.sharedInstance.getBusiness(appArea: "06f0acd82b56b000b44bd4b419da1574")
