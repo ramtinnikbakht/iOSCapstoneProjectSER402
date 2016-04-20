@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		460338751CC7FB3E00CF17BC /* changeList_public.xml in Resources */ = {isa = PBXBuildFile; fileRef = 460338741CC7FB3E00CF17BC /* changeList_public.xml */; };
 		462EB8481C990BF00076C28D /* AllstateLoginHeader.png in Resources */ = {isa = PBXBuildFile; fileRef = 462EB83C1C990BF00076C28D /* AllstateLoginHeader.png */; };
 		462EB8491C990BF00076C28D /* AppSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462EB83D1C990BF00076C28D /* AppSelectionViewController.swift */; };
 		462EB84A1C990BF00076C28D /* Base.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 462EB83E1C990BF00076C28D /* Base.lproj */; };
@@ -145,6 +146,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		460338741CC7FB3E00CF17BC /* changeList_public.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = changeList_public.xml; sourceTree = "<group>"; };
 		462EB83C1C990BF00076C28D /* AllstateLoginHeader.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AllstateLoginHeader.png; sourceTree = "<group>"; };
 		462EB83D1C990BF00076C28D /* AppSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppSelectionViewController.swift; sourceTree = "<group>"; };
 		462EB83E1C990BF00076C28D /* Base.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Base.lproj; sourceTree = "<group>"; };
@@ -277,6 +279,7 @@
 		48D741A11C5AAE86008D082E /* CapstoneProjectSER402 */ = {
 			isa = PBXGroup;
 			children = (
+				460338741CC7FB3E00CF17BC /* changeList_public.xml */,
 				46C1CF3C1CC70D0600969A0C /* changeList.xml */,
 				46F792B51CA8F6E600F00404 /* ConnectionService.swift */,
 				46D0586B1CA3B79D005CFB61 /* AEXML.swift */,
@@ -526,6 +529,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				460338751CC7FB3E00CF17BC /* changeList_public.xml in Resources */,
 				C14333D01CA6CCD50083CA88 /* circleEmergency.png in Resources */,
 				C14333CF1CA6CCCD0083CA88 /* gear.png in Resources */,
 				C14333CE1CA6CCBB0083CA88 /* circle.png in Resources */,
