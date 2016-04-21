@@ -20,6 +20,7 @@
 		46C1CF3D1CC70D0600969A0C /* changeList.xml in Resources */ = {isa = PBXBuildFile; fileRef = 46C1CF3C1CC70D0600969A0C /* changeList.xml */; };
 		46C2F4351CC592CD00F256C5 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C2F4341CC592CD00F256C5 /* MockData.swift */; };
 		46D0586C1CA3B79D005CFB61 /* AEXML.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D0586B1CA3B79D005CFB61 /* AEXML.swift */; };
+		46D54C551CC839820085B95E /* CapstoneProjectSER402.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 46D54C531CC839820085B95E /* CapstoneProjectSER402.xcdatamodeld */; };
 		46E832A41C88DD81001C376F /* ChangeTicket_Table_Template.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E832A31C88DD81001C376F /* ChangeTicket_Table_Template.swift */; };
 		46F792B61CA8F6E600F00404 /* ConnectionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F792B51CA8F6E600F00404 /* ConnectionService.swift */; };
 		480D79201CB37A0B00C57410 /* UserTypeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 480D791F1CB37A0B00C57410 /* UserTypeTableViewCell.swift */; };
@@ -164,6 +165,7 @@
 		46C1CF3C1CC70D0600969A0C /* changeList.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = changeList.xml; sourceTree = "<group>"; };
 		46C2F4341CC592CD00F256C5 /* MockData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
 		46D0586B1CA3B79D005CFB61 /* AEXML.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AEXML.swift; sourceTree = "<group>"; };
+		46D54C541CC839820085B95E /* CapstoneProjectSER402.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CapstoneProjectSER402.xcdatamodel; sourceTree = "<group>"; };
 		46E832A31C88DD81001C376F /* ChangeTicket_Table_Template.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeTicket_Table_Template.swift; sourceTree = "<group>"; };
 		46F792B51CA8F6E600F00404 /* ConnectionService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionService.swift; sourceTree = "<group>"; };
 		480D791F1CB37A0B00C57410 /* UserTypeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTypeTableViewCell.swift; sourceTree = "<group>"; };
@@ -350,6 +352,7 @@
 				4852EEA81CAC6D280060CD3E /* AlertsTableViewCell.swift */,
 				C108ADE91CAFB1DF00CB60F0 /* ArchiveTableViewController.swift */,
 				46C2F4341CC592CD00F256C5 /* MockData.swift */,
+				46D54C531CC839820085B95E /* CapstoneProjectSER402.xcdatamodeld */,
 			);
 			path = CapstoneProjectSER402;
 			sourceTree = "<group>";
@@ -590,6 +593,7 @@
 				46D0586C1CA3B79D005CFB61 /* AEXML.swift in Sources */,
 				46A2AB131CA47C0E00F87C80 /* SWRevealViewController.m in Sources */,
 				48D8FADB1CAB096900753943 /* AppsOptionTableViewCell.swift in Sources */,
+				46D54C551CC839820085B95E /* CapstoneProjectSER402.xcdatamodeld in Sources */,
 				46F792B61CA8F6E600F00404 /* ConnectionService.swift in Sources */,
 				C121B52F1C8008CC001F3B16 /* WatchedTicketTableViewCell.swift in Sources */,
 				4852EEAE1CAC71D80060CD3E /* ProfileTableViewCell.swift in Sources */,
@@ -879,6 +883,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		46D54C531CC839820085B95E /* CapstoneProjectSER402.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				46D54C541CC839820085B95E /* CapstoneProjectSER402.xcdatamodel */,
+			);
+			currentVersion = 46D54C541CC839820085B95E /* CapstoneProjectSER402.xcdatamodel */;
+			path = CapstoneProjectSER402.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 48D741971C5AAE86008D082E /* Project object */;
 }
