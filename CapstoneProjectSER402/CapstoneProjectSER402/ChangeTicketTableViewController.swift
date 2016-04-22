@@ -133,7 +133,7 @@ class ChangeTicketTableViewController: UITableViewController, ChartViewDelegate 
         
         ConnectionService.sharedInstance.getChange(selectedTicket.number)
         var mockD = MockData()
-        liveTickets = mockD.parseExampleXMLFileForPublic()
+        liveTickets = mockD.parseExampleXMLFile()
         //liveTickets = ConnectionService.sharedInstance.ticketList
 
         if (liveTickets.count > 0) {

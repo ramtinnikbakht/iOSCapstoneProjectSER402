@@ -75,7 +75,7 @@ class BusinessAppTableViewController: UITableViewController, ChartViewDelegate
         var highRisk : [Double] = []
         let timeFrame = getTimeWindow()
         loadSampleApps()
-
+        
         let ticketShown = [Bool](count: liveTickets.count, repeatedValue: false)
         liveTicketsShown = ticketShown
         for time in timeFrame {
@@ -112,8 +112,7 @@ class BusinessAppTableViewController: UITableViewController, ChartViewDelegate
         //let time1 = DateFormat.stringFromDate(now)
         //let time2 = DateFormat.stringFromDate(now.plusHours(6))
         
-        //liveTickets = mockData.parseExampleXMLFile()
-        liveTickets = mockData.parseExampleXMLFileForPublic()
+        liveTickets = mockData.parseExampleXMLFile()
 //        ConnectionService.sharedInstance.getChange(plannedStart: "2016-01-25 02:00:00", plannedStart2: "2016-01-25 08:30:00", psD: "1")
 //        liveTickets = ConnectionService.sharedInstance.ticketList
 

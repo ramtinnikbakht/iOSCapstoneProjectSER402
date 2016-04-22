@@ -18,21 +18,25 @@ class ArchiveTableViewCell: UITableViewCell {
     @IBOutlet weak var actualEndLabel: UILabel!
     @IBOutlet weak var actualEndValue: UILabel!
     @IBOutlet weak var businessAppLabel: UILabel!
+    @IBOutlet weak var closureCodeLabel: UILabel!
+    @IBOutlet weak var closureCodeValue: UILabel!
     @IBOutlet weak var secondaryCCLabel: UILabel!
     @IBOutlet weak var secondaryCCValue: UILabel!
     
     var isObserving = false
     
-    class var expandedHeight : CGFloat { get { return 170 } }
+    class var expandedHeight : CGFloat { get { return 210 } }
     class var defaultHeight : CGFloat { get { return 44 } }
     
     func checkHeight() {
         actualStartLabel.hidden = frame.size.height < ArchiveTableViewCell.expandedHeight
         actualEndLabel.hidden = frame.size.height < ArchiveTableViewCell.expandedHeight
+        closureCodeLabel.hidden = frame.size.height < ArchiveTableViewCell.expandedHeight
         secondaryCCLabel.hidden = frame.size.height < ArchiveTableViewCell.expandedHeight
         
         actualStartValue.hidden = frame.size.height < ArchiveTableViewCell.expandedHeight
         actualEndValue.hidden = frame.size.height < ArchiveTableViewCell.expandedHeight
+        closureCodeValue.hidden = frame.size.height < ArchiveTableViewCell.expandedHeight
         secondaryCCValue.hidden = frame.size.height < ArchiveTableViewCell.expandedHeight
     }
     
@@ -66,6 +70,7 @@ class ArchiveTableViewCell: UITableViewCell {
             businessAppLabel.text = ticket.BusinessApplication
             actualStartValue.text = ticket.actualStart
             actualEndValue.text = ticket.actualEnd
+            closureCodeValue.text = ticket.closureCode
             if (ticket.SecondaryClosureCode == "") {
                 secondaryCCValue.text = "Not Applicable"
             } else {

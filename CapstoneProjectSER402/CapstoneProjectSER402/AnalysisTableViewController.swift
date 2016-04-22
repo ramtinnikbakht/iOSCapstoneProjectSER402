@@ -39,6 +39,10 @@ class AnalysisTableViewController: UITableViewController, UITextFieldDelegate, C
     var day1Header = String()
     var day2Header = String()
     var day3Header = String()
+    let highTicketTotal = UILabel(frame: CGRectMake(-2.5, 60, 50, 50))
+    let highTicketTab = UIImageView(frame: CGRectMake(-10, 60, 60, 50))
+    let lowTicketTotal = UILabel(frame: CGRectMake(327.5, 60, 50, 50))
+    let lowTicketTab = UIImageView(frame: CGRectMake(325, 60, 60, 50))
     
     let DateFormat = NSDateFormatter()
     
@@ -108,6 +112,8 @@ class AnalysisTableViewController: UITableViewController, UITextFieldDelegate, C
             radarChartView.clear()
             timeFrameStepper.value = 0
             setChart(selectedHourLabels, values: lowRiskCount, values2: highRiskCount)
+            highTicketTotal.text = highRiskTickets.count.description
+            lowTicketTotal.text = lowRiskTickets.count.description
             tableView.reloadData()
         case 1:
             liveTickets.removeAll()
@@ -122,6 +128,8 @@ class AnalysisTableViewController: UITableViewController, UITextFieldDelegate, C
             radarChartView.clear()
             timeFrameStepper.value = 0
             setChart(selectedHourLabels, values: lowRiskCount, values2: highRiskCount)
+            highTicketTotal.text = highRiskTickets.count.description
+            lowTicketTotal.text = lowRiskTickets.count.description
             tableView.reloadData()
         case 2:
             liveTickets.removeAll()
@@ -136,6 +144,8 @@ class AnalysisTableViewController: UITableViewController, UITextFieldDelegate, C
             radarChartView.clear()
             timeFrameStepper.value = 0
             setChart(selectedHourLabels, values: lowRiskCount, values2: highRiskCount)
+            highTicketTotal.text = highRiskTickets.count.description
+            lowTicketTotal.text = lowRiskTickets.count.description
             tableView.reloadData()
         case 3:
             liveTickets.removeAll()
@@ -150,6 +160,8 @@ class AnalysisTableViewController: UITableViewController, UITextFieldDelegate, C
             radarChartView.clear()
             timeFrameStepper.value = 0
             setChart(selectedHourLabels, values: lowRiskCount, values2: highRiskCount)
+            highTicketTotal.text = highRiskTickets.count.description
+            lowTicketTotal.text = lowRiskTickets.count.description
             tableView.reloadData()
         default:
             break;
@@ -170,6 +182,8 @@ class AnalysisTableViewController: UITableViewController, UITextFieldDelegate, C
         sortTicketsByRisk()
         calculateGraphValues()
         radarChartView.clear()
+        highTicketTotal.text = highRiskTickets.count.description
+        lowTicketTotal.text = lowRiskTickets.count.description
         setChart(selectedHourLabels, values: lowRiskCount, values2: highRiskCount)
         tableView.reloadData()
     }
@@ -423,8 +437,24 @@ class AnalysisTableViewController: UITableViewController, UITextFieldDelegate, C
         timeFrameStepper.autorepeat = false
         timeFrameStepper.maximumValue = 3
         
-        // Do any additional setup after loading the view.
+        highTicketTotal.textColor = UIColor.whiteColor()
+        highTicketTotal.textAlignment = .Center
+        highTicketTab.backgroundColor = high
+        highTicketTab.layer.cornerRadius = 8.0
+        highTicketTab.clipsToBounds = true
+        view.addSubview(highTicketTab)
+        view.addSubview(highTicketTotal)
         
+        
+        lowTicketTotal.textColor = UIColor.whiteColor()
+        lowTicketTotal.textAlignment = .Center
+        lowTicketTab.backgroundColor = low
+        lowTicketTab.layer.cornerRadius = 8.0
+        lowTicketTab.clipsToBounds = true
+        view.addSubview(lowTicketTab)
+        view.addSubview(lowTicketTotal)
+        
+        // Do any additional setup after loading the view.
         calculateDaySegment()
         selectedDay = daySegments[0]
         calculateTimeFrame(daySegments[0], counterValue: 0)
@@ -436,6 +466,9 @@ class AnalysisTableViewController: UITableViewController, UITextFieldDelegate, C
         sortTicketsByRisk()
         calculateGraphValues()
         setChart(selectedHourLabels, values: lowRiskCount, values2: highRiskCount)
+        
+        highTicketTotal.text = highRiskTickets.count.description
+        lowTicketTotal.text = lowRiskTickets.count.description
     }
     
     
@@ -623,11 +656,13 @@ class AnalysisTableViewController: UITableViewController, UITextFieldDelegate, C
         radarChartDataSet.fillColor = low
         radarChartDataSet.drawFilledEnabled = true
         radarChartDataSet.drawValuesEnabled = false
+        
         let radarChartDataSet2 = RadarChartDataSet(yVals: dataEntries2, label: "High Risk")
         radarChartDataSet2.drawFilledEnabled = true
         radarChartDataSet2.colors = [high]
         radarChartDataSet2.fillColor = high
         radarChartDataSet2.drawValuesEnabled = false
+        
         let dataSets: [RadarChartDataSet] = [radarChartDataSet, radarChartDataSet2]
         let radarChartData = RadarChartData(xVals: dataPoints, dataSets: dataSets)
         let numberFormatter = NSNumberFormatter()
@@ -636,6 +671,7 @@ class AnalysisTableViewController: UITableViewController, UITextFieldDelegate, C
         radarChartData.setValueFormatter(numberFormatter)
         radarChartData.setValueFont(UIFont(name: "Helvetica", size: 12))
         
+        radarChartView.rotationEnabled = false
         radarChartView.descriptionText = ""
         radarChartView.innerWebColor = charcoal
         radarChartView.xAxis.labelPosition = .Bottom
