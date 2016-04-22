@@ -49,6 +49,7 @@ class BusinessAppTableViewController: UITableViewController, ChartViewDelegate
     let sectionTitles = ["Emergency", "High Risk", "Low Risk"]
     var liveApps = [BusinessApp]()
     var liveTicketsShown : [Bool] = []
+    var shouldAnimate = true
     var mockData = MockData()
     
     // Colors
@@ -107,7 +108,7 @@ class BusinessAppTableViewController: UITableViewController, ChartViewDelegate
     {
         DateFormat.locale = NSLocale(localeIdentifier: "US_en")
         DateFormat.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        let now = NSDate()
+        //let now = NSDate()
         //let time1 = DateFormat.stringFromDate(now)
         //let time2 = DateFormat.stringFromDate(now.plusHours(6))
         
@@ -556,7 +557,7 @@ class BusinessAppTableViewController: UITableViewController, ChartViewDelegate
                         }
                     }
                 }
-                let ticketShown = [Bool](count: filteredTickets.count, repeatedValue: false)
+                let ticketShown = [Bool](count: filteredTickets.count + filteredEmergencyTickets.count, repeatedValue: false)
                 liveTicketsShown = ticketShown
                 tableView.reloadData()
             } else if (dataSetIndex == 1) {

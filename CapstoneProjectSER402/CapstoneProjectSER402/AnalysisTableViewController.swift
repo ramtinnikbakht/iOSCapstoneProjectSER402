@@ -34,6 +34,11 @@ class AnalysisTableViewController: UITableViewController, UITextFieldDelegate, C
     var isGraphSelected = false
     var isShifting = true
     let cellIdentifier = "TicketCell"
+    var liveTicketsShown : [Bool] = []
+    var day0Header = String()
+    var day1Header = String()
+    var day2Header = String()
+    var day3Header = String()
     
     let DateFormat = NSDateFormatter()
     
@@ -87,6 +92,7 @@ class AnalysisTableViewController: UITableViewController, UITextFieldDelegate, C
     }
     
     @IBAction func timeIndexChanged(sender: AnyObject) {
+        isGraphSelected = false
         switch timeSegmentedControl.selectedSegmentIndex
         {
         case 0:
@@ -94,8 +100,7 @@ class AnalysisTableViewController: UITableViewController, UITextFieldDelegate, C
             calculateDaySegment()
             selectedDay = daySegments[0]
             calculateTimeFrame(daySegments[0], counterValue: 0)
-            let currentDate = daySegments[0].characters.split{$0 == " "}.map(String.init)
-            currentDateLabel.text = currentDate[0]
+            currentDateLabel.text = day0Header
             ConnectionService.sharedInstance.getChange(plannedStart: timeSegments[0], plannedStart2: timeSegments[5], psD: "1")
             liveTickets = ConnectionService.sharedInstance.ticketList
             sortTicketsByRisk()
@@ -109,8 +114,7 @@ class AnalysisTableViewController: UITableViewController, UITextFieldDelegate, C
             calculateDaySegment()
             selectedDay = daySegments[1]
             calculateTimeFrame(daySegments[1], counterValue: 0)
-            let currentDate = daySegments[1].characters.split{$0 == " "}.map(String.init)
-            currentDateLabel.text = currentDate[0]
+            currentDateLabel.text = day1Header
             ConnectionService.sharedInstance.getChange(plannedStart: timeSegments[0], plannedStart2: timeSegments[5], psD: "1")
             liveTickets = ConnectionService.sharedInstance.ticketList
             sortTicketsByRisk()
@@ -124,8 +128,7 @@ class AnalysisTableViewController: UITableViewController, UITextFieldDelegate, C
             calculateDaySegment()
             selectedDay = daySegments[2]
             calculateTimeFrame(daySegments[2], counterValue: 0)
-            let currentDate = daySegments[2].characters.split{$0 == " "}.map(String.init)
-            currentDateLabel.text = currentDate[0]
+            currentDateLabel.text = day2Header
             ConnectionService.sharedInstance.getChange(plannedStart: timeSegments[0], plannedStart2: timeSegments[5], psD: "1")
             liveTickets = ConnectionService.sharedInstance.ticketList
             sortTicketsByRisk()
@@ -139,8 +142,7 @@ class AnalysisTableViewController: UITableViewController, UITextFieldDelegate, C
             calculateDaySegment()
             selectedDay = daySegments[3]
             calculateTimeFrame(daySegments[3], counterValue: 0)
-            let currentDate = daySegments[3].characters.split{$0 == " "}.map(String.init)
-            currentDateLabel.text = currentDate[0]
+            currentDateLabel.text = day3Header
             ConnectionService.sharedInstance.getChange(plannedStart: timeSegments[0], plannedStart2: timeSegments[5], psD: "1")
             liveTickets = ConnectionService.sharedInstance.ticketList
             sortTicketsByRisk()
@@ -155,6 +157,7 @@ class AnalysisTableViewController: UITableViewController, UITextFieldDelegate, C
     }
     
     @IBAction func stepperValueChanged(sender: UIStepper) {
+        isGraphSelected = false
         let timeFrameIndex = Int(sender.value)
         liveTickets.removeAll()
 
@@ -172,20 +175,21 @@ class AnalysisTableViewController: UITableViewController, UITextFieldDelegate, C
     }
     
     func setupSegmentControl() {
+        let today = DateFormat.dateFromString(daySegments[0])
+        let todayLabel = convertMonthLabel(today!.month) + " " + String(today!.day)
+        day0Header = todayLabel + ", " + String(today!.year)
+        
         let firstDay = DateFormat.dateFromString(daySegments[1])
-        let year1 = String(firstDay!.year)
-        let convertYear1 = year1.characters.split{$0 == "0"}.map(String.init)
-        let firstDayLabel = convertMonthLabel(firstDay!.month) + " " + String(firstDay!.day) + ", '" + convertYear1[1]
+        let firstDayLabel = convertMonthLabel(firstDay!.month) + " " + String(firstDay!.day)
+        day1Header = firstDayLabel + ", " + String(firstDay!.year)
         
         let secondDay = DateFormat.dateFromString(daySegments[2])
-        let year2 = String(firstDay!.year)
-        let convertYear2 = year2.characters.split{$0 == "0"}.map(String.init)
-        let secondDayLabel = convertMonthLabel(secondDay!.month) + " " + String(secondDay!.day) + ", '" + convertYear2[1]
+        let secondDayLabel = convertMonthLabel(secondDay!.month) + " " + String(secondDay!.day)
+        day2Header = secondDayLabel + ", " + String(secondDay!.year)
         
         let thirdDay = DateFormat.dateFromString(daySegments[3])
-        let year3 = String(firstDay!.year)
-        let convertYear3 = year3.characters.split{$0 == "0"}.map(String.init)
-        let thirdDayLabel = convertMonthLabel(thirdDay!.month) + " " + String(thirdDay!.day) + ", '" + convertYear3[1]
+        let thirdDayLabel = convertMonthLabel(thirdDay!.month) + " " + String(thirdDay!.day)
+        day3Header = thirdDayLabel + ", " + String(thirdDay!.year)
         
         timeSegmentedControl.setTitle(firstDayLabel, forSegmentAtIndex: 1)
         timeSegmentedControl.setTitle(secondDayLabel, forSegmentAtIndex: 2)
@@ -365,6 +369,10 @@ class AnalysisTableViewController: UITableViewController, UITextFieldDelegate, C
     func sortTicketsByRisk() {
         lowRiskTickets.removeAll()
         highRiskTickets.removeAll()
+        
+        let ticketShown = [Bool](count: liveTickets.count, repeatedValue: false)
+        liveTicketsShown = ticketShown
+        
         for ticket in liveTickets {
             if (ticket.risk == "Low") {
                 lowRiskTickets += [ticket]
@@ -378,29 +386,29 @@ class AnalysisTableViewController: UITableViewController, UITextFieldDelegate, C
         var month = ""
         switch(monthValue) {
         case 1:
-            month = "Jan"
+            month = "January"
         case 2:
-            month = "Feb"
+            month = "February"
         case 3:
-            month = "Mar"
+            month = "March"
         case 4:
-            month = "Apr"
+            month = "April"
         case 5:
             month = "May"
         case 6:
-            month = "Jun"
+            month = "June"
         case 7:
-            month = "Jul"
+            month = "July"
         case 8:
-            month = "Aug"
+            month = "August"
         case 9:
-            month = "Sep"
+            month = "September"
         case 10:
-            month = "Oct"
+            month = "October"
         case 11:
-            month = "Nov"
+            month = "November"
         case 12:
-            month = "Dec"
+            month = "December"
         default:
             month = "Nil"
         }
@@ -420,14 +428,13 @@ class AnalysisTableViewController: UITableViewController, UITextFieldDelegate, C
         calculateDaySegment()
         selectedDay = daySegments[0]
         calculateTimeFrame(daySegments[0], counterValue: 0)
-        let currentDate = daySegments[0].characters.split{$0 == " "}.map(String.init)
-        currentDateLabel.text = currentDate[0]
+        setupSegmentControl()
+        currentDateLabel.text = day0Header
         //        ConnectionService.sharedInstance.getChange(plannedStart: timeSegments[0], plannedStart2: timeSegments[5], psD: "1")
         //        liveTickets = ConnectionService.sharedInstance.ticketList
         liveTickets = mockData.parseExampleXMLFile()
         sortTicketsByRisk()
         calculateGraphValues()
-        setupSegmentControl()
         setChart(selectedHourLabels, values: lowRiskCount, values2: highRiskCount)
     }
     
@@ -566,17 +573,17 @@ class AnalysisTableViewController: UITableViewController, UITextFieldDelegate, C
     
     // Row Animation
     override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-//        if (liveTicketsShown[indexPath.row] == false) {
-//            let rotationTransform = CATransform3DTranslate(CATransform3DIdentity, -500, 0, 0)
-//            cell.layer.transform = rotationTransform
-//            
-//            UIView.animateWithDuration(1.0, animations: {
-//                cell.layer.transform = CATransform3DIdentity
-//                }, completion: { finished in
-//                    
-//            })
-//            liveTicketsShown[indexPath.row] = true
-//        }
+        if (liveTicketsShown[indexPath.row] == false) {
+            let rotationTransform = CATransform3DTranslate(CATransform3DIdentity, -500, 0, 0)
+            cell.layer.transform = rotationTransform
+            
+            UIView.animateWithDuration(1.0, animations: {
+                cell.layer.transform = CATransform3DIdentity
+                }, completion: { finished in
+                    
+            })
+            liveTicketsShown[indexPath.row] = true
+        }
     }
     
     // Header Animation
@@ -642,7 +649,41 @@ class AnalysisTableViewController: UITableViewController, UITextFieldDelegate, C
     }
     
     func chartValueSelected(chartView: ChartViewBase, entry: ChartDataEntry, dataSetIndex: Int, highlight: ChartHighlight) {
+        isGraphSelected = true
+        //isShifting = true
+        filteredTickets.removeAll()
+        filteredEmergencyTickets.removeAll()
+        liveTicketsShown.removeAll()
         
+        if (entry.data != nil) {
+            if (dataSetIndex == 0) {
+                for ticket in liveTickets {
+                    if (ticket.risk == "Low") {
+                        filteredTickets += [ticket]
+                    }
+                }
+                let ticketShown = [Bool](count: filteredTickets.count, repeatedValue: false)
+                liveTicketsShown = ticketShown
+                tableView.reloadData()
+            } else if (dataSetIndex == 1) {
+                for ticket in liveTickets {
+                    if (ticket.risk == "High") {
+                        filteredTickets += [ticket]
+                    }
+                }
+                let ticketShown = [Bool](count: filteredTickets.count, repeatedValue: false)
+                liveTicketsShown = ticketShown
+                tableView.reloadData()
+            }
+        }
     }
     
+    func chartValueNothingSelected(chartView: ChartViewBase) {
+        isGraphSelected = false
+        liveTicketsShown.removeAll()
+        let ticketShown = [Bool](count: liveTickets.count, repeatedValue: false)
+        liveTicketsShown = ticketShown
+        tableView.reloadData()
+        
+    }
 }

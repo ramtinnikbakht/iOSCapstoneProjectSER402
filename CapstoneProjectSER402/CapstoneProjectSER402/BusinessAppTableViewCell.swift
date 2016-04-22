@@ -25,11 +25,13 @@ class BusinessAppTableViewCell: UITableViewCell
     var ticket: ChangeTicket!
         {
         didSet {
-            
-
             ticketID.text = ticket.number
             plannedStartLabel.text = convertDate(ticket.plannedStart)
-            businessAppLabel.text = ticket.BusinessApplication
+            if (ticket.BusinessApplication == "element <business_Application> not found") {
+                businessAppLabel.text = ticket.requestedByGroup
+            } else {
+               businessAppLabel.text = ticket.BusinessApplication
+            }
             ticketTypeLabel.text = ticket.type
         }
     }

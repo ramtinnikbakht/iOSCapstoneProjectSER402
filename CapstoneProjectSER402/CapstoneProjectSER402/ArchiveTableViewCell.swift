@@ -20,7 +20,6 @@ class ArchiveTableViewCell: UITableViewCell {
     @IBOutlet weak var businessAppLabel: UILabel!
     @IBOutlet weak var secondaryCCLabel: UILabel!
     @IBOutlet weak var secondaryCCValue: UILabel!
-    @IBOutlet weak var expandBackground: UIImageView!
     
     var isObserving = false
     
@@ -35,9 +34,6 @@ class ArchiveTableViewCell: UITableViewCell {
         actualStartValue.hidden = frame.size.height < ArchiveTableViewCell.expandedHeight
         actualEndValue.hidden = frame.size.height < ArchiveTableViewCell.expandedHeight
         secondaryCCValue.hidden = frame.size.height < ArchiveTableViewCell.expandedHeight
-        
-        expandBackground.hidden = frame.size.height < ArchiveTableViewCell.expandedHeight
-        
     }
     
     func watchFrameChanges() {
