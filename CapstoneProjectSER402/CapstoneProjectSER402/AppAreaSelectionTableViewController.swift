@@ -129,7 +129,150 @@ class AppAreaSelectionTableViewController: UITableViewController {
         //areas.append("")
         //ConnectionService.sharedInstance.getBusiness("3df0acd82b56b000b44bd4b419da1549")
         //areas = ConnectionService.sharedInstance.businessApps
-        appsAreaArray.append((area1.first?.businessArea)!)
+        
+        //Check if the areas have apps, if they do grab the app area name and add to the appsAreaArray
+        if (area1.isEmpty == false) {
+            appsAreaArray.append((area1.first?.businessArea)!)
+            
+        }
+        if (area2.isEmpty == false) {
+            appsAreaArray.append((area2.first?.businessArea)!)
+            
+        }
+        if (area3.isEmpty == false) {
+            appsAreaArray.append((area3.first?.businessArea)!)
+            
+        }
+        if (area4.isEmpty == false) {
+            appsAreaArray.append((area4.first?.businessArea)!)
+            
+        }
+        if (area5.isEmpty == false) {
+            appsAreaArray.append((area5.first?.businessArea)!)
+            
+        }
+        if (area6.isEmpty == false) {
+            appsAreaArray.append((area6.first?.businessArea)!)
+            
+        }
+        if (area7.isEmpty == false) {
+            appsAreaArray.append((area7.first?.businessArea)!)
+            
+        }
+        if (area8.isEmpty == false) {
+            appsAreaArray.append((area8.first?.businessArea)!)
+            
+        }
+        if (area9.isEmpty == false) {
+            appsAreaArray.append((area9.first?.businessArea)!)
+            
+        }
+        if (area10.isEmpty == false) {
+            appsAreaArray.append((area10.first?.businessArea)!)
+            
+        }
+        if (area11.isEmpty == false) {
+            appsAreaArray.append((area11.first?.businessArea)!)
+            
+        }
+        if (area12.isEmpty == false) {
+            appsAreaArray.append((area12.first?.businessArea)!)
+            
+        }
+        if (area13.isEmpty == false) {
+            appsAreaArray.append((area13.first?.businessArea)!)
+            
+        }
+        if (area14.isEmpty == false) {
+            appsAreaArray.append((area14.first?.businessArea)!)
+            
+        }
+        if (area15.isEmpty == false) {
+            appsAreaArray.append((area15.first?.businessArea)!)
+            
+        }
+        if (area16.isEmpty == false) {
+            appsAreaArray.append((area16.first?.businessArea)!)
+            
+        }
+        if (area17.isEmpty == false) {
+            appsAreaArray.append((area17.first?.businessArea)!)
+            
+        }
+        if (area18.isEmpty == false) {
+            appsAreaArray.append((area18.first?.businessArea)!)
+            
+        }
+        if (area19.isEmpty == false) {
+            appsAreaArray.append((area19.first?.businessArea)!)
+            
+        }
+        if (area20.isEmpty == false) {
+            appsAreaArray.append((area20.first?.businessArea)!)
+            
+        }
+        if (area21.isEmpty == false) {
+            appsAreaArray.append((area21.first?.businessArea)!)
+            
+        }
+        if (area22.isEmpty == false) {
+            appsAreaArray.append((area22.first?.businessArea)!)
+            
+        }
+        if (area23.isEmpty == false) {
+            appsAreaArray.append((area23.first?.businessArea)!)
+            
+        }
+        if (area24.isEmpty == false) {
+            appsAreaArray.append((area24.first?.businessArea)!)
+            
+        }
+        if (area25.isEmpty == false) {
+            appsAreaArray.append((area25.first?.businessArea)!)
+            
+        }
+        if (area26.isEmpty == false) {
+            appsAreaArray.append((area26.first?.businessArea)!)
+            
+        }
+        if (area27.isEmpty == false) {
+            appsAreaArray.append((area27.first?.businessArea)!)
+            
+        }
+        if (area28.isEmpty == false) {
+            appsAreaArray.append((area28.first?.businessArea)!)
+            
+        }
+        if (area29.isEmpty == false) {
+            appsAreaArray.append((area29.first?.businessArea)!)
+            
+        }
+        if (area30.isEmpty == false) {
+            appsAreaArray.append((area30.first?.businessArea)!)
+            
+        }
+        if (area31.isEmpty == false) {
+            appsAreaArray.append((area31.first?.businessArea)!)
+            
+        }
+        if (area32.isEmpty == false) {
+            appsAreaArray.append((area32.first?.businessArea)!)
+            
+        }
+        if (area33.isEmpty == false) {
+            appsAreaArray.append((area33.first?.businessArea)!)
+            
+        }
+        if (area34.isEmpty == false) {
+            appsAreaArray.append((area34.first?.businessArea)!)
+            
+        }
+        if (area35.isEmpty == false) {
+            appsAreaArray.append((area35.first?.businessArea)!)
+            
+        }
+        
+        /*
         appsAreaArray.append((area2.first?.businessArea)!)
         appsAreaArray.append((area3.first?.businessArea)!)
         appsAreaArray.append((area4.first?.businessArea)!)
@@ -165,7 +308,7 @@ class AppAreaSelectionTableViewController: UITableViewController {
         appsAreaArray.append((area34.first?.businessArea)!)
         appsAreaArray.append((area35.first?.businessArea)!)
         
-        /*
+        
         for area in mockAppsAreaArray {
             appsAreaArray.append(area)
         }
