@@ -14,7 +14,7 @@ class ArchiveTableViewController: UITableViewController, UITextFieldDelegate, Ch
     
     @IBOutlet weak var pieChartView: PieChartView!
     @IBOutlet weak var timeSegmentControl: UISegmentedControl!
-    //@IBOutlet weak var legendDisplay: UIImageView!
+
     
     private var tickets = TicketModel()
     private var tbvc = TicketTabBarController()
@@ -40,6 +40,7 @@ class ArchiveTableViewController: UITableViewController, UITextFieldDelegate, Ch
     var cc6Tickets = Array<[ChangeTicket]>()
     var mockData = MockData()
     var liveTicketsShown : [Bool] = []
+    var shouldAnimate = true
     
     let cellIdentifier = "TicketCell"
     let appNames : [String] = []
@@ -52,6 +53,12 @@ class ArchiveTableViewController: UITableViewController, UITextFieldDelegate, Ch
     let cc4 = UIColor(red: CGFloat(207/255.0), green: CGFloat(0), blue: CGFloat(15/255.0), alpha: 1)
     let cc5 = UIColor(red: CGFloat(237/255.0), green: CGFloat(0), blue: CGFloat(15/255.0), alpha: 1)
     let cc6 = UIColor(red: CGFloat(244/255.0), green: CGFloat(208/255.0), blue: CGFloat(63/255.0), alpha: 1)
+    let cc1_Alpha = UIColor(red: CGFloat(38/255.0), green: CGFloat(166/255.0), blue: CGFloat(91/255.0), alpha: 0.6)
+    let cc2_Alpha = UIColor(red: CGFloat(38/255.0), green: CGFloat(196/255.0), blue: CGFloat(91/255.0), alpha: 0.6)
+    let cc3_Alpha = UIColor(red: CGFloat(38/255.0), green: CGFloat(216/255.0), blue: CGFloat(91/255.0), alpha: 0.6)
+    let cc4_Alpha = UIColor(red: CGFloat(207/255.0), green: CGFloat(0), blue: CGFloat(15/255.0), alpha: 0.6)
+    let cc5_Alpha = UIColor(red: CGFloat(237/255.0), green: CGFloat(0), blue: CGFloat(15/255.0), alpha: 0.6)
+    let cc6_Alpha = UIColor(red: CGFloat(244/255.0), green: CGFloat(208/255.0), blue: CGFloat(63/255.0), alpha: 0.6)
     let navy = UIColor(red: 0/255.0, green: 64/255.0, blue: 128/255.0, alpha: 1.0)
     let navy_comp = UIColor(red: CGFloat(51/255.0), green: CGFloat(204/255.0), blue: CGFloat(153/255.0), alpha: 1)
     let charcoal = UIColor(red: CGFloat(54/255.0), green: CGFloat(69/255.0), blue: CGFloat(79/255.0), alpha: 1)
@@ -92,16 +99,18 @@ class ArchiveTableViewController: UITableViewController, UITextFieldDelegate, Ch
         case 0:
             pieChartView.resignFirstResponder()
             tableView.resignFirstResponder()
+            isGraphSelected = false
             liveTickets.removeAll()
             liveTickets = mockData.MOCK_DATA_ARRAY
-//            ConnectionService.sharedInstance.getChange(actualEnd: "2016-03-10 00:00:00", actualEnd2: "2016-03-10 24:00:00", aeD: "1")
-//            liveTickets = ConnectionService.sharedInstance.ticketList
+            ConnectionService.sharedInstance.getChange(actualEnd: "2016-03-10 00:00:00", actualEnd2: "2016-03-10 24:00:00", aeD: "1")
+            liveTickets = ConnectionService.sharedInstance.ticketList
             sortClosureCodes()
             setValuesForGraph()
             tableView.reloadData()
         case 1:
             pieChartView.resignFirstResponder()
             tableView.resignFirstResponder()
+            isGraphSelected = false
             liveTickets.removeAll()
             ConnectionService.sharedInstance.getChange(actualEnd: "2016-03-07 00:00:00", actualEnd2: "2016-03-07 24:00:00", aeD: "1")
             liveTickets = ConnectionService.sharedInstance.ticketList
@@ -111,6 +120,7 @@ class ArchiveTableViewController: UITableViewController, UITextFieldDelegate, Ch
         case 2:
             pieChartView.resignFirstResponder()
             tableView.resignFirstResponder()
+            isGraphSelected = false
             liveTickets.removeAll()
             ConnectionService.sharedInstance.getChange(actualEnd: "2016-03-08 00:00:00", actualEnd2: "2016-03-08 24:00:00", aeD: "1")
             liveTickets = ConnectionService.sharedInstance.ticketList
@@ -129,11 +139,11 @@ class ArchiveTableViewController: UITableViewController, UITextFieldDelegate, Ch
         //let time1 = DateFormat.stringFromDate(now)
         //let time2 = DateFormat.stringFromDate(now.minusDays(2))
         
-        liveTickets = mockData.parseExampleXMLFile()
+        //liveTickets = mockData.parseExampleXMLFile()
         let ticketShown = [Bool](count: liveTickets.count, repeatedValue: false)
         liveTicketsShown = ticketShown
-//        ConnectionService.sharedInstance.getChange(actualEnd: "2016-03-10 00:00:00", actualEnd2: "2016-03-10 24:00:00", aeD: "1")
-//        liveTickets = ConnectionService.sharedInstance.ticketList
+        ConnectionService.sharedInstance.getChange(actualEnd: "2016-03-10 00:00:00", actualEnd2: "2016-03-10 24:00:00", aeD: "1")
+        liveTickets = ConnectionService.sharedInstance.ticketList
         
         sortClosureCodes()
     }
@@ -238,21 +248,27 @@ class ArchiveTableViewController: UITableViewController, UITextFieldDelegate, Ch
         if (ticket.closureCode == "Implemented as Planned") {
             cell.ccIndicator.backgroundColor = cc1
             cell.backgroundColor = white
+            cell.expandBackground.backgroundColor = cc1_Alpha
         } else if (ticket.closureCode == "Implemented with Effort") {
             cell.ccIndicator.backgroundColor = cc2
             cell.backgroundColor = white
+            cell.expandBackground.backgroundColor = cc2_Alpha
         } else if (ticket.closureCode == "Backed Out No Customer/User Impacts") {
             cell.ccIndicator.backgroundColor = cc3
             cell.backgroundColor = white
+            cell.expandBackground.backgroundColor = cc3_Alpha
         } else if (ticket.closureCode == "Implemented with Issues") {
             cell.ccIndicator.backgroundColor = cc4
             cell.backgroundColor = white
+            cell.expandBackground.backgroundColor = cc4_Alpha
         } else if (ticket.closureCode == "Backed Out Customer/User Impacts") {
             cell.ccIndicator.backgroundColor = cc5
             cell.backgroundColor = white
+            cell.expandBackground.backgroundColor = cc5_Alpha
         } else {
             cell.ccIndicator.backgroundColor = cc6
             cell.backgroundColor = white
+            cell.expandBackground.backgroundColor = cc6_Alpha
             cell.ticketID.textColor = UIColor.blackColor()
         }
         
@@ -269,6 +285,8 @@ class ArchiveTableViewController: UITableViewController, UITextFieldDelegate, Ch
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        shouldAnimate = !shouldAnimate
+        
         let previousIndexPath = selectedIndexPath
         if indexPath == selectedIndexPath {
             selectedIndexPath = nil
@@ -294,21 +312,59 @@ class ArchiveTableViewController: UITableViewController, UITextFieldDelegate, Ch
     
     // Row Animation
     override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-        if (liveTicketsShown[indexPath.row] == false) {
-            let rotationTransform = CATransform3DTranslate(CATransform3DIdentity, -500, 0, 0)
+        (cell as! ArchiveTableViewCell).watchFrameChanges()
+        if (cell.frame.height > 55) {
+            (cell as! ArchiveTableViewCell).expandIndicator.image = UIImage(named: "expand_less")
+        } else if (cell.frame.height < 55) {
+            (cell as! ArchiveTableViewCell).expandIndicator.image = UIImage(named: "expand_more")
+        }
+        
+        if (shouldAnimate) {
+            let cellPosition = indexPath.indexAtPosition(1)
+            let delay : Double = Double(cellPosition) * 0.1
+            let rotationTransform = CATransform3DTranslate(CATransform3DIdentity, -1000, 0, 0)
+            
             cell.layer.transform = rotationTransform
             
-            UIView.animateWithDuration(1.0, animations: {
+            UIView.animateWithDuration(1.0, delay: delay, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.3, options: UIViewAnimationOptions.BeginFromCurrentState, animations: {
                 cell.layer.transform = CATransform3DIdentity
                 }, completion: { finished in
                     
             })
-            liveTicketsShown[indexPath.row] = true
         }
+        
+//        if (liveTicketsShown[indexPath.row] == false) {
+//            
+//            let rotationTransform = CATransform3DTranslate(CATransform3DIdentity, -500, 0, 0)
+//            cell.layer.transform = rotationTransform
+//            
+//            UIView.animateWithDuration(1.0, animations: {
+//                cell.layer.transform = CATransform3DIdentity
+//                }, completion: { finished in
+//                    
+//            })
+//            liveTicketsShown[indexPath.row] = true
+//            
+//        }
+    }
+    
+    override func tableView(tableView: UITableView, didEndDisplayingCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        (cell as! ArchiveTableViewCell).ignoreFrameChanges()
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
+        for cell in tableView.visibleCells as! [ArchiveTableViewCell] {
+            cell.ignoreFrameChanges()
+        }
+    }
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        if indexPath == selectedIndexPath {
+            return ArchiveTableViewCell.expandedHeight
+        } else {
+            return ArchiveTableViewCell.defaultHeight
+        }
     }
     
     func getTimeRange() -> [NSDate] {

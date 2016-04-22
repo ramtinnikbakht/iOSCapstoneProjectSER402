@@ -71,7 +71,7 @@ class ChangeTicketTableViewController: UITableViewController, ChartViewDelegate 
             businessAppLabel.text = selectedTicket.BusinessApplication
         }
         businessAppLabel.textColor = UIColor.blackColor()
-        
+        shortDescriptionLabel.text = selectedTicket.shortDescription
         loadTickets()
     }
     

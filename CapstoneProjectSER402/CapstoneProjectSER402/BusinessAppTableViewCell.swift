@@ -20,6 +20,7 @@ class BusinessAppTableViewCell: UITableViewCell
     @IBOutlet weak var riskIndicator: UIImageView!
     @IBOutlet weak var emergencyIndicator: UIImageView!
     @IBOutlet weak var businessAppLabel: UILabel!
+    @IBOutlet weak var ticketTypeLabel: UILabel!
     
     var ticket: ChangeTicket!
         {
@@ -29,6 +30,7 @@ class BusinessAppTableViewCell: UITableViewCell
             ticketID.text = ticket.number
             plannedStartLabel.text = convertDate(ticket.plannedStart)
             businessAppLabel.text = ticket.BusinessApplication
+            ticketTypeLabel.text = ticket.type
         }
     }
     

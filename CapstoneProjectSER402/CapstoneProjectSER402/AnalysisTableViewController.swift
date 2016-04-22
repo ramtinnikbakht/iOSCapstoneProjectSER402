@@ -1,28 +1,39 @@
 //
-//  AnalysisViewController.swift
+//  AnalysisTableViewController.swift
 //  CapstoneProjectSER402
 //
-//  Created by Nick Krogstad on 3/21/16.
+//  Created by Nick Krogstad on 4/22/16.
 //  Copyright © 2016 Ramtin Nikbakht. All rights reserved.
 //
+
 import UIKit
 import Charts
-import Foundation
+import QuartzCore
 
-class AnalysisViewController: UIViewController, UITextFieldDelegate, ChartViewDelegate {
+class AnalysisTableViewController: UITableViewController, UITextFieldDelegate, ChartViewDelegate {
     
     var ticketRisks = [Double]()
     var ticketStartDates = [String]()
     var daySegments = [String]()
     var timeSegments = [String]()
+    var lowRiskTickets = [ChangeTicket]()
     var lowRiskCount = [Double]()
+    var highRiskTickets = [ChangeTicket]()
     var highRiskCount = [Double]()
+    var emergencyTickets = [ChangeTicket]()
+    var filteredTickets = [ChangeTicket]()
+    var filteredEmergencyTickets = [ChangeTicket]()
     var selectedHours = [UInt]()
     var selectedHourLabels = [String]()
     var selectedTF = UITextField()
     var liveTickets = [ChangeTicket]()
     var releaseWindowLL = ChartLimitLine(limit: 1.0, label: "Release \nDeployment \nWindow")
     var selectedDay = String()
+    var mockData = MockData()
+    let sectionTitles = ["High Risk", "Low Risk"]
+    var isGraphSelected = false
+    var isShifting = true
+    let cellIdentifier = "TicketCell"
     
     let DateFormat = NSDateFormatter()
     
@@ -31,17 +42,15 @@ class AnalysisViewController: UIViewController, UITextFieldDelegate, ChartViewDe
     let med = UIColor(red: CGFloat(244/255.0), green: CGFloat(208/255.0), blue: CGFloat(63/255.0), alpha: 0.6)
     let high = UIColor(red: CGFloat(207/255.0), green: CGFloat(0), blue: CGFloat(15/255.0), alpha: 0.6)
     let charcoal = UIColor(red: CGFloat(54/255.0), green: CGFloat(69/255.0), blue: CGFloat(79/255.0), alpha: 1)
+    let white = UIColor.whiteColor()
     
     
     @IBOutlet weak var currentTimeFrameTF: UITextField!
     @IBOutlet weak var currentDateLabel: UILabel!
     @IBOutlet weak var radarChartView: RadarChartView!
-
+    
     @IBOutlet weak var timeSegmentedControl: UISegmentedControl!
     @IBOutlet weak var timeFrameStepper: UIStepper!
-    @IBOutlet weak var highRiskCountLabel: UILabel!
-    @IBOutlet weak var lowRiskCountLabel: UILabel!
-    @IBOutlet weak var ticketTotalBackground: UIImageView!
     
     
     // MARK: TextField Delegate
@@ -89,10 +98,12 @@ class AnalysisViewController: UIViewController, UITextFieldDelegate, ChartViewDe
             currentDateLabel.text = currentDate[0]
             ConnectionService.sharedInstance.getChange(plannedStart: timeSegments[0], plannedStart2: timeSegments[5], psD: "1")
             liveTickets = ConnectionService.sharedInstance.ticketList
+            sortTicketsByRisk()
             calculateGraphValues()
             radarChartView.clear()
             timeFrameStepper.value = 0
             setChart(selectedHourLabels, values: lowRiskCount, values2: highRiskCount)
+            tableView.reloadData()
         case 1:
             liveTickets.removeAll()
             calculateDaySegment()
@@ -102,11 +113,12 @@ class AnalysisViewController: UIViewController, UITextFieldDelegate, ChartViewDe
             currentDateLabel.text = currentDate[0]
             ConnectionService.sharedInstance.getChange(plannedStart: timeSegments[0], plannedStart2: timeSegments[5], psD: "1")
             liveTickets = ConnectionService.sharedInstance.ticketList
-            print(liveTickets)
+            sortTicketsByRisk()
             calculateGraphValues()
             radarChartView.clear()
             timeFrameStepper.value = 0
             setChart(selectedHourLabels, values: lowRiskCount, values2: highRiskCount)
+            tableView.reloadData()
         case 2:
             liveTickets.removeAll()
             calculateDaySegment()
@@ -116,10 +128,12 @@ class AnalysisViewController: UIViewController, UITextFieldDelegate, ChartViewDe
             currentDateLabel.text = currentDate[0]
             ConnectionService.sharedInstance.getChange(plannedStart: timeSegments[0], plannedStart2: timeSegments[5], psD: "1")
             liveTickets = ConnectionService.sharedInstance.ticketList
+            sortTicketsByRisk()
             calculateGraphValues()
             radarChartView.clear()
             timeFrameStepper.value = 0
             setChart(selectedHourLabels, values: lowRiskCount, values2: highRiskCount)
+            tableView.reloadData()
         case 3:
             liveTickets.removeAll()
             calculateDaySegment()
@@ -129,10 +143,12 @@ class AnalysisViewController: UIViewController, UITextFieldDelegate, ChartViewDe
             currentDateLabel.text = currentDate[0]
             ConnectionService.sharedInstance.getChange(plannedStart: timeSegments[0], plannedStart2: timeSegments[5], psD: "1")
             liveTickets = ConnectionService.sharedInstance.ticketList
+            sortTicketsByRisk()
             calculateGraphValues()
             radarChartView.clear()
             timeFrameStepper.value = 0
             setChart(selectedHourLabels, values: lowRiskCount, values2: highRiskCount)
+            tableView.reloadData()
         default:
             break;
         }
@@ -141,26 +157,35 @@ class AnalysisViewController: UIViewController, UITextFieldDelegate, ChartViewDe
     @IBAction func stepperValueChanged(sender: UIStepper) {
         let timeFrameIndex = Int(sender.value)
         liveTickets.removeAll()
+
         calculateDaySegment()
         calculateTimeFrame(selectedDay, counterValue: timeFrameIndex)
         
-        ConnectionService.sharedInstance.getChange(plannedStart: timeSegments[0], plannedStart2: timeSegments[5], psD: "1")
-        liveTickets = ConnectionService.sharedInstance.ticketList
+                ConnectionService.sharedInstance.getChange(plannedStart: timeSegments[0], plannedStart2: timeSegments[5], psD: "1")
+                liveTickets = ConnectionService.sharedInstance.ticketList
+        //liveTickets = mockData.MOCK_DATA_ARRAY
+        sortTicketsByRisk()
         calculateGraphValues()
         radarChartView.clear()
-        print(selectedHourLabels)
-        print(lowRiskCount)
-        print(highRiskCount)
         setChart(selectedHourLabels, values: lowRiskCount, values2: highRiskCount)
+        tableView.reloadData()
     }
     
     func setupSegmentControl() {
         let firstDay = DateFormat.dateFromString(daySegments[1])
-        let firstDayLabel = String(firstDay!.month) + "-" + String(firstDay!.day) + "-" + String(firstDay!.year)
+        let year1 = String(firstDay!.year)
+        let convertYear1 = year1.characters.split{$0 == "0"}.map(String.init)
+        let firstDayLabel = convertMonthLabel(firstDay!.month) + " " + String(firstDay!.day) + ", '" + convertYear1[1]
+        
         let secondDay = DateFormat.dateFromString(daySegments[2])
-        let secondDayLabel = String(secondDay!.month) + "-" + String(secondDay!.day) + "-" + String(secondDay!.year)
+        let year2 = String(firstDay!.year)
+        let convertYear2 = year2.characters.split{$0 == "0"}.map(String.init)
+        let secondDayLabel = convertMonthLabel(secondDay!.month) + " " + String(secondDay!.day) + ", '" + convertYear2[1]
+        
         let thirdDay = DateFormat.dateFromString(daySegments[3])
-        let thirdDayLabel = String(thirdDay!.month) + "-" + String(thirdDay!.day) + "-" + String(thirdDay!.year)
+        let year3 = String(firstDay!.year)
+        let convertYear3 = year3.characters.split{$0 == "0"}.map(String.init)
+        let thirdDayLabel = convertMonthLabel(thirdDay!.month) + " " + String(thirdDay!.day) + ", '" + convertYear3[1]
         
         timeSegmentedControl.setTitle(firstDayLabel, forSegmentAtIndex: 1)
         timeSegmentedControl.setTitle(secondDayLabel, forSegmentAtIndex: 2)
@@ -211,7 +236,7 @@ class AnalysisViewController: UIViewController, UITextFieldDelegate, ChartViewDe
         var label : String = ""
         let date = DateFormat.dateFromString(dateForFrame)
         let timeMultiple = 6 * counterValue
-
+        
         let time1 = UInt(timeMultiple + 1)
         let time2 = UInt(timeMultiple + 2)
         let time3 = UInt(timeMultiple + 3)
@@ -225,7 +250,7 @@ class AnalysisViewController: UIViewController, UITextFieldDelegate, ChartViewDe
         let timeFrame4 = date?.plusHours(time4)
         let timeFrame5 = date?.plusHours(time5)
         let timeFrame6 = date?.plusHours(time6)
-
+        
         timeSegments += [DateFormat.stringFromDate(timeFrame1!), DateFormat.stringFromDate(timeFrame2!), DateFormat.stringFromDate(timeFrame3!), DateFormat.stringFromDate(timeFrame4!), DateFormat.stringFromDate(timeFrame5!), DateFormat.stringFromDate(timeFrame6!)]
         selectedHours += [time1, time2, time3, time4, time5, time6]
         
@@ -248,8 +273,7 @@ class AnalysisViewController: UIViewController, UITextFieldDelegate, ChartViewDe
                 selectedHourLabels += [label]
             }
         }
-        
-        currentTimeFrameTF.text = (String(time1) + ":00:00") + " - " + (String(time6) + ":00:00")
+        currentTimeFrameTF.text = selectedHourLabels[0] + " - " + selectedHourLabels[5]
     }
     
     func calculateGraphValues() {
@@ -336,8 +360,51 @@ class AnalysisViewController: UIViewController, UITextFieldDelegate, ChartViewDe
         
         lowRiskCount += [Double(hour1CountLow), Double(hour2CountLow), Double(hour3CountLow), Double(hour4CountLow), Double(hour5CountLow), Double(hour6CountLow)]
         highRiskCount += [Double(hour1CountHigh), Double(hour2CountHigh), Double(hour3CountHigh), Double(hour4CountHigh), Double(hour5CountHigh), Double(hour6CountHigh)]
-        lowRiskCountLabel.text = lowTicketTotal.description
-        highRiskCountLabel.text = highTicketTotal.description
+    }
+    
+    func sortTicketsByRisk() {
+        lowRiskTickets.removeAll()
+        highRiskTickets.removeAll()
+        for ticket in liveTickets {
+            if (ticket.risk == "Low") {
+                lowRiskTickets += [ticket]
+            } else if (ticket.risk == "High") {
+                highRiskTickets += [ticket]
+            }
+        }
+    }
+    
+    func convertMonthLabel(monthValue: UInt) -> String {
+        var month = ""
+        switch(monthValue) {
+        case 1:
+            month = "Jan"
+        case 2:
+            month = "Feb"
+        case 3:
+            month = "Mar"
+        case 4:
+            month = "Apr"
+        case 5:
+            month = "May"
+        case 6:
+            month = "Jun"
+        case 7:
+            month = "Jul"
+        case 8:
+            month = "Aug"
+        case 9:
+            month = "Sep"
+        case 10:
+            month = "Oct"
+        case 11:
+            month = "Nov"
+        case 12:
+            month = "Dec"
+        default:
+            month = "Nil"
+        }
+        return month
     }
     
     override func viewDidLoad() {
@@ -347,8 +414,7 @@ class AnalysisViewController: UIViewController, UITextFieldDelegate, ChartViewDe
         timeFrameStepper.wraps = true
         timeFrameStepper.autorepeat = false
         timeFrameStepper.maximumValue = 3
-        ticketTotalBackground.backgroundColor = charcoal
-
+        
         // Do any additional setup after loading the view.
         
         calculateDaySegment()
@@ -356,8 +422,10 @@ class AnalysisViewController: UIViewController, UITextFieldDelegate, ChartViewDe
         calculateTimeFrame(daySegments[0], counterValue: 0)
         let currentDate = daySegments[0].characters.split{$0 == " "}.map(String.init)
         currentDateLabel.text = currentDate[0]
-        ConnectionService.sharedInstance.getChange(plannedStart: timeSegments[0], plannedStart2: timeSegments[5], psD: "1")
-        liveTickets = ConnectionService.sharedInstance.ticketList
+        //        ConnectionService.sharedInstance.getChange(plannedStart: timeSegments[0], plannedStart2: timeSegments[5], psD: "1")
+        //        liveTickets = ConnectionService.sharedInstance.ticketList
+        liveTickets = mockData.parseExampleXMLFile()
+        sortTicketsByRisk()
         calculateGraphValues()
         setupSegmentControl()
         setChart(selectedHourLabels, values: lowRiskCount, values2: highRiskCount)
@@ -366,6 +434,166 @@ class AnalysisViewController: UIViewController, UITextFieldDelegate, ChartViewDe
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        
+    }
+    
+    // MARK: - Table view data source
+    
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return sectionTitles.count
+    }
+    
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if (isGraphSelected) {
+            switch (section) {
+            case 0:
+                var highRiskCount = 0
+                for ticket in filteredTickets {
+                    if (ticket.risk == "High") {
+                        highRiskCount++
+                    }
+                }
+                return highRiskCount
+            case 1:
+                var lowRiskCount = 0
+                for ticket in filteredTickets {
+                    if (ticket.risk == "Low") {
+                        lowRiskCount++
+                    }
+                }
+                return lowRiskCount
+            default:
+                return filteredTickets.count
+            }
+        } else {
+            switch (section) {
+            case 0:
+                return highRiskTickets.count
+            case 1:
+                return lowRiskTickets.count
+            default:
+                return liveTickets.count
+            }
+        }
+    }
+    
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! BusinessAppTableViewCell
+        var ticket : ChangeTicket
+        
+        if (isGraphSelected) {
+            ticket = filteredTickets[indexPath.row] as ChangeTicket
+        } else {
+            if (indexPath.section == 0) {
+                ticket = highRiskTickets[indexPath.row] as ChangeTicket
+            } else if (indexPath.section == 1) {
+                ticket = lowRiskTickets[indexPath.row] as ChangeTicket
+            } else {
+                ticket = liveTickets[indexPath.row] as ChangeTicket
+            }
+        }
+        
+        if (ticket.type == "Emergency") {
+            cell.emergencyIndicator.hidden = false
+            cell.emergencyIndicator.image = UIImage(named: "emergency.png")
+        } else {
+            cell.emergencyIndicator.hidden = true
+        }
+        
+        if (ticket.risk == "Low") {
+            cell.riskIndicator.backgroundColor = low
+        } else if (ticket.risk == "High") {
+            cell.riskIndicator.backgroundColor = high
+        }
+        
+        let lightGrey = UIColor.lightGrayColor()
+        cell.riskIndicator.layer.shadowColor = white.CGColor
+        cell.riskIndicator.layer.shadowRadius = 1.5
+        cell.riskIndicator.layer.shadowOpacity = 0.7
+        cell.riskIndicator.layer.shadowOffset = CGSizeZero
+        cell.riskIndicator.layer.masksToBounds = false
+        cell.backgroundColor = UIColor.whiteColor()
+        cell.layer.shadowColor = lightGrey.CGColor
+        cell.layer.shadowRadius = 1.5
+        cell.layer.shadowOpacity = 0.7
+        cell.layer.shadowOffset = CGSizeZero
+        cell.layer.masksToBounds = false
+        cell.ticket = ticket
+        
+        return cell
+        
+    }
+    
+    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let  headerCell = tableView.dequeueReusableCellWithIdentifier("HeaderCell") as! CustomHeaderCell
+        let white = UIColor.whiteColor()
+        var suffix = " Tickets"
+        
+        headerCell.backgroundColor = UIColor(red: CGFloat(54/255.0), green: CGFloat(69/255.0), blue: CGFloat(79/255.0), alpha: 1)
+        headerCell.appTierLabel.text = sectionTitles[section]
+        headerCell.appTierLabel.textColor = white
+        if (section == 0) {
+            if (highRiskTickets.count == 1) {
+                suffix = " Ticket"
+            }
+            headerCell.currentDateHeader.text = String(highRiskTickets.count) + suffix
+        } else if (section == 1) {
+            if (lowRiskTickets.count == 1) {
+                suffix = " Ticket"
+            }
+            headerCell.currentDateHeader.text = String(lowRiskTickets.count) + suffix
+        }
+        
+        headerCell.currentDateHeader.textColor = white
+        
+        headerCell.layer.shadowColor = white.CGColor
+        headerCell.layer.shadowRadius = 1.5
+        headerCell.layer.shadowOpacity = 0.7
+        headerCell.layer.shadowOffset = CGSizeZero
+        headerCell.layer.masksToBounds = false
+        
+        return headerCell
+    }
+    
+    @IBAction func expandSection(sender: AnyObject) {
+        //isCollapsed[sender.tag!] = !isCollapsed[sender.tag!];
+        isShifting = true
+        tableView.reloadData()
+    }
+    
+    
+    // MARK: - Animate Table View Cell
+    
+    // Row Animation
+    override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+//        if (liveTicketsShown[indexPath.row] == false) {
+//            let rotationTransform = CATransform3DTranslate(CATransform3DIdentity, -500, 0, 0)
+//            cell.layer.transform = rotationTransform
+//            
+//            UIView.animateWithDuration(1.0, animations: {
+//                cell.layer.transform = CATransform3DIdentity
+//                }, completion: { finished in
+//                    
+//            })
+//            liveTicketsShown[indexPath.row] = true
+//        }
+    }
+    
+    // Header Animation
+    override func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        if (isShifting) {
+            
+        } else {
+            //            let rotationTransform = CATransform3DTranslate(CATransform3DIdentity, -500, 0, 0)
+            //            view.layer.transform = rotationTransform
+            //            view.tag = 21
+            //
+            //            UIView.animateWithDuration(1.0, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.3, options: UIViewAnimationOptions.BeginFromCurrentState, animations: {
+            //                view.layer.transform = CATransform3DIdentity
+            //                }, completion: { finished in
+            //                    
+            //            })
+        }
         
     }
     
@@ -414,7 +642,7 @@ class AnalysisViewController: UIViewController, UITextFieldDelegate, ChartViewDe
     }
     
     func chartValueSelected(chartView: ChartViewBase, entry: ChartDataEntry, dataSetIndex: Int, highlight: ChartHighlight) {
-
+        
     }
     
 }

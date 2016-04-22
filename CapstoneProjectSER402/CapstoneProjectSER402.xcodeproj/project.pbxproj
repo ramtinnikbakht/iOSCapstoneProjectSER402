@@ -14,7 +14,6 @@
 		462EB84B1C990BF00076C28D /* BusinessApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462EB83F1C990BF00076C28D /* BusinessApp.swift */; };
 		462EB84D1C990BF00076C28D /* AppSelectionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462EB8421C990BF00076C28D /* AppSelectionTableViewController.swift */; };
 		462EB8511C990BF00076C28D /* WatchedTicketTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462EB8471C990BF00076C28D /* WatchedTicketTableViewController.swift */; };
-		46A2AB121CA47C0E00F87C80 /* AnalysisViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A2AB0D1CA47C0E00F87C80 /* AnalysisViewController.swift */; };
 		46A2AB131CA47C0E00F87C80 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46A2AB101CA47C0E00F87C80 /* SWRevealViewController.m */; };
 		46A2AB141CA47C0E00F87C80 /* UserTypeSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A2AB111CA47C0E00F87C80 /* UserTypeSelectionViewController.swift */; };
 		46C1CF3D1CC70D0600969A0C /* changeList.xml in Resources */ = {isa = PBXBuildFile; fileRef = 46C1CF3C1CC70D0600969A0C /* changeList.xml */; };
@@ -55,6 +54,7 @@
 		C121B52F1C8008CC001F3B16 /* WatchedTicketTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C121B52E1C8008CC001F3B16 /* WatchedTicketTableViewCell.swift */; };
 		C12E73AC1CBE5D360091ECE9 /* emergency.png in Resources */ = {isa = PBXBuildFile; fileRef = C12E73AB1CBE5D360091ECE9 /* emergency.png */; };
 		C12E73B91CC79EAB0091ECE9 /* ChangeTicketHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12E73B81CC79EAB0091ECE9 /* ChangeTicketHeaderCell.swift */; };
+		C12E73BF1CCA2D480091ECE9 /* AnalysisTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12E73BE1CCA2D480091ECE9 /* AnalysisTableViewController.swift */; };
 		C142E6551C9BEC5A005F1DEC /* TicketModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C142E6541C9BEC5A005F1DEC /* TicketModel.swift */; };
 		C14333831CA0E9540083CA88 /* Charts in Resources */ = {isa = PBXBuildFile; fileRef = C14333821CA0E9540083CA88 /* Charts */; };
 		C14333931CA0E9CF0083CA88 /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C143338C1CA0E99B0083CA88 /* Charts.framework */; };
@@ -157,7 +157,6 @@
 		462EB8431C990BF00076C28D /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		462EB8441C990BF00076C28D /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		462EB8471C990BF00076C28D /* WatchedTicketTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchedTicketTableViewController.swift; sourceTree = "<group>"; };
-		46A2AB0D1CA47C0E00F87C80 /* AnalysisViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalysisViewController.swift; sourceTree = "<group>"; };
 		46A2AB0E1CA47C0E00F87C80 /* CapstoneProjectSER402-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CapstoneProjectSER402-Bridging-Header.h"; sourceTree = "<group>"; };
 		46A2AB0F1CA47C0E00F87C80 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		46A2AB101CA47C0E00F87C80 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
@@ -206,6 +205,7 @@
 		C121B52E1C8008CC001F3B16 /* WatchedTicketTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchedTicketTableViewCell.swift; sourceTree = "<group>"; };
 		C12E73AB1CBE5D360091ECE9 /* emergency.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = emergency.png; sourceTree = "<group>"; };
 		C12E73B81CC79EAB0091ECE9 /* ChangeTicketHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeTicketHeaderCell.swift; sourceTree = "<group>"; };
+		C12E73BE1CCA2D480091ECE9 /* AnalysisTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalysisTableViewController.swift; sourceTree = "<group>"; };
 		C142E6541C9BEC5A005F1DEC /* TicketModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TicketModel.swift; sourceTree = "<group>"; };
 		C14333821CA0E9540083CA88 /* Charts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Charts; sourceTree = "<group>"; };
 		C14333841CA0E99B0083CA88 /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = Charts/Charts.xcodeproj; sourceTree = "<group>"; };
@@ -293,7 +293,6 @@
 				C19F0DDE1C76DB22009BD594 /* AllstateHeader_ASU.png */,
 				462EB83C1C990BF00076C28D /* AllstateLoginHeader.png */,
 				C19F0DC01C73E14F009BD594 /* binoculars-front-view.png */,
-				46A2AB0D1CA47C0E00F87C80 /* AnalysisViewController.swift */,
 				46A2AB0E1CA47C0E00F87C80 /* CapstoneProjectSER402-Bridging-Header.h */,
 				46A2AB0F1CA47C0E00F87C80 /* SWRevealViewController.h */,
 				46A2AB101CA47C0E00F87C80 /* SWRevealViewController.m */,
@@ -351,6 +350,7 @@
 				4818FE111CA49CFA00B7EB47 /* SettingsTableViewController.swift */,
 				4852EEA81CAC6D280060CD3E /* AlertsTableViewCell.swift */,
 				C108ADE91CAFB1DF00CB60F0 /* ArchiveTableViewController.swift */,
+				C12E73BE1CCA2D480091ECE9 /* AnalysisTableViewController.swift */,
 				46C2F4341CC592CD00F256C5 /* MockData.swift */,
 				46D54C531CC839820085B95E /* CapstoneProjectSER402.xcdatamodeld */,
 			);
@@ -599,6 +599,7 @@
 				4852EEAE1CAC71D80060CD3E /* ProfileTableViewCell.swift in Sources */,
 				4852EEA91CAC6D280060CD3E /* AlertsTableViewCell.swift in Sources */,
 				C108ADEA1CAFB1DF00CB60F0 /* ArchiveTableViewController.swift in Sources */,
+				C12E73BF1CCA2D480091ECE9 /* AnalysisTableViewController.swift in Sources */,
 				C142E6551C9BEC5A005F1DEC /* TicketModel.swift in Sources */,
 				46A2AB141CA47C0E00F87C80 /* UserTypeSelectionViewController.swift in Sources */,
 				C12E73B91CC79EAB0091ECE9 /* ChangeTicketHeaderCell.swift in Sources */,
@@ -615,7 +616,6 @@
 				C14333D21CA6D8300083CA88 /* BusinessAppTableViewController.swift in Sources */,
 				462EB8491C990BF00076C28D /* AppSelectionViewController.swift in Sources */,
 				489AFBAA1C7F8D2900E9DEB9 /* SetupContentViewController.swift in Sources */,
-				46A2AB121CA47C0E00F87C80 /* AnalysisViewController.swift in Sources */,
 				C121B52D1C80075B001F3B16 /* WatchedTicket.swift in Sources */,
 				4818FE121CA49CFA00B7EB47 /* SettingsTableViewController.swift in Sources */,
 				C19F0DD51C759DB1009BD594 /* ChangeTicketTableViewCell.swift in Sources */,
