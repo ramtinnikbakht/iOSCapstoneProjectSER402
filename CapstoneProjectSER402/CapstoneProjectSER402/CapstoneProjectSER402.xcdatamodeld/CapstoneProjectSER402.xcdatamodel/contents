@@ -2,17 +2,23 @@
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10171" systemVersion="15E65" minimumToolsVersion="Xcode 7.0">
     <entity name="BusinessApps" syncable="YES">
         <attribute name="appName" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="businessArea" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="businessUnit" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="owner" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="tier" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
-    <entity name="User" syncable="YES">
-        <attribute name="userType" optional="YES" attributeType="String" syncable="YES"/>
+    <entity name="BusinessArea" syncable="YES">
+        <attribute name="busArea" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="busAreaID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sysID" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="has" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="BusinessApps" syncable="YES"/>
     </entity>
+    <entity name="User" syncable="YES">
+        <attribute name="userType" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="has" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="BusinessArea" syncable="YES"/>
+    </entity>
     <elements>
-        <element name="User" positionX="-63" positionY="-18" width="128" height="75"/>
-        <element name="BusinessApps" positionX="-54" positionY="0" width="128" height="120"/>
+        <element name="BusinessApps" positionX="-92" positionY="81" width="128" height="103"/>
+        <element name="User" positionX="-407" positionY="-111" width="128" height="75"/>
+        <element name="BusinessArea" positionX="-405" positionY="75" width="128" height="105"/>
     </elements>
 </model>
