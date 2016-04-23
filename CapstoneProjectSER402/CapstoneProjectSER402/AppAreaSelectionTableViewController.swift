@@ -91,10 +91,17 @@ class AppAreaSelectionTableViewController: UITableViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
     {
-        selectedAreas.removeAll()
         let destViewController : AppSelectionTableViewController = segue.destinationViewController as! AppSelectionTableViewController
         destViewController.usertype = usertype
+        sendSelectedApps()
+        destViewController.appAreasSelection = selectedAreas
         
+        
+    }
+    
+    func sendSelectedApps()
+    {
+        selectedAreas.removeAll()
         for(var j = 0; j<selectedAppAreas.count;j++)
         {
             for(var k = 0;k<busArea.count;k++)
@@ -105,9 +112,6 @@ class AppAreaSelectionTableViewController: UITableViewController {
                 }
             }
         }
-        
-        destViewController.appAreasSelection = selectedAreas
-        
         
     }
 

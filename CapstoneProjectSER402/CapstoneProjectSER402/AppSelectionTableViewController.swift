@@ -14,6 +14,7 @@ class AppSelectionTableViewController: UITableViewController {
     var usertype: String = ""
     var appAreasSelection = [BusinessArea]()
     var AppNamesStrings = [String]()
+    var sysIDtoCall = [String]()
 
     
     var apps = [BusinessApp]()
@@ -69,18 +70,34 @@ class AppSelectionTableViewController: UITableViewController {
         completionHandler()
     }*/
     
+    func callApps()
+    {
+        sysIDtoCall.removeAll()
+        var j = 0
+        var k = 0
+        for _ in appAreasSelection
+        {
+            sysIDtoCall.append(appAreasSelection[j].getSysID())
+            j++
+        }
+        
+        print(sysIDtoCall)
+        /*
+        for calls in sysIDtoCall
+        {
+            ConnectionService.sharedInstance.getBusiness(appArea: sysIDtoCall[k])
+            print(sysIDtoCall)
+        }
+        */
+    }
+
     var areas = [BusinessApp]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        var l = 0
         
-        for _ in appAreasSelection
-        {
-            AppNamesStrings.append(appAreasSelection[l].getName())
-            l++
-        }
         
+        callApps()
         // TODO: Add if statement and logic to check for the app areas selected and grabbing apps only based on those selections
         
         /*ConnectionService.sharedInstance.getBusiness(appUnit: "311ab55b95b38980ce51a15d3638639c")
