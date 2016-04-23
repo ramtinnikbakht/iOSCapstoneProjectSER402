@@ -22,6 +22,7 @@ class ConnectionService : NSObject, NSURLSessionDelegate {
     
     var businessApps = [BusinessApp]()
     var ticketList = [ChangeTicket]()
+    var areaList = [BusinessArea]()
     
     func parseChange(xml: AEXMLDocument) -> ([ChangeTicket]) {
         var ticketList = [ChangeTicket]()
@@ -52,6 +53,17 @@ class ConnectionService : NSObject, NSURLSessionDelegate {
             
         }
         return businessApp
+    }
+    
+    func parseAreas(xml: AEXMLDocument) -> ([BusinessArea]) {
+        var businessAreas = [BusinessArea]()
+        if let areas = xml.root["SOAP-ENV:Body"]["insertResponse"]["status_message"]["ReturnMessage"]["businessAreasData"]["busArea"].all {
+            for area in areas {
+                let newArea = BusinessArea(name: area["businessArea"].stringValue, sysID: area["busAreaSysID"].stringValue)
+                businessAreas.append(newArea)
+            }
+        }
+        return businessAreas
     }
     
     func getChange(number: String?="", approver: String?="", plannedStart: String?="", plannedEnd: String?="", actualStart: String?="", actualEnd: String?="", plannedStart2: String?="", plannedEnd2: String?="", actualStart2: String?="", actualEnd2: String?="", reqByGroup: String?="", reqByGrp_BusArea: String?="", reqByGrpBusUnit: String?="", reqByGrpSubBusUnit: String?="", risk: String?="", psD: String?="", peD: String?="", asD: String?="", aeD: String?="", application: String?="") -> ([ChangeTicket]) {
@@ -135,6 +147,37 @@ class ConnectionService : NSObject, NSURLSessionDelegate {
         sendData(soapRequest.xmlString) {xml in
             if let xml = xml {
                 self.businessApps = self.parseBusiness(xml)
+                //print (xml.root.xmlString)
+                for app in self.businessApps {
+                    //print(app.businessApp)
+                }
+            }
+        }
+    }
+    
+    func getBusinessArea() {
+        let soapRequest = AEXMLDocument()
+        
+        let attributes = ["xmlns:soapenv" : "http://schemas.xmlsoap.org/soap/envelope/", "xmlns:u" : "http://www.service-now.com/u_platform_integration"]
+        let envelope = soapRequest.addChild(name: "soapenv:Envelope", attributes: attributes)
+        
+        envelope.addChild(name: "soapenv:Header")
+        let body = envelope.addChild(name: "soapenv:Body")
+        let insert = body.addChild(name: "u:insert")
+        insert.addChild(name: "u:template_import_log")
+        insert.addChild(name: "u:u_action", value: "eProjectAppData")
+        let xmlMessage = insert.addChild(name: "u:u_message")
+        let message = xmlMessage.addChild(name: "Message")
+        
+        message.addChild(name: "appName", value: "false")
+        message.addChild(name: "requestAreas", value: "1")
+        
+        insert.addChild(name: "u:u_process", value: "ASU.B.eChangeProject")
+        insert.addChild(name: "u:u_product", value: "CHG")
+        
+        sendData(soapRequest.xmlString) {xml in
+            if let xml = xml {
+                self.areaList = self.parseAreas(xml)
                 //print (xml.root.xmlString)
                 for app in self.businessApps {
                     //print(app.businessApp)

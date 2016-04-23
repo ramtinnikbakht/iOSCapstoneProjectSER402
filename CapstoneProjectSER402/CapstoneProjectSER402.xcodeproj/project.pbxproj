@@ -16,6 +16,7 @@
 		462EB8511C990BF00076C28D /* WatchedTicketTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462EB8471C990BF00076C28D /* WatchedTicketTableViewController.swift */; };
 		46A2AB131CA47C0E00F87C80 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46A2AB101CA47C0E00F87C80 /* SWRevealViewController.m */; };
 		46A2AB141CA47C0E00F87C80 /* UserTypeSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A2AB111CA47C0E00F87C80 /* UserTypeSelectionViewController.swift */; };
+		46A56D561CCADC7600D629FD /* BusinessArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A56D551CCADC7600D629FD /* BusinessArea.swift */; };
 		46C1CF3D1CC70D0600969A0C /* changeList.xml in Resources */ = {isa = PBXBuildFile; fileRef = 46C1CF3C1CC70D0600969A0C /* changeList.xml */; };
 		46C2F4351CC592CD00F256C5 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C2F4341CC592CD00F256C5 /* MockData.swift */; };
 		46D0586C1CA3B79D005CFB61 /* AEXML.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D0586B1CA3B79D005CFB61 /* AEXML.swift */; };
@@ -164,6 +165,7 @@
 		46A2AB0F1CA47C0E00F87C80 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		46A2AB101CA47C0E00F87C80 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		46A2AB111CA47C0E00F87C80 /* UserTypeSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTypeSelectionViewController.swift; sourceTree = "<group>"; };
+		46A56D551CCADC7600D629FD /* BusinessArea.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusinessArea.swift; sourceTree = "<group>"; };
 		46C1CF3C1CC70D0600969A0C /* changeList.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = changeList.xml; sourceTree = "<group>"; };
 		46C2F4341CC592CD00F256C5 /* MockData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
 		46D0586B1CA3B79D005CFB61 /* AEXML.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AEXML.swift; sourceTree = "<group>"; };
@@ -362,6 +364,7 @@
 				C12E73BE1CCA2D480091ECE9 /* AnalysisTableViewController.swift */,
 				46C2F4341CC592CD00F256C5 /* MockData.swift */,
 				46D54C531CC839820085B95E /* CapstoneProjectSER402.xcdatamodeld */,
+				46A56D551CCADC7600D629FD /* BusinessArea.swift */,
 			);
 			path = CapstoneProjectSER402;
 			sourceTree = "<group>";
@@ -596,6 +599,7 @@
 				46E832A41C88DD81001C376F /* ChangeTicket_Table_Template.swift in Sources */,
 				C14333D71CA9BCF70083CA88 /* DateExtension.swift in Sources */,
 				C14333A61CA4146D0083CA88 /* CustomHeaderCell.swift in Sources */,
+				46A56D561CCADC7600D629FD /* BusinessArea.swift in Sources */,
 				48993BED1C8CBB0A00EDA13E /* SelectUserTypeViewController.swift in Sources */,
 				C19F0DD71C75A28A009BD594 /* ChangeTicketTableViewController.swift in Sources */,
 				48D741A51C5AAE86008D082E /* LoginViewController.swift in Sources */,
