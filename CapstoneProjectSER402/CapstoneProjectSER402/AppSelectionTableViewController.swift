@@ -187,9 +187,14 @@ class AppSelectionTableViewController: UITableViewController {
         }
         
         let cell = tableView.dequeueReusableCellWithIdentifier("appscell") as! AppSelectionTableViewCell!
-        
-        //cell.appsTitleLabel.text = apps[indexPath.row].businessApp
         cell.appsTitleLabel.text = appNamesStrings[indexPath.row]
+        
+        if (selectedApps.contains(appNamesStrings[indexPath.row])) {
+            cell.accessoryType = .Checkmark
+        } else {
+            cell.tintColor = UIColor(red: 0/255.0, green: 64/255.0, blue: 128/255.0, alpha: 1.0)
+            cell.accessoryType = .None
+        }
         return cell
     }
     
@@ -251,26 +256,17 @@ class AppSelectionTableViewController: UITableViewController {
             optionscell.selectionStyle = UITableViewCellSelectionStyle.None
             
         } else {
-        let cell = tableView.cellForRowAtIndexPath(indexPath) as! AppSelectionTableViewCell!
-        
-        if selectedApps.contains(cell.appsTitleLabel.text!) {
+            let cell = tableView.cellForRowAtIndexPath(indexPath) as! AppSelectionTableViewCell!
+            let selectedApp = cell.appsTitleLabel.text!
             
-            cell.accessoryType = UITableViewCellAccessoryType.None
-            selectedApps = selectedApps.filter {$0 != cell.appsTitleLabel.text!}
-            print("worked")
-            print(selectedApps)
-        } else {
-            cell.tintColor = UIColor(red: 0/255.0,
-                                     green: 64/255.0,
-                                     blue: 128/255.0,
-                                     alpha: 1.0)
-            cell.accessoryType = UITableViewCellAccessoryType.Checkmark
-        
-            selectedApps += [cell.appsTitleLabel.text!]
-        
-            print(selectedApps)
+            if (selectedApps.contains(selectedApp)) {
+                selectedApps = selectedApps.filter {$0 != selectedApp}
+                cell.accessoryType = .None
+            } else {
+                cell.tintColor = UIColor(red: 0/255.0, green: 64/255.0, blue: 128/255.0, alpha: 1.0)
+                cell.accessoryType = UITableViewCellAccessoryType.Checkmark
+                selectedApps += [selectedApp]
             }
-            
         }
     }
     
