@@ -339,6 +339,9 @@
                                                 <action selector="stepperValueChanged:" destination="6sU-eE-q9d" eventType="valueChanged" id="jH5-8J-UT0"/>
                                             </connections>
                                         </stepper>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bur-VE-h5x">
+                                            <rect key="frame" x="112" y="71" width="150" height="130"/>
+                                        </imageView>
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </view>
@@ -457,6 +460,7 @@
                     <connections>
                         <outlet property="currentDateLabel" destination="NdL-I1-gZ4" id="Z4o-dC-qTP"/>
                         <outlet property="currentTimeFrameTF" destination="Luq-7z-Kn7" id="KEe-yK-1Gq"/>
+                        <outlet property="noTicketsIcon" destination="Bur-VE-h5x" id="gct-zs-bLF"/>
                         <outlet property="radarChartView" destination="Ajb-by-w6J" id="qvt-kN-SEY"/>
                         <outlet property="timeFrameStepper" destination="it0-To-PQR" id="vE2-qU-Ijt"/>
                         <outlet property="timeSegmentedControl" destination="4lg-F9-mag" id="BeE-Z0-lvF"/>

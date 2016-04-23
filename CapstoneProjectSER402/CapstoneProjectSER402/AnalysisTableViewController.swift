@@ -60,6 +60,7 @@ class AnalysisTableViewController: UITableViewController, UITextFieldDelegate, C
     
     @IBOutlet weak var timeSegmentedControl: UISegmentedControl!
     @IBOutlet weak var timeFrameStepper: UIStepper!
+    @IBOutlet weak var noTicketsIcon: UIImageView!
     
     
     // MARK: TextField Delegate
@@ -116,7 +117,13 @@ class AnalysisTableViewController: UITableViewController, UITextFieldDelegate, C
             calculateGraphValues()
             radarChartView.clear()
             timeFrameStepper.value = 0
-            setChart(selectedHourLabels, values: lowRiskCount, values2: highRiskCount)
+            if (isTicketsNotEmpty(highRiskCount, lowRiskValues: lowRiskCount)) {
+                noTicketsIcon.hidden = true
+                setChart(selectedHourLabels, values: lowRiskCount, values2: highRiskCount)
+            } else {
+                noTicketsIcon.hidden = false
+                noTicketsIcon.image = UIImage(named: "EmptyGraphIcon.png")
+            }
             highTicketTotal.text = highRiskTickets.count.description
             lowTicketTotal.text = lowRiskTickets.count.description
             tableView.reloadData()
@@ -132,7 +139,13 @@ class AnalysisTableViewController: UITableViewController, UITextFieldDelegate, C
             calculateGraphValues()
             radarChartView.clear()
             timeFrameStepper.value = 0
-            setChart(selectedHourLabels, values: lowRiskCount, values2: highRiskCount)
+            if (isTicketsNotEmpty(highRiskCount, lowRiskValues: lowRiskCount)) {
+                noTicketsIcon.hidden = true
+                setChart(selectedHourLabels, values: lowRiskCount, values2: highRiskCount)
+            } else {
+                noTicketsIcon.hidden = false
+                noTicketsIcon.image = UIImage(named: "EmptyGraphIcon.png")
+            }
             highTicketTotal.text = highRiskTickets.count.description
             lowTicketTotal.text = lowRiskTickets.count.description
             tableView.reloadData()
@@ -148,7 +161,13 @@ class AnalysisTableViewController: UITableViewController, UITextFieldDelegate, C
             calculateGraphValues()
             radarChartView.clear()
             timeFrameStepper.value = 0
-            setChart(selectedHourLabels, values: lowRiskCount, values2: highRiskCount)
+            if (isTicketsNotEmpty(highRiskCount, lowRiskValues: lowRiskCount)) {
+                noTicketsIcon.hidden = true
+                setChart(selectedHourLabels, values: lowRiskCount, values2: highRiskCount)
+            } else {
+                noTicketsIcon.hidden = false
+                noTicketsIcon.image = UIImage(named: "EmptyGraphIcon.png")
+            }
             highTicketTotal.text = highRiskTickets.count.description
             lowTicketTotal.text = lowRiskTickets.count.description
             tableView.reloadData()
@@ -164,7 +183,13 @@ class AnalysisTableViewController: UITableViewController, UITextFieldDelegate, C
             calculateGraphValues()
             radarChartView.clear()
             timeFrameStepper.value = 0
-            setChart(selectedHourLabels, values: lowRiskCount, values2: highRiskCount)
+            if (isTicketsNotEmpty(highRiskCount, lowRiskValues: lowRiskCount)) {
+                noTicketsIcon.hidden = true
+                setChart(selectedHourLabels, values: lowRiskCount, values2: highRiskCount)
+            } else {
+                noTicketsIcon.hidden = false
+                noTicketsIcon.image = UIImage(named: "EmptyGraphIcon.png")
+            }
             highTicketTotal.text = highRiskTickets.count.description
             lowTicketTotal.text = lowRiskTickets.count.description
             tableView.reloadData()
@@ -189,7 +214,14 @@ class AnalysisTableViewController: UITableViewController, UITextFieldDelegate, C
         radarChartView.clear()
         highTicketTotal.text = highRiskTickets.count.description
         lowTicketTotal.text = lowRiskTickets.count.description
-        setChart(selectedHourLabels, values: lowRiskCount, values2: highRiskCount)
+        if (isTicketsNotEmpty(highRiskCount, lowRiskValues: lowRiskCount)) {
+            noTicketsIcon.hidden = true
+            setChart(selectedHourLabels, values: lowRiskCount, values2: highRiskCount)
+        } else {
+            noTicketsIcon.hidden = false
+            noTicketsIcon.image = UIImage(named: "EmptyGraphIcon.png")
+        }
+        
         tableView.reloadData()
     }
     
@@ -408,6 +440,29 @@ class AnalysisTableViewController: UITableViewController, UITextFieldDelegate, C
             } else if (ticket.risk == "High") {
                 highRiskTickets += [ticket]
             }
+        }
+    }
+    
+    func isTicketsNotEmpty(highRiskValues: [Double], lowRiskValues: [Double]) -> Bool {
+        var emptyHighValues = 0
+        var emptyLowValues = 0
+        
+        for value in highRiskValues {
+            if (value == 0) {
+                emptyHighValues++
+            }
+        }
+        
+        for value in lowRiskValues {
+            if (value == 0) {
+                emptyLowValues++
+            }
+        }
+        
+        if (emptyHighValues == highRiskValues.count && emptyLowValues == lowRiskValues.count) {
+            return false
+        } else {
+            return true
         }
     }
     
