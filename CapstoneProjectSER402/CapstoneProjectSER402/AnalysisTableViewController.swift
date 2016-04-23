@@ -72,6 +72,11 @@ class AnalysisTableViewController: UITableViewController, UITextFieldDelegate, C
         datePickerView.addTarget(self, action: "datePickerChanged:", forControlEvents: .ValueChanged)
     }
     
+
+    @IBAction func timeFrameUpdated(sender: AnyObject) {
+        print("Time Frame Updated")
+    }
+    
     func datePickerChanged(sender: UIDatePicker) {
         let formatter = NSDateFormatter()
         formatter.dateStyle = .MediumStyle
@@ -291,7 +296,17 @@ class AnalysisTableViewController: UITableViewController, UITextFieldDelegate, C
                 selectedHourLabels += [label]
             }
         }
-        currentTimeFrameTF.text = selectedHourLabels[0] + " - " + selectedHourLabels[5]
+        
+        UIView.transitionWithView(currentTimeFrameTF, duration: 0.5, options: [.TransitionFlipFromLeft], animations: {
+            self.currentTimeFrameTF.text = self.selectedHourLabels[0] + " - " + self.selectedHourLabels[5]
+            }, completion: nil)
+        
+//        let animation = CATransition()
+//        animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseIn)
+//        animation.type = kCATransitionFromTop
+//        animation.duration = 0.75
+//        currentTimeFrameTF.layer.addAnimation(animation, forKey: "kCATransitionFromTop")
+//        currentTimeFrameTF.text = selectedHourLabels[0] + " - " + selectedHourLabels[5]
     }
     
     func calculateGraphValues() {
@@ -453,6 +468,8 @@ class AnalysisTableViewController: UITableViewController, UITextFieldDelegate, C
         lowTicketTab.clipsToBounds = true
         view.addSubview(lowTicketTab)
         view.addSubview(lowTicketTotal)
+        
+        //currentTimeFrameTF.addTarget(self, action: "timeFrameUpdated:", forControlEvents: UIControlEvents.ValueChanged)
         
         // Do any additional setup after loading the view.
         calculateDaySegment()
