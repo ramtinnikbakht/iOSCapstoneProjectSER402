@@ -16,6 +16,7 @@ class AppSelectionTableViewController: UITableViewController {
     var AppNamesStrings = [String]()
     var sysIDtoCall = [String]()
 
+    var listofListofApps = [[BusinessApp]]()
     
     var apps = [BusinessApp]()
     //var appsArray: [String] = ["Area1App1", "Area1App2", "Area1App3", "Area2App1", "Area2App2", "Area3App1", "Area3App2", "Area3App3", "Area3App4"]
@@ -82,13 +83,20 @@ class AppSelectionTableViewController: UITableViewController {
         }
         
         print(sysIDtoCall)
-        /*
+        
         for calls in sysIDtoCall
         {
             ConnectionService.sharedInstance.getBusiness(appArea: sysIDtoCall[k])
-            print(sysIDtoCall)
+            listofListofApps.append(ConnectionService.sharedInstance.businessApps)
         }
-        */
+        
+        var l = 0;
+        print(listofListofApps.count)
+        
+        for appsin in listofListofApps
+        {
+            print(listofListofApps[l])
+        }
     }
 
     var areas = [BusinessApp]()
