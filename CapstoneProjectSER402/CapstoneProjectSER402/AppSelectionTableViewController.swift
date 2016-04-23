@@ -13,10 +13,10 @@ class AppSelectionTableViewController: UITableViewController {
     
     var usertype: String = ""
     var appAreasSelection = [BusinessArea]()
-    var AppNamesStrings = [String]()
+    var appNamesStrings = [String]()
     var sysIDtoCall = [String]()
 
-    var listofListofApps = [[BusinessApp]]()
+    var areaApps = [[BusinessApp]]()
     
     var apps = [BusinessApp]()
     //var appsArray: [String] = ["Area1App1", "Area1App2", "Area1App3", "Area2App1", "Area2App2", "Area3App1", "Area3App2", "Area3App3", "Area3App4"]
@@ -42,7 +42,7 @@ class AppSelectionTableViewController: UITableViewController {
             
             
         }
-        selectedApps = AppNamesStrings
+        selectedApps = appNamesStrings
         //print(selectedApps)
         //selectedApps = mockApps
         //print(selectedApps)
@@ -74,28 +74,25 @@ class AppSelectionTableViewController: UITableViewController {
     func callApps()
     {
         sysIDtoCall.removeAll()
-        var j = 0
-        var k = 0
-        for _ in appAreasSelection
+
+        for area in appAreasSelection
         {
-            sysIDtoCall.append(appAreasSelection[j].getSysID())
-            j++
+            sysIDtoCall += [area.getSysID()]
         }
         
-        print(sysIDtoCall)
-        
-        for calls in sysIDtoCall
+        for sysID in sysIDtoCall
         {
-            ConnectionService.sharedInstance.getBusiness(appArea: sysIDtoCall[k])
-            listofListofApps.append(ConnectionService.sharedInstance.businessApps)
+            var appsForArea = [BusinessApp]()
+            ConnectionService.sharedInstance.getBusiness(appArea: sysID)
+            appsForArea = ConnectionService.sharedInstance.businessApps
+            areaApps += [appsForArea]
         }
         
-        var l = 0;
-        print(listofListofApps.count)
-        
-        for appsin in listofListofApps
+        for area in areaApps
         {
-            print(listofListofApps[l])
+            for app in area {
+                appNamesStrings += [app.businessApp]
+            }
         }
     }
 
@@ -188,10 +185,11 @@ class AppSelectionTableViewController: UITableViewController {
             
             return cell
         }
+        
         let cell = tableView.dequeueReusableCellWithIdentifier("appscell") as! AppSelectionTableViewCell!
         
         //cell.appsTitleLabel.text = apps[indexPath.row].businessApp
-        cell.appsTitleLabel.text = AppNamesStrings[indexPath.row]
+        cell.appsTitleLabel.text = appNamesStrings[indexPath.row]
         return cell
     }
     
@@ -212,7 +210,7 @@ class AppSelectionTableViewController: UITableViewController {
             return 1
         }
         //return apps.count
-        return AppNamesStrings.count
+        return appNamesStrings.count
         
         //return sectionsArray[section].sectionContents.count
     }
@@ -276,13 +274,6 @@ class AppSelectionTableViewController: UITableViewController {
         }
     }
     
-    
-    
-    override func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath)
-    {
-        
-    }
-
     /*
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
