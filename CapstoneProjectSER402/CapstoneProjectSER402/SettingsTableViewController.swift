@@ -53,7 +53,7 @@ class SettingsTableViewController: UITableViewController {
         if section == 0 {
             return 1
         } else if section == 1 {
-            return 1
+            return 2
         }
         return 1
     }
@@ -70,8 +70,15 @@ class SettingsTableViewController: UITableViewController {
 
         else if indexPath.section == 1 {
             let cell = tableView.dequeueReusableCellWithIdentifier("profilecell") as! ProfileTableViewCell!
-            cell.profileCellTitleLabel.text = "My Apps"
-            return cell
+            if indexPath.row == 0 {
+                cell.profileCellTitleLabel.text = "My Apps"
+                return cell
+            }
+            if indexPath.row == 1 {
+                cell.profileCellTitleLabel.text = "Change User Type"
+                return cell
+            }
+            
         }
         
         let cell = tableView.dequeueReusableCellWithIdentifier("profilecell") as! ProfileTableViewCell!

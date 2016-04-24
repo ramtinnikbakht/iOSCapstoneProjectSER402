@@ -24,6 +24,7 @@
 		46E832A41C88DD81001C376F /* ChangeTicket_Table_Template.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E832A31C88DD81001C376F /* ChangeTicket_Table_Template.swift */; };
 		46F792B61CA8F6E600F00404 /* ConnectionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F792B51CA8F6E600F00404 /* ConnectionService.swift */; };
 		480D79201CB37A0B00C57410 /* UserTypeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 480D791F1CB37A0B00C57410 /* UserTypeTableViewCell.swift */; };
+		481395CC1CCD71DD007C6A7C /* ChangeUserTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481395CB1CCD71DD007C6A7C /* ChangeUserTypeViewController.swift */; };
 		4818FE0D1CA498CF00B7EB47 /* settings-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4818FE0C1CA498CF00B7EB47 /* settings-icon.png */; };
 		4818FE121CA49CFA00B7EB47 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4818FE111CA49CFA00B7EB47 /* SettingsTableViewController.swift */; };
 		4852EEA91CAC6D280060CD3E /* AlertsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4852EEA81CAC6D280060CD3E /* AlertsTableViewCell.swift */; };
@@ -175,6 +176,7 @@
 		46E832A31C88DD81001C376F /* ChangeTicket_Table_Template.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeTicket_Table_Template.swift; sourceTree = "<group>"; };
 		46F792B51CA8F6E600F00404 /* ConnectionService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionService.swift; sourceTree = "<group>"; };
 		480D791F1CB37A0B00C57410 /* UserTypeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTypeTableViewCell.swift; sourceTree = "<group>"; };
+		481395CB1CCD71DD007C6A7C /* ChangeUserTypeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeUserTypeViewController.swift; sourceTree = "<group>"; };
 		4818FE0C1CA498CF00B7EB47 /* settings-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings-icon.png"; sourceTree = "<group>"; };
 		4818FE111CA49CFA00B7EB47 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		4852EEA81CAC6D280060CD3E /* AlertsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertsTableViewCell.swift; sourceTree = "<group>"; };
@@ -351,6 +353,7 @@
 				48D741AB1C5AAE86008D082E /* LaunchScreen.storyboard */,
 				C12E73C31CCAAF980091ECE9 /* SplashViewController.swift */,
 				48D741A61C5AAE86008D082E /* Main.storyboard */,
+				481395CB1CCD71DD007C6A7C /* ChangeUserTypeViewController.swift */,
 				4884D24A1CCC3F520065EF0B /* UserProfilePreferencesTableViewController.swift */,
 				48D12C441CC6D5D100857986 /* AppAreaTableViewCell.swift */,
 				48D12C3F1CC6D57200857986 /* AppAreaSelectionTableViewController.swift */,
@@ -636,6 +639,7 @@
 				C14333BE1CA5ADFF0083CA88 /* BusinessModel.swift in Sources */,
 				462EB84B1C990BF00076C28D /* BusinessApp.swift in Sources */,
 				462EB8511C990BF00076C28D /* WatchedTicketTableViewController.swift in Sources */,
+				481395CC1CCD71DD007C6A7C /* ChangeUserTypeViewController.swift in Sources */,
 				C14333D21CA6D8300083CA88 /* BusinessAppTableViewController.swift in Sources */,
 				462EB8491C990BF00076C28D /* AppSelectionViewController.swift in Sources */,
 				C12E73C41CCAAF980091ECE9 /* SplashViewController.swift in Sources */,
