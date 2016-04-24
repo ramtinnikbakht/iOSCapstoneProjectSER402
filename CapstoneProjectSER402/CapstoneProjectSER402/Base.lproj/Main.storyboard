@@ -286,21 +286,25 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Settings" id="AeZ-fd-HV9"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <segue destination="nYy-pw-bJ9" kind="show" identifier="showChangeUserType" id="Qfc-Ti-lzB"/>
+                        <segue destination="kiE-Wu-D01" kind="show" identifier="showMyApps" id="wVH-jo-x5n"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h9a-yj-M9G" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3555.5" y="-68.5"/>
+            <point key="canvasLocation" x="3554.5" y="-91.5"/>
         </scene>
         <!--Change User Type View Controller-->
         <scene sceneID="Nut-I2-wNe">
             <objects>
-                <viewController id="nYy-pw-bJ9" customClass="ChangeUserTypeViewController" customModule="CapstoneProjectSER402" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="changeusertype" id="nYy-pw-bJ9" customClass="ChangeUserTypeViewController" customModule="CapstoneProjectSER402" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="z3N-Cf-V7H"/>
                         <viewControllerLayoutGuide type="bottom" id="iHy-f6-BRY"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="11l-Xp-9W2">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Current User Type" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VuX-eJ-zUO">
@@ -340,9 +344,9 @@
         <!--User Profile Preferences Table View Controller-->
         <scene sceneID="IqX-hs-PZ5">
             <objects>
-                <tableViewController id="kiE-Wu-D01" customClass="UserProfilePreferencesTableViewController" customModule="CapstoneProjectSER402" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="editmyapps" id="kiE-Wu-D01" customClass="UserProfilePreferencesTableViewController" customModule="CapstoneProjectSER402" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="qb7-ot-G3H">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>

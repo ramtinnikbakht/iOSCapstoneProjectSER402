@@ -89,8 +89,16 @@ class SettingsTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         if indexPath.section == 1 {
-            let appSelectionTableViewControllerObj = self.storyboard?.instantiateViewControllerWithIdentifier("myapps") as? AppSelectionTableViewController
-            self.navigationController?.pushViewController(appSelectionTableViewControllerObj!, animated: true)
+            if indexPath.row == 0 {
+                self.performSegueWithIdentifier("showMyApps", sender: self)
+                /*let myAppsProfilePreferencesTableViewControllerObj = self.storyboard?.instantiateViewControllerWithIdentifier("editmyapps") as? UserProfilePreferencesTableViewController
+                    self.navigationController?.pushViewController(myAppsProfilePreferencesTableViewControllerObj!, animated: true)*/
+            }
+            if indexPath.row == 1 {
+                self.performSegueWithIdentifier("showChangeUserType", sender: self)
+                /*let changeUserTypeTableViewControllerObj = self.storyboard?.instantiateViewControllerWithIdentifier("changeusertype") as? ChangeUserTypeViewController
+                    self.navigationController?.pushViewController(changeUserTypeTableViewControllerObj!, animated: true)*/
+            }
         }
         if indexPath.section == 2 {
             let sendfeedbackcell = tableView.dequeueReusableCellWithIdentifier("profilecell") as! ProfileTableViewCell
