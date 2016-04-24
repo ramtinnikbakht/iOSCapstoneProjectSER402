@@ -7,9 +7,14 @@
 //
 
 import UIKit
+import CoreData
 
 class ChangeUserTypeViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
 
+    @IBAction func saveNewUserTypeButton(sender: UIButton) {
+        
+        
+    }
     @IBOutlet weak var currentUserTypeLabel: UILabel!
     @IBOutlet weak var newUserTypePicker: UIPickerView!
     var userTypesPickerSource = ["ITSM", "Business/Leadership", "App Owner"]
@@ -18,7 +23,7 @@ class ChangeUserTypeViewController: UIViewController, UIPickerViewDataSource, UI
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         newSelectedUserType = userTypesPickerSource[newUserTypePicker.selectedRowInComponent(0)]
         self.newUserTypePicker.dataSource = self
         self.newUserTypePicker.delegate = self
