@@ -66,9 +66,9 @@ class UserProfilePreferencesTableViewController: UITableViewController {
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier("myCurrentAppsCell", forIndexPath: indexPath)
 
-        
+        cell.textLabel?.text = myApps[indexPath.row]
 
         return cell
     }
