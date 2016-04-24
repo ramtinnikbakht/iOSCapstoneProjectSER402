@@ -10,6 +10,10 @@ import UIKit
 
 class ChangeUserTypeViewController: UIViewController {
 
+    @IBOutlet weak var currentUserTypeLabel: UILabel!
+    @IBOutlet weak var newUserTypePicker: UIPickerView!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
