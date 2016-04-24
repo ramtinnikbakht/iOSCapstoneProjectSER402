@@ -6,7 +6,6 @@
         <attribute name="businessAppSys" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="businessArea" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="businessUnit" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="owner" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="BusinessArea" syncable="YES">
         <attribute name="busArea" optional="YES" attributeType="String" syncable="YES"/>
@@ -18,7 +17,7 @@
         <relationship name="has" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="BusinessArea" syncable="YES"/>
     </entity>
     <elements>
-        <element name="BusinessApps" positionX="-92" positionY="81" width="128" height="135"/>
+        <element name="BusinessApps" positionX="-92" positionY="81" width="128" height="120"/>
         <element name="BusinessArea" positionX="-405" positionY="75" width="128" height="90"/>
         <element name="User" positionX="-407" positionY="-111" width="128" height="75"/>
     </elements>

@@ -94,8 +94,10 @@ class AppSelectionTableViewController: UITableViewController {
         
         for area in areaApps
         {
-            for app in area {
+            for app in area
+            {
                 appNamesStrings += [app.businessApp]
+                apps += [app]
             }
         }
     }
@@ -108,17 +110,28 @@ class AppSelectionTableViewController: UITableViewController {
         context = appDel!.managedObjectContext
         
         callApps()
-        // TODO: Add if statement and logic to check for the app areas selected and grabbing apps only based on those selections
         
-        /*ConnectionService.sharedInstance.getBusiness(appUnit: "311ab55b95b38980ce51a15d3638639c")
-        apps = ConnectionService.sharedInstance.businessApps
-        ConnectionService.sharedInstance.getBusiness(appArea: "29f0acd82b56b000b44bd4b419da1503")
-        areas = ConnectionService.sharedInstance.businessApps
+        /*
+        for (var q = 0; q<apps.count;q++)
+        {
+            if apps[q].getBusinessUnit().isEmpty
+            {
+                print("Not Applicable")
+            }
+            else
+            {
+                print(apps[q].getBusinessUnit())
+            }
+            print(apps[q].getOwner())
+            //print(apps[q].getBusinessUnit())
+            print(apps[q].getBusinessArea())
+            print(apps[q].getBusinessAppSys())
+            print(apps[q].getBusinessApp())
+            print(apps[q].getAppCriticality())
+            print("----------------------------")
+        }
         */
-        
-        
-        //apps = ConnectionService.sharedInstance.getBusiness(appUnit: "311ab55b95b38980ce51a15d3638639c")
-        //let myTimer : NSTimer = NSTimer.scheduledTimerWithTimeInterval(24, target: self, selector: Selector("myPerformeCode:"), userInfo: nil, repeats: false)
+        // TODO: Add if statement and logic to check for the app areas selected and grabbing apps only based on those selections
         
         /*if appAreasSelection.contains("Area1") {
             mockApps.append(appsArray[0])
@@ -144,18 +157,6 @@ class AppSelectionTableViewController: UITableViewController {
             print("app title: \(appsTitleArray)")
             
         }*/
-
-        //print(apps)
-        //print(apps.count)
-        //print(mockApps)
-
-        /*let alert = UIAlertController(title: "Alert", message: "Your User Type: \(usertype)", preferredStyle: UIAlertControllerStyle.Alert)
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
-        self.presentViewController(alert, animated: true, completion: nil)
-        */
-        
-        //sectionsArray = [Sections(sectionName: "Configuration", sectionContents: ["Select All", "UnSelect All"]), Sections(sectionName: "Select Your Apps", sectionContents: ["App1", "App2", "App3", "App4", "App5", "App6", "App7"])]
-
         
         //setEditing(true, animated: true)
         // Uncomment the following line to preserve selection between presentations
@@ -252,22 +253,29 @@ class AppSelectionTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        if indexPath.section == 0 {
+        if indexPath.section == 0
+        {
             let usertypecell = tableView.cellForRowAtIndexPath(indexPath) as! UserTypeTableViewCell!
             usertypecell.selectionStyle = UITableViewCellSelectionStyle.None
         }
-        else if indexPath.section == 1 {
+        else if indexPath.section == 1
+        {
             let optionscell = tableView.cellForRowAtIndexPath(indexPath) as! AppsOptionTableViewCell!
             optionscell.selectionStyle = UITableViewCellSelectionStyle.None
             
-        } else {
+        }
+        else
+        {
             let cell = tableView.cellForRowAtIndexPath(indexPath) as! AppSelectionTableViewCell!
             let selectedApp = cell.appsTitleLabel.text!
             
-            if (selectedApps.contains(selectedApp)) {
+            if (selectedApps.contains(selectedApp))
+            {
                 selectedApps = selectedApps.filter {$0 != selectedApp}
                 cell.accessoryType = .None
-            } else {
+            }
+            else
+            {
                 cell.tintColor = UIColor(red: 0/255.0, green: 64/255.0, blue: 128/255.0, alpha: 1.0)
                 cell.accessoryType = UITableViewCellAccessoryType.Checkmark
                 selectedApps += [selectedApp]
@@ -291,12 +299,17 @@ class AppSelectionTableViewController: UITableViewController {
     func saveABusinessApp(appObj: BusinessApp)
     {
         var newBusinessApp = NSEntityDescription.insertNewObjectForEntityForName("BusinessApps", inManagedObjectContext: context!) as NSManagedObject
+        if appObj.getBusinessUnit().isEmpty
+        {
+            newBusinessApp.setValue("Not Applicable", forKey: "businessUnit")
+        }
+        else
+        {
+            newBusinessApp.setValue(appObj.getBusinessUnit(), forKey: "businessUnit")
+        }
         newBusinessApp.setValue(appObj.getBusinessApp(), forKey: "businessApp")
         newBusinessApp.setValue(appObj.getBusinessAppSys(), forKey: "businessAppSys")
-        newBusinessApp.setValue(appObj.getOwner(), forKey: "owner")
         newBusinessApp.setValue(appObj.getAppCriticality(), forKey: "appCriticality")
-        newBusinessApp.setValue(appObj.getBusinessArea(), forKey: "businessArea")
-        newBusinessApp.setValue(appObj.getBusinessUnit(), forKey: "businessUnit")
         do
         {
             try context!.save()
@@ -372,11 +385,13 @@ class AppSelectionTableViewController: UITableViewController {
         }
     }
     
-    func sendSelectedApps()
+    func saveSelectedApps()
     {
         selectedAppsArray.removeAll()
+        print("in Save  selectede apps func")
         for(var j = 0; j<selectedApps.count;j++)
         {
+            print("in first for loop")
             for(var k = 0;k<apps.count;k++)
             {
                 if selectedApps[j] == apps[k].getBusinessApp()
@@ -385,6 +400,23 @@ class AppSelectionTableViewController: UITableViewController {
                 }
             }
         }
+        
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
+    {
+        if segue.identifier == "toSplashScreen"
+        {
+            let destViewController : SplashViewController = segue.destinationViewController as! SplashViewController
+            saveSelectedApps()
+            saveToCoreData()
+            printEntityValues("User")
+            printEntityValues("BusinessArea")
+            printEntityValues("BusinessApps")
+
+        }
+                
+        
         
     }
     
