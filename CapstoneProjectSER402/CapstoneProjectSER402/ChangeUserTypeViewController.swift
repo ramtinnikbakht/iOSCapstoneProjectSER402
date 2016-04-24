@@ -18,6 +18,9 @@ class ChangeUserTypeViewController: UIViewController, UIPickerViewDataSource, UI
         newUserType.setValue(newSelectedUserType, forKey: "userType")
         contextSave()
         currentUserTypeLabel.text = newSelectedUserType
+        let alert = UIAlertController(title: "Alert", message: "Your new user type has been saved", preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+        self.presentViewController(alert, animated: true, completion: nil)
     }
     
     func contextSave()
