@@ -10,11 +10,29 @@ import UIKit
 import CoreData
 
 class ChangeUserTypeViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
+    
+    var context:NSManagedObjectContext?
 
     @IBAction func saveNewUserTypeButton(sender: UIButton) {
-        
+        var newUserType = NSEntityDescription.insertNewObjectForEntityForName("User", inManagedObjectContext: context!) as NSManagedObject
+        newUserType.setValue(newSelectedUserType, forKey: "userType")
+        contextSave()
+        currentUserTypeLabel.text = newSelectedUserType
+    }
+    
+    func contextSave()
+    {
+        do
+        {
+            try context!.save()
+        }
+        catch let error as NSError
+        {
+            NSLog("Error adding entity. Error: \(error)")
+        }
         
     }
+
     @IBOutlet weak var currentUserTypeLabel: UILabel!
     @IBOutlet weak var newUserTypePicker: UIPickerView!
     var userTypesPickerSource = ["ITSM", "Business/Leadership", "App Owner"]
@@ -24,6 +42,33 @@ class ChangeUserTypeViewController: UIViewController, UIPickerViewDataSource, UI
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        var appDel = (UIApplication.sharedApplication().delegate as! AppDelegate)
+        context = appDel.managedObjectContext
+        
+        let fetchRequest = NSFetchRequest(entityName: "User")
+        do
+        {
+            let results:NSArray = try context!.executeFetchRequest(fetchRequest)
+            
+            for var i = 0; i < results.count; i++
+            {
+                //valueForKey("...") what you want to grab from that entity
+                /*print(results[i].valueForKey("businessUnit"))
+                print(results[i].valueForKey("businessArea"))
+                print(results[i].valueForKey("businessAppSys"))
+                print(results[i].valueForKey("businessApp"))
+                print(results[i].valueForKey("appCriticality"))*/
+                //to get as string do
+                
+                currentUserTypeLabel.text = results[i].valueForKey("userType") as? String
+            }
+        }
+        catch let error as NSError
+        {
+            //print ("in error")
+            print("Could not fetch \(error), \(error.userInfo)")
+        }
+
         newSelectedUserType = userTypesPickerSource[newUserTypePicker.selectedRowInComponent(0)]
         self.newUserTypePicker.dataSource = self
         self.newUserTypePicker.delegate = self
