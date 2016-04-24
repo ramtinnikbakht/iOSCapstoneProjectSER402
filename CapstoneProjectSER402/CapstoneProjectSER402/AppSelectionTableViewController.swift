@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class AppSelectionTableViewController: UITableViewController {
     
@@ -21,6 +22,9 @@ class AppSelectionTableViewController: UITableViewController {
     var apps = [BusinessApp]()
     //var appsArray: [String] = ["Area1App1", "Area1App2", "Area1App3", "Area2App1", "Area2App2", "Area3App1", "Area3App2", "Area3App3", "Area3App4"]
     var selectedApps = [String]()
+    var appDel:AppDelegate?
+    var context:NSManagedObjectContext?
+    var selectedAppsArray = [BusinessApp]()
 
     //var mockApps = [String]()
     /*struct Sections {
@@ -100,7 +104,8 @@ class AppSelectionTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        appDel = (UIApplication.sharedApplication().delegate as! AppDelegate)
+        context = appDel!.managedObjectContext
         
         callApps()
         // TODO: Add if statement and logic to check for the app areas selected and grabbing apps only based on those selections
@@ -268,6 +273,119 @@ class AppSelectionTableViewController: UITableViewController {
                 selectedApps += [selectedApp]
             }
         }
+    }
+    
+    func saveToCoreData()
+    {
+        saveUserType()
+        for appAreas in appAreasSelection
+        {
+            saveABusinessArea(appAreas)
+        }
+        for anApp in selectedAppsArray
+        {
+            saveABusinessApp(anApp)
+        }
+    }
+    
+    func saveABusinessApp(appObj: BusinessApp)
+    {
+        var newBusinessApp = NSEntityDescription.insertNewObjectForEntityForName("BusinessApps", inManagedObjectContext: context!) as NSManagedObject
+        newBusinessApp.setValue(appObj.getBusinessApp(), forKey: "businessApp")
+        newBusinessApp.setValue(appObj.getBusinessAppSys(), forKey: "businessAppSys")
+        newBusinessApp.setValue(appObj.getOwner(), forKey: "owner")
+        newBusinessApp.setValue(appObj.getAppCriticality(), forKey: "appCriticality")
+        newBusinessApp.setValue(appObj.getBusinessArea(), forKey: "businessArea")
+        newBusinessApp.setValue(appObj.getBusinessUnit(), forKey: "businessUnit")
+        do
+        {
+            try context!.save()
+        }
+        catch let error as NSError
+        {
+            NSLog("Error adding user \(appObj.getBusinessApp()). Error: \(error)")
+        }
+    }
+    func saveABusinessArea(areaObj: BusinessArea)
+    {
+        var newBusinessArea = NSEntityDescription.insertNewObjectForEntityForName("BusinessArea", inManagedObjectContext: context!) as NSManagedObject
+        newBusinessArea.setValue(areaObj.getName(), forKey: "busArea")
+        newBusinessArea.setValue(areaObj.getSysID(), forKey: "sysID")
+        do
+        {
+            try context!.save()
+        }
+        catch let error as NSError
+        {
+            NSLog("Error adding user \(areaObj.getName()). Error: \(error)")
+        }
+    }
+    
+    func saveUserType()
+    {
+        var newUserType = NSEntityDescription.insertNewObjectForEntityForName("User", inManagedObjectContext: context!) as NSManagedObject
+        newUserType.setValue(usertype, forKey: "userType")
+        do
+        {
+            try context!.save()
+        }
+        catch let error as NSError
+        {
+            NSLog("Error adding user \(usertype). Error: \(error)")
+        }
+        
+    }
+    
+    func resetCoreData(entityToDelete: String)
+    {
+        let selectRequest = NSFetchRequest(entityName: entityToDelete)
+        do{
+            let results = try context!.executeFetchRequest(selectRequest)
+            if results.count > 0
+            {
+                for var j = 0;j < results.count; j++
+                {
+                    context!.deleteObject(results[j] as! NSManagedObject)
+                    try context?.save()
+                }
+            }
+        }
+        catch let error as NSError{
+            NSLog("error selecting all \(entityToDelete). Error \(error)")
+        }
+    }
+    
+    func printEntityValues(entityTitle: String)
+    {
+        var managedOBJ = [NSManagedObject]()
+        let fetchRequest = NSFetchRequest(entityName: entityTitle)
+        do
+        {
+            managedOBJ = try context!.executeFetchRequest(fetchRequest) as! [NSManagedObject]
+            for var i = 0; i < managedOBJ.count; i++
+            {
+                print(managedOBJ[i])
+            }
+        }
+        catch let error as NSError {
+            print("Could not fetch \(error), \(error.userInfo)")
+        }
+    }
+    
+    func sendSelectedApps()
+    {
+        selectedAppsArray.removeAll()
+        for(var j = 0; j<selectedApps.count;j++)
+        {
+            for(var k = 0;k<apps.count;k++)
+            {
+                if selectedApps[j] == apps[k].getBusinessApp()
+                {
+                    selectedAppsArray.append(apps[k])
+                }
+            }
+        }
+        
     }
     
     /*
