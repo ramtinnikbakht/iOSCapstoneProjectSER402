@@ -295,7 +295,7 @@
             </objects>
             <point key="canvasLocation" x="4141.5" y="-91.5"/>
         </scene>
-        <!--Change User Type View Controller-->
+        <!--User Type Preferences-->
         <scene sceneID="Nut-I2-wNe">
             <objects>
                 <viewController storyboardIdentifier="changeusertype" id="nYy-pw-bJ9" customClass="ChangeUserTypeViewController" customModule="CapstoneProjectSER402" customModuleProvider="target" sceneMemberID="viewController">
@@ -331,6 +331,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" title="User Type Preferences" id="HGl-h1-s0A"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="currentUserTypeLabel" destination="fmX-QH-6B3" id="57n-6K-kzd"/>
@@ -341,7 +342,7 @@
             </objects>
             <point key="canvasLocation" x="4672.5" y="254.5"/>
         </scene>
-        <!--User Profile Preferences Table View Controller-->
+        <!--My Apps Preferences-->
         <scene sceneID="IqX-hs-PZ5">
             <objects>
                 <tableViewController storyboardIdentifier="editmyapps" id="kiE-Wu-D01" customClass="UserProfilePreferencesTableViewController" customModule="CapstoneProjectSER402" customModuleProvider="target" sceneMemberID="viewController">
@@ -364,6 +365,7 @@
                             <outlet property="delegate" destination="kiE-Wu-D01" id="3hf-Fk-uje"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" title="My Apps Preferences" id="3yJ-Ye-LuT"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GdZ-l5-ljO" userLabel="First Responder" sceneMemberID="firstResponder"/>
