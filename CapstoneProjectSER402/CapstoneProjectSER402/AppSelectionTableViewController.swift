@@ -14,6 +14,7 @@ class AppSelectionTableViewController: UITableViewController {
     
     var usertype: String = ""
     var appAreasSelection = [BusinessArea]()
+    var appAreasDidSelect = [BusinessArea]()
     var appNamesStrings = [String]()
     var sysIDtoCall = [String]()
 
@@ -82,6 +83,7 @@ class AppSelectionTableViewController: UITableViewController {
         for area in appAreasSelection
         {
             sysIDtoCall += [area.getSysID()]
+            appAreasDidSelect += [area]
         }
         
         for sysID in sysIDtoCall
@@ -110,6 +112,8 @@ class AppSelectionTableViewController: UITableViewController {
         context = appDel!.managedObjectContext
         
         callApps()
+        print(usertype)
+        
         
         /*
         for (var q = 0; q<apps.count;q++)
@@ -291,10 +295,23 @@ class AppSelectionTableViewController: UITableViewController {
         }
     }
     
+    func contextSave()
+    {
+        do
+        {
+            try context!.save()
+        }
+        catch let error as NSError
+        {
+            NSLog("Error adding entity. Error: \(error)")
+        }
+        
+    }
+    
     func saveToCoreData()
     {
-        saveUserType()
-        for appAreas in appAreasSelection
+        saveUserType(usertype)
+        for appAreas in appAreasDidSelect
         {
             saveABusinessArea(appAreas)
         }
@@ -315,46 +332,33 @@ class AppSelectionTableViewController: UITableViewController {
         {
             newBusinessApp.setValue(appObj.getBusinessUnit(), forKey: "businessUnit")
         }
+        if appObj.getBusinessArea().isEmpty
+        {
+            newBusinessApp.setValue("Not Applicable", forKey: "businessArea")
+        }
+        else
+        {
+            newBusinessApp.setValue(appObj.getBusinessArea(), forKey: "businessArea")
+        }
+        
         newBusinessApp.setValue(appObj.getBusinessApp(), forKey: "businessApp")
         newBusinessApp.setValue(appObj.getBusinessAppSys(), forKey: "businessAppSys")
         newBusinessApp.setValue(appObj.getAppCriticality(), forKey: "appCriticality")
-        do
-        {
-            try context!.save()
-        }
-        catch let error as NSError
-        {
-            NSLog("Error adding user \(appObj.getBusinessApp()). Error: \(error)")
-        }
+        contextSave()
     }
     func saveABusinessArea(areaObj: BusinessArea)
     {
         var newBusinessArea = NSEntityDescription.insertNewObjectForEntityForName("BusinessArea", inManagedObjectContext: context!) as NSManagedObject
         newBusinessArea.setValue(areaObj.getName(), forKey: "busArea")
         newBusinessArea.setValue(areaObj.getSysID(), forKey: "sysID")
-        do
-        {
-            try context!.save()
-        }
-        catch let error as NSError
-        {
-            NSLog("Error adding user \(areaObj.getName()). Error: \(error)")
-        }
+        contextSave()
     }
     
-    func saveUserType()
+    func saveUserType(userTypeToSave: String)
     {
         var newUserType = NSEntityDescription.insertNewObjectForEntityForName("User", inManagedObjectContext: context!) as NSManagedObject
-        newUserType.setValue(usertype, forKey: "userType")
-        do
-        {
-            try context!.save()
-        }
-        catch let error as NSError
-        {
-            NSLog("Error adding user \(usertype). Error: \(error)")
-        }
-        
+        newUserType.setValue(userTypeToSave, forKey: "userType")
+        contextSave()
     }
     
     func resetCoreData(entityToDelete: String)
@@ -376,30 +380,13 @@ class AppSelectionTableViewController: UITableViewController {
         }
     }
     
-    func printEntityValues(entityTitle: String)
-    {
-        var managedOBJ = [NSManagedObject]()
-        let fetchRequest = NSFetchRequest(entityName: entityTitle)
-        do
-        {
-            managedOBJ = try context!.executeFetchRequest(fetchRequest) as! [NSManagedObject]
-            for var i = 0; i < managedOBJ.count; i++
-            {
-                print(managedOBJ[i])
-            }
-        }
-        catch let error as NSError {
-            print("Could not fetch \(error), \(error.userInfo)")
-        }
-    }
-    
     func saveSelectedApps()
     {
         selectedAppsArray.removeAll()
-        print("in Save  selectede apps func")
+        //print("in Save  selectede apps func")
         for(var j = 0; j<selectedApps.count;j++)
         {
-            print("in first for loop")
+            //print("in first for loop")
             for(var k = 0;k<apps.count;k++)
             {
                 if selectedApps[j] == apps[k].getBusinessApp()
@@ -418,9 +405,32 @@ class AppSelectionTableViewController: UITableViewController {
             let destViewController : SplashViewController = segue.destinationViewController as! SplashViewController
             saveSelectedApps()
             saveToCoreData()
-            printEntityValues("User")
-            printEntityValues("BusinessArea")
-            printEntityValues("BusinessApps")
+            
+            /*
+            //var managedOBJ = [NSManagedObject]()
+            let fetchRequest = NSFetchRequest(entityName: "BusinessApps")
+            do
+            {
+                let results:NSArray = try context!.executeFetchRequest(fetchRequest)
+                //managedOBJ = try context!.executeFetchRequest(fetchRequest) as! [NSManagedObject]
+                for var i = 0; i < results.count; i++
+                {
+                    print(results[i].valueForKey("businessUnit"))
+                    print(results[i].valueForKey("businessArea"))
+                    print(results[i].valueForKey("businessAppSys"))
+                    print(results[i].valueForKey("businessApp"))
+                    print(results[i].valueForKey("appCriticality"))
+                    
+                    //print(managedOBJ[i].valueForKey("businessApp"))
+                    //print(managedOBJ[i].valueForKey("appCriticality"))
+                }
+            }
+            catch let error as NSError
+            {
+                //print ("in error")
+                print("Could not fetch \(error), \(error.userInfo)")
+            }
+            */
 
         }
                 
