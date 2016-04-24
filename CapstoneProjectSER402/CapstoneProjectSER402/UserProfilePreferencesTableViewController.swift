@@ -7,11 +7,38 @@
 //
 
 import UIKit
+import CoreData
 
 class UserProfilePreferencesTableViewController: UITableViewController {
-
+    
+    var context:NSManagedObjectContext?
+    
+    var myApps = [String]()
+    var mApp: String = ""
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        var appDel = (UIApplication.sharedApplication().delegate as! AppDelegate)
+        context = appDel.managedObjectContext
+        
+        let fetchRequest = NSFetchRequest(entityName: "BusinessApps")
+        do
+        {
+            let results:NSArray = try context!.executeFetchRequest(fetchRequest)
+            
+            for var i = 0; i < results.count; i++
+            {
+                
+                myApps.append(results[i].valueForKey("businessApp") as! String!)
+                
+            }
+            print(myApps)
+        }
+        catch let error as NSError
+        {
+            //print ("in error")
+            print("Could not fetch \(error), \(error.userInfo)")
+        }
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -29,23 +56,23 @@ class UserProfilePreferencesTableViewController: UITableViewController {
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return myApps.count
     }
 
-    /*
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
 
-        // Configure the cell...
+        
 
         return cell
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.
