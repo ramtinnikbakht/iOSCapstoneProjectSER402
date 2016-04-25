@@ -115,7 +115,7 @@
                         <barButtonItem key="rightBarButtonItem" image="gear.png" id="DCM-IQ-bL3">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
-                                <segue destination="RRz-o0-Bh3" kind="show" id="QgG-3O-c3k"/>
+                                <segue destination="R1c-D5-ojX" kind="show" id="QgG-3O-c3k"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -239,7 +239,7 @@
             <objects>
                 <tableViewController id="RRz-o0-Bh3" customClass="SettingsTableViewController" customModule="CapstoneProjectSER402" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="Lin-N7-TN7">
-                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
@@ -286,22 +286,81 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Settings" id="AeZ-fd-HV9"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <segue destination="nYy-pw-bJ9" kind="show" identifier="showChangeUserType" id="Qfc-Ti-lzB"/>
+                        <segue destination="kiE-Wu-D01" kind="show" identifier="showMyApps" id="wVH-jo-x5n"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h9a-yj-M9G" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3555.5" y="-68.5"/>
+            <point key="canvasLocation" x="4141.5" y="-91.5"/>
         </scene>
-        <!--User Profile Preferences Table View Controller-->
+        <!--User Type Preferences-->
+        <scene sceneID="Nut-I2-wNe">
+            <objects>
+                <viewController storyboardIdentifier="changeusertype" id="nYy-pw-bJ9" customClass="ChangeUserTypeViewController" customModule="CapstoneProjectSER402" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="z3N-Cf-V7H"/>
+                        <viewControllerLayoutGuide type="bottom" id="iHy-f6-BRY"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="11l-Xp-9W2">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fzp-cc-zAH">
+                                <rect key="frame" x="0.0" y="317" width="375" height="216"/>
+                            </pickerView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Current User Type" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VuX-eJ-zUO">
+                                <rect key="frame" x="20" y="139" width="335" height="28"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fmX-QH-6B3">
+                                <rect key="frame" x="20" y="175" width="335" height="43"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Pick new user type below" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bcV-jZ-n2Z">
+                                <rect key="frame" x="20" y="288" width="335" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JrU-EX-SiH">
+                                <rect key="frame" x="122" y="541" width="130" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="Save User Type"/>
+                                <connections>
+                                    <action selector="saveNewUserTypeButton:" destination="nYy-pw-bJ9" eventType="touchUpInside" id="Jz8-Su-fLe"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="User Type Preferences" id="HGl-h1-s0A"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="currentUserTypeLabel" destination="fmX-QH-6B3" id="57n-6K-kzd"/>
+                        <outlet property="newUserTypePicker" destination="fzp-cc-zAH" id="e3f-Hr-CzW"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ucj-bE-bL4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4672.5" y="254.5"/>
+        </scene>
+        <!--My Apps-->
         <scene sceneID="IqX-hs-PZ5">
             <objects>
-                <tableViewController id="kiE-Wu-D01" customClass="UserProfilePreferencesTableViewController" customModule="CapstoneProjectSER402" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="editmyapps" id="kiE-Wu-D01" customClass="UserProfilePreferencesTableViewController" customModule="CapstoneProjectSER402" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="qb7-ot-G3H">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="fUJ-h9-njo">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="myCurrentAppsCell" id="fUJ-h9-njo">
+                                <rect key="frame" x="0.0" y="92" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fUJ-h9-njo" id="qe1-ON-xex">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -314,11 +373,114 @@
                             <outlet property="delegate" destination="kiE-Wu-D01" id="3hf-Fk-uje"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" title="My Apps" id="3yJ-Ye-LuT">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="asZ-i5-BlZ">
+                            <connections>
+                                <segue destination="bkr-tA-SnD" kind="show" id="64L-wB-fnx"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GdZ-l5-ljO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4062" y="-61"/>
+            <point key="canvasLocation" x="4672.5" y="-474.5"/>
+        </scene>
+        <!--Select App Area-->
+        <scene sceneID="w87-xV-mOJ">
+            <objects>
+                <tableViewController id="bkr-tA-SnD" customClass="NewAppAreaSelectionTableViewController" customModule="CapstoneProjectSER402" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="FCz-NJ-be0">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="newapparea" id="pws-QM-0AR">
+                                <rect key="frame" x="0.0" y="113.5" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pws-QM-0AR" id="Hpq-32-VTe">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="bkr-tA-SnD" id="xIy-fs-kEm"/>
+                            <outlet property="delegate" destination="bkr-tA-SnD" id="yH9-6O-Y8i"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Select App Area" id="MSE-4Y-icx">
+                        <barButtonItem key="rightBarButtonItem" title="Next" id="hs5-gp-2hY">
+                            <connections>
+                                <segue destination="kQq-My-d1t" kind="show" id="Eap-6R-6ms"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Fab-ca-BYg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5084.5" y="-474.5"/>
+        </scene>
+        <!--Select Apps-->
+        <scene sceneID="h8b-mh-wUg">
+            <objects>
+                <tableViewController id="kQq-My-d1t" customClass="NewAppSelectionTableViewController" customModule="CapstoneProjectSER402" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="Oe5-RD-Wqp">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="newappsoptioncell" id="DqJ-yT-my7" customClass="NewAppsOptionTableViewCell" customModule="CapstoneProjectSER402" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="113.5" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DqJ-yT-my7" id="nlz-xf-XY2">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BeU-8V-VTx">
+                                            <rect key="frame" x="8" y="7" width="90" height="30"/>
+                                            <state key="normal" title="Select All"/>
+                                            <connections>
+                                                <action selector="selectAllButtonPressed:" destination="kQq-My-d1t" eventType="touchUpInside" id="KpZ-c9-61W"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gC5-Q6-Jkw">
+                                            <rect key="frame" x="125" y="7" width="124" height="30"/>
+                                            <state key="normal" title="Clear Selection"/>
+                                            <connections>
+                                                <action selector="clearSelectionButtonPressed:" destination="kQq-My-d1t" eventType="touchUpInside" id="RXM-Y1-45a"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="clearSelectionButton" destination="gC5-Q6-Jkw" id="JYF-cz-av9"/>
+                                    <outlet property="selectAllButton" destination="BeU-8V-VTx" id="QT0-gr-oN0"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="newappscell" id="cUb-bf-6Hp">
+                                <rect key="frame" x="0.0" y="157.5" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cUb-bf-6Hp" id="jnp-gd-HzD">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="kQq-My-d1t" id="yks-MO-2Jx"/>
+                            <outlet property="delegate" destination="kQq-My-d1t" id="dFg-oA-rVz"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Select Apps" id="Vl8-OR-etB">
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="bVB-wd-fD5"/>
+                    </navigationItem>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7k8-hE-YHz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5502.5" y="-474.5"/>
         </scene>
         <!--Forecast-->
         <scene sceneID="DeN-0n-qJK">
@@ -493,7 +655,7 @@
                         <outlet property="radarChartView" destination="Ajb-by-w6J" id="qvt-kN-SEY"/>
                         <outlet property="timeFrameStepper" destination="it0-To-PQR" id="vE2-qU-Ijt"/>
                         <outlet property="timeSegmentedControl" destination="4lg-F9-mag" id="BeE-Z0-lvF"/>
-                        <segue destination="RRz-o0-Bh3" kind="show" id="s0Y-s2-eof"/>
+                        <segue destination="R1c-D5-ojX" kind="show" id="s0Y-s2-eof"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Je-2D-S4r" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -808,7 +970,7 @@
                                 <rect key="frame" x="0.0" y="49.5" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="AjO-vi-hzh" id="Cfz-W2-IlL">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7YY-kq-r9a">
@@ -827,7 +989,7 @@
                                 <rect key="frame" x="0.0" y="93.5" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YwX-TH-ihx" id="GfU-Tb-yVW">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nFP-Yy-ymY">
@@ -862,7 +1024,7 @@
                                 <rect key="frame" x="0.0" y="137.5" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="heU-IV-naE" id="b15-Em-ngO">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nVq-NI-kmD">
@@ -964,7 +1126,7 @@
                                 <rect key="frame" x="0.0" y="49.5" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2mT-9h-YCl" id="ysJ-2d-RIY">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="37u-0J-Lt3">
@@ -1016,6 +1178,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kOn-HX-Gkp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="479" y="1977"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="i4Q-Rf-L8P">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="R1c-D5-ojX" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="QlH-Sj-1pn">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="RRz-o0-Bh3" kind="relationship" relationship="rootViewController" id="4Ek-oT-ed3"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Wmy-5A-2vq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3720.5" y="-91.5"/>
         </scene>
     </scenes>
     <resources>

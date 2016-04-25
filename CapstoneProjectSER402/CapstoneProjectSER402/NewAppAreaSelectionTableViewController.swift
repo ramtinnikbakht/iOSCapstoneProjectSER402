@@ -1,50 +1,32 @@
 //
-//  UserProfilePreferencesTableViewController.swift
+//  NewAppAreaSelectionTableViewController.swift
 //  CapstoneProjectSER402
 //
-//  Created by Ramtin Nikbakht on 4/23/16.
+//  Created by Ramtin Nikbakht on 4/24/16.
 //  Copyright © 2016 Ramtin Nikbakht. All rights reserved.
 //
 
 import UIKit
-import CoreData
 
-class UserProfilePreferencesTableViewController: UITableViewController {
+class NewAppAreaSelectionTableViewController: UITableViewController {
     
-    var context:NSManagedObjectContext?
-    
-    var myApps = [String]()
-    var mApp: String = ""
+    var appsAreaArray = [String]()
+    var busArea = [BusinessArea]()
+    var selectedAppAreas = [String]()
+    var selectedAreas = [BusinessArea]()
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        var appDel = (UIApplication.sharedApplication().delegate as! AppDelegate)
-        context = appDel.managedObjectContext
         
-        let fetchRequest = NSFetchRequest(entityName: "BusinessApps")
-        do
+        ConnectionService.sharedInstance.getBusinessArea()
+        busArea = ConnectionService.sharedInstance.areaList
+        
+        for area in busArea
         {
-            let results:NSArray = try context!.executeFetchRequest(fetchRequest)
-            
-            for var i = 0; i < results.count; i++
-            {
-                
-                myApps.append(results[i].valueForKey("businessApp") as! String!)
-                
-            }
-            print(myApps)
-        }
-        catch let error as NSError
-        {
-            //print ("in error")
-            print("Could not fetch \(error), \(error.userInfo)")
+            appsAreaArray.append(area.getName())
         }
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
 
     override func didReceiveMemoryWarning() {
@@ -53,26 +35,54 @@ class UserProfilePreferencesTableViewController: UITableViewController {
     }
 
     // MARK: - Table view data source
+    
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String?
+    {
+        return "App Areas"
+        
+    }
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
+        
         return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return myApps.count
+        
+        return ConnectionService.sharedInstance.areaList.count
     }
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("myCurrentAppsCell", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier("newapparea", forIndexPath: indexPath)
 
-        cell.textLabel?.text = myApps[indexPath.row]
+        cell.textLabel?.text = appsAreaArray[indexPath.row]
+        if (selectedAppAreas.contains(appsAreaArray[indexPath.row])) {
+            cell.accessoryType = .Checkmark
+        } else {
+            cell.tintColor = UIColor(red: 0/255.0, green: 64/255.0, blue: 128/255.0, alpha: 1.0)
+            cell.accessoryType = .None
+        }
+        return cell
+
 
         return cell
     }
     
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
+    {
+        let cell = tableView.cellForRowAtIndexPath(indexPath) as! UITableViewCell!
+        let selectedArea = cell.textLabel?.text
+        
+        if (selectedAppAreas.contains(selectedArea!)) {
+            selectedAppAreas = selectedAppAreas.filter {$0 != cell.textLabel?.text!}
+            cell.accessoryType = .None
+        } else {
+            cell.tintColor = UIColor(red: 0/255.0, green: 64/255.0, blue: 128/255.0, alpha: 1.0)
+            cell.accessoryType = UITableViewCellAccessoryType.Checkmark
+            selectedAppAreas.append(selectedArea!)
+        }
+    }
 
     /*
     // Override to support conditional editing of the table view.

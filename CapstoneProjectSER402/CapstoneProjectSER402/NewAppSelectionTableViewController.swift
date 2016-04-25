@@ -1,44 +1,44 @@
 //
-//  UserProfilePreferencesTableViewController.swift
+//  NewAppSelectionTableViewController.swift
 //  CapstoneProjectSER402
 //
-//  Created by Ramtin Nikbakht on 4/23/16.
+//  Created by Ramtin Nikbakht on 4/24/16.
 //  Copyright © 2016 Ramtin Nikbakht. All rights reserved.
 //
 
 import UIKit
-import CoreData
 
-class UserProfilePreferencesTableViewController: UITableViewController {
+class NewAppSelectionTableViewController: UITableViewController {
+
     
-    var context:NSManagedObjectContext?
+    var appNamesStrings = [String]()
+    var selectedApps = [String]()
     
-    var myApps = [String]()
-    var mApp: String = ""
+    @IBAction func selectAllButtonPressed(sender: UIButton) {
+        let section = 1
+        for (var row = 0; row < tableView.numberOfRowsInSection(section); ++row) {
+            tableView.cellForRowAtIndexPath(NSIndexPath(forRow: row, inSection: section))?.tintColor = UIColor(red: 0/255.0,
+                                                                                                               green: 64/255.0,
+                                                                                                               blue: 128/255.0,
+                                                                                                               alpha: 1.0)
+            tableView.cellForRowAtIndexPath(NSIndexPath(forRow: row, inSection: section))?.accessoryType = UITableViewCellAccessoryType.Checkmark
+            
+            
+        }
+        selectedApps = appNamesStrings
+    }
+    @IBAction func clearSelectionButtonPressed(sender: UIButton) {
+        let section = 1
+        for (var row = 0; row < tableView.numberOfRowsInSection(section); ++row) {
+            
+            tableView.cellForRowAtIndexPath(NSIndexPath(forRow: row, inSection: section))?.accessoryType = UITableViewCellAccessoryType.None
+        }
+        selectedApps = []
+        print(selectedApps)
+        
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        var appDel = (UIApplication.sharedApplication().delegate as! AppDelegate)
-        context = appDel.managedObjectContext
-        
-        let fetchRequest = NSFetchRequest(entityName: "BusinessApps")
-        do
-        {
-            let results:NSArray = try context!.executeFetchRequest(fetchRequest)
-            
-            for var i = 0; i < results.count; i++
-            {
-                
-                myApps.append(results[i].valueForKey("businessApp") as! String!)
-                
-            }
-            print(myApps)
-        }
-        catch let error as NSError
-        {
-            //print ("in error")
-            print("Could not fetch \(error), \(error.userInfo)")
-        }
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -53,23 +53,52 @@ class UserProfilePreferencesTableViewController: UITableViewController {
     }
 
     // MARK: - Table view data source
+    
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String?
+    {
+        if section == 0 {
+            return "Options"
+        } else {
+            return "Apps"
+        }
+        
+    }
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 1
+        return 2
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return myApps.count
+        if section == 0 {
+            return 1
+        } else {
+            return appNamesStrings.count
+        }
+        
     }
-
+    
+    
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("myCurrentAppsCell", forIndexPath: indexPath)
+        
 
-        cell.textLabel?.text = myApps[indexPath.row]
-
+        if indexPath.section == 0 {
+            
+            let cell = tableView.dequeueReusableCellWithIdentifier("newappsoptioncell") as! NewAppsOptionTableViewCell!
+            
+            return cell
+        }
+        
+        let cell = tableView.dequeueReusableCellWithIdentifier("newappscell") as! UITableViewCell!
+        cell.textLabel?.text = appNamesStrings[indexPath.row]
+        
+        if (selectedApps.contains(appNamesStrings[indexPath.row])) {
+            cell.accessoryType = .Checkmark
+        } else {
+            cell.tintColor = UIColor(red: 0/255.0, green: 64/255.0, blue: 128/255.0, alpha: 1.0)
+            cell.accessoryType = .None
+        }
         return cell
     }
     
