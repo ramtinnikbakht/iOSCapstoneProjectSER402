@@ -476,7 +476,7 @@
                     <navigationItem key="navigationItem" title="Select Apps" id="Vl8-OR-etB">
                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="bVB-wd-fD5">
                             <connections>
-                                <segue destination="P9Q-uF-1Zk" kind="showDetail" identifier="backToSplashScreen" action="showViewController:sender:" id="pVa-h5-Yrg"/>
+                                <segue destination="P9Q-uF-1Zk" kind="presentation" identifier="backToSplashScreen" id="pVa-h5-Yrg"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
