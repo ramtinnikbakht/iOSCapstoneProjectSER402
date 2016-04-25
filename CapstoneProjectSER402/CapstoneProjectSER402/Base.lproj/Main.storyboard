@@ -350,7 +350,7 @@
             </objects>
             <point key="canvasLocation" x="4672.5" y="254.5"/>
         </scene>
-        <!--My Apps Preferences-->
+        <!--My Apps-->
         <scene sceneID="IqX-hs-PZ5">
             <objects>
                 <tableViewController storyboardIdentifier="editmyapps" id="kiE-Wu-D01" customClass="UserProfilePreferencesTableViewController" customModule="CapstoneProjectSER402" customModuleProvider="target" sceneMemberID="viewController">
@@ -373,7 +373,7 @@
                             <outlet property="delegate" destination="kiE-Wu-D01" id="3hf-Fk-uje"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="My Apps Preferences" id="3yJ-Ye-LuT">
+                    <navigationItem key="navigationItem" title="My Apps" id="3yJ-Ye-LuT">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="asZ-i5-BlZ">
                             <connections>
                                 <segue destination="bkr-tA-SnD" kind="show" id="64L-wB-fnx"/>
