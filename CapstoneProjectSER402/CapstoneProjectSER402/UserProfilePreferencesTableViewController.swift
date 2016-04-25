@@ -82,6 +82,27 @@ class UserProfilePreferencesTableViewController: UITableViewController {
             // handle delete (by removing the data from your array and updating the tableview)
             var appDel = (UIApplication.sharedApplication().delegate as! AppDelegate)
             context = appDel.managedObjectContext
+
+            let selectRequest = NSFetchRequest(entityName: "BusinessApps")
+            do{
+                let results: NSArray = try context!.executeFetchRequest(selectRequest)
+                if results.count > 0
+                {
+                    for var j = 0;j < results.count; j++
+                    {
+                        if myApps[indexPath.row] == results[j].valueForKey("businessApp") as! String! {
+                        context!.deleteObject(results[j] as! NSManagedObject)
+                        try context?.save()
+                        }
+                    }
+                }
+            }
+            catch let error as NSError{
+                NSLog("error selecting all \(selectRequest). Error \(error)")
+            }
+
+            /*var appDel = (UIApplication.sharedApplication().delegate as! AppDelegate)
+            context = appDel.managedObjectContext
             
             let fetchRequest = NSFetchRequest(entityName: "BusinessApps")
             do
@@ -103,7 +124,7 @@ class UserProfilePreferencesTableViewController: UITableViewController {
                 //print ("in error")
                 print("Could not fetch \(error), \(error.userInfo)")
             }
-
+*/
             print(myApps[indexPath.row])
             myApps.removeAtIndex(indexPath.row)
             print(myApps[indexPath.row])
