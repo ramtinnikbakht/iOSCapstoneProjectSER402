@@ -10,6 +10,10 @@ import UIKit
 
 class NewAppSelectionTableViewController: UITableViewController {
 
+    
+    var appNamesStrings = [String]()
+    var selectedApps = [String]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -26,26 +30,55 @@ class NewAppSelectionTableViewController: UITableViewController {
     }
 
     // MARK: - Table view data source
+    
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String?
+    {
+        if section == 0 {
+            return "Options"
+        } else {
+            return "Apps"
+        }
+        
+    }
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 2
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        if section == 0 {
+            return 1
+        } else {
+            return appNamesStrings.count
+        }
+        
     }
-
-    /*
+    
+    
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
+        
 
-        // Configure the cell...
-
+        if indexPath.section == 0 {
+            
+            let cell = tableView.dequeueReusableCellWithIdentifier("newappsoptioncell") as! NewAppsOptionTableViewCell!
+            
+            return cell
+        }
+        
+        let cell = tableView.dequeueReusableCellWithIdentifier("newappscell") as! UITableViewCell!
+        cell.textLabel?.text = appNamesStrings[indexPath.row]
+        
+        if (selectedApps.contains(appNamesStrings[indexPath.row])) {
+            cell.accessoryType = .Checkmark
+        } else {
+            cell.tintColor = UIColor(red: 0/255.0, green: 64/255.0, blue: 128/255.0, alpha: 1.0)
+            cell.accessoryType = .None
+        }
         return cell
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.
