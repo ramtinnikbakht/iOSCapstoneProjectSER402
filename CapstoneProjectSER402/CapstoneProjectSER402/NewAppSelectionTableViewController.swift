@@ -146,7 +146,29 @@ class NewAppSelectionTableViewController: UITableViewController {
         return cell
     }
     
-
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        if indexPath.section == 0 {
+            let optionscell = tableView.cellForRowAtIndexPath(indexPath) as! NewAppsOptionTableViewCell!
+            optionscell.selectionStyle = UITableViewCellSelectionStyle.None
+            
+        } else {
+            let cell = tableView.cellForRowAtIndexPath(indexPath) as! UITableViewCell!
+            let selectedApp = cell.textLabel!.text!
+            
+            if (selectedApps.contains(selectedApp))
+            {
+                selectedApps = selectedApps.filter {$0 != selectedApp}
+                cell.accessoryType = .None
+            }
+            else
+            {
+                cell.tintColor = UIColor(red: 0/255.0, green: 64/255.0, blue: 128/255.0, alpha: 1.0)
+                cell.accessoryType = UITableViewCellAccessoryType.Checkmark
+                selectedApps += [selectedApp]
+            }
+        }
+    }
     /*
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
