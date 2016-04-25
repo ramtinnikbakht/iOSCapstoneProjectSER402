@@ -14,6 +14,7 @@ class NewAppAreaSelectionTableViewController: UITableViewController {
     var busArea = [BusinessArea]()
     var selectedAppAreas = [String]()
     var selectedAreas = [BusinessArea]()
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -82,6 +83,31 @@ class NewAppAreaSelectionTableViewController: UITableViewController {
             cell.accessoryType = UITableViewCellAccessoryType.Checkmark
             selectedAppAreas.append(selectedArea!)
         }
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
+    {
+        let destViewController : NewAppSelectionTableViewController = segue.destinationViewController as! NewAppSelectionTableViewController
+        sendSelectedApps()
+        destViewController.appAreasSelection = selectedAreas
+        
+        
+    }
+    
+    func sendSelectedApps()
+    {
+        selectedAreas.removeAll()
+        for(var j = 0; j<selectedAppAreas.count;j++)
+        {
+            for(var k = 0;k<busArea.count;k++)
+            {
+                if selectedAppAreas[j] == busArea[k].getName()
+                {
+                    selectedAreas.append(busArea[k])
+                }
+            }
+        }
+        
     }
 
     /*

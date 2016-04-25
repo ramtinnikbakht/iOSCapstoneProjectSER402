@@ -13,6 +13,7 @@ class NewAppSelectionTableViewController: UITableViewController {
     
     var appNamesStrings = [String]()
     var selectedApps = [String]()
+    var appAreasSelection = [BusinessArea]()
     
     @IBAction func selectAllButtonPressed(sender: UIButton) {
         let section = 1
