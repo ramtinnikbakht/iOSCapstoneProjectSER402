@@ -14,7 +14,7 @@ class UserProfilePreferencesTableViewController: UITableViewController {
     var context:NSManagedObjectContext?
     
     var myApps = [String]()
-    var mApp: String = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -30,7 +30,6 @@ class UserProfilePreferencesTableViewController: UITableViewController {
             {
                 
                 myApps.append(results[i].valueForKey("businessApp") as! String!)
-                
             }
             print(myApps)
         }
@@ -57,6 +56,7 @@ class UserProfilePreferencesTableViewController: UITableViewController {
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
+        
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -80,10 +80,68 @@ class UserProfilePreferencesTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if (editingStyle == UITableViewCellEditingStyle.Delete) {
             // handle delete (by removing the data from your array and updating the tableview)
+            var appDel = (UIApplication.sharedApplication().delegate as! AppDelegate)
+            context = appDel.managedObjectContext
+            
+            let fetchRequest = NSFetchRequest(entityName: "BusinessApps")
+            do
+            {
+                let results:NSArray = try context!.executeFetchRequest(fetchRequest)
+                
+                for var i = 0; i < results.count; i++
+                {
+                    if myApps[indexPath.row] == results[i].valueForKey("businessApp") as! String! {
+                        print(results[i].valueForKey("businessApp") as! String!)
+                        context!.deleteObject(results[i].valueForKey("businessApp") as! NSManagedObject)
+                    }
+                    
+                }
+                print(myApps)
+            }
+            catch let error as NSError
+            {
+                //print ("in error")
+                print("Could not fetch \(error), \(error.userInfo)")
+            }
+
+            print(myApps[indexPath.row])
             myApps.removeAtIndex(indexPath.row)
+            print(myApps[indexPath.row])
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+            /*let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+            let moc = appDelegate.managedObjectContext
+            
+            // 3
+            moc.deleteObject(myApps[indexPath.row])
+            appDelegate.saveContext()
+            
+            // 4
+            myApps.removeAtIndex(indexPath.row)
+            tableView.reloadData()
+            */
+            
+            /*var appDel = (UIApplication.sharedApplication().delegate as! AppDelegate)
+            let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
+            let context:NSManagedObjectContext = appDel.managedObjectContext
+            context.deleteObject(myApps[indexPath.row] as! NSManagedObject)
+            myApps.removeAtIndex(indexPath.row)
+            if context.hasChanges {
+                do {
+                    try context.save()
+                } catch {
+                    // Replace this implementation with code to handle the error appropriately.
+                    // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+                    let nserror = error as NSError
+                    NSLog("Unresolved error \(nserror), \(nserror.userInfo)")
+                    abort()
+                }
+            }
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+*/
+            
         }
     }
+    
     
     /*
     // Override to support rearranging the table view.
