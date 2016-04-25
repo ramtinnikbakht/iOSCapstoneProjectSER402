@@ -20,6 +20,7 @@ class NewAppSelectionTableViewController: UITableViewController {
     var areasShown : [Bool] = []
     var areaApps = [[BusinessApp]]()
     var apps = [BusinessApp]()
+    var selectedAppsArray = [BusinessApp]()
     
     var appDel:AppDelegate?
     var context:NSManagedObjectContext?
@@ -172,6 +173,92 @@ class NewAppSelectionTableViewController: UITableViewController {
                 cell.accessoryType = UITableViewCellAccessoryType.Checkmark
                 selectedApps += [selectedApp]
             }
+        }
+    }
+    
+    func saveSelectedApps()
+    {
+        selectedAppsArray.removeAll()
+        //print("in Save  selectede apps func")
+        for(var j = 0; j<selectedApps.count;j++)
+        {
+            //print("in first for loop")
+            for(var k = 0;k<apps.count;k++)
+            {
+                if selectedApps[j] == apps[k].getBusinessApp()
+                {
+                    selectedAppsArray.append(apps[k])
+                }
+            }
+        }
+        
+    }
+    func contextSave()
+    {
+        do
+        {
+            try context!.save()
+        }
+        catch let error as NSError
+        {
+            NSLog("Error adding entity. Error: \(error)")
+        }
+        
+    }
+    
+    func saveToCoreData()
+    {
+        for appAreas in appAreasDidSelect
+        {
+            saveABusinessArea(appAreas)
+        }
+        for anApp in selectedAppsArray
+        {
+            saveABusinessApp(anApp)
+        }
+    }
+    
+    func saveABusinessApp(appObj: BusinessApp)
+    {
+        let newBusinessApp = NSEntityDescription.insertNewObjectForEntityForName("BusinessApps", inManagedObjectContext: context!) as NSManagedObject
+        
+        if appObj.getBusinessUnit().isEmpty
+        {
+            newBusinessApp.setValue("Not Applicable", forKey: "businessUnit")
+        }
+        else
+        {
+            newBusinessApp.setValue(appObj.getBusinessUnit(), forKey: "businessUnit")
+        }
+        if appObj.getBusinessArea().isEmpty
+        {
+            newBusinessApp.setValue("Not Applicable", forKey: "businessArea")
+        }
+        else
+        {
+            newBusinessApp.setValue(appObj.getBusinessArea(), forKey: "businessArea")
+        }
+        
+        newBusinessApp.setValue(appObj.getBusinessApp(), forKey: "businessApp")
+        newBusinessApp.setValue(appObj.getBusinessAppSys(), forKey: "businessAppSys")
+        newBusinessApp.setValue(appObj.getAppCriticality(), forKey: "appCriticality")
+        contextSave()
+    }
+    func saveABusinessArea(areaObj: BusinessArea)
+    {
+        var newBusinessArea = NSEntityDescription.insertNewObjectForEntityForName("BusinessArea", inManagedObjectContext: context!) as NSManagedObject
+        newBusinessArea.setValue(areaObj.getName(), forKey: "busArea")
+        newBusinessArea.setValue(areaObj.getSysID(), forKey: "sysID")
+        contextSave()
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
+    {
+        if segue.identifier == "backToSplashScreen"
+        {
+            let destViewController : SplashViewController = segue.destinationViewController as! SplashViewController
+            saveSelectedApps()
+            saveToCoreData()
         }
     }
     /*
