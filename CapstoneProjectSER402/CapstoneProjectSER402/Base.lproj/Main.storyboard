@@ -441,10 +441,16 @@
                                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BeU-8V-VTx">
                                             <rect key="frame" x="8" y="7" width="90" height="30"/>
                                             <state key="normal" title="Select All"/>
+                                            <connections>
+                                                <action selector="selectAllButtonPressed:" destination="kQq-My-d1t" eventType="touchUpInside" id="KpZ-c9-61W"/>
+                                            </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gC5-Q6-Jkw">
                                             <rect key="frame" x="125" y="7" width="124" height="30"/>
                                             <state key="normal" title="Clear Selection"/>
+                                            <connections>
+                                                <action selector="clearSelectionButtonPressed:" destination="kQq-My-d1t" eventType="touchUpInside" id="RXM-Y1-45a"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                 </tableViewCellContentView>
