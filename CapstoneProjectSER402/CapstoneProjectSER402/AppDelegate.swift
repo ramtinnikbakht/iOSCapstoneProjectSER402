@@ -14,10 +14,15 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    var appDel:AppDelegate?
+    var context:NSManagedObjectContext?
+    var userType = ""
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        appDel = (UIApplication.sharedApplication().delegate as! AppDelegate)
+        context = appDel!.managedObjectContext
         
         let pageController = UIPageControl.appearance()
         pageController.pageIndicatorTintColor = UIColor.lightGrayColor()
@@ -33,6 +38,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let tabBarAppearence = UITabBar.appearance()
         tabBarAppearence.barTintColor = UIColor(red: (236/255.0), green: (236/255.0), blue: (236/255.0), alpha: 1)
         tabBarAppearence.tintColor = UIColor(red: CGFloat(54/255.0), green: CGFloat(69/255.0), blue: CGFloat(79/255.0), alpha: 1)
+        
+        let fetchRequest = NSFetchRequest(entityName: "User")
+        do
+        {
+            let results:NSArray = try context!.executeFetchRequest(fetchRequest)
+            if (results.count > 0) {
+                userType = results[0].userType!
+            }
+        }
+        catch let error as NSError
+        {
+            print("Could not fetch \(error), \(error.userInfo)")
+        }
+        
+        self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        if (userType == "") {
+            let wizardView = storyboard.instantiateViewControllerWithIdentifier("WizardVC")
+            self.window?.rootViewController = wizardView
+            self.window?.makeKeyAndVisible()
+        } else {
+            let mainView = storyboard.instantiateViewControllerWithIdentifier("SplashVC")
+            self.window?.rootViewController = mainView
+            self.window?.makeKeyAndVisible()
+        }
         
         return true
     }

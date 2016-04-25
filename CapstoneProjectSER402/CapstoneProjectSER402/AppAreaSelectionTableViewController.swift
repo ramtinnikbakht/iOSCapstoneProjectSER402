@@ -17,6 +17,7 @@ class AppAreaSelectionTableViewController: UITableViewController {
     
     var appsAreaArray = [String]()
     var selectedAppAreas = [String]()
+    var areasShown : [Bool] = []
     
     //var mockAppsAreaArray = ["Area1", "Area2", "Area3"]
     
@@ -26,6 +27,9 @@ class AppAreaSelectionTableViewController: UITableViewController {
         
         ConnectionService.sharedInstance.getBusinessArea()
         busArea = ConnectionService.sharedInstance.areaList
+        
+        let shown = [Bool](count: busArea.count, repeatedValue: false)
+        areasShown = shown
         
         for area in busArea
         {
@@ -94,6 +98,30 @@ class AppAreaSelectionTableViewController: UITableViewController {
             cell.tintColor = UIColor(red: 0/255.0, green: 64/255.0, blue: 128/255.0, alpha: 1.0)
             cell.accessoryType = UITableViewCellAccessoryType.Checkmark
             selectedAppAreas += [selectedArea]
+        }
+    }
+    
+    // MARK: - Animate Table View Cell
+    
+    // Row Animation
+    override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        if (areasShown[indexPath.row] == false) {
+            let cellPosition = indexPath.indexAtPosition(1)
+            var delay : Double = Double(cellPosition) * 0.1
+            
+            if (delay >= 1.3) {
+                delay = 0
+            }
+            
+            let rotationTransform = CATransform3DTranslate(CATransform3DIdentity, -500, 0, 0)
+            cell.layer.transform = rotationTransform
+            
+            UIView.animateWithDuration(1.0, delay: delay, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.3, options: UIViewAnimationOptions.BeginFromCurrentState, animations: {
+                cell.layer.transform = CATransform3DIdentity
+                }, completion: { finished in
+                    
+            })
+            areasShown[indexPath.row] = true
         }
     }
     

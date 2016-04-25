@@ -61,6 +61,7 @@
 		C12E73C61CCAB03E0091ECE9 /* splash2.png in Resources */ = {isa = PBXBuildFile; fileRef = C12E73C51CCAB03E0091ECE9 /* splash2.png */; };
 		C12E73C81CCAB5D80091ECE9 /* mychange_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = C12E73C71CCAB5D80091ECE9 /* mychange_icon.png */; };
 		C12E73CB1CCC0F930091ECE9 /* EmptyGraphIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = C12E73CA1CCC0F930091ECE9 /* EmptyGraphIcon.png */; };
+		C12E73D31CCD8F6D0091ECE9 /* forecast.png in Resources */ = {isa = PBXBuildFile; fileRef = C12E73D21CCD8F6D0091ECE9 /* forecast.png */; };
 		C142E6551C9BEC5A005F1DEC /* TicketModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C142E6541C9BEC5A005F1DEC /* TicketModel.swift */; };
 		C14333831CA0E9540083CA88 /* Charts in Resources */ = {isa = PBXBuildFile; fileRef = C14333821CA0E9540083CA88 /* Charts */; };
 		C14333931CA0E9CF0083CA88 /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C143338C1CA0E99B0083CA88 /* Charts.framework */; };
@@ -218,6 +219,7 @@
 		C12E73C51CCAB03E0091ECE9 /* splash2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash2.png; sourceTree = "<group>"; };
 		C12E73C71CCAB5D80091ECE9 /* mychange_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mychange_icon.png; sourceTree = "<group>"; };
 		C12E73CA1CCC0F930091ECE9 /* EmptyGraphIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = EmptyGraphIcon.png; sourceTree = "<group>"; };
+		C12E73D21CCD8F6D0091ECE9 /* forecast.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = forecast.png; sourceTree = "<group>"; };
 		C142E6541C9BEC5A005F1DEC /* TicketModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TicketModel.swift; sourceTree = "<group>"; };
 		C14333821CA0E9540083CA88 /* Charts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Charts; sourceTree = "<group>"; };
 		C14333841CA0E99B0083CA88 /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = Charts/Charts.xcodeproj; sourceTree = "<group>"; };
@@ -319,6 +321,7 @@
 				C19F0DDA1C75BAAA009BD594 /* eye_clicked.png */,
 				C19F0DDC1C768044009BD594 /* eye_unclicked.png */,
 				C19F0DC41C73E2C3009BD594 /* home-page.png */,
+				C12E73D21CCD8F6D0091ECE9 /* forecast.png */,
 				C19F0DC21C73E226009BD594 /* infographic-bars.png */,
 				48D741D21C5AB57C008D082E /* lock.png */,
 				C19F0DC81C7455C6009BD594 /* man-user.png */,
@@ -550,6 +553,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C12E73D31CCD8F6D0091ECE9 /* forecast.png in Resources */,
 				460338751CC7FB3E00CF17BC /* changeList_public.xml in Resources */,
 				C14333D01CA6CCD50083CA88 /* circleEmergency.png in Resources */,
 				C14333CF1CA6CCCD0083CA88 /* gear.png in Resources */,

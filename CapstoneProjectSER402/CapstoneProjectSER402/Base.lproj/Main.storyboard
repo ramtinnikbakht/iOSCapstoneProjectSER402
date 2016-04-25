@@ -8,7 +8,7 @@
         <!--Business App Table View Controller-->
         <scene sceneID="Es9-XN-nFI">
             <objects>
-                <tableViewController id="Miq-kP-hxa" customClass="BusinessAppTableViewController" customModule="CapstoneProjectSER402" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="InFlightVC" id="Miq-kP-hxa" customClass="BusinessAppTableViewController" customModule="CapstoneProjectSER402" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="50" sectionHeaderHeight="44" sectionFooterHeight="28" id="LlF-9O-8u4">
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -320,13 +320,13 @@
             </objects>
             <point key="canvasLocation" x="4062" y="-61"/>
         </scene>
-        <!--Analysis-->
+        <!--Forecast-->
         <scene sceneID="DeN-0n-qJK">
             <objects>
                 <navigationController id="bFC-NC-BRL" sceneMemberID="viewController">
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
-                    <tabBarItem key="tabBarItem" title="Analysis" image="infographic-bars.png" id="QBF-Sq-gKJ">
-                        <inset key="imageInsets" minX="0.0" minY="3" maxX="0.0" maxY="0.0"/>
+                    <tabBarItem key="tabBarItem" title="Forecast" image="forecast.png" id="QBF-Sq-gKJ">
+                        <inset key="imageInsets" minX="0.0" minY="2" maxX="0.0" maxY="0.0"/>
                     </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="Ojv-Iv-YUq">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -340,7 +340,7 @@
             </objects>
             <point key="canvasLocation" x="2197.5" y="1001.5"/>
         </scene>
-        <!--Analysis-->
+        <!--Forecast-->
         <scene sceneID="yqh-3b-b8N">
             <objects>
                 <tableViewController id="6sU-eE-q9d" customClass="AnalysisTableViewController" customModule="CapstoneProjectSER402" customModuleProvider="target" sceneMemberID="viewController">
@@ -485,7 +485,7 @@
                             <outlet property="delegate" destination="6sU-eE-q9d" id="0hh-Hx-T02"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Analysis" id="mA8-wq-Uss"/>
+                    <navigationItem key="navigationItem" title="Forecast" id="mA8-wq-Uss"/>
                     <connections>
                         <outlet property="currentDateLabel" destination="NdL-I1-gZ4" id="Z4o-dC-qTP"/>
                         <outlet property="currentTimeFrameTF" destination="Luq-7z-Kn7" id="KEe-yK-1Gq"/>
@@ -647,7 +647,7 @@
         <!--Splash View Controller-->
         <scene sceneID="Xi4-pm-hpP">
             <objects>
-                <viewController id="P9Q-uF-1Zk" customClass="SplashViewController" customModule="CapstoneProjectSER402" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SplashVC" id="P9Q-uF-1Zk" customClass="SplashViewController" customModule="CapstoneProjectSER402" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="dis-0A-I7b"/>
                         <viewControllerLayoutGuide type="bottom" id="zPb-mh-iEo"/>
@@ -910,7 +910,7 @@
         <!--User Type-->
         <scene sceneID="mL5-tl-9y1">
             <objects>
-                <viewController storyboardIdentifier="User Type" title="User Type" id="OEJ-n2-z9y" customClass="SelectUserTypeViewController" customModule="CapstoneProjectSER402" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="UserType" title="User Type" id="OEJ-n2-z9y" customClass="SelectUserTypeViewController" customModule="CapstoneProjectSER402" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="e2t-SW-a17"/>
                         <viewControllerLayoutGuide type="bottom" id="h1Y-4c-J4U"/>
@@ -1001,7 +1001,7 @@
         <!--Navigation Controller-->
         <scene sceneID="y8b-VI-Za1">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="prk-bP-1jA" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="WizardVC" automaticallyAdjustsScrollViewInsets="NO" id="prk-bP-1jA" sceneMemberID="viewController">
                     <toolbarItems/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="LRq-hI-udI">
@@ -1020,9 +1020,9 @@
     </scenes>
     <resources>
         <image name="archive.png" width="32" height="32"/>
+        <image name="forecast.png" width="32" height="32"/>
         <image name="gear.png" width="24" height="24"/>
         <image name="home-page.png" width="32" height="32"/>
-        <image name="infographic-bars.png" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="QgG-3O-c3k"/>

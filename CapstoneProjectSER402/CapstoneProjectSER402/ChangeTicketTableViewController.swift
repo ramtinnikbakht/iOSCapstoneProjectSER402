@@ -75,66 +75,12 @@ class ChangeTicketTableViewController: UITableViewController, ChartViewDelegate 
         loadTickets()
     }
     
-    @IBAction func pageControlUpdated(sender: AnyObject) {
-        if (sender.currentPage! == 0) {
-
-        } else {
-            //lineChartView.hidden = false
-            //pieChartView.hidden = true
-            
-            // X Value (Time) Setup
-            var timeRange : [NSDate] = getTimeRange()
-            var stringRange : [String] = []
-            let formatter = NSDateFormatter()
-            let total = timeRange.count
-            var sortIndex = 0
-            formatter.dateStyle = .ShortStyle
-            
-            while ((sortIndex+1) < total) {
-                let time = timeRange[sortIndex]
-                let nextTime = timeRange[sortIndex + 1]
-
-                if nextTime.isLessThan(time) {
-                    timeRange.removeAtIndex(sortIndex+1)
-                    timeRange.removeAtIndex(sortIndex)
-                    timeRange.insert(nextTime, atIndex: sortIndex)
-                    timeRange.insert(time, atIndex: sortIndex+1)
-                    sortIndex=0
-                } else {
-                    sortIndex++
-                }
-            }
-            for time in timeRange {
-                let formattedTime = formatter.stringFromDate(time)
-                stringRange += [formattedTime]
-            }
-            
-            // Y Value (Risk) Setup
-            var values : [Double] = []
-            for time in timeRange {
-                let formatter = NSDateFormatter()
-                formatter.locale = NSLocale(localeIdentifier: "US_en")
-                formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-                
-                for ticket in fullTickets {
-                    if (time.isEqual(formatter.dateFromString(ticket.plannedStart)!)) {
-                        values += [2.0]
-                    }
-                }
-            }
-            
-            //setLineChart(stringRange, values: values)
-        }
-    }
-    
     func loadTickets() {
         DateFormat.locale = NSLocale(localeIdentifier: "en_US_POSIX")
         DateFormat.dateFormat = "yyyy-MM-dd HH:mm:ss"
         
         ConnectionService.sharedInstance.getChange(selectedTicket.number)
-        var mockD = MockData()
-        liveTickets = mockD.parseExampleXMLFile()
-        //liveTickets = ConnectionService.sharedInstance.ticketList
+        liveTickets = ConnectionService.sharedInstance.ticketList
 
         if (liveTickets.count > 0) {
             generalAttributeValues += [liveTickets[0].plannedStart]
@@ -169,7 +115,6 @@ class ChangeTicketTableViewController: UITableViewController, ChartViewDelegate 
                 emergencyTickets += [ticket]
             }
         }
-        
     }
     
     override func didReceiveMemoryWarning() {

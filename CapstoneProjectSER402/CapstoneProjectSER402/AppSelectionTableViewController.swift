@@ -17,6 +17,7 @@ class AppSelectionTableViewController: UITableViewController {
     var appAreasDidSelect = [BusinessArea]()
     var appNamesStrings = [String]()
     var sysIDtoCall = [String]()
+    var areasShown : [Bool] = []
 
     var areaApps = [[BusinessApp]]()
     
@@ -39,10 +40,7 @@ class AppSelectionTableViewController: UITableViewController {
     @IBAction func selectAllButtonPressed(sender: UIButton) {
         let section = 2
         for (var row = 0; row < tableView.numberOfRowsInSection(section); ++row) {
-            tableView.cellForRowAtIndexPath(NSIndexPath(forRow: row, inSection: section))?.tintColor = UIColor(red: 0/255.0,
-                                                                                                               green: 64/255.0,
-                                                                                                               blue: 128/255.0,
-                                                                                                               alpha: 1.0)
+            tableView.cellForRowAtIndexPath(NSIndexPath(forRow: row, inSection: section))?.tintColor = UIColor(red: 0/255.0, green: 64/255.0, blue: 128/255.0, alpha: 1.0)
             tableView.cellForRowAtIndexPath(NSIndexPath(forRow: row, inSection: section))?.accessoryType = UITableViewCellAccessoryType.Checkmark
             
             
@@ -91,6 +89,8 @@ class AppSelectionTableViewController: UITableViewController {
             var appsForArea = [BusinessApp]()
             ConnectionService.sharedInstance.getBusiness(appArea: sysID)
             appsForArea = ConnectionService.sharedInstance.businessApps
+            let shown = [Bool](count: appsForArea.count, repeatedValue: false)
+            areasShown = shown
             areaApps += [appsForArea]
         }
         
@@ -295,6 +295,32 @@ class AppSelectionTableViewController: UITableViewController {
         }
     }
     
+    // MARK: - Animate Table View Cell
+    
+    // Row Animation
+    override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        if (areasShown.count != 0) {
+            if (areasShown[indexPath.row] == false) {
+                let cellPosition = indexPath.indexAtPosition(1)
+                var delay : Double = Double(cellPosition) * 0.1
+                
+                if (delay >= 1.2) {
+                    delay = 0
+                }
+                
+                let rotationTransform = CATransform3DTranslate(CATransform3DIdentity, -500, 0, 0)
+                cell.layer.transform = rotationTransform
+                
+                UIView.animateWithDuration(1.0, delay: delay, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.3, options: UIViewAnimationOptions.BeginFromCurrentState, animations: {
+                    cell.layer.transform = CATransform3DIdentity
+                    }, completion: { finished in
+                        
+                })
+                areasShown[indexPath.row] = true
+            }
+        }
+    }
+    
     func contextSave()
     {
         do
@@ -323,7 +349,8 @@ class AppSelectionTableViewController: UITableViewController {
     
     func saveABusinessApp(appObj: BusinessApp)
     {
-        var newBusinessApp = NSEntityDescription.insertNewObjectForEntityForName("BusinessApps", inManagedObjectContext: context!) as NSManagedObject
+        let newBusinessApp = NSEntityDescription.insertNewObjectForEntityForName("BusinessApps", inManagedObjectContext: context!) as NSManagedObject
+        
         if appObj.getBusinessUnit().isEmpty
         {
             newBusinessApp.setValue("Not Applicable", forKey: "businessUnit")

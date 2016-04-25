@@ -98,6 +98,8 @@ class ArchiveTableViewController: UITableViewController, UITextFieldDelegate, Ch
             liveTickets = mockData.MOCK_DATA_ARRAY
             ConnectionService.sharedInstance.getChange(actualEnd: "2016-03-10 00:00:00", actualEnd2: "2016-03-10 24:00:00", aeD: "1")
             liveTickets = ConnectionService.sharedInstance.ticketList
+            let ticketShown = [Bool](count: liveTickets.count, repeatedValue: false)
+            liveTicketsShown = ticketShown
             sortClosureCodes()
             setValuesForGraph()
             tableView.reloadData()
@@ -108,6 +110,8 @@ class ArchiveTableViewController: UITableViewController, UITextFieldDelegate, Ch
             liveTickets.removeAll()
             ConnectionService.sharedInstance.getChange(actualEnd: "2016-03-07 00:00:00", actualEnd2: "2016-03-07 24:00:00", aeD: "1")
             liveTickets = ConnectionService.sharedInstance.ticketList
+            let ticketShown = [Bool](count: liveTickets.count, repeatedValue: false)
+            liveTicketsShown = ticketShown
             sortClosureCodes()
             setValuesForGraph()
             tableView.reloadData()
@@ -118,6 +122,8 @@ class ArchiveTableViewController: UITableViewController, UITextFieldDelegate, Ch
             liveTickets.removeAll()
             ConnectionService.sharedInstance.getChange(actualEnd: "2016-03-08 00:00:00", actualEnd2: "2016-03-08 24:00:00", aeD: "1")
             liveTickets = ConnectionService.sharedInstance.ticketList
+            let ticketShown = [Bool](count: liveTickets.count, repeatedValue: false)
+            liveTicketsShown = ticketShown
             sortClosureCodes()
             setValuesForGraph()
             tableView.reloadData()
@@ -129,15 +135,16 @@ class ArchiveTableViewController: UITableViewController, UITextFieldDelegate, Ch
     func loadTickets() {
         DateFormat.locale = NSLocale(localeIdentifier: "US_en")
         DateFormat.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        let now = NSDate()
+        //let now = NSDate()
         //let time1 = DateFormat.stringFromDate(now)
         //let time2 = DateFormat.stringFromDate(now.minusDays(2))
         
         //liveTickets = mockData.parseExampleXMLFile()
-        let ticketShown = [Bool](count: liveTickets.count, repeatedValue: false)
-        liveTicketsShown = ticketShown
+        
         ConnectionService.sharedInstance.getChange(actualEnd: "2016-03-10 00:00:00", actualEnd2: "2016-03-10 24:00:00", aeD: "1")
         liveTickets = ConnectionService.sharedInstance.ticketList
+        let ticketShown = [Bool](count: liveTickets.count, repeatedValue: false)
+        liveTicketsShown = ticketShown
         
         sortClosureCodes()
     }
@@ -205,6 +212,8 @@ class ArchiveTableViewController: UITableViewController, UITextFieldDelegate, Ch
         pieChartView.delegate = self
         //loadTickets()
         liveTickets = mockData.parseExampleXMLFile()
+        let ticketShown = [Bool](count: liveTickets.count, repeatedValue: false)
+        liveTicketsShown = ticketShown
         sortClosureCodes()
         setValuesForGraph()
         
@@ -308,9 +317,13 @@ class ArchiveTableViewController: UITableViewController, UITextFieldDelegate, Ch
             (cell as! ArchiveTableViewCell).expandIndicator.image = UIImage(named: "expand_more")
         }
         
-        if (shouldAnimate) {
+        if (liveTicketsShown[indexPath.row] == false) {
             let cellPosition = indexPath.indexAtPosition(1)
-            let delay : Double = Double(cellPosition) * 0.1
+            var delay : Double = Double(cellPosition) * 0.1
+            if (delay >= 0.6) {
+                delay = 0.0
+            }
+            
             let rotationTransform = CATransform3DTranslate(CATransform3DIdentity, -1000, 0, 0)
             
             cell.layer.transform = rotationTransform
@@ -320,6 +333,7 @@ class ArchiveTableViewController: UITableViewController, UITextFieldDelegate, Ch
                 }, completion: { finished in
                     
             })
+            liveTicketsShown[indexPath.row] = true
         }
         
 //        if (liveTicketsShown[indexPath.row] == false) {
