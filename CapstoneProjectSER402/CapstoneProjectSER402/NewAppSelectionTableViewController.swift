@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class NewAppSelectionTableViewController: UITableViewController {
 
@@ -14,6 +15,14 @@ class NewAppSelectionTableViewController: UITableViewController {
     var appNamesStrings = [String]()
     var selectedApps = [String]()
     var appAreasSelection = [BusinessArea]()
+    var sysIDtoCall = [String]()
+    var appAreasDidSelect = [BusinessArea]()
+    var areasShown : [Bool] = []
+    var areaApps = [[BusinessApp]]()
+    var apps = [BusinessApp]()
+    
+    var appDel:AppDelegate?
+    var context:NSManagedObjectContext?
     
     @IBAction func selectAllButtonPressed(sender: UIButton) {
         let section = 1
@@ -38,9 +47,43 @@ class NewAppSelectionTableViewController: UITableViewController {
         print(selectedApps)
         
     }
+    
+    func callApps()
+    {
+        sysIDtoCall.removeAll()
+        
+        for area in appAreasSelection
+        {
+            sysIDtoCall += [area.getSysID()]
+            appAreasDidSelect += [area]
+        }
+        
+        for sysID in sysIDtoCall
+        {
+            var appsForArea = [BusinessApp]()
+            ConnectionService.sharedInstance.getBusiness(appArea: sysID)
+            appsForArea = ConnectionService.sharedInstance.businessApps
+            let shown = [Bool](count: appsForArea.count, repeatedValue: false)
+            areasShown = shown
+            areaApps += [appsForArea]
+        }
+        
+        for area in areaApps
+        {
+            for app in area
+            {
+                appNamesStrings += [app.businessApp]
+                apps += [app]
+            }
+        }
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        appDel = (UIApplication.sharedApplication().delegate as! AppDelegate)
+        context = appDel!.managedObjectContext
+        
+        callApps()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 

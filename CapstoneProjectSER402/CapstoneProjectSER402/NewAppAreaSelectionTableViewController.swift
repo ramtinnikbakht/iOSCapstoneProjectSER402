@@ -66,8 +66,6 @@ class NewAppAreaSelectionTableViewController: UITableViewController {
         }
         return cell
 
-
-        return cell
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
