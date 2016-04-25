@@ -142,7 +142,12 @@ class UserProfilePreferencesTableViewController: UITableViewController {
         }
     }
     
-    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
+    {
+        let destViewController : NewAppAreaSelectionTableViewController = segue.destinationViewController as! NewAppAreaSelectionTableViewController
+        destViewController.myApps = myApps
+        
+    }
     /*
     // Override to support rearranging the table view.
     override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {

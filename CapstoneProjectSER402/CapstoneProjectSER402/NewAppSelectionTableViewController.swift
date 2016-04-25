@@ -24,6 +24,8 @@ class NewAppSelectionTableViewController: UITableViewController {
     var appDel:AppDelegate?
     var context:NSManagedObjectContext?
     
+    var myApps = [String]()
+    
     @IBAction func selectAllButtonPressed(sender: UIButton) {
         let section = 1
         for (var row = 0; row < tableView.numberOfRowsInSection(section); ++row) {
@@ -84,6 +86,9 @@ class NewAppSelectionTableViewController: UITableViewController {
         context = appDel!.managedObjectContext
         
         callApps()
+        print("before \(appNamesStrings)")
+        appNamesStrings = appNamesStrings.filter{!myApps.contains($0) }
+        print("after \(appNamesStrings)")
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 

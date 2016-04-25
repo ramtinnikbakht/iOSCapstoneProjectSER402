@@ -14,7 +14,7 @@ class NewAppAreaSelectionTableViewController: UITableViewController {
     var busArea = [BusinessArea]()
     var selectedAppAreas = [String]()
     var selectedAreas = [BusinessArea]()
-    
+    var myApps = [String]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -88,7 +88,7 @@ class NewAppAreaSelectionTableViewController: UITableViewController {
         let destViewController : NewAppSelectionTableViewController = segue.destinationViewController as! NewAppSelectionTableViewController
         sendSelectedApps()
         destViewController.appAreasSelection = selectedAreas
-        
+        destViewController.myApps = myApps
         
     }
     
