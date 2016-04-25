@@ -747,7 +747,7 @@ class AnalysisTableViewController: UITableViewController, UITextFieldDelegate, C
         radarChartView.descriptionText = ""
         radarChartView.innerWebColor = charcoal
         radarChartView.xAxis.labelPosition = .Bottom
-        radarChartView.noDataTextDescription = "Data has not been selected"
+        radarChartView.noDataTextDescription = ""
         radarChartView.yAxis.enabled = false
         radarChartView.animate(xAxisDuration: 1.0, yAxisDuration: 1.0, easingOption: .EaseOutSine)
         radarChartData.setValueFont(UIFont(name: "Helvetica", size: 12))

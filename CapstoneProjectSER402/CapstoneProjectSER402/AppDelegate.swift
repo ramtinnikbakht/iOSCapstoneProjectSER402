@@ -44,7 +44,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         {
             let results:NSArray = try context!.executeFetchRequest(fetchRequest)
             if (results.count > 0) {
-                userType = results[0].userType!
+                let max = results.count - 1
+                userType = results[max].userType!
             }
         }
         catch let error as NSError

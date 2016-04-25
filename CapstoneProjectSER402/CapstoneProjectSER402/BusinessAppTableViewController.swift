@@ -121,7 +121,8 @@ class BusinessAppTableViewController: UITableViewController, ChartViewDelegate
         do
         {
             let results:NSArray = try context!.executeFetchRequest(fetchRequest)
-            userType = results[0].userType!
+            let max = results.count - 1
+            userType = results[max].userType!
         }
         catch let error as NSError
         {
