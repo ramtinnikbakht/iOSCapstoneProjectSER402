@@ -56,8 +56,15 @@ class NewAppAreaSelectionTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("newapparea", forIndexPath: indexPath)
-
+        let lightGrey = UIColor.lightGrayColor()
+        cell.backgroundColor = UIColor.whiteColor()
+        cell.layer.shadowColor = lightGrey.CGColor
+        cell.layer.shadowRadius = 1.5
+        cell.layer.shadowOpacity = 0.7
+        cell.layer.shadowOffset = CGSizeZero
+        cell.layer.masksToBounds = false
         cell.textLabel?.text = appsAreaArray[indexPath.row]
+        
         if (selectedAppAreas.contains(appsAreaArray[indexPath.row])) {
             cell.accessoryType = .Checkmark
         } else {
@@ -70,7 +77,7 @@ class NewAppAreaSelectionTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
     {
-        let cell = tableView.cellForRowAtIndexPath(indexPath) as! UITableViewCell!
+        let cell = tableView.cellForRowAtIndexPath(indexPath) as UITableViewCell!
         let selectedArea = cell.textLabel?.text
         
         if (selectedAppAreas.contains(selectedArea!)) {

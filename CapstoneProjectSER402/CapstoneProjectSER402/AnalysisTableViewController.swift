@@ -9,9 +9,10 @@
 import UIKit
 import Charts
 import QuartzCore
+import CoreData
 
 class AnalysisTableViewController: UITableViewController, UITextFieldDelegate, ChartViewDelegate {
-    
+    var userType = ""
     var ticketRisks = [Double]()
     var ticketStartDates = [String]()
     var daySegments = [String]()
@@ -39,6 +40,8 @@ class AnalysisTableViewController: UITableViewController, UITextFieldDelegate, C
     var day1Header = String()
     var day2Header = String()
     var day3Header = String()
+    var appDel:AppDelegate?
+    var context:NSManagedObjectContext?
     let highTicketTotal = UILabel(frame: CGRectMake(-2.5, 60, 50, 50))
     let highTicketTab = UIImageView(frame: CGRectMake(-10, 60, 60, 50))
     let lowTicketTotal = UILabel(frame: CGRectMake(327.5, 60, 50, 50))
@@ -103,99 +106,7 @@ class AnalysisTableViewController: UITableViewController, UITextFieldDelegate, C
     
     @IBAction func timeIndexChanged(sender: AnyObject) {
         isGraphSelected = false
-        switch timeSegmentedControl.selectedSegmentIndex
-        {
-        case 0:
-            liveTickets.removeAll()
-            calculateDaySegment()
-            selectedDay = daySegments[0]
-            calculateTimeFrame(daySegments[0], counterValue: 0)
-            currentDateLabel.text = day0Header
-            ConnectionService.sharedInstance.getChange(plannedStart: timeSegments[0], plannedStart2: timeSegments[5], psD: "1")
-            liveTickets = ConnectionService.sharedInstance.ticketList
-            sortTicketsByRisk()
-            calculateGraphValues()
-            radarChartView.clear()
-            timeFrameStepper.value = 0
-            if (isTicketsNotEmpty(highRiskCount, lowRiskValues: lowRiskCount)) {
-                noTicketsIcon.hidden = true
-                setChart(selectedHourLabels, values: lowRiskCount, values2: highRiskCount)
-            } else {
-                noTicketsIcon.hidden = false
-                noTicketsIcon.image = UIImage(named: "EmptyGraphIcon.png")
-            }
-            highTicketTotal.text = highRiskTickets.count.description
-            lowTicketTotal.text = lowRiskTickets.count.description
-            tableView.reloadData()
-        case 1:
-            liveTickets.removeAll()
-            calculateDaySegment()
-            selectedDay = daySegments[1]
-            calculateTimeFrame(daySegments[1], counterValue: 0)
-            currentDateLabel.text = day1Header
-            ConnectionService.sharedInstance.getChange(plannedStart: timeSegments[0], plannedStart2: timeSegments[5], psD: "1")
-            liveTickets = ConnectionService.sharedInstance.ticketList
-            sortTicketsByRisk()
-            calculateGraphValues()
-            radarChartView.clear()
-            timeFrameStepper.value = 0
-            if (isTicketsNotEmpty(highRiskCount, lowRiskValues: lowRiskCount)) {
-                noTicketsIcon.hidden = true
-                setChart(selectedHourLabels, values: lowRiskCount, values2: highRiskCount)
-            } else {
-                noTicketsIcon.hidden = false
-                noTicketsIcon.image = UIImage(named: "EmptyGraphIcon.png")
-            }
-            highTicketTotal.text = highRiskTickets.count.description
-            lowTicketTotal.text = lowRiskTickets.count.description
-            tableView.reloadData()
-        case 2:
-            liveTickets.removeAll()
-            calculateDaySegment()
-            selectedDay = daySegments[2]
-            calculateTimeFrame(daySegments[2], counterValue: 0)
-            currentDateLabel.text = day2Header
-            ConnectionService.sharedInstance.getChange(plannedStart: timeSegments[0], plannedStart2: timeSegments[5], psD: "1")
-            liveTickets = ConnectionService.sharedInstance.ticketList
-            sortTicketsByRisk()
-            calculateGraphValues()
-            radarChartView.clear()
-            timeFrameStepper.value = 0
-            if (isTicketsNotEmpty(highRiskCount, lowRiskValues: lowRiskCount)) {
-                noTicketsIcon.hidden = true
-                setChart(selectedHourLabels, values: lowRiskCount, values2: highRiskCount)
-            } else {
-                noTicketsIcon.hidden = false
-                noTicketsIcon.image = UIImage(named: "EmptyGraphIcon.png")
-            }
-            highTicketTotal.text = highRiskTickets.count.description
-            lowTicketTotal.text = lowRiskTickets.count.description
-            tableView.reloadData()
-        case 3:
-            liveTickets.removeAll()
-            calculateDaySegment()
-            selectedDay = daySegments[3]
-            calculateTimeFrame(daySegments[3], counterValue: 0)
-            currentDateLabel.text = day3Header
-            ConnectionService.sharedInstance.getChange(plannedStart: timeSegments[0], plannedStart2: timeSegments[5], psD: "1")
-            liveTickets = ConnectionService.sharedInstance.ticketList
-            sortTicketsByRisk()
-            calculateGraphValues()
-            radarChartView.clear()
-            timeFrameStepper.value = 0
-            if (isTicketsNotEmpty(highRiskCount, lowRiskValues: lowRiskCount)) {
-                noTicketsIcon.hidden = true
-                setChart(selectedHourLabels, values: lowRiskCount, values2: highRiskCount)
-            } else {
-                noTicketsIcon.hidden = false
-                noTicketsIcon.image = UIImage(named: "EmptyGraphIcon.png")
-            }
-            highTicketTotal.text = highRiskTickets.count.description
-            lowTicketTotal.text = lowRiskTickets.count.description
-            tableView.reloadData()
-        default:
-            break;
-        }
+        calculateSegmentValues(timeSegmentedControl.selectedSegmentIndex)
     }
     
     @IBAction func stepperValueChanged(sender: UIStepper) {
@@ -206,8 +117,8 @@ class AnalysisTableViewController: UITableViewController, UITextFieldDelegate, C
         calculateDaySegment()
         calculateTimeFrame(selectedDay, counterValue: timeFrameIndex)
         
-                ConnectionService.sharedInstance.getChange(plannedStart: timeSegments[0], plannedStart2: timeSegments[5], psD: "1")
-                liveTickets = ConnectionService.sharedInstance.ticketList
+        ConnectionService.sharedInstance.getChange(plannedStart: timeSegments[0], plannedStart2: timeSegments[5], psD: "1")
+        liveTickets = ConnectionService.sharedInstance.ticketList
         //liveTickets = mockData.MOCK_DATA_ARRAY
         sortTicketsByRisk()
         calculateGraphValues()
@@ -272,7 +183,6 @@ class AnalysisTableViewController: UITableViewController, UITextFieldDelegate, C
         
         let dateArr = DateFormat.stringFromDate(now)
         let currentDate = dateArr.characters.split{$0 == " "}.map(String.init)
-        //let currentDate = NSDate()
         let dateBeginning_Now = currentDate[0] + " 00:00:00"
         let dateZero = DateFormat.dateFromString(dateBeginning_Now)
         
@@ -331,13 +241,6 @@ class AnalysisTableViewController: UITableViewController, UITextFieldDelegate, C
         UIView.transitionWithView(currentTimeFrameTF, duration: 0.5, options: [.TransitionFlipFromLeft], animations: {
             self.currentTimeFrameTF.text = self.selectedHourLabels[0] + " - " + self.selectedHourLabels[5]
             }, completion: nil)
-        
-//        let animation = CATransition()
-//        animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseIn)
-//        animation.type = kCATransitionFromTop
-//        animation.duration = 0.75
-//        currentTimeFrameTF.layer.addAnimation(animation, forKey: "kCATransitionFromTop")
-//        currentTimeFrameTF.text = selectedHourLabels[0] + " - " + selectedHourLabels[5]
     }
     
     func calculateGraphValues() {
@@ -426,6 +329,45 @@ class AnalysisTableViewController: UITableViewController, UITextFieldDelegate, C
         highRiskCount += [Double(hour1CountHigh), Double(hour2CountHigh), Double(hour3CountHigh), Double(hour4CountHigh), Double(hour5CountHigh), Double(hour6CountHigh)]
     }
     
+    func calculateSegmentValues(segmentIndex: Int) {
+        liveTickets.removeAll()
+        calculateDaySegment()
+        selectedDay = daySegments[segmentIndex]
+        calculateTimeFrame(daySegments[segmentIndex], counterValue: 0)
+        
+        if (segmentIndex == 0) {
+            currentDateLabel.text = day0Header
+        } else if (segmentIndex == 1) {
+            currentDateLabel.text = day1Header
+        } else if (segmentIndex == 2) {
+            currentDateLabel.text = day2Header
+        } else if (segmentIndex == 3) {
+            currentDateLabel.text = day3Header
+        }
+        
+        if (userType == "Demo") {
+            liveTickets = mockData.MOCK_DATA_ARRAY
+            liveTickets = sortTicketsByDay(segmentIndex)
+        } else {
+            ConnectionService.sharedInstance.getChange(plannedStart: timeSegments[0], plannedStart2: timeSegments[5], psD: "1")
+            liveTickets = ConnectionService.sharedInstance.ticketList
+        }
+        sortTicketsByRisk()
+        calculateGraphValues()
+        radarChartView.clear()
+        timeFrameStepper.value = 0
+        if (isTicketsNotEmpty(highRiskCount, lowRiskValues: lowRiskCount)) {
+            noTicketsIcon.hidden = true
+            setChart(selectedHourLabels, values: lowRiskCount, values2: highRiskCount)
+        } else {
+            noTicketsIcon.hidden = false
+            noTicketsIcon.image = UIImage(named: "EmptyGraphIcon.png")
+        }
+        highTicketTotal.text = highRiskTickets.count.description
+        lowTicketTotal.text = lowRiskTickets.count.description
+        tableView.reloadData()
+    }
+    
     func sortTicketsByRisk() {
         lowRiskTickets.removeAll()
         highRiskTickets.removeAll()
@@ -440,6 +382,43 @@ class AnalysisTableViewController: UITableViewController, UITextFieldDelegate, C
                 highRiskTickets += [ticket]
             }
         }
+    }
+    
+    func sortTicketsByDay(segmentIndex: Int) -> [ChangeTicket] {
+        DateFormat.locale = NSLocale(localeIdentifier: "US_en")
+        DateFormat.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        var filteredByTime : [ChangeTicket] = []
+        let now = NSDate()
+        let day0 = now.day
+        let day1 = now.plusDays(1).day
+        let day2 = now.plusDays(2).day
+        let day3 = now.plusDays(3).day
+        
+        for ticket in liveTickets {
+            if (ticket.plannedStart != "") {
+                let ticketPlannedStart = DateFormat.dateFromString(ticket.plannedStart)
+                let ticketDay = ticketPlannedStart?.day
+                
+                if (segmentIndex == 0) {
+                    if (ticketDay == day0) {
+                        filteredByTime += [ticket]
+                    }
+                } else if (segmentIndex == 1) {
+                    if (ticketDay == day1) {
+                        filteredByTime += [ticket]
+                    }
+                } else if (segmentIndex == 2) {
+                    if (ticketDay == day2) {
+                        filteredByTime += [ticket]
+                    }
+                } else if (segmentIndex == 3) {
+                    if (ticketDay == day3) {
+                        filteredByTime += [ticket]
+                    }
+                }
+            }
+        }
+        return filteredByTime
     }
     
     func isTicketsNotEmpty(highRiskValues: [Double], lowRiskValues: [Double]) -> Bool {
@@ -501,6 +480,9 @@ class AnalysisTableViewController: UITableViewController, UITextFieldDelegate, C
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        appDel = (UIApplication.sharedApplication().delegate as! AppDelegate)
+        context = appDel!.managedObjectContext
+        
         radarChartView.delegate = self
         timeFrameStepper.wraps = true
         timeFrameStepper.autorepeat = false
@@ -514,7 +496,6 @@ class AnalysisTableViewController: UITableViewController, UITextFieldDelegate, C
         view.addSubview(highTicketTab)
         view.addSubview(highTicketTotal)
         
-        
         lowTicketTotal.textColor = UIColor.whiteColor()
         lowTicketTotal.textAlignment = .Center
         lowTicketTab.backgroundColor = low
@@ -523,21 +504,43 @@ class AnalysisTableViewController: UITableViewController, UITextFieldDelegate, C
         view.addSubview(lowTicketTab)
         view.addSubview(lowTicketTotal)
         
-        //currentTimeFrameTF.addTarget(self, action: "timeFrameUpdated:", forControlEvents: UIControlEvents.ValueChanged)
         
         // Do any additional setup after loading the view.
+        let fetchRequest = NSFetchRequest(entityName: "User")
+        do
+        {
+            let results:NSArray = try context!.executeFetchRequest(fetchRequest)
+            let max = results.count - 1
+            userType = results[max].userType!
+        }
+        catch let error as NSError
+        {
+            print("Could not fetch \(error), \(error.userInfo)")
+        }
+        
         calculateDaySegment()
         selectedDay = daySegments[0]
         calculateTimeFrame(daySegments[0], counterValue: 0)
         setupSegmentControl()
         currentDateLabel.text = day0Header
-        //        ConnectionService.sharedInstance.getChange(plannedStart: timeSegments[0], plannedStart2: timeSegments[5], psD: "1")
-        //        liveTickets = ConnectionService.sharedInstance.ticketList
-        liveTickets = mockData.parseExampleXMLFile()
+        
+        if (userType == "Demo") {
+            liveTickets = mockData.parseExampleXMLFile()
+            liveTickets = sortTicketsByDay(0)
+        } else {
+            ConnectionService.sharedInstance.getChange(plannedStart: timeSegments[0], plannedStart2: timeSegments[5], psD: "1")
+            liveTickets = ConnectionService.sharedInstance.ticketList
+        }
+        
         sortTicketsByRisk()
         calculateGraphValues()
-        setChart(selectedHourLabels, values: lowRiskCount, values2: highRiskCount)
-        
+        if (isTicketsNotEmpty(highRiskCount, lowRiskValues: lowRiskCount)) {
+            noTicketsIcon.hidden = true
+            setChart(selectedHourLabels, values: lowRiskCount, values2: highRiskCount)
+        } else {
+            noTicketsIcon.hidden = false
+            noTicketsIcon.image = UIImage(named: "EmptyGraphIcon.png")
+        }
         highTicketTotal.text = highRiskTickets.count.description
         lowTicketTotal.text = lowRiskTickets.count.description
     }

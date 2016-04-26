@@ -75,7 +75,6 @@ class AppAreaSelectionTableViewController: UITableViewController {
             cell.tintColor = UIColor(red: 0/255.0, green: 64/255.0, blue: 128/255.0, alpha: 1.0)
             cell.accessoryType = .None
         }
-        
         let lightGrey = UIColor.lightGrayColor()
         cell.layer.shadowColor = lightGrey.CGColor
         cell.layer.shadowRadius = 1.5
