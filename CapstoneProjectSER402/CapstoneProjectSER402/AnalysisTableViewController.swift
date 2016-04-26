@@ -266,15 +266,14 @@ class AnalysisTableViewController: UITableViewController, UITextFieldDelegate, C
     
     func calculateDaySegment() {
         daySegments.removeAll()
-        //let now = NSDate()
+        let now = NSDate()
         DateFormat.locale = NSLocale(localeIdentifier: "US_en")
         DateFormat.dateFormat = "yyyy-MM-dd HH:mm:ss"
         
-        //let dateArr = DateFormat.stringFromDate(now)
-        //let currentDate = dateArr.characters.split{$0 == " "}.map(String.init)
-        let currentDate = "2016-03-10 00:00:00"
-        //let dateBeginning_Now = currentDate[0] + " 00:00:00"
-        let dateBeginning_Now = currentDate //+ " 00:00:00"
+        let dateArr = DateFormat.stringFromDate(now)
+        let currentDate = dateArr.characters.split{$0 == " "}.map(String.init)
+        //let currentDate = NSDate()
+        let dateBeginning_Now = currentDate[0] + " 00:00:00"
         let dateZero = DateFormat.dateFromString(dateBeginning_Now)
         
         let dateBeginning_24 = dateZero?.plusDays(1)

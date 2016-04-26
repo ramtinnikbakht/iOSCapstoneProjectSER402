@@ -111,6 +111,25 @@ class BusinessAppTableViewController: UITableViewController, ChartViewDelegate
         setChart(timeFrame, values: lowRisk, values2: highRisk)
         isShifting = false
     }
+    
+    override func viewWillAppear(animated: Bool) {
+//        let fetchRequest = NSFetchRequest(entityName: "User")
+//        do
+//        {
+//            let results:NSArray = try context!.executeFetchRequest(fetchRequest)
+//            let max = results.count - 1
+//            if (userType != results[max].userType!) {
+//                loadSampleApps()
+//                tableView.reloadData()
+//            } else {
+//                return
+//            }
+//        }
+//        catch let error as NSError
+//        {
+//            print("Could not fetch \(error), \(error.userInfo)")
+//        }
+    }
 
     func loadSampleApps()
     {
@@ -373,12 +392,6 @@ class BusinessAppTableViewController: UITableViewController, ChartViewDelegate
         headerCell.layer.masksToBounds = false
         
         return headerCell
-    }
-    
-    @IBAction func expandSection(sender: AnyObject) {
-        isCollapsed[sender.tag!] = !isCollapsed[sender.tag!];
-        isShifting = true
-        tableView.reloadData()
     }
     
     

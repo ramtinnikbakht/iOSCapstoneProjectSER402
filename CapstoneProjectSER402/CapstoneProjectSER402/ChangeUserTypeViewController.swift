@@ -38,7 +38,7 @@ class ChangeUserTypeViewController: UIViewController, UIPickerViewDataSource, UI
 
     @IBOutlet weak var currentUserTypeLabel: UILabel!
     @IBOutlet weak var newUserTypePicker: UIPickerView!
-    var userTypesPickerSource = ["ITSM", "Business/Leadership", "App Owner"]
+    var userTypesPickerSource = ["ITSM", "Business/Leadership", "App Owner", "Demo"]
     var currentUserType: String = ""
     var newSelectedUserType: String = ""
     
@@ -55,14 +55,6 @@ class ChangeUserTypeViewController: UIViewController, UIPickerViewDataSource, UI
             
             for var i = 0; i < results.count; i++
             {
-                //valueForKey("...") what you want to grab from that entity
-                /*print(results[i].valueForKey("businessUnit"))
-                print(results[i].valueForKey("businessArea"))
-                print(results[i].valueForKey("businessAppSys"))
-                print(results[i].valueForKey("businessApp"))
-                print(results[i].valueForKey("appCriticality"))*/
-                //to get as string do
-                
                 currentUserTypeLabel.text = results[i].valueForKey("userType") as? String
             }
         }
@@ -90,18 +82,7 @@ class ChangeUserTypeViewController: UIViewController, UIPickerViewDataSource, UI
     }
     
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        if (row == 0) {
-            newSelectedUserType = userTypesPickerSource[0]
-        }
-        else if (row == 1) {
-            newSelectedUserType = userTypesPickerSource[1]
-        }
-        else if (row == 2) {
-            newSelectedUserType = userTypesPickerSource[2]
-        }
-        else {
-            print("No new user type was selected")
-        }
+        newSelectedUserType = userTypesPickerSource[row]
     }
 
     override func didReceiveMemoryWarning() {

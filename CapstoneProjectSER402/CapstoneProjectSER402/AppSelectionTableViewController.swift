@@ -40,7 +40,7 @@ class AppSelectionTableViewController: UITableViewController {
     @IBAction func selectAllButtonPressed(sender: UIButton) {
         let section = 2
         for (var row = 0; row < tableView.numberOfRowsInSection(section); ++row) {
-            tableView.cellForRowAtIndexPath(NSIndexPath(forRow: row, inSection: section))?.tintColor = UIColor(red: 0/255.0, green: 64/255.0, blue: 128/255.0, alpha: 1.0)
+            //tableView.cellForRowAtIndexPath(NSIndexPath(forRow: row, inSection: section))?.tintColor = UIColor(red: 0/255.0, green: 64/255.0, blue: 128/255.0, alpha: 1.0)
             tableView.cellForRowAtIndexPath(NSIndexPath(forRow: row, inSection: section))?.accessoryType = UITableViewCellAccessoryType.Checkmark
             
             
@@ -202,7 +202,7 @@ class AppSelectionTableViewController: UITableViewController {
         if (selectedApps.contains(appNamesStrings[indexPath.row])) {
             cell.accessoryType = .Checkmark
         } else {
-            cell.tintColor = UIColor(red: 0/255.0, green: 64/255.0, blue: 128/255.0, alpha: 1.0)
+            //cell.tintColor = UIColor(red: 0/255.0, green: 64/255.0, blue: 128/255.0, alpha: 1.0)
             cell.accessoryType = .None
         }
         
@@ -288,7 +288,6 @@ class AppSelectionTableViewController: UITableViewController {
             }
             else
             {
-                cell.tintColor = UIColor(red: 0/255.0, green: 64/255.0, blue: 128/255.0, alpha: 1.0)
                 cell.accessoryType = UITableViewCellAccessoryType.Checkmark
                 selectedApps += [selectedApp]
             }
@@ -304,7 +303,7 @@ class AppSelectionTableViewController: UITableViewController {
                 let cellPosition = indexPath.indexAtPosition(1)
                 var delay : Double = Double(cellPosition) * 0.1
                 
-                if (delay >= 1.2) {
+                if (delay >= 1.0) {
                     delay = 0
                 }
                 
@@ -375,7 +374,7 @@ class AppSelectionTableViewController: UITableViewController {
     }
     func saveABusinessArea(areaObj: BusinessArea)
     {
-        var newBusinessArea = NSEntityDescription.insertNewObjectForEntityForName("BusinessArea", inManagedObjectContext: context!) as NSManagedObject
+        let newBusinessArea = NSEntityDescription.insertNewObjectForEntityForName("BusinessArea", inManagedObjectContext: context!) as NSManagedObject
         newBusinessArea.setValue(areaObj.getName(), forKey: "busArea")
         newBusinessArea.setValue(areaObj.getSysID(), forKey: "sysID")
         contextSave()
@@ -383,7 +382,7 @@ class AppSelectionTableViewController: UITableViewController {
     
     func saveUserType(userTypeToSave: String)
     {
-        var newUserType = NSEntityDescription.insertNewObjectForEntityForName("User", inManagedObjectContext: context!) as NSManagedObject
+        let newUserType = NSEntityDescription.insertNewObjectForEntityForName("User", inManagedObjectContext: context!) as NSManagedObject
         newUserType.setValue(userTypeToSave, forKey: "userType")
         contextSave()
     }
@@ -410,10 +409,8 @@ class AppSelectionTableViewController: UITableViewController {
     func saveSelectedApps()
     {
         selectedAppsArray.removeAll()
-        //print("in Save  selectede apps func")
         for(var j = 0; j<selectedApps.count;j++)
         {
-            //print("in first for loop")
             for(var k = 0;k<apps.count;k++)
             {
                 if selectedApps[j] == apps[k].getBusinessApp()
@@ -432,83 +429,9 @@ class AppSelectionTableViewController: UITableViewController {
             let destViewController : SplashViewController = segue.destinationViewController as! SplashViewController
             saveSelectedApps()
             saveToCoreData()
-            
-            /*
-            //var managedOBJ = [NSManagedObject]()
-            let fetchRequest = NSFetchRequest(entityName: "BusinessApps")
-            do
-            {
-                let results:NSArray = try context!.executeFetchRequest(fetchRequest)
-                //managedOBJ = try context!.executeFetchRequest(fetchRequest) as! [NSManagedObject]
-                for var i = 0; i < results.count; i++
-                {
-                    print(results[i].valueForKey("businessUnit"))
-                    print(results[i].valueForKey("businessArea"))
-                    print(results[i].valueForKey("businessAppSys"))
-                    print(results[i].valueForKey("businessApp"))
-                    print(results[i].valueForKey("appCriticality"))
-                    
-                    //print(managedOBJ[i].valueForKey("businessApp"))
-                    //print(managedOBJ[i].valueForKey("appCriticality"))
-                }
-            }
-            catch let error as NSError
-            {
-                //print ("in error")
-                print("Could not fetch \(error), \(error.userInfo)")
-            }
-            */
-
         }
-                
-        
-        
     }
     
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
     override func didReceiveMemoryWarning()
     {
         super.didReceiveMemoryWarning()
