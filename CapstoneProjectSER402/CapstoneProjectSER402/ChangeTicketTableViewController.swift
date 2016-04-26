@@ -71,60 +71,8 @@ class ChangeTicketTableViewController: UITableViewController, ChartViewDelegate 
             businessAppLabel.text = selectedTicket.BusinessApplication
         }
         businessAppLabel.textColor = UIColor.blackColor()
-        
+        shortDescriptionLabel.text = selectedTicket.shortDescription
         loadTickets()
-    }
-    
-    @IBAction func pageControlUpdated(sender: AnyObject) {
-        if (sender.currentPage! == 0) {
-
-        } else {
-            //lineChartView.hidden = false
-            //pieChartView.hidden = true
-            
-            // X Value (Time) Setup
-            var timeRange : [NSDate] = getTimeRange()
-            var stringRange : [String] = []
-            let formatter = NSDateFormatter()
-            let total = timeRange.count
-            var sortIndex = 0
-            formatter.dateStyle = .ShortStyle
-            
-            while ((sortIndex+1) < total) {
-                let time = timeRange[sortIndex]
-                let nextTime = timeRange[sortIndex + 1]
-
-                if nextTime.isLessThan(time) {
-                    timeRange.removeAtIndex(sortIndex+1)
-                    timeRange.removeAtIndex(sortIndex)
-                    timeRange.insert(nextTime, atIndex: sortIndex)
-                    timeRange.insert(time, atIndex: sortIndex+1)
-                    sortIndex=0
-                } else {
-                    sortIndex++
-                }
-            }
-            for time in timeRange {
-                let formattedTime = formatter.stringFromDate(time)
-                stringRange += [formattedTime]
-            }
-            
-            // Y Value (Risk) Setup
-            var values : [Double] = []
-            for time in timeRange {
-                let formatter = NSDateFormatter()
-                formatter.locale = NSLocale(localeIdentifier: "US_en")
-                formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-                
-                for ticket in fullTickets {
-                    if (time.isEqual(formatter.dateFromString(ticket.plannedStart)!)) {
-                        values += [2.0]
-                    }
-                }
-            }
-            
-            //setLineChart(stringRange, values: values)
-        }
     }
     
     func loadTickets() {
@@ -134,19 +82,21 @@ class ChangeTicketTableViewController: UITableViewController, ChartViewDelegate 
         ConnectionService.sharedInstance.getChange(selectedTicket.number)
         liveTickets = ConnectionService.sharedInstance.ticketList
 
-        generalAttributeValues += [liveTickets[0].plannedStart]
-        generalAttributeValues += [liveTickets[0].plannedEnd]
-        generalAttributeValues += [liveTickets[0].type]
-        generalAttributeValues += [liveTickets[0].risk]
-        
-        if (liveTickets[0].BusinessApplication == "element <business_Application> not found") {
-            businessAttributeValues += ["Not Applicable"]
-        } else {
-            businessAttributeValues += [liveTickets[0].BusinessApplication]
+        if (liveTickets.count > 0) {
+            generalAttributeValues += [liveTickets[0].plannedStart]
+            generalAttributeValues += [liveTickets[0].plannedEnd]
+            generalAttributeValues += [liveTickets[0].type]
+            generalAttributeValues += [liveTickets[0].risk]
+            
+            if (liveTickets[0].BusinessApplication == "element <business_Application> not found") {
+                businessAttributeValues += ["Not Applicable"]
+            } else {
+                businessAttributeValues += [liveTickets[0].BusinessApplication]
+            }
+            businessAttributeValues += [liveTickets[0].requestedByGroupBusinessArea]
+            businessAttributeValues += [liveTickets[0].requestedByGroupBusinessUnit]
+            businessAttributeValues += [liveTickets[0].requestedByGroupSubBusinessUnit]
         }
-        businessAttributeValues += [liveTickets[0].requestedByGroupBusinessArea]
-        businessAttributeValues += [liveTickets[0].requestedByGroupBusinessUnit]
-        businessAttributeValues += [liveTickets[0].requestedByGroupSubBusinessUnit]
         
         for ticket in liveTickets {
             if (ticket.risk == "Low" && ticket.type != "Emergency") {
@@ -165,7 +115,6 @@ class ChangeTicketTableViewController: UITableViewController, ChartViewDelegate 
                 emergencyTickets += [ticket]
             }
         }
-        
     }
     
     override func didReceiveMemoryWarning() {

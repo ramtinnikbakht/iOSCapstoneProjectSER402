@@ -7,25 +7,32 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		460338751CC7FB3E00CF17BC /* changeList_public.xml in Resources */ = {isa = PBXBuildFile; fileRef = 460338741CC7FB3E00CF17BC /* changeList_public.xml */; };
 		462EB8481C990BF00076C28D /* AllstateLoginHeader.png in Resources */ = {isa = PBXBuildFile; fileRef = 462EB83C1C990BF00076C28D /* AllstateLoginHeader.png */; };
 		462EB8491C990BF00076C28D /* AppSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462EB83D1C990BF00076C28D /* AppSelectionViewController.swift */; };
 		462EB84A1C990BF00076C28D /* Base.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 462EB83E1C990BF00076C28D /* Base.lproj */; };
 		462EB84B1C990BF00076C28D /* BusinessApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462EB83F1C990BF00076C28D /* BusinessApp.swift */; };
 		462EB84D1C990BF00076C28D /* AppSelectionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462EB8421C990BF00076C28D /* AppSelectionTableViewController.swift */; };
 		462EB8511C990BF00076C28D /* WatchedTicketTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462EB8471C990BF00076C28D /* WatchedTicketTableViewController.swift */; };
-		46A2AB121CA47C0E00F87C80 /* AnalysisViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A2AB0D1CA47C0E00F87C80 /* AnalysisViewController.swift */; };
 		46A2AB131CA47C0E00F87C80 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46A2AB101CA47C0E00F87C80 /* SWRevealViewController.m */; };
 		46A2AB141CA47C0E00F87C80 /* UserTypeSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A2AB111CA47C0E00F87C80 /* UserTypeSelectionViewController.swift */; };
+		46A56D561CCADC7600D629FD /* BusinessArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A56D551CCADC7600D629FD /* BusinessArea.swift */; };
 		46C1CF3D1CC70D0600969A0C /* changeList.xml in Resources */ = {isa = PBXBuildFile; fileRef = 46C1CF3C1CC70D0600969A0C /* changeList.xml */; };
 		46C2F4351CC592CD00F256C5 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C2F4341CC592CD00F256C5 /* MockData.swift */; };
 		46D0586C1CA3B79D005CFB61 /* AEXML.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D0586B1CA3B79D005CFB61 /* AEXML.swift */; };
+		46D54C551CC839820085B95E /* CapstoneProjectSER402.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 46D54C531CC839820085B95E /* CapstoneProjectSER402.xcdatamodeld */; };
 		46E832A41C88DD81001C376F /* ChangeTicket_Table_Template.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E832A31C88DD81001C376F /* ChangeTicket_Table_Template.swift */; };
 		46F792B61CA8F6E600F00404 /* ConnectionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F792B51CA8F6E600F00404 /* ConnectionService.swift */; };
 		480D79201CB37A0B00C57410 /* UserTypeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 480D791F1CB37A0B00C57410 /* UserTypeTableViewCell.swift */; };
+		481395CC1CCD71DD007C6A7C /* ChangeUserTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481395CB1CCD71DD007C6A7C /* ChangeUserTypeViewController.swift */; };
+		481395D11CCD92BC007C6A7C /* NewAppAreaSelectionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481395D01CCD92BC007C6A7C /* NewAppAreaSelectionTableViewController.swift */; };
+		481395D31CCD975E007C6A7C /* NewAppSelectionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481395D21CCD975E007C6A7C /* NewAppSelectionTableViewController.swift */; };
+		481395D51CCD9882007C6A7C /* NewAppsOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481395D41CCD9882007C6A7C /* NewAppsOptionTableViewCell.swift */; };
 		4818FE0D1CA498CF00B7EB47 /* settings-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4818FE0C1CA498CF00B7EB47 /* settings-icon.png */; };
 		4818FE121CA49CFA00B7EB47 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4818FE111CA49CFA00B7EB47 /* SettingsTableViewController.swift */; };
 		4852EEA91CAC6D280060CD3E /* AlertsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4852EEA81CAC6D280060CD3E /* AlertsTableViewCell.swift */; };
 		4852EEAE1CAC71D80060CD3E /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4852EEAD1CAC71D80060CD3E /* ProfileTableViewCell.swift */; };
+		4884D24B1CCC3F520065EF0B /* UserProfilePreferencesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4884D24A1CCC3F520065EF0B /* UserProfilePreferencesTableViewController.swift */; };
 		48993BED1C8CBB0A00EDA13E /* SelectUserTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48993BEC1C8CBB0A00EDA13E /* SelectUserTypeViewController.swift */; };
 		489AFBA81C7F6B3000E9DEB9 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489AFBA71C7F6B3000E9DEB9 /* User.swift */; };
 		489AFBAA1C7F8D2900E9DEB9 /* SetupContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489AFBA91C7F8D2900E9DEB9 /* SetupContentViewController.swift */; };
@@ -53,6 +60,12 @@
 		C121B52F1C8008CC001F3B16 /* WatchedTicketTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C121B52E1C8008CC001F3B16 /* WatchedTicketTableViewCell.swift */; };
 		C12E73AC1CBE5D360091ECE9 /* emergency.png in Resources */ = {isa = PBXBuildFile; fileRef = C12E73AB1CBE5D360091ECE9 /* emergency.png */; };
 		C12E73B91CC79EAB0091ECE9 /* ChangeTicketHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12E73B81CC79EAB0091ECE9 /* ChangeTicketHeaderCell.swift */; };
+		C12E73BF1CCA2D480091ECE9 /* AnalysisTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12E73BE1CCA2D480091ECE9 /* AnalysisTableViewController.swift */; };
+		C12E73C41CCAAF980091ECE9 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12E73C31CCAAF980091ECE9 /* SplashViewController.swift */; };
+		C12E73C61CCAB03E0091ECE9 /* splash2.png in Resources */ = {isa = PBXBuildFile; fileRef = C12E73C51CCAB03E0091ECE9 /* splash2.png */; };
+		C12E73C81CCAB5D80091ECE9 /* mychange_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = C12E73C71CCAB5D80091ECE9 /* mychange_icon.png */; };
+		C12E73CB1CCC0F930091ECE9 /* EmptyGraphIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = C12E73CA1CCC0F930091ECE9 /* EmptyGraphIcon.png */; };
+		C12E73D31CCD8F6D0091ECE9 /* forecast.png in Resources */ = {isa = PBXBuildFile; fileRef = C12E73D21CCD8F6D0091ECE9 /* forecast.png */; };
 		C142E6551C9BEC5A005F1DEC /* TicketModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C142E6541C9BEC5A005F1DEC /* TicketModel.swift */; };
 		C14333831CA0E9540083CA88 /* Charts in Resources */ = {isa = PBXBuildFile; fileRef = C14333821CA0E9540083CA88 /* Charts */; };
 		C14333931CA0E9CF0083CA88 /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C143338C1CA0E99B0083CA88 /* Charts.framework */; };
@@ -145,6 +158,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		460338741CC7FB3E00CF17BC /* changeList_public.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = changeList_public.xml; sourceTree = "<group>"; };
 		462EB83C1C990BF00076C28D /* AllstateLoginHeader.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AllstateLoginHeader.png; sourceTree = "<group>"; };
 		462EB83D1C990BF00076C28D /* AppSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppSelectionViewController.swift; sourceTree = "<group>"; };
 		462EB83E1C990BF00076C28D /* Base.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Base.lproj; sourceTree = "<group>"; };
@@ -154,21 +168,27 @@
 		462EB8431C990BF00076C28D /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		462EB8441C990BF00076C28D /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		462EB8471C990BF00076C28D /* WatchedTicketTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchedTicketTableViewController.swift; sourceTree = "<group>"; };
-		46A2AB0D1CA47C0E00F87C80 /* AnalysisViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalysisViewController.swift; sourceTree = "<group>"; };
 		46A2AB0E1CA47C0E00F87C80 /* CapstoneProjectSER402-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CapstoneProjectSER402-Bridging-Header.h"; sourceTree = "<group>"; };
 		46A2AB0F1CA47C0E00F87C80 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		46A2AB101CA47C0E00F87C80 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		46A2AB111CA47C0E00F87C80 /* UserTypeSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTypeSelectionViewController.swift; sourceTree = "<group>"; };
+		46A56D551CCADC7600D629FD /* BusinessArea.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusinessArea.swift; sourceTree = "<group>"; };
 		46C1CF3C1CC70D0600969A0C /* changeList.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = changeList.xml; sourceTree = "<group>"; };
 		46C2F4341CC592CD00F256C5 /* MockData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
 		46D0586B1CA3B79D005CFB61 /* AEXML.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AEXML.swift; sourceTree = "<group>"; };
+		46D54C541CC839820085B95E /* CapstoneProjectSER402.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CapstoneProjectSER402.xcdatamodel; sourceTree = "<group>"; };
 		46E832A31C88DD81001C376F /* ChangeTicket_Table_Template.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeTicket_Table_Template.swift; sourceTree = "<group>"; };
 		46F792B51CA8F6E600F00404 /* ConnectionService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionService.swift; sourceTree = "<group>"; };
 		480D791F1CB37A0B00C57410 /* UserTypeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTypeTableViewCell.swift; sourceTree = "<group>"; };
+		481395CB1CCD71DD007C6A7C /* ChangeUserTypeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeUserTypeViewController.swift; sourceTree = "<group>"; };
+		481395D01CCD92BC007C6A7C /* NewAppAreaSelectionTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewAppAreaSelectionTableViewController.swift; sourceTree = "<group>"; };
+		481395D21CCD975E007C6A7C /* NewAppSelectionTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewAppSelectionTableViewController.swift; sourceTree = "<group>"; };
+		481395D41CCD9882007C6A7C /* NewAppsOptionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewAppsOptionTableViewCell.swift; sourceTree = "<group>"; };
 		4818FE0C1CA498CF00B7EB47 /* settings-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings-icon.png"; sourceTree = "<group>"; };
 		4818FE111CA49CFA00B7EB47 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		4852EEA81CAC6D280060CD3E /* AlertsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertsTableViewCell.swift; sourceTree = "<group>"; };
 		4852EEAD1CAC71D80060CD3E /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
+		4884D24A1CCC3F520065EF0B /* UserProfilePreferencesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfilePreferencesTableViewController.swift; sourceTree = "<group>"; };
 		48993BEC1C8CBB0A00EDA13E /* SelectUserTypeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectUserTypeViewController.swift; sourceTree = "<group>"; };
 		489AFBA71C7F6B3000E9DEB9 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		489AFBA91C7F8D2900E9DEB9 /* SetupContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetupContentViewController.swift; sourceTree = "<group>"; };
@@ -202,6 +222,12 @@
 		C121B52E1C8008CC001F3B16 /* WatchedTicketTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchedTicketTableViewCell.swift; sourceTree = "<group>"; };
 		C12E73AB1CBE5D360091ECE9 /* emergency.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = emergency.png; sourceTree = "<group>"; };
 		C12E73B81CC79EAB0091ECE9 /* ChangeTicketHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeTicketHeaderCell.swift; sourceTree = "<group>"; };
+		C12E73BE1CCA2D480091ECE9 /* AnalysisTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalysisTableViewController.swift; sourceTree = "<group>"; };
+		C12E73C31CCAAF980091ECE9 /* SplashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
+		C12E73C51CCAB03E0091ECE9 /* splash2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash2.png; sourceTree = "<group>"; };
+		C12E73C71CCAB5D80091ECE9 /* mychange_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mychange_icon.png; sourceTree = "<group>"; };
+		C12E73CA1CCC0F930091ECE9 /* EmptyGraphIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = EmptyGraphIcon.png; sourceTree = "<group>"; };
+		C12E73D21CCD8F6D0091ECE9 /* forecast.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = forecast.png; sourceTree = "<group>"; };
 		C142E6541C9BEC5A005F1DEC /* TicketModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TicketModel.swift; sourceTree = "<group>"; };
 		C14333821CA0E9540083CA88 /* Charts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Charts; sourceTree = "<group>"; };
 		C14333841CA0E99B0083CA88 /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = Charts/Charts.xcodeproj; sourceTree = "<group>"; };
@@ -277,6 +303,7 @@
 		48D741A11C5AAE86008D082E /* CapstoneProjectSER402 */ = {
 			isa = PBXGroup;
 			children = (
+				460338741CC7FB3E00CF17BC /* changeList_public.xml */,
 				46C1CF3C1CC70D0600969A0C /* changeList.xml */,
 				46F792B51CA8F6E600F00404 /* ConnectionService.swift */,
 				46D0586B1CA3B79D005CFB61 /* AEXML.swift */,
@@ -288,18 +315,21 @@
 				C19F0DDE1C76DB22009BD594 /* AllstateHeader_ASU.png */,
 				462EB83C1C990BF00076C28D /* AllstateLoginHeader.png */,
 				C19F0DC01C73E14F009BD594 /* binoculars-front-view.png */,
-				46A2AB0D1CA47C0E00F87C80 /* AnalysisViewController.swift */,
 				46A2AB0E1CA47C0E00F87C80 /* CapstoneProjectSER402-Bridging-Header.h */,
 				46A2AB0F1CA47C0E00F87C80 /* SWRevealViewController.h */,
 				46A2AB101CA47C0E00F87C80 /* SWRevealViewController.m */,
 				46A2AB111CA47C0E00F87C80 /* UserTypeSelectionViewController.swift */,
 				C14333D61CA9BCF70083CA88 /* DateExtension.swift */,
 				48993BEC1C8CBB0A00EDA13E /* SelectUserTypeViewController.swift */,
+				C12E73C71CCAB5D80091ECE9 /* mychange_icon.png */,
+				C12E73C51CCAB03E0091ECE9 /* splash2.png */,
+				C12E73CA1CCC0F930091ECE9 /* EmptyGraphIcon.png */,
 				4818FE0C1CA498CF00B7EB47 /* settings-icon.png */,
 				C14333CA1CA6948E0083CA88 /* gear.png */,
 				C19F0DDA1C75BAAA009BD594 /* eye_clicked.png */,
 				C19F0DDC1C768044009BD594 /* eye_unclicked.png */,
 				C19F0DC41C73E2C3009BD594 /* home-page.png */,
+				C12E73D21CCD8F6D0091ECE9 /* forecast.png */,
 				C19F0DC21C73E226009BD594 /* infographic-bars.png */,
 				48D741D21C5AB57C008D082E /* lock.png */,
 				C19F0DC81C7455C6009BD594 /* man-user.png */,
@@ -330,9 +360,15 @@
 				489AFBAB1C7F8F5B00E9DEB9 /* WizardSetupViewController.swift */,
 				48D741A91C5AAE86008D082E /* Assets.xcassets */,
 				48D741AB1C5AAE86008D082E /* LaunchScreen.storyboard */,
+				C12E73C31CCAAF980091ECE9 /* SplashViewController.swift */,
 				48D741A61C5AAE86008D082E /* Main.storyboard */,
+				481395D41CCD9882007C6A7C /* NewAppsOptionTableViewCell.swift */,
+				481395CB1CCD71DD007C6A7C /* ChangeUserTypeViewController.swift */,
+				4884D24A1CCC3F520065EF0B /* UserProfilePreferencesTableViewController.swift */,
 				48D12C441CC6D5D100857986 /* AppAreaTableViewCell.swift */,
 				48D12C3F1CC6D57200857986 /* AppAreaSelectionTableViewController.swift */,
+				481395D21CCD975E007C6A7C /* NewAppSelectionTableViewController.swift */,
+				481395D01CCD92BC007C6A7C /* NewAppAreaSelectionTableViewController.swift */,
 				C108ADEB1CB1B9B500CB60F0 /* ArchiveTableViewCell.swift */,
 				4852EEAD1CAC71D80060CD3E /* ProfileTableViewCell.swift */,
 				48D8FADA1CAB096900753943 /* AppsOptionTableViewCell.swift */,
@@ -346,7 +382,10 @@
 				4818FE111CA49CFA00B7EB47 /* SettingsTableViewController.swift */,
 				4852EEA81CAC6D280060CD3E /* AlertsTableViewCell.swift */,
 				C108ADE91CAFB1DF00CB60F0 /* ArchiveTableViewController.swift */,
+				C12E73BE1CCA2D480091ECE9 /* AnalysisTableViewController.swift */,
 				46C2F4341CC592CD00F256C5 /* MockData.swift */,
+				46D54C531CC839820085B95E /* CapstoneProjectSER402.xcdatamodeld */,
+				46A56D551CCADC7600D629FD /* BusinessArea.swift */,
 			);
 			path = CapstoneProjectSER402;
 			sourceTree = "<group>";
@@ -526,6 +565,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C12E73D31CCD8F6D0091ECE9 /* forecast.png in Resources */,
+				460338751CC7FB3E00CF17BC /* changeList_public.xml in Resources */,
 				C14333D01CA6CCD50083CA88 /* circleEmergency.png in Resources */,
 				C14333CF1CA6CCCD0083CA88 /* gear.png in Resources */,
 				C14333CE1CA6CCBB0083CA88 /* circle.png in Resources */,
@@ -533,10 +574,13 @@
 				48D741AD1C5AAE86008D082E /* LaunchScreen.storyboard in Resources */,
 				C19F0DC51C73E2C3009BD594 /* home-page.png in Resources */,
 				48CFA2D31C73C02E0081A8E1 /* menuoptions.png in Resources */,
+				C12E73C81CCAB5D80091ECE9 /* mychange_icon.png in Resources */,
 				C12E73AC1CBE5D360091ECE9 /* emergency.png in Resources */,
 				C19F0DC91C7455C6009BD594 /* man-user.png in Resources */,
 				C108ADF41CB219A900CB60F0 /* archive.png in Resources */,
+				C12E73CB1CCC0F930091ECE9 /* EmptyGraphIcon.png in Resources */,
 				46C1CF3D1CC70D0600969A0C /* changeList.xml in Resources */,
+				C12E73C61CCAB03E0091ECE9 /* splash2.png in Resources */,
 				C108ADF01CB204BC00CB60F0 /* expand_less.png in Resources */,
 				48D741D31C5AB57C008D082E /* lock.png in Resources */,
 				462EB8481C990BF00076C28D /* AllstateLoginHeader.png in Resources */,
@@ -578,19 +622,24 @@
 				46E832A41C88DD81001C376F /* ChangeTicket_Table_Template.swift in Sources */,
 				C14333D71CA9BCF70083CA88 /* DateExtension.swift in Sources */,
 				C14333A61CA4146D0083CA88 /* CustomHeaderCell.swift in Sources */,
+				46A56D561CCADC7600D629FD /* BusinessArea.swift in Sources */,
 				48993BED1C8CBB0A00EDA13E /* SelectUserTypeViewController.swift in Sources */,
 				C19F0DD71C75A28A009BD594 /* ChangeTicketTableViewController.swift in Sources */,
 				48D741A51C5AAE86008D082E /* LoginViewController.swift in Sources */,
+				481395D31CCD975E007C6A7C /* NewAppSelectionTableViewController.swift in Sources */,
 				C108ADEC1CB1B9B500CB60F0 /* ArchiveTableViewCell.swift in Sources */,
 				480D79201CB37A0B00C57410 /* UserTypeTableViewCell.swift in Sources */,
+				481395D51CCD9882007C6A7C /* NewAppsOptionTableViewCell.swift in Sources */,
 				46D0586C1CA3B79D005CFB61 /* AEXML.swift in Sources */,
 				46A2AB131CA47C0E00F87C80 /* SWRevealViewController.m in Sources */,
 				48D8FADB1CAB096900753943 /* AppsOptionTableViewCell.swift in Sources */,
+				46D54C551CC839820085B95E /* CapstoneProjectSER402.xcdatamodeld in Sources */,
 				46F792B61CA8F6E600F00404 /* ConnectionService.swift in Sources */,
 				C121B52F1C8008CC001F3B16 /* WatchedTicketTableViewCell.swift in Sources */,
 				4852EEAE1CAC71D80060CD3E /* ProfileTableViewCell.swift in Sources */,
 				4852EEA91CAC6D280060CD3E /* AlertsTableViewCell.swift in Sources */,
 				C108ADEA1CAFB1DF00CB60F0 /* ArchiveTableViewController.swift in Sources */,
+				C12E73BF1CCA2D480091ECE9 /* AnalysisTableViewController.swift in Sources */,
 				C142E6551C9BEC5A005F1DEC /* TicketModel.swift in Sources */,
 				46A2AB141CA47C0E00F87C80 /* UserTypeSelectionViewController.swift in Sources */,
 				C12E73B91CC79EAB0091ECE9 /* ChangeTicketHeaderCell.swift in Sources */,
@@ -599,17 +648,20 @@
 				48CE447C1C8FB73D00BECD12 /* AppSelectionTableViewCell.swift in Sources */,
 				489AFBAC1C7F8F5B00E9DEB9 /* WizardSetupViewController.swift in Sources */,
 				C14333D41CA6E9920083CA88 /* BusinessAppTableViewCell.swift in Sources */,
+				4884D24B1CCC3F520065EF0B /* UserProfilePreferencesTableViewController.swift in Sources */,
 				462EB84D1C990BF00076C28D /* AppSelectionTableViewController.swift in Sources */,
 				C14333C71CA5B25E0083CA88 /* BusinessApp_Table_Template.swift in Sources */,
 				C14333BE1CA5ADFF0083CA88 /* BusinessModel.swift in Sources */,
 				462EB84B1C990BF00076C28D /* BusinessApp.swift in Sources */,
 				462EB8511C990BF00076C28D /* WatchedTicketTableViewController.swift in Sources */,
+				481395CC1CCD71DD007C6A7C /* ChangeUserTypeViewController.swift in Sources */,
 				C14333D21CA6D8300083CA88 /* BusinessAppTableViewController.swift in Sources */,
 				462EB8491C990BF00076C28D /* AppSelectionViewController.swift in Sources */,
+				C12E73C41CCAAF980091ECE9 /* SplashViewController.swift in Sources */,
 				489AFBAA1C7F8D2900E9DEB9 /* SetupContentViewController.swift in Sources */,
-				46A2AB121CA47C0E00F87C80 /* AnalysisViewController.swift in Sources */,
 				C121B52D1C80075B001F3B16 /* WatchedTicket.swift in Sources */,
 				4818FE121CA49CFA00B7EB47 /* SettingsTableViewController.swift in Sources */,
+				481395D11CCD92BC007C6A7C /* NewAppAreaSelectionTableViewController.swift in Sources */,
 				C19F0DD51C759DB1009BD594 /* ChangeTicketTableViewCell.swift in Sources */,
 				46C2F4351CC592CD00F256C5 /* MockData.swift in Sources */,
 				48D741A31C5AAE86008D082E /* AppDelegate.swift in Sources */,
@@ -875,6 +927,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		46D54C531CC839820085B95E /* CapstoneProjectSER402.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				46D54C541CC839820085B95E /* CapstoneProjectSER402.xcdatamodel */,
+			);
+			currentVersion = 46D54C541CC839820085B95E /* CapstoneProjectSER402.xcdatamodel */;
+			path = CapstoneProjectSER402.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 48D741971C5AAE86008D082E /* Project object */;
 }

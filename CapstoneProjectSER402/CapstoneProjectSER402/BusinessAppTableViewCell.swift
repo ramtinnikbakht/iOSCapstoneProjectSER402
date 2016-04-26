@@ -20,14 +20,19 @@ class BusinessAppTableViewCell: UITableViewCell
     @IBOutlet weak var riskIndicator: UIImageView!
     @IBOutlet weak var emergencyIndicator: UIImageView!
     @IBOutlet weak var businessAppLabel: UILabel!
+    @IBOutlet weak var ticketTypeLabel: UILabel!
     
     var ticket: ChangeTicket!
         {
         didSet {
-            
-
             ticketID.text = ticket.number
             plannedStartLabel.text = convertDate(ticket.plannedStart)
+            if (ticket.BusinessApplication == "element <business_Application> not found") {
+                businessAppLabel.text = ticket.requestedByGroup
+            } else {
+               businessAppLabel.text = ticket.BusinessApplication
+            }
+            ticketTypeLabel.text = ticket.type
         }
     }
     

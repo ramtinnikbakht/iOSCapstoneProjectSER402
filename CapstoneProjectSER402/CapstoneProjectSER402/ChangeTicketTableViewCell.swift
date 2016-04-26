@@ -19,7 +19,6 @@ class ChangeTicketTableViewCell: UITableViewCell
     @IBOutlet weak var attributeLabel: UILabel!
     @IBOutlet weak var attributeValue: UILabel!
     
-    
     var ticket: ChangeTicket!
     {
         didSet {
@@ -40,6 +39,4 @@ class ChangeTicketTableViewCell: UITableViewCell
         
         // Configure the view for the selected state
     }
-    
-
 }

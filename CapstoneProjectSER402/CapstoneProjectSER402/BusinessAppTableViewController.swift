@@ -9,6 +9,7 @@
 import UIKit
 import Charts
 import QuartzCore
+import CoreData
 
 class BusinessAppTableViewController: UITableViewController, ChartViewDelegate
 {
@@ -25,6 +26,8 @@ class BusinessAppTableViewController: UITableViewController, ChartViewDelegate
     let cellIdentifier = "BusinessAppCell"
     let tierList = [2, 1, 0]
     let DateFormat = NSDateFormatter()
+    let sectionTitles = ["Emergency", "High Risk", "Low Risk"]
+    var userType = ""
     
     var isGraphSelected = false
     var testCounts = [Int]()
@@ -46,9 +49,12 @@ class BusinessAppTableViewController: UITableViewController, ChartViewDelegate
     var liveTickets = [ChangeTicket]()
     var isShifting = true
     var isCollapsed = [false, false, false]
-    let sectionTitles = ["Emergency", "High Risk", "Low Risk"]
     var liveApps = [BusinessApp]()
     var liveTicketsShown : [Bool] = []
+    var shouldAnimate = true
+    var mockData = MockData()
+    var appDel:AppDelegate?
+    var context:NSManagedObjectContext?
     
     // Colors
     let low = UIColor(red: CGFloat(38/255.0), green: CGFloat(166/255.0), blue: CGFloat(91/255.0), alpha: 1)
@@ -69,13 +75,17 @@ class BusinessAppTableViewController: UITableViewController, ChartViewDelegate
         
         barChartView.delegate = self
 
+        appDel = (UIApplication.sharedApplication().delegate as! AppDelegate)
+        context = appDel!.managedObjectContext
+        
         var lowRisk : [Double] = []
         var highRisk : [Double] = []
         let timeFrame = getTimeWindow()
         loadSampleApps()
-
+        
         let ticketShown = [Bool](count: liveTickets.count, repeatedValue: false)
         liveTicketsShown = ticketShown
+        
         for time in timeFrame {
             let span = time.characters.split{$0 == " "}.map(String.init)
             compare_window += [span[0]]
@@ -101,17 +111,53 @@ class BusinessAppTableViewController: UITableViewController, ChartViewDelegate
         setChart(timeFrame, values: lowRisk, values2: highRisk)
         isShifting = false
     }
+    
+    override func viewWillAppear(animated: Bool) {
+//        let fetchRequest = NSFetchRequest(entityName: "User")
+//        do
+//        {
+//            let results:NSArray = try context!.executeFetchRequest(fetchRequest)
+//            let max = results.count - 1
+//            if (userType != results[max].userType!) {
+//                loadSampleApps()
+//                tableView.reloadData()
+//            } else {
+//                return
+//            }
+//        }
+//        catch let error as NSError
+//        {
+//            print("Could not fetch \(error), \(error.userInfo)")
+//        }
+    }
 
     func loadSampleApps()
     {
         DateFormat.locale = NSLocale(localeIdentifier: "US_en")
         DateFormat.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        let now = NSDate()
-        //let time1 = DateFormat.stringFromDate(now)
-        //let time2 = DateFormat.stringFromDate(now.plusHours(6))
         
-        ConnectionService.sharedInstance.getChange(plannedStart: "2016-01-25 02:00:00", plannedStart2: "2016-01-25 08:30:00", psD: "1")
-        liveTickets = ConnectionService.sharedInstance.ticketList
+        let fetchRequest = NSFetchRequest(entityName: "User")
+        do
+        {
+            let results:NSArray = try context!.executeFetchRequest(fetchRequest)
+            let max = results.count - 1
+            userType = results[max].userType!
+        }
+        catch let error as NSError
+        {
+            print("Could not fetch \(error), \(error.userInfo)")
+        }
+        
+        if (userType == "Demo") {
+            liveTickets = mockData.parseExampleXMLFile()
+        } else {
+            let now = NSDate()
+            let time1 = DateFormat.stringFromDate(now)
+            let time2 = DateFormat.stringFromDate(now.plusHours(6))
+            
+            ConnectionService.sharedInstance.getChange(plannedStart: time1, plannedStart2: time2, psD: "1")
+            liveTickets = ConnectionService.sharedInstance.ticketList
+        }
 
         for ticket in liveTickets {
             let currentTime = DateFormat.dateFromString(ticket.plannedStart)
@@ -124,7 +170,6 @@ class BusinessAppTableViewController: UITableViewController, ChartViewDelegate
             } else if (ticket.type == "Emergency") {
                 emergencyTickets += [ticket]
             }
-            
         }
         
         let total = plannedStartDates.count
@@ -151,7 +196,6 @@ class BusinessAppTableViewController: UITableViewController, ChartViewDelegate
             var hourString = String(ticketDate.hour)
             var ticketTime : String = ""
 
-            
             if (ticketDate.hour >= 12) {
                 hourString = String(ticketDate.hour - 12)
             }
@@ -192,7 +236,6 @@ class BusinessAppTableViewController: UITableViewController, ChartViewDelegate
                         } else {
                             testCounts += [unitIndex]
                         }
-                        
                     }
                 }
                 unitIndex++
@@ -213,7 +256,7 @@ class BusinessAppTableViewController: UITableViewController, ChartViewDelegate
         super.didReceiveMemoryWarning()
     }
     
-    // MARK: - Table view data source
+    // MARK: - Table View Data Source
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return sectionTitles.count
@@ -294,18 +337,21 @@ class BusinessAppTableViewController: UITableViewController, ChartViewDelegate
         }
         
         let lightGrey = UIColor.lightGrayColor()
+        
+        // Risk Indicator setup
         cell.riskIndicator.layer.shadowColor = white.CGColor
         cell.riskIndicator.layer.shadowRadius = 1.5
         cell.riskIndicator.layer.shadowOpacity = 0.7
         cell.riskIndicator.layer.shadowOffset = CGSizeZero
         cell.riskIndicator.layer.masksToBounds = false
+        
+        // Cell Shadow setup
         cell.backgroundColor = UIColor.whiteColor()
         cell.layer.shadowColor = lightGrey.CGColor
         cell.layer.shadowRadius = 1.5
         cell.layer.shadowOpacity = 0.7
         cell.layer.shadowOffset = CGSizeZero
         cell.layer.masksToBounds = false
-        cell.businessAppLabel.text = ticket.requestedByGroupBusinessArea
         cell.ticket = ticket
         
         return cell
@@ -348,46 +394,27 @@ class BusinessAppTableViewController: UITableViewController, ChartViewDelegate
         return headerCell
     }
     
-    @IBAction func expandSection(sender: AnyObject) {
-        isCollapsed[sender.tag!] = !isCollapsed[sender.tag!];
-        isShifting = true
-        tableView.reloadData()
-    }
-    
     
     // MARK: - Animate Table View Cell
     
     // Row Animation
     override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
         if (liveTicketsShown[indexPath.row] == false) {
+            let cellPosition = indexPath.indexAtPosition(1)
+            var delay : Double = Double(cellPosition) * 0.1
+            if (delay >= 0.4) {
+                delay = 0
+            }
             let rotationTransform = CATransform3DTranslate(CATransform3DIdentity, -500, 0, 0)
             cell.layer.transform = rotationTransform
             
-            UIView.animateWithDuration(1.0, animations: {
+            UIView.animateWithDuration(1.0, delay: delay, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.3, options: UIViewAnimationOptions.BeginFromCurrentState, animations: {
                 cell.layer.transform = CATransform3DIdentity
                 }, completion: { finished in
                     
             })
             liveTicketsShown[indexPath.row] = true
         }
-    }
-    
-    // Header Animation
-    override func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        if (isShifting) {
-
-        } else {
-//            let rotationTransform = CATransform3DTranslate(CATransform3DIdentity, -500, 0, 0)
-//            view.layer.transform = rotationTransform
-//            view.tag = 21
-//            
-//            UIView.animateWithDuration(1.0, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.3, options: UIViewAnimationOptions.BeginFromCurrentState, animations: {
-//                view.layer.transform = CATransform3DIdentity
-//                }, completion: { finished in
-//                    
-//            })
-        }
-        
     }
 
     func getTimeWindow() -> [String] {
@@ -406,7 +433,6 @@ class BusinessAppTableViewController: UITableViewController, ChartViewDelegate
             let cTimeStr = formatter.stringFromDate(currentTime!)
             timeWindow += [cTimeStr]
         }
-
         return timeWindow
     }
     
@@ -482,31 +508,32 @@ class BusinessAppTableViewController: UITableViewController, ChartViewDelegate
         chartDataSet2.highlightColor = UIColor(red: CGFloat(255/255.0), green: CGFloat(0), blue: CGFloat(35/255.0), alpha: 1)
         let dataSets: [BarChartDataSet] = [chartDataSet,chartDataSet2]
         let numberFormatter = NSNumberFormatter()
-
         let chartData = BarChartData(xVals: dataPoints, dataSets: dataSets)
         
         numberFormatter.generatesDecimalNumbers = false
         chartDataSet.valueFormatter = numberFormatter
         chartDataSet.drawValuesEnabled = false
-        barChartView.xAxis.labelPosition = .Bottom
-        barChartView.noDataTextDescription = "Data has not been selected"
-        
         chartData.setValueFont(UIFont(name: "Helvetica", size: 12))
         
         barChartView.rightAxis.drawLabelsEnabled = false
         barChartView.rightAxis.drawAxisLineEnabled = false
+        barChartView.rightAxis.drawGridLinesEnabled = false
+        
         barChartView.leftAxis.gridColor = UIColor.lightGrayColor()
+        barChartView.leftAxis.axisLineColor = UIColor.blackColor()
         barChartView.leftAxis.startAtZeroEnabled = true
         barChartView.leftAxis.drawGridLinesEnabled = true
-        barChartView.rightAxis.drawGridLinesEnabled = false
         barChartView.leftAxis.valueFormatter = numberFormatter
-        barChartView.leftAxis.axisLineColor = UIColor.blackColor()
+        
+        barChartView.xAxis.labelPosition = .Bottom
         barChartView.xAxis.drawGridLinesEnabled = false
-        barChartView.descriptionText = ""
-        barChartView.data = chartData
-        barChartView.setExtraOffsets(left: 0, top: 0, right: 0, bottom: 7)
         barChartView.xAxis.axisLineColor = UIColor.blackColor()
         barChartView.xAxis.xOffset = 10
+        
+        barChartView.descriptionText = ""
+        barChartView.noDataTextDescription = "Data has not been selected"
+        barChartView.data = chartData
+        barChartView.setExtraOffsets(left: 0, top: 0, right: 0, bottom: 7)
         
         // Legend Data
         barChartView.legend.position = .RightOfChartInside
@@ -554,7 +581,7 @@ class BusinessAppTableViewController: UITableViewController, ChartViewDelegate
                         }
                     }
                 }
-                let ticketShown = [Bool](count: filteredTickets.count, repeatedValue: false)
+                let ticketShown = [Bool](count: filteredTickets.count + filteredEmergencyTickets.count, repeatedValue: false)
                 liveTicketsShown = ticketShown
                 tableView.reloadData()
             } else if (dataSetIndex == 1) {
@@ -594,6 +621,7 @@ class BusinessAppTableViewController: UITableViewController, ChartViewDelegate
                 if (indexPath.section == 0) {
                     ticket = filteredEmergencyTickets[indexPath.row]
                 } else {
+                    print(filteredTickets)
                     ticket = filteredTickets[indexPath.row]
                 }
 

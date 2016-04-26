@@ -1,35 +1,27 @@
 //
-//  AppAreaSelectionTableViewController.swift
+//  NewAppAreaSelectionTableViewController.swift
 //  CapstoneProjectSER402
 //
-//  Created by Ramtin Nikbakht on 4/19/16.
+//  Created by Ramtin Nikbakht on 4/24/16.
 //  Copyright © 2016 Ramtin Nikbakht. All rights reserved.
 //
 
 import UIKit
 
-class AppAreaSelectionTableViewController: UITableViewController {
-    
-    var usertype: String = ""
-    
-    var busArea = [BusinessArea]()
-    var selectedAreas = [BusinessArea]()
+class NewAppAreaSelectionTableViewController: UITableViewController {
     
     var appsAreaArray = [String]()
+    var busArea = [BusinessArea]()
     var selectedAppAreas = [String]()
-    var areasShown : [Bool] = []
-    
-    //var mockAppsAreaArray = ["Area1", "Area2", "Area3"]
-    
-    override func viewDidLoad()
-    {
+    var selectedAreas = [BusinessArea]()
+    var myApps = [String]()
+
+    override func viewDidLoad() {
         super.viewDidLoad()
+
         
         ConnectionService.sharedInstance.getBusinessArea()
         busArea = ConnectionService.sharedInstance.areaList
-        
-        let shown = [Bool](count: busArea.count, repeatedValue: false)
-        areasShown = shown
         
         for area in busArea
         {
@@ -51,87 +43,52 @@ class AppAreaSelectionTableViewController: UITableViewController {
         
     }
 
-
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
+        
         return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
+        
         return ConnectionService.sharedInstance.areaList.count
     }
-    
-    
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-            
-        let cell = tableView.dequeueReusableCellWithIdentifier("apparea") as! AppAreaTableViewCell
-        cell.appAreaTitleLabel.text = appsAreaArray[indexPath.row]
+        let cell = tableView.dequeueReusableCellWithIdentifier("newapparea", forIndexPath: indexPath)
+
+        cell.textLabel?.text = appsAreaArray[indexPath.row]
         if (selectedAppAreas.contains(appsAreaArray[indexPath.row])) {
             cell.accessoryType = .Checkmark
         } else {
             cell.tintColor = UIColor(red: 0/255.0, green: 64/255.0, blue: 128/255.0, alpha: 1.0)
             cell.accessoryType = .None
         }
-        
-        let lightGrey = UIColor.lightGrayColor()
-        cell.layer.shadowColor = lightGrey.CGColor
-        cell.layer.shadowRadius = 1.5
-        cell.layer.shadowOpacity = 0.7
-        cell.layer.shadowOffset = CGSizeZero
-        cell.layer.masksToBounds = false
-        
         return cell
+
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
     {
-        let cell = tableView.cellForRowAtIndexPath(indexPath) as! AppAreaTableViewCell!
-        let selectedArea = cell.appAreaTitleLabel.text!
+        let cell = tableView.cellForRowAtIndexPath(indexPath) as! UITableViewCell!
+        let selectedArea = cell.textLabel?.text
         
-        if (selectedAppAreas.contains(selectedArea)) {
-            selectedAppAreas = selectedAppAreas.filter {$0 != cell.appAreaTitleLabel.text!}
+        if (selectedAppAreas.contains(selectedArea!)) {
+            selectedAppAreas = selectedAppAreas.filter {$0 != cell.textLabel?.text!}
             cell.accessoryType = .None
         } else {
             cell.tintColor = UIColor(red: 0/255.0, green: 64/255.0, blue: 128/255.0, alpha: 1.0)
             cell.accessoryType = UITableViewCellAccessoryType.Checkmark
-            selectedAppAreas += [selectedArea]
-        }
-    }
-    
-    // MARK: - Animate Table View Cell
-    
-    // Row Animation
-    override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-        if (areasShown[indexPath.row] == false) {
-            let cellPosition = indexPath.indexAtPosition(1)
-            var delay : Double = Double(cellPosition) * 0.1
-            
-            if (delay >= 1.3) {
-                delay = 0
-            }
-            
-            let rotationTransform = CATransform3DTranslate(CATransform3DIdentity, -500, 0, 0)
-            cell.layer.transform = rotationTransform
-            
-            UIView.animateWithDuration(1.0, delay: delay, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.3, options: UIViewAnimationOptions.BeginFromCurrentState, animations: {
-                cell.layer.transform = CATransform3DIdentity
-                }, completion: { finished in
-                    
-            })
-            areasShown[indexPath.row] = true
+            selectedAppAreas.append(selectedArea!)
         }
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
     {
-        let destViewController : AppSelectionTableViewController = segue.destinationViewController as! AppSelectionTableViewController
-        destViewController.usertype = usertype
+        let destViewController : NewAppSelectionTableViewController = segue.destinationViewController as! NewAppSelectionTableViewController
         sendSelectedApps()
         destViewController.appAreasSelection = selectedAreas
-        
+        destViewController.myApps = myApps
         
     }
     
