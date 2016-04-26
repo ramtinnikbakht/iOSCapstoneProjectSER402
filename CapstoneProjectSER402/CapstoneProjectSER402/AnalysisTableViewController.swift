@@ -206,8 +206,8 @@ class AnalysisTableViewController: UITableViewController, UITextFieldDelegate, C
         calculateDaySegment()
         calculateTimeFrame(selectedDay, counterValue: timeFrameIndex)
         
-                ConnectionService.sharedInstance.getChange(plannedStart: timeSegments[0], plannedStart2: timeSegments[5], psD: "1")
-                liveTickets = ConnectionService.sharedInstance.ticketList
+        ConnectionService.sharedInstance.getChange(plannedStart: timeSegments[0], plannedStart2: timeSegments[5], psD: "1")
+        liveTickets = ConnectionService.sharedInstance.ticketList
         //liveTickets = mockData.MOCK_DATA_ARRAY
         sortTicketsByRisk()
         calculateGraphValues()
@@ -272,7 +272,6 @@ class AnalysisTableViewController: UITableViewController, UITextFieldDelegate, C
         
         let dateArr = DateFormat.stringFromDate(now)
         let currentDate = dateArr.characters.split{$0 == " "}.map(String.init)
-        //let currentDate = NSDate()
         let dateBeginning_Now = currentDate[0] + " 00:00:00"
         let dateZero = DateFormat.dateFromString(dateBeginning_Now)
         
@@ -331,13 +330,6 @@ class AnalysisTableViewController: UITableViewController, UITextFieldDelegate, C
         UIView.transitionWithView(currentTimeFrameTF, duration: 0.5, options: [.TransitionFlipFromLeft], animations: {
             self.currentTimeFrameTF.text = self.selectedHourLabels[0] + " - " + self.selectedHourLabels[5]
             }, completion: nil)
-        
-//        let animation = CATransition()
-//        animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseIn)
-//        animation.type = kCATransitionFromTop
-//        animation.duration = 0.75
-//        currentTimeFrameTF.layer.addAnimation(animation, forKey: "kCATransitionFromTop")
-//        currentTimeFrameTF.text = selectedHourLabels[0] + " - " + selectedHourLabels[5]
     }
     
     func calculateGraphValues() {
@@ -440,6 +432,40 @@ class AnalysisTableViewController: UITableViewController, UITextFieldDelegate, C
                 highRiskTickets += [ticket]
             }
         }
+    }
+    
+    func sortTicketsByTime(segmentIndex: Int) -> [ChangeTicket] {
+        DateFormat.locale = NSLocale(localeIdentifier: "US_en")
+        DateFormat.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        var filteredByTime : [ChangeTicket] = []
+        let now = NSDate()
+        let currentDay = now.day
+        let currentMonth = now.month
+        let threeDayMax = now.minusDays(3).day
+        let weekMax = now.minusDays(7).day
+        
+        for ticket in liveTickets {
+            if (ticket.actualEnd != "") {
+                let ticketActualEnd = DateFormat.dateFromString(ticket.actualEnd)
+                let ticketDay = ticketActualEnd?.day
+                let ticketMonth = ticketActualEnd!.month
+                
+                if (segmentIndex == 0) {
+                    if (ticketDay == currentDay) {
+                        filteredByTime += [ticket]
+                    }
+                } else if (segmentIndex == 1) {
+                    if (ticketDay >= threeDayMax || ticketMonth > currentMonth) {
+                        filteredByTime += [ticket]
+                    }
+                } else if (segmentIndex == 2) {
+                    if (ticketDay >= weekMax || ticketMonth > currentMonth) {
+                        filteredByTime += [ticket]
+                    }
+                }
+            }
+        }
+        return filteredByTime
     }
     
     func isTicketsNotEmpty(highRiskValues: [Double], lowRiskValues: [Double]) -> Bool {

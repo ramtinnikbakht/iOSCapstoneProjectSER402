@@ -9,6 +9,7 @@
 import UIKit
 import Charts
 import Foundation
+import CoreData
 
 class ArchiveTableViewController: UITableViewController, UITextFieldDelegate, ChartViewDelegate {
     
@@ -20,6 +21,7 @@ class ArchiveTableViewController: UITableViewController, UITextFieldDelegate, Ch
     private var tbvc = TicketTabBarController()
     
     let closureCodes : [String] = ["Implemented as Planned", "Implemented with Effort", "Backed Out No Customer/User Impacts", "Implemented with Issues", "Backed Out Customer/User Impacts", "Failed to report status"]
+    var userType = ""
     var activeCodes : [String] = []
     var ticketStartDates = [String]()
     var selectedTF = UITextField()
@@ -41,6 +43,8 @@ class ArchiveTableViewController: UITableViewController, UITextFieldDelegate, Ch
     var mockData = MockData()
     var liveTicketsShown : [Bool] = []
     var shouldAnimate = true
+    var appDel:AppDelegate?
+    var context:NSManagedObjectContext?
     
     let cellIdentifier = "TicketCell"
     let appNames : [String] = []
@@ -104,27 +108,34 @@ class ArchiveTableViewController: UITableViewController, UITextFieldDelegate, Ch
         let now = NSDate()
         let dayMax = now.minusDays(1)
         let threeDayMax = now.minusDays(3)
-        let weekMax = now.minusDays(10)
+        let weekMax = now.minusDays(7)
         var time1 = ""
         var time2 = ""
         
-        if (segmentIndex == 0) {
-            time1 = DateFormat.stringFromDate(dayMax)
-            time2 = DateFormat.stringFromDate(now)
-            
-        } else if (segmentIndex == 1) {
-            time1 = DateFormat.stringFromDate(threeDayMax)
-            time2 = DateFormat.stringFromDate(now)
+        if (userType == "Demo") {
+            liveTickets = mockData.MOCK_DATA_ARRAY
+            liveTickets = filterTicketTimes(segmentIndex)
+            let ticketShown = [Bool](count: liveTickets.count, repeatedValue: false)
+            liveTicketsShown = ticketShown
+            sortClosureCodes(liveTickets)
         } else {
-            time1 = DateFormat.stringFromDate(weekMax)
-            time2 = DateFormat.stringFromDate(now)
+            if (segmentIndex == 0) {
+                time1 = DateFormat.stringFromDate(dayMax)
+                time2 = DateFormat.stringFromDate(now)
+                
+            } else if (segmentIndex == 1) {
+                time1 = DateFormat.stringFromDate(threeDayMax)
+                time2 = DateFormat.stringFromDate(now)
+            } else {
+                time1 = DateFormat.stringFromDate(weekMax)
+                time2 = DateFormat.stringFromDate(now)
+            }
+            ConnectionService.sharedInstance.getChange(actualEnd: time1, actualEnd2: time2, aeD: "1")
+            liveTickets = ConnectionService.sharedInstance.ticketList
+            let ticketShown = [Bool](count: liveTickets.count, repeatedValue: false)
+            liveTicketsShown = ticketShown
+            sortClosureCodes(liveTickets)
         }
-        
-        ConnectionService.sharedInstance.getChange(actualEnd: time1, actualEnd2: time2, aeD: "1")
-        liveTickets = ConnectionService.sharedInstance.ticketList
-        let ticketShown = [Bool](count: liveTickets.count, repeatedValue: false)
-        liveTicketsShown = ticketShown
-        sortClosureCodes(liveTickets)
     }
     
     func sortClosureCodes(tickets: [ChangeTicket]) {
@@ -204,11 +215,31 @@ class ArchiveTableViewController: UITableViewController, UITextFieldDelegate, Ch
         super.viewDidLoad()
     
         pieChartView.delegate = self
-        //loadTickets()
-        liveTickets = mockData.parseExampleXMLFile()
-        //filterTicketTimes(0)
+        appDel = (UIApplication.sharedApplication().delegate as! AppDelegate)
+        context = appDel!.managedObjectContext
+        
+        let fetchRequest = NSFetchRequest(entityName: "User")
+        do
+        {
+            let results:NSArray = try context!.executeFetchRequest(fetchRequest)
+            let max = results.count - 1
+            userType = results[max].userType!
+        }
+        catch let error as NSError
+        {
+            print("Could not fetch \(error), \(error.userInfo)")
+        }
+        
+        if (userType == "Demo") {
+            liveTickets = mockData.parseExampleXMLFile()
+            liveTickets = filterTicketTimes(0)
+        } else {
+            loadTickets(0)
+        }
+        
         let ticketShown = [Bool](count: liveTickets.count, repeatedValue: false)
         liveTicketsShown = ticketShown
+        
         sortClosureCodes(liveTickets)
         setValuesForGraph()
         
@@ -341,11 +372,11 @@ class ArchiveTableViewController: UITableViewController, UITextFieldDelegate, Ch
                         filteredByTime += [ticket]
                     }
                 } else if (segmentIndex == 1) {
-                    if (ticketDay <= threeDayMax || ticketMonth > currentMonth) {
+                    if (ticketDay >= threeDayMax || ticketMonth > currentMonth) {
                         filteredByTime += [ticket]
                     }
                 } else if (segmentIndex == 2) {
-                    if (ticketDay <= weekMax || ticketMonth > currentMonth) {
+                    if (ticketDay >= weekMax || ticketMonth > currentMonth) {
                         filteredByTime += [ticket]
                     }
                 }

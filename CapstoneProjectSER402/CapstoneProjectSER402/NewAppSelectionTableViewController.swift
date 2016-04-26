@@ -30,10 +30,7 @@ class NewAppSelectionTableViewController: UITableViewController {
     @IBAction func selectAllButtonPressed(sender: UIButton) {
         let section = 1
         for (var row = 0; row < tableView.numberOfRowsInSection(section); ++row) {
-            tableView.cellForRowAtIndexPath(NSIndexPath(forRow: row, inSection: section))?.tintColor = UIColor(red: 0/255.0,
-                                                                                                               green: 64/255.0,
-                                                                                                               blue: 128/255.0,
-                                                                                                               alpha: 1.0)
+            tableView.cellForRowAtIndexPath(NSIndexPath(forRow: row, inSection: section))?.tintColor = UIColor(red: 0/255.0, green: 64/255.0, blue: 128/255.0, alpha: 1.0)
             tableView.cellForRowAtIndexPath(NSIndexPath(forRow: row, inSection: section))?.accessoryType = UITableViewCellAccessoryType.Checkmark
             
             
@@ -47,8 +44,6 @@ class NewAppSelectionTableViewController: UITableViewController {
             tableView.cellForRowAtIndexPath(NSIndexPath(forRow: row, inSection: section))?.accessoryType = UITableViewCellAccessoryType.None
         }
         selectedApps = []
-        print(selectedApps)
-        
     }
     
     func callApps()
@@ -125,22 +120,22 @@ class NewAppSelectionTableViewController: UITableViewController {
         } else {
             return appNamesStrings.count
         }
-        
     }
     
-    
-    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
-
+        let lightGrey = UIColor.lightGrayColor()
         if indexPath.section == 0 {
-            
             let cell = tableView.dequeueReusableCellWithIdentifier("newappsoptioncell") as! NewAppsOptionTableViewCell!
-            
+            cell.backgroundColor = UIColor.whiteColor()
+            cell.layer.shadowColor = lightGrey.CGColor
+            cell.layer.shadowRadius = 1.5
+            cell.layer.shadowOpacity = 0.7
+            cell.layer.shadowOffset = CGSizeZero
+            cell.layer.masksToBounds = false
             return cell
         }
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("newappscell") as! UITableViewCell!
+        let cell = tableView.dequeueReusableCellWithIdentifier("newappscell") as UITableViewCell!
         cell.textLabel?.text = appNamesStrings[indexPath.row]
         
         if (selectedApps.contains(appNamesStrings[indexPath.row])) {
@@ -149,6 +144,12 @@ class NewAppSelectionTableViewController: UITableViewController {
             cell.tintColor = UIColor(red: 0/255.0, green: 64/255.0, blue: 128/255.0, alpha: 1.0)
             cell.accessoryType = .None
         }
+        cell.backgroundColor = UIColor.whiteColor()
+        cell.layer.shadowColor = lightGrey.CGColor
+        cell.layer.shadowRadius = 1.5
+        cell.layer.shadowOpacity = 0.7
+        cell.layer.shadowOffset = CGSizeZero
+        cell.layer.masksToBounds = false
         return cell
     }
     
@@ -159,7 +160,7 @@ class NewAppSelectionTableViewController: UITableViewController {
             optionscell.selectionStyle = UITableViewCellSelectionStyle.None
             
         } else {
-            let cell = tableView.cellForRowAtIndexPath(indexPath) as! UITableViewCell!
+            let cell = tableView.cellForRowAtIndexPath(indexPath) as UITableViewCell!
             let selectedApp = cell.textLabel!.text!
             
             if (selectedApps.contains(selectedApp))
@@ -246,7 +247,7 @@ class NewAppSelectionTableViewController: UITableViewController {
     }
     func saveABusinessArea(areaObj: BusinessArea)
     {
-        var newBusinessArea = NSEntityDescription.insertNewObjectForEntityForName("BusinessArea", inManagedObjectContext: context!) as NSManagedObject
+        let newBusinessArea = NSEntityDescription.insertNewObjectForEntityForName("BusinessArea", inManagedObjectContext: context!) as NSManagedObject
         newBusinessArea.setValue(areaObj.getName(), forKey: "busArea")
         newBusinessArea.setValue(areaObj.getSysID(), forKey: "sysID")
         contextSave()
@@ -256,7 +257,7 @@ class NewAppSelectionTableViewController: UITableViewController {
     {
         if segue.identifier == "backToSplashScreen"
         {
-            let destViewController : SplashViewController = segue.destinationViewController as! SplashViewController
+            //let destViewController : SplashViewController = segue.destinationViewController as! SplashViewController
             saveSelectedApps()
             saveToCoreData()
         }
