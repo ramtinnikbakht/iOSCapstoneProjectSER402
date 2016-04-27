@@ -12,14 +12,22 @@ class SelectUserTypeViewController: UIViewController, UIPickerViewDataSource, UI
 {
 
     @IBOutlet var userTypePickerView: UIPickerView!
-    var userTypesPickerSource = ["ITSM", "Business/Leadership", "App Owner", "Demo"]
+    //var userTypesPickerSource = ["ITSM", "Business/Leadership", "App Owner", "Demo"]
+    var userTypesPickerSource = [String]()
+    var test = [String]()
     var selectedUserType: String = ""
     
     
     override func viewDidLoad()
     {
-        
         super.viewDidLoad()
+        let path = NSBundle.mainBundle().pathForResource("TextData", ofType: "plist")
+        let dict = NSDictionary(contentsOfFile: path!)
+        userTypesPickerSource = dict!.objectForKey("userType") as! [String]
+        
+        print(test.count)
+        print(test)
+        
         selectedUserType = userTypesPickerSource[userTypePickerView.selectedRowInComponent(0)]
         self.userTypePickerView.dataSource = self
         self.userTypePickerView.delegate = self

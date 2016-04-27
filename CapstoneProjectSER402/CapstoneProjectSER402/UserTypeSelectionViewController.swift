@@ -12,7 +12,8 @@ class UserTypeSelectionViewController: UIViewController, UIPickerViewDataSource,
 
     @IBOutlet var userTypeTextField: UITextField!
     
-    var userTypes = ["ITSM", "Business Leadership", "App Owner"]
+    //var userTypes = ["ITSM", "Business Leadership", "App Owner"]
+    var userTypes = [String]()
     var userTypePicker = UIPickerView()
     
     @IBAction func nextButtonTouched(sender: AnyObject) {
@@ -22,6 +23,10 @@ class UserTypeSelectionViewController: UIViewController, UIPickerViewDataSource,
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let path = NSBundle.mainBundle().pathForResource("TextData", ofType: "plist")
+        let dict = NSDictionary(contentsOfFile: path!)
+        userTypes = dict!.objectForKey("userType") as! [String]
         
         userTypePicker.delegate = self
         userTypePicker.dataSource = self

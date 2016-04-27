@@ -21,6 +21,7 @@
 		46C2F4351CC592CD00F256C5 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C2F4341CC592CD00F256C5 /* MockData.swift */; };
 		46D0586C1CA3B79D005CFB61 /* AEXML.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D0586B1CA3B79D005CFB61 /* AEXML.swift */; };
 		46D54C551CC839820085B95E /* CapstoneProjectSER402.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 46D54C531CC839820085B95E /* CapstoneProjectSER402.xcdatamodeld */; };
+		46E2E6321CD0783D00D5D00C /* TextData.plist in Resources */ = {isa = PBXBuildFile; fileRef = 46E2E6311CD0783D00D5D00C /* TextData.plist */; };
 		46E832A41C88DD81001C376F /* ChangeTicket_Table_Template.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E832A31C88DD81001C376F /* ChangeTicket_Table_Template.swift */; };
 		46F792B61CA8F6E600F00404 /* ConnectionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F792B51CA8F6E600F00404 /* ConnectionService.swift */; };
 		480D79201CB37A0B00C57410 /* UserTypeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 480D791F1CB37A0B00C57410 /* UserTypeTableViewCell.swift */; };
@@ -177,6 +178,7 @@
 		46C2F4341CC592CD00F256C5 /* MockData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
 		46D0586B1CA3B79D005CFB61 /* AEXML.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AEXML.swift; sourceTree = "<group>"; };
 		46D54C541CC839820085B95E /* CapstoneProjectSER402.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CapstoneProjectSER402.xcdatamodel; sourceTree = "<group>"; };
+		46E2E6311CD0783D00D5D00C /* TextData.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = TextData.plist; sourceTree = "<group>"; };
 		46E832A31C88DD81001C376F /* ChangeTicket_Table_Template.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeTicket_Table_Template.swift; sourceTree = "<group>"; };
 		46F792B51CA8F6E600F00404 /* ConnectionService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionService.swift; sourceTree = "<group>"; };
 		480D791F1CB37A0B00C57410 /* UserTypeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTypeTableViewCell.swift; sourceTree = "<group>"; };
@@ -386,6 +388,7 @@
 				46C2F4341CC592CD00F256C5 /* MockData.swift */,
 				46D54C531CC839820085B95E /* CapstoneProjectSER402.xcdatamodeld */,
 				46A56D551CCADC7600D629FD /* BusinessArea.swift */,
+				46E2E6311CD0783D00D5D00C /* TextData.plist */,
 			);
 			path = CapstoneProjectSER402;
 			sourceTree = "<group>";
@@ -590,6 +593,7 @@
 				C19F0DDD1C768044009BD594 /* eye_unclicked.png in Resources */,
 				4818FE0D1CA498CF00B7EB47 /* settings-icon.png in Resources */,
 				C14333831CA0E9540083CA88 /* Charts in Resources */,
+				46E2E6321CD0783D00D5D00C /* TextData.plist in Resources */,
 				C19F0DC31C73E226009BD594 /* infographic-bars.png in Resources */,
 				48D741A81C5AAE86008D082E /* Main.storyboard in Resources */,
 				C108ADEF1CB204BC00CB60F0 /* expand_more.png in Resources */,
