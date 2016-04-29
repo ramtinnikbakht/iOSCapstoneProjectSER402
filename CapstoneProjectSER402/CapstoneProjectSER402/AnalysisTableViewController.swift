@@ -525,7 +525,7 @@ class AnalysisTableViewController: UITableViewController, UITextFieldDelegate, C
         currentDateLabel.text = day0Header
         
         if (userType == "Demo") {
-            liveTickets = mockData.parseExampleXMLFile()
+            liveTickets = mockData.parseExampleXMLFileForPublic()
             liveTickets = sortTicketsByDay(0)
         } else {
             ConnectionService.sharedInstance.getChange(plannedStart: timeSegments[0], plannedStart2: timeSegments[5], psD: "1")

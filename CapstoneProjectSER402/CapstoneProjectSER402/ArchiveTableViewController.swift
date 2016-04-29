@@ -231,7 +231,7 @@ class ArchiveTableViewController: UITableViewController, UITextFieldDelegate, Ch
         }
         
         if (userType == "Demo") {
-            liveTickets = mockData.parseExampleXMLFile()
+            liveTickets = mockData.parseExampleXMLFileForPublic()
             liveTickets = filterTicketTimes(0)
         } else {
             loadTickets(0)
